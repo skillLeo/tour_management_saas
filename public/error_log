@@ -1,0 +1,19 @@
+[04-Feb-2026 04:51:47 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function Illuminate\Support\mb_split() in /home/o1604bh7/tour.duafotoitalia.it/vendor/laravel/framework/src/Illuminate/Support/Str.php:1689
+Stack trace:
+#0 /home/o1604bh7/tour.duafotoitalia.it/vendor/laravel/framework/src/Illuminate/Support/Manager.php(98): Illuminate\Support\Str::studly()
+#1 /home/o1604bh7/tour.duafotoitalia.it/vendor/laravel/framework/src/Illuminate/Support/Manager.php(78): Illuminate\Support\Manager->createDriver()
+#2 /home/o1604bh7/tour.duafotoitalia.it/vendor/laravel/framework/src/Illuminate/Foundation/Providers/FoundationServiceProvider.php(289): Illuminate\Support\Manager->driver()
+#3 /home/o1604bh7/tour.duafotoitalia.it/vendor/laravel/framework/src/Illuminate/Container/Container.php(1115): Illuminate\Foundation\Providers\FoundationServiceProvider->{closure:Illuminate\Foundation\Providers\FoundationServiceProvider::registerMaintenanceModeManager():289}()
+#4 /home/o1604bh7/tour.duafotoitalia.it/vendor/laravel/framework/src/Illuminate/Container/Container.php(933): Illuminate\Container\Container->build()
+#5 /home/o1604bh7/tour.duafotoitalia.it/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1078): Illuminate\Container\Container->resolve()
+#6 /home/o1604bh7/tour.duafotoitalia.it/vendor/laravel/framework/src/Illuminate/Container/Container.php(864): Illuminate\Foundation\Application->resolve()
+#7 /home/o1604bh7/tour.duafotoitalia.it/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1058): Illuminate\Container\Container->make()
+#8 /home/o1604bh7/tour.duafotoitalia.it/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1410): Illuminate\Foundation\Application->make()
+#9 /home/o1604bh7/tour.duafotoitalia.it/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1420): Illuminate\Foundation\Application->maintenanceMode()
+#10 /home/o1604bh7/tour.duafotoitalia.it/vendor/botble/platform/base/src/Exceptions/Handler.php(42): Illuminate\Foundation\Application->isDownForMaintenance()
+#11 /home/o1604bh7/tour.duafotoitalia.it/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(221): Botble\Base\Exceptions\Handler->render()
+#12 /home/o1604bh7/tour.duafotoitalia.it/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(198): Illuminate\Foundation\Bootstrap\HandleExceptions->renderHttpResponse()
+#13 /home/o1604bh7/tour.duafotoitalia.it/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(258): Illuminate\Foundation\Bootstrap\HandleExceptions->handleException()
+#14 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->{closure:Illuminate\Foundation\Bootstrap\HandleExceptions::forwardsTo():257}()
+#15 {main}
+  thrown in /home/o1604bh7/tour.duafotoitalia.it/vendor/laravel/framework/src/Illuminate/Support/Str.php on line 1689
