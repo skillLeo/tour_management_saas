@@ -8,7 +8,7 @@
                     <h1>{{ __('Booking Details') }}</h1>
                     <small class="text-muted">{{ __('Booking Code: :code', ['code' => $booking->booking_code]) }}</small>
                 </div>
-                <div>
+                <div class="d-flex gap-2">
                     <a href="{{ route('marketplace.vendor.tour-bookings.index') }}" class="btn btn-outline-secondary">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <polyline points="15,18 9,12 15,6"/>
@@ -43,7 +43,7 @@
                                 ];
                                 $color = $statusColors[$booking->status] ?? 'secondary';
                             @endphp
-                            <span class="badge bg-{{ $color }} fs-6">
+                            <span class="badge bg-{{ $color }} fs-6 px-3 py-2">
                                 {{ ucfirst($booking->status) }}
                             </span>
                         </div>
@@ -133,12 +133,8 @@
                                 </div>
                                 <div class="col-md-9">
                                     <h5>{{ $booking->tour->name }}</h5>
-
-                                    {{-- FIX: strip HTML tags before displaying description --}}
                                     <p class="text-muted">{{ Str::limit(strip_tags($booking->tour->description), 200) }}</p>
-
                                     <div class="row mt-2">
-                                        {{-- Duration --}}
                                         <div class="col-md-6 mb-2">
                                             <small class="text-muted">{{ __('Duration') }}:</small><br>
                                             <strong>
@@ -153,20 +149,14 @@
                                                 @endif
                                             </strong>
                                         </div>
-
-                                        {{-- Location --}}
                                         <div class="col-md-6 mb-2">
                                             <small class="text-muted">{{ __('Location') }}:</small><br>
                                             <strong>{{ $booking->tour->location ?: __('Not specified') }}</strong>
                                         </div>
-
-                                        {{-- Tour Type — NEW --}}
                                         <div class="col-md-6 mb-2">
                                             <small class="text-muted">{{ __('Tour Type') }}:</small><br>
                                             <strong>{{ $booking->tour->tour_type ? ucfirst($booking->tour->tour_type) : __('Not specified') }}</strong>
                                         </div>
-
-                                        {{-- Tour Length — NEW --}}
                                         <div class="col-md-6 mb-2">
                                             <small class="text-muted">{{ __('Tour Length') }}:</small><br>
                                             <strong>{{ $booking->tour->tour_length ? ucfirst($booking->tour->tour_length) : __('Not specified') }}</strong>
@@ -193,16 +183,12 @@
                                     </tr>
                                     <tr>
                                         <td><strong>{{ __('Email') }}:</strong></td>
-                                        <td>
-                                            <a href="mailto:{{ $booking->customer_email }}">{{ $booking->customer_email }}</a>
-                                        </td>
+                                        <td><a href="mailto:{{ $booking->customer_email }}">{{ $booking->customer_email }}</a></td>
                                     </tr>
                                     @if($booking->customer_phone)
                                         <tr>
                                             <td><strong>{{ __('Phone') }}:</strong></td>
-                                            <td>
-                                                <a href="tel:{{ $booking->customer_phone }}">{{ $booking->customer_phone }}</a>
-                                            </td>
+                                            <td><a href="tel:{{ $booking->customer_phone }}">{{ $booking->customer_phone }}</a></td>
                                         </tr>
                                     @endif
                                 </table>
@@ -246,7 +232,7 @@
                                 ];
                                 $color = $paymentColors[$booking->payment_status] ?? 'secondary';
                             @endphp
-                            <span class="badge bg-{{ $color }}">
+                            <span class="badge bg-{{ $color }} px-3 py-2">
                                 {{ ucfirst($booking->payment_status) }}
                             </span>
                         </div>
@@ -293,14 +279,12 @@
                                 <strong>{{ $booking->payment_date->format('F d, Y \a\t H:i') }}</strong>
                             </div>
                         @endif
-
                         @if($booking->payment_method)
                             <div class="mt-2">
                                 <small class="text-muted">{{ __('Payment Method') }}:</small><br>
                                 <strong>{{ ucfirst($booking->payment_method) }}</strong>
                             </div>
                         @endif
-
                         @if($booking->payment_reference)
                             <div class="mt-2">
                                 <small class="text-muted">{{ __('Payment Reference') }}:</small><br>
@@ -310,19 +294,24 @@
                     </div>
                 </div>
 
-                <!-- Quick Actions -->
+                <!-- Quick Actions — IMPROVED BUTTONS -->
                 <div class="ps-card">
                     <div class="ps-card__header">
                         <h4>{{ __('Quick Actions') }}</h4>
                     </div>
                     <div class="ps-card__body">
-                        <div class="d-grid gap-2">
+                        <div class="d-grid gap-3">
+
+                            {{-- CONFIRM BOOKING --}}
                             @if($booking->status === 'pending')
-                                <form method="POST" action="{{ route('marketplace.vendor.tour-bookings.update-status', $booking->id) }}" class="d-inline">
+                                <form method="POST" action="{{ route('marketplace.vendor.tour-bookings.update-status', $booking->id) }}">
                                     @csrf
                                     <input type="hidden" name="status" value="confirmed">
-                                    <button type="submit" class="btn btn-success w-100">
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <button type="submit" class="btn w-100 d-flex align-items-center justify-content-center gap-2 py-3"
+                                        style="background: linear-gradient(135deg, #28a745, #20c997); border: none; color: #fff; font-weight: 600; font-size: 15px; border-radius: 10px; letter-spacing: 0.3px; box-shadow: 0 4px 15px rgba(40,167,69,0.35); transition: all 0.3s ease;"
+                                        onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 20px rgba(40,167,69,0.5)'"
+                                        onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 15px rgba(40,167,69,0.35)'">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                                             <polyline points="20,6 9,17 4,12"/>
                                         </svg>
                                         {{ __('Confirm Booking') }}
@@ -330,12 +319,16 @@
                                 </form>
                             @endif
 
+                            {{-- MARK AS PAID --}}
                             @if($booking->payment_status === 'pending')
-                                <form method="POST" action="{{ route('marketplace.vendor.tour-bookings.update-payment-status', $booking->id) }}" class="d-inline">
+                                <form method="POST" action="{{ route('marketplace.vendor.tour-bookings.update-payment-status', $booking->id) }}">
                                     @csrf
                                     <input type="hidden" name="payment_status" value="paid">
-                                    <button type="submit" class="btn btn-primary w-100">
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <button type="submit" class="btn w-100 d-flex align-items-center justify-content-center gap-2 py-3"
+                                        style="background: linear-gradient(135deg, #0d6efd, #6610f2); border: none; color: #fff; font-weight: 600; font-size: 15px; border-radius: 10px; letter-spacing: 0.3px; box-shadow: 0 4px 15px rgba(13,110,253,0.35); transition: all 0.3s ease;"
+                                        onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 20px rgba(13,110,253,0.5)'"
+                                        onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 15px rgba(13,110,253,0.35)'">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                                             <line x1="12" y1="1" x2="12" y2="23"/>
                                             <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
                                         </svg>
@@ -344,12 +337,16 @@
                                 </form>
                             @endif
 
+                            {{-- MARK AS COMPLETED --}}
                             @if($booking->status === 'confirmed')
-                                <form method="POST" action="{{ route('marketplace.vendor.tour-bookings.update-status', $booking->id) }}" class="d-inline">
+                                <form method="POST" action="{{ route('marketplace.vendor.tour-bookings.update-status', $booking->id) }}">
                                     @csrf
                                     <input type="hidden" name="status" value="completed">
-                                    <button type="submit" class="btn btn-info w-100">
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <button type="submit" class="btn w-100 d-flex align-items-center justify-content-center gap-2 py-3"
+                                        style="background: linear-gradient(135deg, #0dcaf0, #0d6efd); border: none; color: #fff; font-weight: 600; font-size: 15px; border-radius: 10px; letter-spacing: 0.3px; box-shadow: 0 4px 15px rgba(13,202,240,0.35); transition: all 0.3s ease;"
+                                        onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 20px rgba(13,202,240,0.5)'"
+                                        onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 15px rgba(13,202,240,0.35)'">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                                             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
                                             <polyline points="22,4 12,14.01 9,11.01"/>
                                         </svg>
@@ -358,13 +355,17 @@
                                 </form>
                             @endif
 
+                            {{-- CANCEL BOOKING --}}
                             @if(in_array($booking->status, ['pending', 'confirmed']))
                                 <form method="POST" action="{{ route('marketplace.vendor.tour-bookings.update-status', $booking->id) }}"
-                                      onsubmit="return confirm('{{ __('Are you sure you want to cancel this booking?') }}')" class="d-inline">
+                                      onsubmit="return confirm('{{ __('Are you sure you want to cancel this booking?') }}')">
                                     @csrf
                                     <input type="hidden" name="status" value="cancelled">
-                                    <button type="submit" class="btn btn-danger w-100">
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <button type="submit" class="btn w-100 d-flex align-items-center justify-content-center gap-2 py-3"
+                                        style="background: linear-gradient(135deg, #dc3545, #c0392b); border: none; color: #fff; font-weight: 600; font-size: 15px; border-radius: 10px; letter-spacing: 0.3px; box-shadow: 0 4px 15px rgba(220,53,69,0.35); transition: all 0.3s ease;"
+                                        onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 20px rgba(220,53,69,0.5)'"
+                                        onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 15px rgba(220,53,69,0.35)'">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                                             <line x1="18" y1="6" x2="6" y2="18"/>
                                             <line x1="6" y1="6" x2="18" y2="18"/>
                                         </svg>
@@ -372,9 +373,12 @@
                                     </button>
                                 </form>
                             @endif
+
                         </div>
                     </div>
                 </div>
+                {{-- END Quick Actions --}}
+
             </div>
         </div>
     </div>
