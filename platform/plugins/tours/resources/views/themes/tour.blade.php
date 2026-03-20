@@ -210,13 +210,15 @@
                                 @endif
                             </div>
                             
-                            <div class="tour-overview mb-4 tour-detail-section" style="animation-delay: 0.4s;">
-                                <h3>{{ __('Overview') }}</h3>
-                                <p>{{ $tour->description }}</p>
-                                <div class="tour-content mt-3">
-                                    {!! $tour->content !!}
-                                </div>
-                            </div>
+                  
+{{-- REPLACE WITH: --}}
+<div class="tour-overview mb-4 tour-detail-section" style="animation-delay: 0.4s;">
+    <h3>{{ __('Overview') }}</h3>
+    <div>{!! $tour->description !!}</div>
+    <div class="tour-content mt-3">
+        {!! $tour->content !!}
+    </div>
+</div>
                             
                             <!-- Places You'll See Section -->
                             @if($tour->places && $tour->places->count() > 0)
