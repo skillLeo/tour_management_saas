@@ -1,6 +1,9 @@
 @extends('plugins/marketplace::themes.vendor-dashboard.layouts.master')
 
 @section('content')
+<style>
+    .bg-danger{color: white !important;}
+</style>
     <div class="ps-page__content">
         <div class="ps-page__header mb-3">
             <div class="d-flex justify-content-between align-items-center">
