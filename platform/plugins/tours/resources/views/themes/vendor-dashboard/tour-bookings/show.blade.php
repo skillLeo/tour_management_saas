@@ -37,7 +37,7 @@
                             @php
                                 $statusColors = [
                                     'confirmed' => 'success',
-                                    'pending' => 'warning',
+                                    'pending'   => 'warning',
                                     'cancelled' => 'danger',
                                     'completed' => 'info'
                                 ];
@@ -118,8 +118,8 @@
                             <div class="row">
                                 <div class="col-md-3">
                                     @if($booking->tour->image)
-                                        <img src="{{ RvMedia::getImageUrl($booking->tour->image, 'thumb') }}" 
-                                             alt="{{ $booking->tour->name }}" 
+                                        <img src="{{ RvMedia::getImageUrl($booking->tour->image, 'thumb') }}"
+                                             alt="{{ $booking->tour->name }}"
                                              class="img-fluid rounded">
                                     @else
                                         <div class="bg-light rounded d-flex align-items-center justify-content-center" style="height: 120px;">
@@ -133,9 +133,13 @@
                                 </div>
                                 <div class="col-md-9">
                                     <h5>{{ $booking->tour->name }}</h5>
-                                    <p class="text-muted">{{ Str::limit($booking->tour->description, 200) }}</p>
-                                    <div class="row">
-                                        <div class="col-md-6">
+
+                                    {{-- FIX: strip HTML tags before displaying description --}}
+                                    <p class="text-muted">{{ Str::limit(strip_tags($booking->tour->description), 200) }}</p>
+
+                                    <div class="row mt-2">
+                                        {{-- Duration --}}
+                                        <div class="col-md-6 mb-2">
                                             <small class="text-muted">{{ __('Duration') }}:</small><br>
                                             <strong>
                                                 @if($booking->tour->duration_days > 0)
@@ -144,11 +148,28 @@
                                                 @if($booking->tour->duration_hours > 0)
                                                     {{ $booking->tour->duration_hours }} {{ __('hours') }}
                                                 @endif
+                                                @if(!$booking->tour->duration_days && !$booking->tour->duration_hours)
+                                                    {{ __('Not specified') }}
+                                                @endif
                                             </strong>
                                         </div>
-                                        <div class="col-md-6">
+
+                                        {{-- Location --}}
+                                        <div class="col-md-6 mb-2">
                                             <small class="text-muted">{{ __('Location') }}:</small><br>
                                             <strong>{{ $booking->tour->location ?: __('Not specified') }}</strong>
+                                        </div>
+
+                                        {{-- Tour Type — NEW --}}
+                                        <div class="col-md-6 mb-2">
+                                            <small class="text-muted">{{ __('Tour Type') }}:</small><br>
+                                            <strong>{{ $booking->tour->tour_type ? ucfirst($booking->tour->tour_type) : __('Not specified') }}</strong>
+                                        </div>
+
+                                        {{-- Tour Length — NEW --}}
+                                        <div class="col-md-6 mb-2">
+                                            <small class="text-muted">{{ __('Tour Length') }}:</small><br>
+                                            <strong>{{ $booking->tour->tour_length ? ucfirst($booking->tour->tour_length) : __('Not specified') }}</strong>
                                         </div>
                                     </div>
                                 </div>
@@ -218,9 +239,9 @@
                         <div class="ms-auto">
                             @php
                                 $paymentColors = [
-                                    'paid' => 'success',
-                                    'pending' => 'warning',
-                                    'failed' => 'danger',
+                                    'paid'     => 'success',
+                                    'pending'  => 'warning',
+                                    'failed'   => 'danger',
                                     'refunded' => 'info'
                                 ];
                                 $color = $paymentColors[$booking->payment_status] ?? 'secondary';
@@ -265,21 +286,21 @@
                                 <td class="text-end"><strong>{{ $booking->currency }} {{ number_format($booking->total_amount, 2) }}</strong></td>
                             </tr>
                         </table>
-                        
+
                         @if($booking->payment_date)
                             <div class="mt-3">
                                 <small class="text-muted">{{ __('Payment Date') }}:</small><br>
                                 <strong>{{ $booking->payment_date->format('F d, Y \a\t H:i') }}</strong>
                             </div>
                         @endif
-                        
+
                         @if($booking->payment_method)
                             <div class="mt-2">
                                 <small class="text-muted">{{ __('Payment Method') }}:</small><br>
                                 <strong>{{ ucfirst($booking->payment_method) }}</strong>
                             </div>
                         @endif
-                        
+
                         @if($booking->payment_reference)
                             <div class="mt-2">
                                 <small class="text-muted">{{ __('Payment Reference') }}:</small><br>
@@ -308,7 +329,7 @@
                                     </button>
                                 </form>
                             @endif
-                            
+
                             @if($booking->payment_status === 'pending')
                                 <form method="POST" action="{{ route('marketplace.vendor.tour-bookings.update-payment-status', $booking->id) }}" class="d-inline">
                                     @csrf
@@ -322,7 +343,7 @@
                                     </button>
                                 </form>
                             @endif
-                            
+
                             @if($booking->status === 'confirmed')
                                 <form method="POST" action="{{ route('marketplace.vendor.tour-bookings.update-status', $booking->id) }}" class="d-inline">
                                     @csrf
@@ -336,9 +357,9 @@
                                     </button>
                                 </form>
                             @endif
-                            
+
                             @if(in_array($booking->status, ['pending', 'confirmed']))
-                                <form method="POST" action="{{ route('marketplace.vendor.tour-bookings.update-status', $booking->id) }}" 
+                                <form method="POST" action="{{ route('marketplace.vendor.tour-bookings.update-status', $booking->id) }}"
                                       onsubmit="return confirm('{{ __('Are you sure you want to cancel this booking?') }}')" class="d-inline">
                                     @csrf
                                     <input type="hidden" name="status" value="cancelled">

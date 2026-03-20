@@ -114,43 +114,47 @@ class VendorTourController extends BaseController
     public function store(Request $request, BaseHttpResponse $response)
     {
         // Validate request data (excluding currency)
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'slug' => 'nullable|string|max:255',
-            'description' => 'nullable|string',
-            'content' => 'nullable|string',
-            'image' => 'nullable|file|image|max:10240', // 10MB max
-            'gallery' => 'nullable|array',
-            'gallery.*' => 'file|image|max:10240',
-            'duration_days' => 'nullable|integer|min:0',
-            'duration_hours' => 'nullable|integer|min:0',
-            'duration_nights' => 'nullable|integer|min:0',
-            'max_people' => 'required|integer|min:1',
-            'min_people' => 'required|integer|min:1',
-            'price' => 'required|numeric|min:0',
-            'children_price' => 'nullable|numeric|min:0',
-            'infants_price' => 'nullable|numeric|min:0',
-            'sale_percentage' => 'nullable|numeric|min:0|max:100',
-            'location' => 'nullable|string|max:255',
-            'departure_location' => 'nullable|string|max:255',
-            'return_location' => 'nullable|string|max:255',
-            'latitude' => 'nullable|numeric|between:-90,90',
-            'longitude' => 'nullable|numeric|between:-180,180',
-            'included_services' => 'nullable|string',
-            'excluded_services' => 'nullable|string',
-            'activities' => 'nullable|string',
-            'tour_highlights' => 'nullable|string',
-            'is_featured' => 'nullable|boolean',
-            'allow_booking' => 'nullable|boolean',
-            'booking_advance_days' => 'nullable|integer|min:0',
-            'category_id' => 'nullable|exists:tour_categories,id',
-            'city_id' => 'nullable|exists:tour_cities,id',
-            'places' => 'nullable|array',
-            'places.*.name' => 'required|string|max:255',
-            'places.*.image_file' => 'nullable|file|image|max:5120', // 5MB max
-            'places.*.image' => 'nullable|string',
-            'places.*.order' => 'nullable|integer|min:0',
-        ]);
+     
+// In the store() method — find this validation block and ADD the two lines:
+$validatedData = $request->validate([
+    'name' => 'required|string|max:255',
+    'slug' => 'nullable|string|max:255',
+    'description' => 'nullable|string',
+    'content' => 'nullable|string',
+    'image' => 'nullable|file|image|max:10240',
+    'gallery' => 'nullable|array',
+    'gallery.*' => 'file|image|max:10240',
+    'tour_type' => 'nullable|string|max:100',    // ← ADD THIS
+    'tour_length' => 'nullable|string|max:100',  // ← ADD THIS
+    'duration_days' => 'nullable|integer|min:0',
+    'duration_hours' => 'nullable|integer|min:0',
+    'duration_nights' => 'nullable|integer|min:0',
+    'max_people' => 'required|integer|min:1',
+    'min_people' => 'required|integer|min:1',
+    'price' => 'required|numeric|min:0',
+    'children_price' => 'nullable|numeric|min:0',
+    'infants_price' => 'nullable|numeric|min:0',
+    'sale_percentage' => 'nullable|numeric|min:0|max:100',
+    'location' => 'nullable|string|max:255',
+    'departure_location' => 'nullable|string|max:255',
+    'return_location' => 'nullable|string|max:255',
+    'latitude' => 'nullable|numeric|between:-90,90',
+    'longitude' => 'nullable|numeric|between:-180,180',
+    'included_services' => 'nullable|string',
+    'excluded_services' => 'nullable|string',
+    'activities' => 'nullable|string',
+    'tour_highlights' => 'nullable|string',
+    'is_featured' => 'nullable|boolean',
+    'allow_booking' => 'nullable|boolean',
+    'booking_advance_days' => 'nullable|integer|min:0',
+    'category_id' => 'nullable|exists:tour_categories,id',
+    'city_id' => 'nullable|exists:tour_cities,id',
+    'places' => 'nullable|array',
+    'places.*.name' => 'required|string|max:255',
+    'places.*.image_file' => 'nullable|file|image|max:5120',
+    'places.*.image' => 'nullable|string',
+    'places.*.order' => 'nullable|integer|min:0',
+]);
         
         Log::info('=== TOUR STORE REQUEST START ===');
         Log::info('All Request Data:', $request->all());
@@ -283,44 +287,49 @@ class VendorTourController extends BaseController
         abort_if($tour->store_id != auth('customer')->user()->store->id, 404);
 
         // Validate request data (excluding currency)
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'slug' => 'nullable|string|max:255',
-            'description' => 'nullable|string',
-            'content' => 'nullable|string',
-            'image' => 'nullable|file|image|max:10240', // 10MB max
-            'gallery' => 'nullable|array',
-            'gallery.*' => 'file|image|max:10240',
-            'duration_days' => 'nullable|integer|min:0',
-            'duration_hours' => 'nullable|integer|min:0',
-            'duration_nights' => 'nullable|integer|min:0',
-            'max_people' => 'required|integer|min:1',
-            'min_people' => 'required|integer|min:1',
-            'price' => 'required|numeric|min:0',
-            'children_price' => 'nullable|numeric|min:0',
-            'infants_price' => 'nullable|numeric|min:0',
-            'sale_percentage' => 'nullable|numeric|min:0|max:100',
-            'location' => 'nullable|string|max:255',
-            'departure_location' => 'nullable|string|max:255',
-            'return_location' => 'nullable|string|max:255',
-            'latitude' => 'nullable|numeric|between:-90,90',
-            'longitude' => 'nullable|numeric|between:-180,180',
-            'included_services' => 'nullable|string',
-            'excluded_services' => 'nullable|string',
-            'activities' => 'nullable|string',
-            'tour_highlights' => 'nullable|string',
-            'is_featured' => 'nullable|boolean',
-            'allow_booking' => 'nullable|boolean',
-            'booking_advance_days' => 'nullable|integer|min:0',
-            'category_id' => 'nullable|exists:tour_categories,id',
-            'city_id' => 'nullable|exists:tour_cities,id',
-            'removed_gallery_images' => 'nullable|string',
-            'places' => 'nullable|array',
-            'places.*.name' => 'required|string|max:255',
-            'places.*.image_file' => 'nullable|file|image|max:5120', // 5MB max
-            'places.*.image' => 'nullable|string',
-            'places.*.order' => 'nullable|integer|min:0',
-        ]);
+
+// --------------------------------------------------------
+// In the update() method — find this validation block and ADD the same two lines:
+$validatedData = $request->validate([
+    'name' => 'required|string|max:255',
+    'slug' => 'nullable|string|max:255',
+    'description' => 'nullable|string',
+    'content' => 'nullable|string',
+    'image' => 'nullable|file|image|max:10240',
+    'gallery' => 'nullable|array',
+    'gallery.*' => 'file|image|max:10240',
+    'tour_type' => 'nullable|string|max:100',    // ← ADD THIS
+    'tour_length' => 'nullable|string|max:100',  // ← ADD THIS
+    'duration_days' => 'nullable|integer|min:0',
+    'duration_hours' => 'nullable|integer|min:0',
+    'duration_nights' => 'nullable|integer|min:0',
+    'max_people' => 'required|integer|min:1',
+    'min_people' => 'required|integer|min:1',
+    'price' => 'required|numeric|min:0',
+    'children_price' => 'nullable|numeric|min:0',
+    'infants_price' => 'nullable|numeric|min:0',
+    'sale_percentage' => 'nullable|numeric|min:0|max:100',
+    'location' => 'nullable|string|max:255',
+    'departure_location' => 'nullable|string|max:255',
+    'return_location' => 'nullable|string|max:255',
+    'latitude' => 'nullable|numeric|between:-90,90',
+    'longitude' => 'nullable|numeric|between:-180,180',
+    'included_services' => 'nullable|string',
+    'excluded_services' => 'nullable|string',
+    'activities' => 'nullable|string',
+    'tour_highlights' => 'nullable|string',
+    'is_featured' => 'nullable|boolean',
+    'allow_booking' => 'nullable|boolean',
+    'booking_advance_days' => 'nullable|integer|min:0',
+    'category_id' => 'nullable|exists:tour_categories,id',
+    'city_id' => 'nullable|exists:tour_cities,id',
+    'removed_gallery_images' => 'nullable|string',
+    'places' => 'nullable|array',
+    'places.*.name' => 'required|string|max:255',
+    'places.*.image_file' => 'nullable|file|image|max:5120',
+    'places.*.image' => 'nullable|string',
+    'places.*.order' => 'nullable|integer|min:0',
+]);
 
         Log::info('=== TOUR UPDATE REQUEST START ===');
         Log::info('All Request Data:', $request->all());
