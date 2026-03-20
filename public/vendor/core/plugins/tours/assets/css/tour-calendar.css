@@ -1,0 +1,153 @@
+/* Responsive Tour Calendar Styles */
+.tour-calendar-container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.calendar-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+#tourCalendar {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 0 10px;
+}
+
+.calendar-header h4 {
+    margin: 0;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.calendar-nav {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    text-align: center;
+}
+
+.calendar-day-header {
+    font-weight: bold;
+    padding: 10px 0;
+    background-color: #f0f0f0;
+}
+
+.calendar-day {
+    border: 1px solid #e0e0e0;
+    padding: 10px;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.3s ease;
+}
+
+.calendar-day:hover {
+    background-color: #f5f5f5;
+}
+
+.calendar-day.other-month {
+    color: #999;
+    background-color: #f9f9f9;
+}
+
+.calendar-day.past-day {
+    color: #ccc;
+    cursor: not-allowed;
+}
+
+.calendar-day.has-slots {
+    background-color: #e6f3ff;
+    position: relative;
+}
+
+.slot-indicator {
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    background-color: #007bff;
+    border-radius: 50%;
+}
+
+.time-slots-popup {
+    position: fixed;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    max-width: 300px;
+    width: 90%;
+}
+
+.time-slot-item {
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.time-slot-item:hover {
+    background-color: #f0f0f0;
+}
+
+.time-slot-item.selected {
+    background-color: #007bff;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .calendar-header {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .calendar-grid {
+        grid-template-columns: repeat(7, 1fr);
+        font-size: 0.9rem;
+    }
+
+    .calendar-day {
+        padding: 8px;
+    }
+
+    .time-slots-popup {
+        width: 95%;
+        left: 2.5% !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .calendar-grid {
+        grid-template-columns: repeat(7, 1fr);
+        font-size: 0.8rem;
+    }
+
+    .calendar-day {
+        padding: 5px;
+    }
+}
