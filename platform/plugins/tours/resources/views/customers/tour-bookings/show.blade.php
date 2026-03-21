@@ -192,37 +192,39 @@
                     </div>
                 </div>
 
-                <!-- Cancellation Info (if cancelled) -->
-                @if($booking->status === 'cancelled')
-                    <div class="card shadow-sm border-danger mb-4">
-                        <div class="card-header bg-danger text-white">
-                            <h5 class="mb-0">
-                                <i class="ti ti-x"></i>
-                                {{ __('Cancellation Information') }}
-                            </h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <strong>{{ __('Cancelled At') }}:</strong><br>
-                                    <span class="text-muted">{{ $booking->cancelled_at->translatedFormat('d M Y H:i:s') }}</span>
-                                </div>
-                                @if($booking->refund_amount > 0)
-                                    <div class="col-md-6">
-                                        <strong>{{ __('Refund Amount') }}:</strong><br>
-                                        <span class="text-success">{{ format_price($booking->refund_amount) }}</span>
-                                    </div>
-                                @endif
-                                @if($booking->cancellation_reason)
-                                    <div class="col-12">
-                                        <strong>{{ __('Reason') }}:</strong><br>
-                                        <p class="text-muted mb-0">{{ $booking->cancellation_reason }}</p>
-                                    </div>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-                @endif
+              <!-- Cancellation Info (if cancelled) -->
+@if($booking->status === 'cancelled')
+<div class="card shadow-sm border-danger mb-4">
+    <div class="card-header bg-danger text-white">
+        <h5 class="mb-0">
+            <i class="ti ti-x"></i>
+            {{ __('Cancellation Information') }}
+        </h5>
+    </div>
+    <div class="card-body">
+        <div class="row g-3">
+            <div class="col-md-6">
+                <strong>{{ __('Cancelled At') }}:</strong><br>
+                <span class="text-muted">
+                    {{ $booking->cancelled_at ? $booking->cancelled_at->translatedFormat('d M Y H:i:s') : __('N/A') }}
+                </span>
+            </div>
+            @if($booking->refund_amount > 0)
+                <div class="col-md-6">
+                    <strong>{{ __('Refund Amount') }}:</strong><br>
+                    <span class="text-success">{{ format_price($booking->refund_amount) }}</span>
+                </div>
+            @endif
+            @if($booking->cancellation_reason)
+                <div class="col-12">
+                    <strong>{{ __('Reason') }}:</strong><br>
+                    <p class="text-muted mb-0">{{ $booking->cancellation_reason }}</p>
+                </div>
+            @endif
+        </div>
+    </div>
+</div>
+@endif
             </div>
 
             <!-- Right Column -->

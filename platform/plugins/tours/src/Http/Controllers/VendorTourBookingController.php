@@ -93,19 +93,25 @@ class VendorTourBookingController extends BaseController
     {
         $storeId = $this->getStoreId();
         $booking = $this->vendorBookingQuery($storeId)->findOrFail($id);
-
+    
         $newStatus = $request->input('status');
         $validStatuses = ['pending', 'confirmed', 'cancelled', 'completed'];
-
+    
         if (!in_array($newStatus, $validStatuses)) {
             return $response
                 ->setError()
                 ->setMessage(__('Invalid status value.'));
         }
-
+    
         $booking->status = $newStatus;
+    
+        // ✅ FIX: set cancelled_at when vendor cancels
+        if ($newStatus === 'cancelled') {
+            $booking->cancelled_at = now();
+        }
+    
         $booking->save();
-
+    
         return $response
             ->setPreviousUrl(route('marketplace.vendor.tour-bookings.show', $booking->id))
             ->setMessage(__('Booking status updated to :status.', ['status' => ucfirst($newStatus)]));
