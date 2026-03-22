@@ -1,0 +1,66 @@
+<?php
+
+return [
+    'name' => 'Auszahlungen',
+    'view' => 'Auszahlung #:id ansehen',
+    'affiliate' => 'Partner',
+    'amount' => 'Betrag',
+    'status' => 'Status',
+    'payment_method' => 'Zahlungsmethode',
+    'payment_details' => 'Zahlungsdetails',
+    'notes' => 'Notizen',
+    'created_at' => 'Erstellt am',
+    'approve' => 'Genehmigen',
+    'reject' => 'Ablehnen',
+    'approve_success' => 'Auszahlung erfolgreich genehmigt',
+    'reject_success' => 'Auszahlung erfolgreich abgelehnt',
+    'approve_withdrawal' => 'Auszahlung genehmigen',
+    'reject_withdrawal' => 'Auszahlung ablehnen',
+    'approve_withdrawal_confirmation' => 'Sind Sie sicher, dass Sie Auszahlung #:id genehmigen möchten? Diese Aktion kann nicht rückgängig gemacht werden.',
+    'reject_withdrawal_confirmation' => 'Sind Sie sicher, dass Sie Auszahlung #:id ablehnen möchten? Diese Aktion kann nicht rückgängig gemacht werden.',
+    'statuses' => [
+        'pending' => 'Ausstehend',
+        'processing' => 'In Bearbeitung',
+        'approved' => 'Genehmigt',
+        'rejected' => 'Abgelehnt',
+        'canceled' => 'Storniert',
+    ],
+
+    // Customer-facing translations
+    'request' => 'Auszahlungsanfrage',
+    'history' => 'Auszahlungsverlauf',
+    'no_withdrawals' => 'Keine Auszahlungen gefunden.',
+    'withdrawal_id' => 'Auszahlungs-ID',
+    'date' => 'Datum',
+    'amount_required' => 'Der Auszahlungsbetrag ist erforderlich.',
+    'amount_numeric' => 'Der Auszahlungsbetrag muss eine Zahl sein.',
+    'amount_min' => 'Der Auszahlungsbetrag muss mindestens 0 betragen.',
+    'payment_method_required' => 'Die Zahlungsmethode ist erforderlich.',
+    'payment_details_required' => 'Die Zahlungsdetails sind erforderlich.',
+    'account_not_approved' => 'Ihr Partner-Konto ist noch nicht genehmigt.',
+    'minimum_amount' => 'Der Mindestauszahlungsbetrag beträgt :amount.',
+    'insufficient_balance' => 'Sie haben nicht genügend Guthaben für diese Auszahlung.',
+    'request_submitted' => 'Ihre Auszahlungsanfrage wurde erfolgreich eingereicht.',
+    'submit_request' => 'Auszahlungsanfrage einreichen',
+    'available_balance' => 'Verfügbares Guthaben',
+    'enter_amount' => 'Betrag eingeben',
+    'select_payment_method' => 'Zahlungsmethode auswählen',
+    'payment_details_placeholder' => 'Geben Sie Ihre Zahlungsdetails ein (z.B. PayPal-E-Mail, Bankkontodaten)',
+    'no_payment_methods_available' => 'Derzeit sind keine Zahlungsmethoden verfügbar. Bitte kontaktieren Sie den Administrator.',
+
+    // Additional translations for PayoutPaymentMethodsEnum
+    'bank_transfer' => 'Banküberweisung',
+    'paypal' => 'PayPal',
+    'stripe' => 'Stripe',
+    'other' => 'Andere',
+    'bank_information' => 'Bankinformationen',
+    'paypal_id' => 'PayPal-ID',
+
+    // Payout payment methods
+    'payout_payment_methods' => [
+        'bank_transfer' => 'Banküberweisung',
+        'paypal' => 'PayPal',
+        'stripe' => 'Stripe',
+        'other' => 'Andere',
+    ],
+];

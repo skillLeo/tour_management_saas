@@ -1,0 +1,66 @@
+<?php
+
+return [
+    'name' => 'Nostot',
+    'view' => 'Näytä Nosto #:id',
+    'affiliate' => 'Kumppani',
+    'amount' => 'Summa',
+    'status' => 'Tila',
+    'payment_method' => 'Maksutapa',
+    'payment_details' => 'Maksutiedot',
+    'notes' => 'Huomautukset',
+    'created_at' => 'Luotu',
+    'approve' => 'Hyväksy',
+    'reject' => 'Hylkää',
+    'approve_success' => 'Nosto hyväksytty',
+    'reject_success' => 'Nosto hylätty',
+    'approve_withdrawal' => 'Hyväksy Nosto',
+    'reject_withdrawal' => 'Hylkää Nosto',
+    'approve_withdrawal_confirmation' => 'Oletko varma, että haluat hyväksyä noston #:id? Tätä toimintoa ei voi peruuttaa.',
+    'reject_withdrawal_confirmation' => 'Oletko varma, että haluat hylätä noston #:id? Tätä toimintoa ei voi peruuttaa.',
+    'statuses' => [
+        'pending' => 'Odottaa',
+        'processing' => 'Käsittelyssä',
+        'approved' => 'Hyväksytty',
+        'rejected' => 'Hylätty',
+        'canceled' => 'Peruutettu',
+    ],
+
+    // Customer-facing translations
+    'request' => 'Nostopyyntö',
+    'history' => 'Nostohistoria',
+    'no_withdrawals' => 'Nostoja ei löytynyt.',
+    'withdrawal_id' => 'Nosto-ID',
+    'date' => 'Päivämäärä',
+    'amount_required' => 'Nostosumma vaaditaan.',
+    'amount_numeric' => 'Nostosumman on oltava numero.',
+    'amount_min' => 'Nostosumman on oltava vähintään 0.',
+    'payment_method_required' => 'Maksutapa vaaditaan.',
+    'payment_details_required' => 'Maksutiedot vaaditaan.',
+    'account_not_approved' => 'Affiliate-tiliäsi ei ole vielä hyväksytty.',
+    'minimum_amount' => 'Pienin nostosumma on :amount.',
+    'insufficient_balance' => 'Sinulla ei ole riittävästi saldoa tähän nostoon.',
+    'request_submitted' => 'Nostopyyntösi on lähetetty.',
+    'submit_request' => 'Lähetä Nostopyyntö',
+    'available_balance' => 'Käytettävissä Oleva Saldo',
+    'enter_amount' => 'Anna Summa',
+    'select_payment_method' => 'Valitse Maksutapa',
+    'payment_details_placeholder' => 'Anna maksutietosi (esim. PayPal-sähköposti, pankkitilitiedot)',
+    'no_payment_methods_available' => 'Maksutapoja ei ole tällä hetkellä saatavilla. Ota yhteyttä järjestelmänvalvojaan.',
+
+    // Additional translations for PayoutPaymentMethodsEnum
+    'bank_transfer' => 'Pankkisiirto',
+    'paypal' => 'PayPal',
+    'stripe' => 'Stripe',
+    'other' => 'Muu',
+    'bank_information' => 'Pankkitiedot',
+    'paypal_id' => 'PayPal-ID',
+
+    // Payout payment methods
+    'payout_payment_methods' => [
+        'bank_transfer' => 'Pankkisiirto',
+        'paypal' => 'PayPal',
+        'stripe' => 'Stripe',
+        'other' => 'Muu',
+    ],
+];

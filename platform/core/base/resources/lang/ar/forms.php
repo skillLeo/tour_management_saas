@@ -68,4 +68,6 @@ return [
     'enable_light_mode' => 'تفعيل الوضع الفاتح',
     'enable_dark_mode' => 'تفعيل الوضع الداكن',
     'close' => 'إغلاق',
+    'search_country' => 'البحث عن بلد...',
+    'no_results' => 'لا توجد نتائج',
 ];

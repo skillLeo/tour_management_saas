@@ -75,7 +75,7 @@ class ProductRequest extends Request
             'end_date' => [
                 'date',
                 'nullable',
-                function ($attribute, $value, $fail) {
+                function ($attribute, $value, $fail): void {
                     if (! $value || ! $this->input('start_date')) {
                         return;
                     }

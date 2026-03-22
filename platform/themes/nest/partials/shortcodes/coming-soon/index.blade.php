@@ -8,36 +8,49 @@
                 @endif
 
                 @if($shortcode->title)
-                    <h3 class="color-brand-2 mb-2">
+                    <h2 class="coming-soon-title">
                         {!! BaseHelper::clean($shortcode->title) !!}
-                    </h3>
+                    </h2>
+                @endif
+
+                @if($shortcode->subtitle ?? false)
+                    <p class="coming-soon-subtitle">
+                        {!! BaseHelper::clean($shortcode->subtitle) !!}
+                    </p>
                 @endif
 
                 @if ($form)
-                    <div class="newsletter">
+                    <div class="newsletter coming-soon-newsletter">
                         {!! $form->renderForm() !!}
                     </div>
                 @endif
 
-                <div class="mt-30 footer-info">
+                <div class="coming-soon-contact-info">
                     <ul class="list-wrap">
                         @if ($address = $shortcode->address)
                             <li>
-                                <p><x-core::icon name="ti ti-map-pin" class="me-1" /> {!! BaseHelper::clean($address) !!}</p>
+                                <div class="coming-soon-contact-item">
+                                    <span class="coming-soon-contact-icon"><x-core::icon name="ti ti-map-pin" /></span>
+                                    <span>{!! BaseHelper::clean($address) !!}</span>
+                                </div>
                             </li>
                         @endif
 
                         @if ($hotline = $shortcode->hotline)
                             <li>
-                                <p>
-                                    <x-core::icon name="ti ti-phone" class="me-1" /> <a href="tel:{{ $hotline }}" dir="ltr">{{ $hotline }}</a>
-                                </p>
+                                <div class="coming-soon-contact-item">
+                                    <span class="coming-soon-contact-icon"><x-core::icon name="ti ti-phone" /></span>
+                                    <a href="tel:{{ $hotline }}" dir="ltr">{{ $hotline }}</a>
+                                </div>
                             </li>
                         @endif
 
                         @if ($businessHours = $shortcode->business_hours)
                             <li>
-                                <p><x-core::icon name="ti ti-clock" class="me-1" /> {!! BaseHelper::clean(nl2br($businessHours)) !!}</p>
+                                <div class="coming-soon-contact-item">
+                                    <span class="coming-soon-contact-icon"><x-core::icon name="ti ti-clock" /></span>
+                                    <span>{!! BaseHelper::clean(nl2br($businessHours)) !!}</span>
+                                </div>
                             </li>
                         @endif
                     </ul>
@@ -45,7 +58,7 @@
 
                 @if($shortcode->show_social_links ?? true)
                     @if ($socialLinks = theme_option('social_links'))
-                        <div class="mobile-social-icon">
+                        <div class="mobile-social-icon coming-soon-social">
                             @foreach(json_decode($socialLinks, true) as $socialLink)
                                 @if (count($socialLink) == 3)
                                     <a href="{{ $socialLink[2]['value'] }}"

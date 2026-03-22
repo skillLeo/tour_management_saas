@@ -2,8 +2,8 @@
 
 return [
     'name' => 'قالب الفاتورة',
-    'setting' => 'إعدادات قالب الفاتورة',
-    'setting_description' => 'إعدادات قالب الفاتورة',
+    'setting' => 'تصميم القالب والتخطيط',
+    'setting_description' => 'تخصيص قالب HTML وأنماط CSS للفاتورة',
     'setting_content' => 'المحتوى',
     'preview' => 'معاينة',
     'preview_heading' => 'معاينة قالب الفاتورة',

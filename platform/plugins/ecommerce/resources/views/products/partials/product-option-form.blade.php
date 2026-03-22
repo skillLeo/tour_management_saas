@@ -1,20 +1,47 @@
 @php
     Assets::addScriptsDirectly('vendor/core/plugins/ecommerce/js/product-option.js');
 
+    $refLang = request()->input('ref_lang');
+    $isDefaultLanguage = !defined('LANGUAGE_ADVANCED_MODULE_SCREEN_NAME') || !$refLang || $refLang == Language::getDefaultLocaleCode();
+
+    $withRelations = ['values'];
+
+    if (!$isDefaultLanguage) {
+        $withRelations = array_merge($withRelations, ['translations', 'values.translations']);
+    }
+
     $product = $product->loadMissing([
-        'options' => function ($query) {
-            return $query->with(['values']);
+        'options' => function ($query) use ($withRelations) {
+            return $query->with($withRelations);
         },
     ]);
     $oldOption = old('options', []) ?? [];
     $currentProductOption = $product->options;
     if (! empty($currentProductOption) && $currentProductOption instanceof ArrayAccess) {
         foreach ($currentProductOption as $key => $option) {
-            $currentProductOption[$key]['name'] = $option->name;
+            $optionName = $option->name;
 
-            if ($option['values'] && is_array($option['values'])) {
-                foreach ($option['values'] as $valueKey => $value) {
-                    $currentProductOption[$key]['values'][$valueKey]['option_value'] = $value->option_value;
+            if (!$isDefaultLanguage && $refLang) {
+                $translation = $option->translations?->firstWhere('lang_code', $refLang);
+                if ($translation && $translation->name) {
+                    $optionName = $translation->name;
+                }
+            }
+
+            $currentProductOption[$key]['name'] = $optionName;
+
+            if ($option->values && $option->values->isNotEmpty()) {
+                foreach ($option->values as $valueKey => $value) {
+                    $optionValue = $value->option_value;
+
+                    if (!$isDefaultLanguage && $refLang) {
+                        $valueTranslation = $value->translations?->firstWhere('lang_code', $refLang);
+                        if ($valueTranslation && $valueTranslation->option_value) {
+                            $optionValue = $valueTranslation->option_value;
+                        }
+                    }
+
+                    $currentProductOption[$key]['values'][$valueKey]['option_value'] = $optionValue;
                 }
             }
         }
@@ -23,8 +50,6 @@
     if (! empty($oldOption)) {
         $currentProductOption = $oldOption;
     }
-
-    $isDefaultLanguage = !defined('LANGUAGE_ADVANCED_MODULE_SCREEN_NAME') || !request()->input('ref_lang') || request()->input('ref_lang') == Language::getDefaultLocaleCode();
 @endphp
 
 @push('header')
@@ -186,31 +211,18 @@
             <div id="collapse-product-option-__index__" class="accordion-collapse collapse-product-option show" aria-labelledby="product-option-__id__" data-bs-parent="#accordion-product-option">
                 <div class="accordion-body">
                     <div class="row align-items-end">
-                        <div class="col col-12 col-md-3 mb-3 mb-md-0">
+                        <div class="col col-12 col-md-5 mb-3 mb-md-0">
                             <x-core::form.label>__nameLabel__</x-core::form.label>
                             <input type="text" name="options[__index__][name]" class="form-control option-name" value="__option_name__" placeholder="__namePlaceHolder__">
                         </div>
                         @if ($isDefaultLanguage)
-                            <div class="col col-12 col-md-3 mb-3 mb-md-0">
+                            <div class="col col-12 col-md-5 mb-3 mb-md-0">
                                 <x-core::form.label>__optionTypeLabel__</x-core::form.label>
                                 <select name="options[__index__][option_type]" id="" class="form-select option-type">
                                     __optionTypeOption__
                                 </select>
                             </div>
-                            <div class="col col-12 col-md-3 mb-3 mb-md-0">
-                                <div class="mb-3">
-                                    <x-core::form.label class="sr-only">__requiredLabel__</x-core::form.label>
-                                    <x-core::form.checkbox
-                                        label="__requiredLabel__"
-                                        id="required-__index__"
-                                        name="options[__index__][required]"
-                                        class="option-required"
-                                        value="1"
-                                        __checked__=""
-                                    />
-                                </div>
-                            </div>
-                            <div class="col col-12 col-md-3 text-md-end">
+                            <div class="col col-12 col-md-2 mb-3 mb-md-0 text-md-end">
                                 <x-core::button
                                     type="button"
                                     color="danger"
@@ -222,6 +234,29 @@
                             </div>
                         @endif
                     </div>
+                    @if ($isDefaultLanguage)
+                        <div class="d-flex gap-4 mt-3">
+                            <x-core::form.checkbox
+                                label="__requiredLabel__"
+                                id="required-__index__"
+                                name="options[__index__][required]"
+                                class="option-required"
+                                value="1"
+                                __checked__=""
+                            />
+                            <div>
+                                <x-core::form.checkbox
+                                    label="__pricePerProductLabel__"
+                                    id="price-per-product-__index__"
+                                    name="options[__index__][price_per_product]"
+                                    class="option-price-per-product"
+                                    value="1"
+                                    __checkedPricePerProduct__=""
+                                />
+                                <small class="text-muted d-block ms-4 ps-1">__pricePerProductHelper__</small>
+                            </div>
+                        </div>
+                    @endif
                     <div class="option-value-wrapper option-value-sortable">
                         __optionValueSortable__
                     </div>

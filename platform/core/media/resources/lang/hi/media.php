@@ -55,6 +55,12 @@ return [
     'selected_items_move_success' => 'चयनित आइटम :name में सफलतापूर्वक ले जाए गए!',
     'selected_items_move_error' => 'चयनित आइटम :name में ले जाते समय त्रुटि',
     'destination' => 'गंतव्य',
+    'move' => 'स्थानांतरित करें',
+    'move_items' => 'आइटम स्थानांतरित करें',
+    'move_here' => 'यहाँ स्थानांतरित करें',
+    'move_to_root' => 'रूट फ़ोल्डर में स्थानांतरित करें',
+    'root' => 'रूट',
+    'go_up' => 'ऊपर जाएं',
     'restore_error' => 'चयनित आइटम पुनर्स्थापित करते समय त्रुटि',
     'restore_success' => 'चयनित आइटम सफलतापूर्वक पुनर्स्थापित किए गए!',
     'copy_success' => 'चयनित आइटम सफलतापूर्वक कॉपी किए गए!',
@@ -133,7 +139,12 @@ return [
         ],
 
         'download' => [
-            'error' => 'कोई फ़ाइल चयनित नहीं या इन फ़ाइलों को डाउनलोड नहीं किया जा सकता',
+            'error' => 'No files selected or cannot download these files',
+        ],
+
+        'move' => [
+            'select_destination' => 'कृपया गंतव्य फ़ोल्डर चुनें',
+            'same_location' => 'आइटम पहले से इस स्थान पर हैं',
         ],
 
         'actions_list' => [

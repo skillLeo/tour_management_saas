@@ -27,6 +27,8 @@ return [
     'categories' => 'კატეგორიები',
     'category' => 'კატეგორია',
     'author' => 'ავტორი',
+    'author_helper' => 'Select an author from admin users.',
+    'select_author' => 'Select author',
     'is_featured' => 'გამოირჩეული?',
     'export' => [
         'description' => 'პოსტების ექსპორტი CSV/Excel ფაილში.',

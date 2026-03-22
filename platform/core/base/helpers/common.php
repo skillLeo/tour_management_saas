@@ -87,14 +87,7 @@ if (! function_exists('get_cms_version')) {
 if (! function_exists('get_core_version')) {
     function get_core_version(): string
     {
-        return '7.6.3';
-    }
-}
-
-if (! function_exists('get_nulled_by')) {
-    function get_nulled_by(): string
-    {
-        return 'Nulled by J.C. from Babiato';
+        return '7.6.5';
     }
 }
 

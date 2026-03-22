@@ -147,7 +147,7 @@
                                         {{ format_price($order->shipping_amount) }}
                                     </x-core::table.body.cell>
                                 </x-core::table.body.row>
-                                @if (EcommerceHelper::isTaxEnabled())
+                                @if (EcommerceHelper::isTaxEnabled() && (float) $order->tax_amount > 0)
                                     <x-core::table.body.row>
                                         <x-core::table.body.cell class="text-end">
                                             {{ trans('plugins/ecommerce::order.tax') }}

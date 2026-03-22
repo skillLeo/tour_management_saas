@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'name' => 'Plantilla de Etiqueta de Envío',
-    'setting' => 'Configuración de Plantilla de Etiqueta de Envío',
-    'setting_description' => 'Configuración para la plantilla de etiqueta de envío',
+    'name' => 'Etiquetas de envío',
+    'setting' => 'Diseño y disposición',
+    'setting_description' => 'Personalizar plantilla HTML y estilos CSS de etiqueta de envío',
     'setting_content' => 'Contenido',
     'preview' => 'Vista previa',
     'preview_heading' => 'Vista previa de la plantilla de etiqueta de envío',

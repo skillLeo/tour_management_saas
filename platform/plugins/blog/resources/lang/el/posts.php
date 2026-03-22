@@ -26,6 +26,8 @@ return [
     'categories' => 'Κατηγορίες',
     'category' => 'Κατηγορία',
     'author' => 'Συγγραφέας',
+    'author_helper' => 'Select an author from admin users.',
+    'select_author' => 'Select author',
     'is_featured' => 'Είναι προβεβλημένη;',
     'export' => [
         'description' => 'Εξαγωγή δημοσιεύσεων σε αρχείο CSV/Excel.',

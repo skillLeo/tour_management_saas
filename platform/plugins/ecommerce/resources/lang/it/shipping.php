@@ -192,6 +192,7 @@ return [
         'order_date' => 'Data ordine',
         'scan_qr_code' => 'Scansiona il codice QR per tracciare la tua spedizione',
         'total_amount' => 'Importo totale',
+        'amount_to_collect' => 'Importo da riscuotere',
         'cod_amount_to_collect' => 'Importo contrassegno da riscuotere',
     ],
     'customer_confirmed_delivery_at' => 'Cliente ha confermato la consegna alle',

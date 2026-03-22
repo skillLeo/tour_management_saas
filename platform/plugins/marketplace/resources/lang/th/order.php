@@ -12,4 +12,16 @@ return [
     'return' => [
         'description' => 'คืนสินค้าจากคำสั่งซื้อ #:order',
     ],
+    'thank_you' => [
+        'count_orders' => ':count คำสั่งซื้อ',
+        'order' => 'คำสั่งซื้อ',
+        'thank_you_name' => 'ขอบคุณ, :name!',
+        'order_confirmed' => 'คำสั่งซื้อของคุณได้รับการยืนยันแล้ว',
+        'order_accepted' => 'เรารับคำสั่งซื้อของคุณแล้วและกำลังเตรียมการ',
+        'customer' => 'ลูกค้า',
+        'need_help' => 'ต้องการความช่วยเหลือ?',
+        'contact_us' => 'ติดต่อเรา',
+        'view_order_history' => 'ดูประวัติการสั่งซื้อ',
+        'order_total' => 'ยอดรวมคำสั่งซื้อ',
+    ],
 ];

@@ -38,6 +38,7 @@ use Botble\Ecommerce\Models\OrderAddress;
 use Botble\Ecommerce\Models\OrderHistory;
 use Botble\Ecommerce\Models\OrderProduct;
 use Botble\Ecommerce\Models\Product;
+use Botble\Ecommerce\Models\ProductVariation;
 use Botble\Ecommerce\Models\Shipment;
 use Botble\Ecommerce\Models\ShipmentHistory;
 use Botble\Ecommerce\Models\ShippingRule;
@@ -58,7 +59,6 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -175,6 +175,17 @@ class OrderHelper
         }
 
         Cart::instance('cart')->destroy();
+
+        if (auth('customer')->check()) {
+            Cart::instance('cart')->deleteCustomerCart(auth('customer')->id());
+        } else {
+            $guestCartId = request()->cookie('guest_cart_id');
+            if ($guestCartId) {
+                Cart::instance('cart')->deleteGuestCart($guestCartId);
+                cookie()->queue(cookie()->forget('guest_cart_id'));
+            }
+        }
+
         session()->forget('applied_coupon_code');
 
         session(['order_id' => Arr::first($orderIds)]);
@@ -296,6 +307,8 @@ class OrderHelper
     public function validateAndReserveStock(array $cartItems): array
     {
         return DB::transaction(function () use ($cartItems) {
+            $reservedItems = [];
+
             foreach ($cartItems as $item) {
                 $product = Product::query()
                     ->where('id', $item['product_id'])
@@ -307,6 +320,8 @@ class OrderHelper
                 }
 
                 if ($product->isOutOfStock()) {
+                    $this->restoreReservedStock($reservedItems);
+
                     return [
                         'success' => false,
                         'message' => __('Product :product is out of stock!', ['product' => $product->original_product->name]),
@@ -316,6 +331,8 @@ class OrderHelper
 
                 if ($product->with_storehouse_management && ! $product->allow_checkout_when_out_of_stock) {
                     if ($product->quantity < $item['qty']) {
+                        $this->restoreReservedStock($reservedItems);
+
                         return [
                             'success' => false,
                             'message' => __('Product :product only has :quantity item(s) left in stock, but you are trying to order :requested!', [
@@ -326,9 +343,21 @@ class OrderHelper
                             'product' => $product,
                         ];
                     }
+
+                    $product->quantity -= $item['qty'];
+                    $product->save();
+
+                    $reservedItems[] = [
+                        'product_id' => $product->id,
+                        'qty' => $item['qty'],
+                    ];
+
+                    event(new ProductQuantityUpdatedEvent($product));
                 }
 
                 if ($product->minimum_order_quantity > 0 && $item['qty'] < $product->minimum_order_quantity) {
+                    $this->restoreReservedStock($reservedItems);
+
                     return [
                         'success' => false,
                         'message' => __('Minimum order quantity of product :product is :quantity, you need to buy more :more to place an order! ', [
@@ -341,6 +370,8 @@ class OrderHelper
                 }
 
                 if ($product->maximum_order_quantity > 0 && $item['qty'] > $product->maximum_order_quantity) {
+                    $this->restoreReservedStock($reservedItems);
+
                     return [
                         'success' => false,
                         'message' => __('Maximum order quantity of product :product is :quantity! ', [
@@ -352,7 +383,32 @@ class OrderHelper
                 }
             }
 
-            return ['success' => true, 'message' => null, 'product' => null];
+            return ['success' => true, 'message' => null, 'product' => null, 'reserved_items' => $reservedItems];
+        });
+    }
+
+    public function restoreReservedStock(array $reservedItems): void
+    {
+        if (empty($reservedItems)) {
+            return;
+        }
+
+        DB::transaction(function () use ($reservedItems): void {
+            foreach ($reservedItems as $item) {
+                $product = Product::query()
+                    ->where('id', $item['product_id'])
+                    ->lockForUpdate()
+                    ->first();
+
+                if (! $product) {
+                    continue;
+                }
+
+                $product->quantity += $item['qty'];
+                $product->save();
+
+                event(new ProductQuantityUpdatedEvent($product));
+            }
         });
     }
 
@@ -546,7 +602,7 @@ class OrderHelper
 
         $locale = $order->getOrderMetadata('customer_locale');
         if (! $locale) {
-            $locale = App::getLocale();
+            $locale = EmailHandler::getDefaultEmailLocale();
         }
 
         $customerCurrencyCode = $order->getCustomerCurrency();
@@ -789,6 +845,17 @@ class OrderHelper
     public function clearSessions(?string $token): void
     {
         Cart::instance('cart')->destroy();
+
+        if (auth('customer')->check()) {
+            Cart::instance('cart')->deleteCustomerCart(auth('customer')->id());
+        } else {
+            $guestCartId = request()->cookie('guest_cart_id');
+            if ($guestCartId) {
+                Cart::instance('cart')->deleteGuestCart($guestCartId);
+                cookie()->queue(cookie()->forget('guest_cart_id'));
+            }
+        }
+
         session()->forget('applied_coupon_code');
         session()->forget('order_id');
         session()->forget(md5('checkout_address_information_' . $token));
@@ -846,7 +913,7 @@ class OrderHelper
             $price,
             [
                 'image' => $image,
-                'attributes' => $product->is_variation ? $product->variation_attributes : '',
+                'attributes' => $product->is_variation ? $this->getTranslatedVariationAttributes($product) : '',
                 'taxRate' => $taxRate,
                 'taxClasses' => $taxClasses,
                 'options' => $options,
@@ -854,10 +921,33 @@ class OrderHelper
                 'sku' => $product->sku,
                 'weight' => $product->weight,
                 'price_includes_tax' => $parentProduct->price_includes_tax,
+                'product_type' => $parentProduct->product_type,
             ]
         );
 
         return Cart::instance('cart')->content()->toArray();
+    }
+
+    protected function getTranslatedVariationAttributes(Product $product): string
+    {
+        $variation = ProductVariation::query()
+            ->where('product_id', $product->getKey())
+            ->first();
+
+        if (! $variation) {
+            return '';
+        }
+
+        return $variation
+            ->productAttributes()
+            ->with('productAttributeSet')
+            ->get()
+            ->sortBy([
+                fn ($a) => $a->productAttributeSet?->order ?? 0,
+                fn ($a) => $a->order ?? 0,
+            ])
+            ->map(fn ($attribute) => ($attribute->productAttributeSet?->title ?? '') . ': ' . $attribute->title)
+            ->implode(', ');
     }
 
     public function getProductOptionData(array $data, int|string|null $productId = null): array
@@ -891,8 +981,11 @@ class OrderHelper
 
             $result['optionCartValue'][$key] = $optionValue->get()->toArray();
 
+            $optionModel = Option::query()->find($key);
+
             foreach ($result['optionCartValue'][$key] as &$item) {
                 $item['option_type'] = $option['option_type'];
+                $item['price_per_product'] = (bool) $optionModel?->price_per_product;
             }
 
             if (
@@ -983,14 +1076,33 @@ class OrderHelper
 
         if (! Arr::get($sessionData, 'is_save_order_shipping_address', true)) {
             if ($createdOrderId = Arr::get($sessionData, 'created_order_id')) {
-                OrderAddress::query()
-                    ->where([
-                        'order_id' => $createdOrderId,
-                        'type' => OrderAddressTypeEnum::SHIPPING,
-                    ])
-                    ->delete();
-                Arr::forget($sessionData, 'created_order_address');
-                Arr::forget($sessionData, 'created_order_address_id');
+                // For digital-only orders, save minimal customer info (name, email)
+                $minimalAddressData = Arr::only($addressData, ['name', 'email', 'phone']);
+                $minimalAddressData['order_id'] = $createdOrderId;
+                $minimalAddressData['type'] = OrderAddressTypeEnum::SHIPPING;
+
+                if (! empty($minimalAddressData['name']) || ! empty($minimalAddressData['email'])) {
+                    $createdOrderAddress = OrderAddress::query()
+                        ->updateOrCreate(
+                            [
+                                'order_id' => $createdOrderId,
+                                'type' => OrderAddressTypeEnum::SHIPPING,
+                            ],
+                            $minimalAddressData
+                        );
+
+                    $sessionData['created_order_address'] = true;
+                    $sessionData['created_order_address_id'] = $createdOrderAddress->getKey();
+                } else {
+                    OrderAddress::query()
+                        ->where([
+                            'order_id' => $createdOrderId,
+                            'type' => OrderAddressTypeEnum::SHIPPING,
+                        ])
+                        ->delete();
+                    Arr::forget($sessionData, 'created_order_address');
+                    Arr::forget($sessionData, 'created_order_address_id');
+                }
             }
         } elseif ($addressData && ! empty($addressData['name'])) {
             $createdOrderAddress = $this->createOrderAddress($addressData, $sessionData);
@@ -1170,11 +1282,19 @@ class OrderHelper
                     $data['product_options'] = $cartItem->options['options'];
                 }
 
-                $orderProduct = $orderProducts->firstWhere('product_id', $cartItem->id);
+                // Use product_id AND price to find matching order product
+                // This handles cases where the same product exists in cart with different prices
+                // (e.g., bundle vs non-bundle items)
+                $orderProduct = $orderProducts->first(function ($op) use ($cartItem) {
+                    return $op->product_id == $cartItem->id
+                        && EcommerceHelper::roundPrice($op->price) == EcommerceHelper::roundPrice($cartItem->price);
+                });
 
                 if ($orderProduct) {
                     $orderProduct->fill($data);
                     $orderProduct->save();
+                    // Remove from collection to prevent reuse in next iteration
+                    $orderProducts = $orderProducts->reject(fn ($op) => $op->id === $orderProduct->id);
                 } else {
                     /**
                      * @var OrderProduct $orderProduct
@@ -1185,13 +1305,12 @@ class OrderHelper
                     do_action('ecommerce_after_each_order_product_created', $orderProduct);
                 }
 
-                $productIds[] = $cartItem->id;
             }
 
+            // Delete any remaining unmatched order products
+            // (products that were removed from cart since order was created)
             foreach ($orderProducts as $orderProduct) {
-                if (! in_array($orderProduct->product_id, $productIds)) {
-                    $orderProduct->delete();
-                }
+                $orderProduct->delete();
             }
 
             $sessionData['created_order_product'] = $lastUpdatedAt;

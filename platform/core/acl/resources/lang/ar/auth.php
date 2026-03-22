@@ -9,8 +9,8 @@ return [
         'remember' => 'تذكرنى؟',
         'login' => 'تسجيل الدخول',
         'placeholder' => [
-            'username' => 'Please enter your username',
-            'email' => 'Please enter your email',
+            'username' => 'الرجاء إدخال اسم المستخدم',
+            'email' => 'الرجاء إدخال بريدك الإلكتروني',
             'password' => 'ادخل رقمك السري',
         ],
         'success' => 'تسجيل الدخول بنجاح!',

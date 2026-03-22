@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'menu_name' => 'Cấp Độ Thành Viên',
+    'create' => 'Tạo Cấp Độ',
+    'edit' => 'Sửa Cấp Độ :name',
+    'min_commission' => 'Hoa Hồng Tối Thiểu',
+    'max_commission' => 'Hoa Hồng Tối Đa',
+    'max_commission_help' => 'Để trống nếu không giới hạn',
+    'unlimited' => 'Không giới hạn',
+    'commission_rate' => 'Tỷ Lệ Hoa Hồng',
+    'commission_rate_help' => 'Hệ số nhân cho hoa hồng (ví dụ: 1.1 cho thưởng 10%)',
+    'benefits' => 'Quyền Lợi',
+    'benefits_help' => 'Liệt kê quyền lợi, mỗi dòng một quyền lợi',
+    'benefits_placeholder' => 'Hỗ trợ ưu tiên' . PHP_EOL . 'Tỷ lệ hoa hồng cao hơn',
+    'next_level' => 'Cấp Độ Tiếp Theo: :name',
+    'commission_needed' => 'Bạn cần thêm :amount hoa hồng để đạt :name',
+    'tier_rules_tooltip' => 'Kiếm hoa hồng với mỗi giới thiệu để mở khóa các cấp độ cao hơn và phần thưởng độc quyền. Cấp độ dựa trên tổng hoa hồng đã kiếm được.',
+    'top_tier_reached' => 'Đã Đạt Cấp Cao Nhất',
+    'top_tier_message' => 'Bạn đã đạt cấp độ đối tác cao nhất! Hãy tận hưởng các quyền lợi độc quyền.',
+    'default_member' => 'Thành Viên',
+    'member_since' => 'Từ ngày',
+    'no_benefits' => 'Bắt đầu kiếm hoa hồng để mở khóa quyền lợi cấp độ!',
+    'current_commission' => 'Đã kiếm :amount',
+    'target_commission' => 'Mục tiêu :amount',
+];

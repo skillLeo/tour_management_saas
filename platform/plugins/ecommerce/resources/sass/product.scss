@@ -66,22 +66,56 @@
 table.dataTable {
     thead {
         tr.dataTable-custom-filter {
+            background-color: var(--tblr-bg-surface-secondary, #f8fafc);
+            border-bottom: 1px solid var(--tblr-border-color, #e6e7e9);
+
             th {
-                padding-right: 8px;
+                padding: 8px 8px 8px 12px;
                 text-transform: unset;
-                padding-top: 0;
+                vertical-align: middle;
+
+                .variation-filter-wrapper {
+                    position: relative;
+
+                    &.has-active-filter {
+                        .select2-container--default .select2-selection--single {
+                            border-color: var(--tblr-primary, #206bc4);
+                            background-color: var(--tblr-primary-lt, #e9f0f9);
+                        }
+                    }
+                }
+
+                .select2-container {
+                    min-width: 100px;
+                }
 
                 .select2-selection__rendered {
                     padding-right: 1.5rem !important;
                     padding-top: 0.35rem !important;
                     padding-bottom: 0.35rem !important;
+                    font-size: 0.8125rem;
+                    color: var(--tblr-body-color, #1d273b);
                 }
 
                 .select2-container--default {
                     .select2-selection--single {
+                        border-radius: 4px;
+                        border-color: var(--tblr-border-color, #e6e7e9);
+                        transition: border-color 0.15s ease-in-out, background-color 0.15s ease-in-out;
+
+                        &:hover {
+                            border-color: var(--tblr-primary, #206bc4);
+                        }
+
+                        .select2-selection__placeholder {
+                            color: var(--tblr-secondary, #6c7a91);
+                            font-size: 0.8125rem;
+                        }
+
                         .select2-selection__arrow {
                             width: 1rem;
                         }
+
                         .select2-selection__clear {
                             height: 100%;
                             position: absolute;
@@ -89,9 +123,29 @@ table.dataTable {
                             margin-right: 0;
                             right: 0;
                             z-index: 1;
-                            background-color: #73737382;
-                            font-size: 0.8rem;
+                            background-color: var(--tblr-secondary, #6c7a91);
+                            color: #fff;
+                            font-size: 0.75rem;
+                            border-radius: 0 3px 3px 0;
+                            opacity: 0.8;
+                            transition: opacity 0.15s ease-in-out;
+
+                            &:hover {
+                                opacity: 1;
+                            }
                         }
+                    }
+                }
+
+                .btn-clear-all-filters {
+                    margin-left: 8px;
+                    font-size: 0.75rem;
+                    padding: 0.25rem 0.5rem;
+                    white-space: nowrap;
+
+                    &:not(.d-none) {
+                        display: inline-flex !important;
+                        align-items: center;
                     }
                 }
             }

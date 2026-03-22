@@ -21,8 +21,11 @@
             @endif
         </a>
     </div>
-    <div class="header__right">
-        <a class="header__site-link" href="{{ route('customer.logout') }}">
+    <div class="header__right d-flex align-items-center gap-2">
+        <a class="header__site-link" href="{{ route('customer.overview') }}" title="{{ trans('plugins/marketplace::marketplace.go_to_customer_dashboard') }}">
+            <x-core::icon name="ti ti-user" />
+        </a>
+        <a class="header__site-link" href="{{ route('customer.logout') }}" title="{{ trans('plugins/marketplace::marketplace.logout') }}">
             <x-core::icon name="ti ti-logout" />
         </a>
     </div>
@@ -36,6 +39,23 @@
     </div>
     <div class="ps-drawer__content">
         @include(MarketplaceHelper::viewPath('vendor-dashboard.layouts.menu'))
+
+        <div class="ps-drawer__footer mt-4 pt-3 border-top">
+            <ul class="menu">
+                <li>
+                    <a href="{{ route('customer.overview') }}">
+                        <x-core::icon name="ti ti-user" />
+                        {{ trans('plugins/marketplace::marketplace.go_to_customer_dashboard') }}
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ BaseHelper::getHomepageUrl() }}">
+                        <x-core::icon name="ti ti-home" />
+                        {{ trans('plugins/marketplace::marketplace.go_to_homepage') }}
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
 </aside>
 <div class="ps-site-overlay"></div>
@@ -44,7 +64,7 @@
         <div class="ps-sidebar">
             <div class="ps-sidebar__top">
                 <div class="ps-block--user-wellcome">
-                     <div class="ps-block__left">
+                    <div class="ps-block__left">
                         <img
                             src="{{ $customer->store->logo_url }}"
                             alt="{{ $customer->store->name }}"
@@ -61,6 +81,10 @@
                                 {{ trans('plugins/marketplace::marketplace.view_your_store') }}
                             </a>
                         @endif
+                        <a href="{{ route('customer.overview') }}" class="d-block mt-2">
+                            <x-core::icon name="ti ti-user" />
+                            {{ trans('plugins/marketplace::marketplace.go_to_customer_dashboard') }}
+                        </a>
                     </div>
                     <div class="ps-block__action">
                         <a href="{{ route('customer.logout') }}">
@@ -105,8 +129,13 @@
                     {!! apply_filters('marketplace_vendor_dashboard_language_switcher', view(MarketplaceHelper::viewPath('vendor-dashboard.partials.language-switcher'))->render()) !!}
                 @endif
 
-                <div class="d-none d-md-inline-block">
-                    <a href="{{ BaseHelper::getHomepageUrl() }}" target="_blank" class="text-uppercase d-block">
+                <div class="d-none d-md-flex align-items-center gap-3">
+                    <a href="{{ route('customer.overview') }}" class="text-uppercase">
+                        <x-core::icon name="ti ti-user" />
+                        <span>{{ trans('plugins/marketplace::marketplace.go_to_customer_dashboard') }}</span>
+                    </a>
+                    <span class="text-muted">|</span>
+                    <a href="{{ BaseHelper::getHomepageUrl() }}" target="_blank" class="text-uppercase">
                         <span>{{ trans('plugins/marketplace::marketplace.go_to_homepage') }}</span>
                         <x-core::icon name="ti ti-arrow-right" />
                     </a>

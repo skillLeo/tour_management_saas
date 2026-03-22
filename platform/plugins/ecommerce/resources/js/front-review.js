@@ -77,6 +77,9 @@ $(() => {
                     successCallback()
                 }
             },
+            error: () => {
+                // Silently handle error - page will be reloaded or user can refresh
+            },
             complete: () => {
                 $reviewListContainer.find('.loading-spinner').remove()
             },
@@ -418,6 +421,125 @@ $(() => {
         if ($reviewListContainer.length) {
             getReviewList($reviewListContainer.data('ajax-url'), null, getCurrentSearchParams())
         }
+    })
+
+    // Vendor reply toggle
+    $(document).on('click', '.vendor-reply-toggle-btn', function() {
+        const reviewId = $(this).data('review-id')
+        const $form = $(`.vendor-reply-form[data-review-id="${reviewId}"]`)
+        const $button = $(this)
+
+        $button.addClass('d-none')
+        $form.removeClass('d-none')
+        $form.find('textarea').focus()
+    })
+
+    // Vendor reply cancel
+    $(document).on('click', '.vendor-reply-cancel-btn', function() {
+        const reviewId = $(this).data('review-id')
+        const $form = $(`.vendor-reply-form[data-review-id="${reviewId}"]`)
+        const $button = $(`.vendor-reply-toggle-btn[data-review-id="${reviewId}"]`)
+
+        $form.addClass('d-none')
+        $form.find('textarea').val('')
+        $button.removeClass('d-none')
+    })
+
+    // Vendor reply submit
+    $(document).on('click', '.vendor-reply-submit-btn', function(e) {
+        e.preventDefault()
+        e.stopPropagation()
+
+        const $button = $(this)
+        const reviewId = $button.data('review-id')
+        const $container = $(`.vendor-reply-form[data-review-id="${reviewId}"]`)
+        const url = $container.data('url')
+        const message = $container.find('.vendor-reply-message').val()
+
+        if (!message || !message.trim()) {
+            Review.showError('Please enter a reply message.')
+            return false
+        }
+
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: {
+                message: message
+            },
+            headers: {
+                'X-CSRF-TOKEN': Review.getCsrfToken()
+            },
+            beforeSend: () => {
+                $button.prop('disabled', true).addClass('loading')
+            },
+            success: ({ error, message }) => {
+                if (!error) {
+                    Review.showSuccess(message)
+                    // Reload page to show the new reply
+                    setTimeout(() => {
+                        window.location.reload()
+                    }, 1000)
+                } else {
+                    Review.showError(message)
+                    $button.prop('disabled', false).removeClass('loading')
+                }
+            },
+            error: (xhr) => {
+                let errorMessage = 'An error occurred while submitting the reply.'
+                if (xhr.responseJSON && xhr.responseJSON.message) {
+                    errorMessage = xhr.responseJSON.message
+                }
+                Review.showError(errorMessage)
+                $button.prop('disabled', false).removeClass('loading')
+            }
+        })
+
+        return false
+    })
+
+    // Vendor delete reply
+    $(document).on('click', '.vendor-delete-reply-btn', function(e) {
+        e.preventDefault()
+
+        const $button = $(this)
+        const url = $button.data('url')
+        const confirmMessage = $button.data('confirm-message')
+
+        if (!confirm(confirmMessage)) {
+            return
+        }
+
+        $.ajax({
+            url: url,
+            type: 'DELETE',
+            headers: {
+                'X-CSRF-TOKEN': Review.getCsrfToken()
+            },
+            beforeSend: () => {
+                $button.prop('disabled', true)
+            },
+            success: ({ error, message }) => {
+                if (!error) {
+                    Review.showSuccess(message)
+                    // Reload page to reflect the deleted reply
+                    setTimeout(() => {
+                        window.location.reload()
+                    }, 1000)
+                } else {
+                    Review.showError(message)
+                    $button.prop('disabled', false)
+                }
+            },
+            error: (xhr) => {
+                let errorMessage = 'An error occurred while deleting the reply.'
+                if (xhr.responseJSON && xhr.responseJSON.message) {
+                    errorMessage = xhr.responseJSON.message
+                }
+                Review.showError(errorMessage)
+                $button.prop('disabled', false)
+            }
+        })
     })
 
     if (sessionStorage.reloadReviewsTab) {

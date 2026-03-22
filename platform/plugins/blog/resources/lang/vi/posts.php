@@ -27,6 +27,8 @@ return [
     'categories' => 'Danh mục',
     'category' => 'Danh mục',
     'author' => 'Tác giả',
+    'author_helper' => 'Chọn tác giả từ danh sách quản trị viên.',
+    'select_author' => 'Chọn tác giả',
     'export' => [
         'description' => 'Xuất bài viết sang tệp CSV/Excel.',
         'total' => 'Tổng số bài viết',

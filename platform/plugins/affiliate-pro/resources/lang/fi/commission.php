@@ -1,0 +1,53 @@
+<?php
+
+return [
+    'name' => 'Provisiot',
+    'view' => 'Näytä Provisio #:id',
+    'affiliate' => 'Kumppani',
+    'order' => 'Tilaus',
+    'amount' => 'Summa',
+    'description' => 'Kuvaus',
+    'status' => 'Tila',
+    'created_at' => 'Luotu',
+    'approve' => 'Hyväksy',
+    'reject' => 'Hylkää',
+    'approve_success' => 'Provisio hyväksytty',
+    'reject_success' => 'Provisio hylätty',
+    'approve_commission' => 'Hyväksy Provisio',
+    'reject_commission' => 'Hylkää Provisio',
+    'approve_commission_confirmation' => 'Oletko varma, että haluat hyväksyä provision #:id? Tätä toimintoa ei voi peruuttaa.',
+    'reject_commission_confirmation' => 'Oletko varma, että haluat hylätä provision #:id? Tätä toimintoa ei voi peruuttaa.',
+    'statuses' => [
+        'pending' => 'Odottaa',
+        'approved' => 'Hyväksytty',
+        'rejected' => 'Hylätty',
+    ],
+
+    // Customer-facing translations
+    'history' => 'Provisiohistoria',
+    'no_commissions' => 'Provisioita ei löytynyt.',
+    'no_commissions_description' => 'Et ole vielä ansainnut provisioita. Aloita tuotteidemme markkinointi ansaitaksesi ensimmäisen provisiosi!',
+    'commission_id' => 'Provisio-ID',
+    'order_id' => 'Tilaus-ID',
+    'customer' => 'Asiakas',
+    'product' => 'Tuote',
+    'type' => 'Tyyppi',
+    'date' => 'Päivämäärä',
+
+    // New UI translations
+    'total_commissions' => ':count Provisiota Yhteensä',
+    'filter_by_status' => 'Suodata Tilan Mukaan',
+    'all_statuses' => 'Kaikki Tilat',
+    'date_from' => 'Päivämäärästä',
+    'date_to' => 'Päivämäärään',
+    'filter' => 'Suodata',
+    'clear' => 'Tyhjennä',
+    'approved_earnings' => 'Hyväksytyt Ansiot',
+    'pending_earnings' => 'Odottavat Ansiot',
+    'successful_orders' => 'Onnistuneet Tilaukset',
+    'approval_rate' => 'Hyväksymisprosentti',
+    'commission_earned' => 'Provisio Ansaittu',
+    'showing_results' => 'Näytetään :from - :to / :total tuloksesta',
+    'start_promoting' => 'Aloita Markkinointi',
+    'back_to_dashboard' => 'Takaisin Hallintapaneeliin',
+];

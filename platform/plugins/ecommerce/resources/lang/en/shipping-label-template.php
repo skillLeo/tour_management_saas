@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'name' => 'Shipping Label Template',
-    'setting' => 'Shipping Label Template Settings',
-    'setting_description' => 'Settings for Shipping Label template',
+    'name' => 'Shipping Labels',
+    'setting' => 'Label design & layout',
+    'setting_description' => 'Customize shipping label HTML template and CSS styles',
     'setting_content' => 'Content',
     'preview' => 'Preview',
     'preview_heading' => 'Preview Shipping Label template',

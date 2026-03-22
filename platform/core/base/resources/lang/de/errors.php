@@ -22,4 +22,6 @@ return [
     '503_temporarily_down' => 'Vorübergehend wegen Wartung nicht verfügbar',
     '503_admin_instruction' => 'Wenn Sie der Administrator sind und nach dem Aktivieren des Wartungsmodus nicht auf Ihre Website zugreifen können, müssen Sie nur die Datei <strong>storage/framework/down</strong> löschen, um den Wartungsmodus zu deaktivieren.',
     'take_me_home' => 'Bring mich nach Hause',
+    'bad_request' => 'Ungültige Anfrage',
+
 ];

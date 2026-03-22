@@ -1,0 +1,66 @@
+<?php
+
+return [
+    'name' => 'Αναλήψεις',
+    'view' => 'Προβολή Ανάληψης #:id',
+    'affiliate' => 'Συνεργάτης',
+    'amount' => 'Ποσό',
+    'status' => 'Κατάσταση',
+    'payment_method' => 'Μέθοδος Πληρωμής',
+    'payment_details' => 'Στοιχεία Πληρωμής',
+    'notes' => 'Σημειώσεις',
+    'created_at' => 'Δημιουργήθηκε Στις',
+    'approve' => 'Έγκριση',
+    'reject' => 'Απόρριψη',
+    'approve_success' => 'Η ανάληψη εγκρίθηκε επιτυχώς',
+    'reject_success' => 'Η ανάληψη απορρίφθηκε επιτυχώς',
+    'approve_withdrawal' => 'Έγκριση Ανάληψης',
+    'reject_withdrawal' => 'Απόρριψη Ανάληψης',
+    'approve_withdrawal_confirmation' => 'Είστε βέβαιοι ότι θέλετε να εγκρίνετε την ανάληψη #:id; Αυτή η ενέργεια δεν μπορεί να αναιρεθεί.',
+    'reject_withdrawal_confirmation' => 'Είστε βέβαιοι ότι θέλετε να απορρίψετε την ανάληψη #:id; Αυτή η ενέργεια δεν μπορεί να αναιρεθεί.',
+    'statuses' => [
+        'pending' => 'Εκκρεμεί',
+        'processing' => 'Επεξεργάζεται',
+        'approved' => 'Εγκρίθηκε',
+        'rejected' => 'Απορρίφθηκε',
+        'canceled' => 'Ακυρώθηκε',
+    ],
+
+    // Customer-facing translations
+    'request' => 'Αίτημα Ανάληψης',
+    'history' => 'Ιστορικό Αναλήψεων',
+    'no_withdrawals' => 'Δεν βρέθηκαν αναλήψεις.',
+    'withdrawal_id' => 'Κωδικός Ανάληψης',
+    'date' => 'Ημερομηνία',
+    'amount_required' => 'Το ποσό ανάληψης είναι υποχρεωτικό.',
+    'amount_numeric' => 'Το ποσό ανάληψης πρέπει να είναι αριθμός.',
+    'amount_min' => 'Το ποσό ανάληψης πρέπει να είναι τουλάχιστον 0.',
+    'payment_method_required' => 'Η μέθοδος πληρωμής είναι υποχρεωτική.',
+    'payment_details_required' => 'Τα στοιχεία πληρωμής είναι υποχρεωτικά.',
+    'account_not_approved' => 'Ο λογαριασμός συνεργάτη σας δεν έχει εγκριθεί ακόμα.',
+    'minimum_amount' => 'Το ελάχιστο ποσό ανάληψης είναι :amount.',
+    'insufficient_balance' => 'Δεν έχετε αρκετό υπόλοιπο για αυτήν την ανάληψη.',
+    'request_submitted' => 'Το αίτημα ανάληψής σας έχει υποβληθεί επιτυχώς.',
+    'submit_request' => 'Υποβολή Αιτήματος Ανάληψης',
+    'available_balance' => 'Διαθέσιμο Υπόλοιπο',
+    'enter_amount' => 'Εισαγάγετε Ποσό',
+    'select_payment_method' => 'Επιλέξτε Μέθοδο Πληρωμής',
+    'payment_details_placeholder' => 'Εισαγάγετε τα στοιχεία πληρωμής σας (π.χ., email PayPal, στοιχεία τραπεζικού λογαριασμού)',
+    'no_payment_methods_available' => 'Δεν υπάρχουν διαθέσιμες μέθοδοι πληρωμής αυτή τη στιγμή. Παρακαλούμε επικοινωνήστε με τον διαχειριστή.',
+
+    // Additional translations for PayoutPaymentMethodsEnum
+    'bank_transfer' => 'Τραπεζική Μεταφορά',
+    'paypal' => 'PayPal',
+    'stripe' => 'Stripe',
+    'other' => 'Άλλο',
+    'bank_information' => 'Στοιχεία τράπεζας',
+    'paypal_id' => 'PayPal ID',
+
+    // Payout payment methods
+    'payout_payment_methods' => [
+        'bank_transfer' => 'Τραπεζική Μεταφορά',
+        'paypal' => 'PayPal',
+        'stripe' => 'Stripe',
+        'other' => 'Άλλο',
+    ],
+];

@@ -68,4 +68,6 @@ return [
     'enable_light_mode' => 'Aktiver lys tilstand',
     'enable_dark_mode' => 'Aktiver mørk tilstand',
     'close' => 'Luk',
+    'search_country' => 'Søg land...',
+    'no_results' => 'Ingen resultater fundet',
 ];

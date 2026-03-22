@@ -68,4 +68,6 @@ return [
     'enable_light_mode' => 'הפעל מצב בהיר',
     'enable_dark_mode' => 'הפעל מצב כהה',
     'close' => 'סגור',
+    'search_country' => 'חפש מדינה...',
+    'no_results' => 'לא נמצאו תוצאות',
 ];

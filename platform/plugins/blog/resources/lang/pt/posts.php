@@ -26,6 +26,8 @@ return [
     'categories' => 'Categorias',
     'category' => 'Categoria',
     'author' => 'Autor',
+    'author_helper' => 'Select an author from admin users.',
+    'select_author' => 'Select author',
     'export' => [
         'description' => 'Exporte postagens para arquivo CSV/Excel.',
         'total' => 'Total de postagens',

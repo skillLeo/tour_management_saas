@@ -650,6 +650,125 @@ app()->booted(function (): void {
         });
 
         add_shortcode(
+            'ecommerce-categories',
+            __('Ecommerce Categories'),
+            __('Ecommerce Categories'),
+            function (Shortcode $shortcode) {
+                $categoryIds = ShortcodeField::parseIds($shortcode->category_ids);
+
+                if (! $categoryIds) {
+                    return null;
+                }
+
+                $categories = ProductCategory::query()
+                    ->whereIn('id', $categoryIds)
+                    ->wherePublished()
+                    ->with('slugable')
+                    ->orderBy('order')
+                    ->get();
+
+                if ($categories->isEmpty()) {
+                    return null;
+                }
+
+                $shortcode->background_color = $shortcode->background_color ?: 'transparent';
+                $shortcode->show_products_count = $shortcode->show_products_count !== 'no';
+
+                return Theme::partial('shortcodes.ecommerce-categories.index', compact('shortcode', 'categories'));
+            }
+        );
+
+        shortcode()->setAdminConfig('ecommerce-categories', function (array $attributes) {
+            return ShortcodeForm::createFromArray($attributes)
+                ->withLazyLoading()
+                ->add(
+                    'style',
+                    SelectField::class,
+                    SelectFieldOption::make()
+                        ->label(__('Style'))
+                        ->choices([
+                            'grid' => __('Grid'),
+                            'slider' => __('Slider'),
+                        ])
+                        ->defaultValue('grid')
+                )
+                ->add(
+                    'category_ids',
+                    SelectField::class,
+                    SelectFieldOption::make()
+                        ->choices(
+                            ProductCategory::query()
+                                ->wherePublished()
+                                ->pluck('name', 'id')
+                                ->all()
+                        )
+                        ->label(__('Choose categories'))
+                        ->selected(ShortcodeField::parseIds(Arr::get($attributes, 'category_ids')))
+                        ->searchable()
+                        ->multiple()
+                )
+                ->add(
+                    'title',
+                    TextField::class,
+                    TextFieldOption::make()
+                        ->label(__('Title'))
+                )
+                ->add(
+                    'subtitle',
+                    TextField::class,
+                    TextFieldOption::make()
+                        ->label(__('Subtitle'))
+                )
+                ->add(
+                    'background_color',
+                    ColorField::class,
+                    ColorFieldOption::make()
+                        ->defaultValue('#F3F5F7')
+                        ->label(__('Background color'))
+                )
+                ->add(
+                    'items_per_view',
+                    NumberField::class,
+                    NumberFieldOption::make()
+                        ->label(__('Items per view (for slider style)'))
+                        ->defaultValue(5)
+                )
+                ->add(
+                    'is_autoplay',
+                    SelectField::class,
+                    SelectFieldOption::make()
+                        ->label(__('Is autoplay'))
+                        ->choices([
+                            'no' => __('No'),
+                            'yes' => __('Yes'),
+                        ])
+                        ->defaultValue('no')
+                )
+                ->add(
+                    'autoplay_speed',
+                    SelectField::class,
+                    SelectFieldOption::make()
+                        ->label(__('Autoplay speed (if autoplay enabled)'))
+                        ->choices([
+                            '1000' => '1s',
+                            '2000' => '2s',
+                            '3000' => '3s',
+                            '4000' => '4s',
+                            '5000' => '5s',
+                        ])
+                        ->defaultValue('3000')
+                )
+                ->add(
+                    'show_products_count',
+                    SelectField::class,
+                    SelectFieldOption::make()
+                        ->label(__('Show products count?'))
+                        ->choices(['no' => __('No'), 'yes' => __('Yes')])
+                        ->defaultValue('yes')
+                );
+        });
+
+        add_shortcode(
             'top-products-group',
             __('Top Products Group'),
             __('Top Products Group'),
@@ -668,7 +787,8 @@ app()->booted(function (): void {
 
                 if (in_array('top-selling', $tabs)) {
                     $endDate = Carbon::now();
-                    $startDate = Carbon::now()->subDays($shortcode->top_selling_in_days ?: 30);
+                    $topSellingInDays = (int) ($shortcode->top_selling_in_days ?: 30);
+                    $startDate = Carbon::now()->subDays($topSellingInDays);
 
                     $topSellingQuery = Product::query()
                         ->join('ec_order_product', 'ec_products.id', '=', 'ec_order_product.product_id')
@@ -1005,6 +1125,73 @@ app()->booted(function (): void {
                 ColorFieldOption::make()
                     ->label(__('Text color'))
                     ->defaultValue('#253D4E')
+            )
+            ->add(
+                'carousel',
+                SelectField::class,
+                SelectFieldOption::make()
+                    ->label(__('Enable Carousel'))
+                    ->choices([
+                        'no' => __('No'),
+                        'yes' => __('Yes'),
+                    ])
+                    ->helperText(__('Enable carousel slider for ads'))
+            )
+            ->add(
+                'autoplay',
+                SelectField::class,
+                SelectFieldOption::make()
+                    ->label(__('Autoplay'))
+                    ->choices([
+                        'yes' => __('Yes'),
+                        'no' => __('No'),
+                    ])
+                    ->helperText(__('Auto-rotate slides'))
+            )
+            ->add(
+                'autoplay_speed',
+                SelectField::class,
+                SelectFieldOption::make()
+                    ->label(__('Autoplay Speed'))
+                    ->choices(array_combine(
+                        theme_get_autoplay_speed_options(),
+                        array_map(fn ($speed) => ($speed / 1000) . 's', theme_get_autoplay_speed_options())
+                    ))
+                    ->helperText(__('Time between slide transitions'))
+            )
+            ->add(
+                'items_desktop',
+                SelectField::class,
+                SelectFieldOption::make()
+                    ->label(__('Items on Desktop'))
+                    ->choices([
+                        '3' => '3',
+                        '4' => '4',
+                        '5' => '5',
+                    ])
+                    ->helperText(__('Number of ads to show on desktop'))
+            )
+            ->add(
+                'items_tablet',
+                SelectField::class,
+                SelectFieldOption::make()
+                    ->label(__('Items on Tablet'))
+                    ->choices([
+                        '2' => '2',
+                        '3' => '3',
+                    ])
+                    ->helperText(__('Number of ads to show on tablet'))
+            )
+            ->add(
+                'items_mobile',
+                SelectField::class,
+                SelectFieldOption::make()
+                    ->label(__('Items on Mobile'))
+                    ->choices([
+                        '1' => '1',
+                        '2' => '2',
+                    ])
+                    ->helperText(__('Number of ads to show on mobile'))
             );
 
             return $form;

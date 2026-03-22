@@ -55,6 +55,12 @@ return [
     'selected_items_move_success' => 'Item yang dipilih berjaya dipindahkan ke :name!',
     'selected_items_move_error' => 'Ralat semasa memindahkan item yang dipilih ke :name',
     'destination' => 'Destinasi',
+    'move' => 'Move',
+    'move_items' => 'Move items',
+    'move_here' => 'Move here',
+    'move_to_root' => 'Move to root folder',
+    'root' => 'Root',
+    'go_up' => 'Go up',
     'restore_error' => 'Ralat semasa memulihkan item yang dipilih',
     'restore_success' => 'Item yang dipilih berjaya dipulihkan!',
     'copy_success' => 'Item yang dipilih berjaya disalin!',
@@ -133,7 +139,12 @@ return [
         ],
 
         'download' => [
-            'error' => 'Tiada fail dipilih atau tidak dapat memuat turun fail ini',
+            'error' => 'No files selected or cannot download these files',
+        ],
+
+        'move' => [
+            'select_destination' => 'Please select a destination folder',
+            'same_location' => 'Items are already in this location',
         ],
 
         'actions_list' => [

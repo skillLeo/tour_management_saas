@@ -8,6 +8,7 @@ use Botble\Ecommerce\Facades\EcommerceHelper;
 use Botble\Ecommerce\Facades\FlashSale;
 use Botble\Ecommerce\Http\Resources\API\AvailableProductResource;
 use Botble\Ecommerce\Http\Resources\API\ProductDetailResource;
+use Botble\Ecommerce\Http\Resources\API\ProductSearchResource;
 use Botble\Ecommerce\Http\Resources\API\RelatedProductResource;
 use Botble\Ecommerce\Http\Resources\API\ReviewResource;
 use Botble\Ecommerce\Http\Resources\ProductVariationResource;
@@ -21,6 +22,7 @@ use Botble\Ecommerce\Services\Products\GetProductService;
 use Botble\Ecommerce\Services\Products\GetProductWithCrossSalesBySlugService;
 use Botble\Ecommerce\Services\Products\ProductCrossSalePriceService;
 use Botble\Ecommerce\Services\Products\ProductImageService;
+use Botble\Ecommerce\Services\Products\ProductUpSalePriceService;
 use Botble\Ecommerce\Services\Products\UpdateDefaultProductService;
 use Botble\Media\Facades\RvMedia;
 use Botble\Slug\Facades\SlugHelper;
@@ -67,6 +69,35 @@ class ProductController extends BaseApiController
         return $this
             ->httpResponse()
             ->setData(AvailableProductResource::collection($products))
+            ->toApiResponse();
+    }
+
+    /**
+     * Search products (lightweight)
+     *
+     * @group Products
+     * @queryParam q string required Search keyword. No-example
+     * @queryParam limit int Number of results (1-20, default 8). No-example
+     */
+    public function search(Request $request)
+    {
+        $request->validate([
+            'q' => ['required', 'string', 'max:255'],
+            'limit' => ['sometimes', 'integer', 'min:1', 'max:20'],
+        ]);
+
+        $products = Product::query()
+            ->wherePublished()
+            ->where('is_variation', false)
+            ->where('name', 'LIKE', '%' . $request->input('q') . '%')
+            ->with('slugable')
+            ->orderBy('name')
+            ->limit($request->integer('limit', 8))
+            ->get();
+
+        return $this
+            ->httpResponse()
+            ->setData(ProductSearchResource::collection($products))
             ->toApiResponse();
     }
 
@@ -458,6 +489,7 @@ class ProductController extends BaseApiController
                         'ec_products.description',
                         'ec_products.is_variation',
                         'original_products.images as original_images',
+                        'original_products.currency_code',
                         'ec_products.height',
                         'ec_products.weight',
                         'ec_products.wide',
@@ -483,6 +515,7 @@ class ProductController extends BaseApiController
                     'sku',
                     'description',
                     'is_variation',
+                    'currency_code',
                     'height',
                     'weight',
                     'wide',
@@ -533,6 +566,7 @@ class ProductController extends BaseApiController
                     'sku',
                     'description',
                     'is_variation',
+                    'currency_code',
                     'height',
                     'weight',
                     'wide',
@@ -755,6 +789,59 @@ class ProductController extends BaseApiController
 
         // Pass the parent product as additional data to the resource collection
         $resourceCollection = RelatedProductResource::collection($crossSaleProducts)
+            ->additional(['parent_product' => $product]);
+
+        return $this
+            ->httpResponse()
+            ->setData($resourceCollection)
+            ->toApiResponse();
+    }
+
+    /**
+     * Get product up-sale products
+     *
+     * Returns a list of up-sale products for premium upgrades
+     *
+     * @group Products
+     * @param string $slug Product slug
+     * @param ProductUpSalePriceService $productUpSalePriceService
+     * @return JsonResponse
+     */
+    public function getUpSaleProducts(string $slug, ProductUpSalePriceService $productUpSalePriceService)
+    {
+        $slug = SlugHelper::getSlug($slug, SlugHelper::getPrefix(Product::class));
+
+        abort_unless($slug, 404);
+
+        /**
+         * @var Product $product
+         */
+        $product = Product::query()
+            ->where('id', $slug->reference_id)
+            ->wherePublished()
+            ->firstOrFail();
+
+        // Load up-sale products
+        $product->loadMissing('upSales');
+
+        // Get up-sale products using the helper function
+        $upSaleProducts = get_up_sale_products($product, null, [
+            'slugable',
+            'productLabels',
+            'productCollections',
+            'variationInfo',
+            'defaultVariation',
+            'defaultVariation.configurableProduct',
+            'defaultVariation.productAttributes',
+            'productAttributeSets',
+            'variationProductAttributes',
+        ]);
+
+        // Apply up-sale pricing
+        $productUpSalePriceService->applyProduct($product);
+
+        // Pass the parent product as additional data to the resource collection
+        $resourceCollection = RelatedProductResource::collection($upSaleProducts)
             ->additional(['parent_product' => $product]);
 
         return $this

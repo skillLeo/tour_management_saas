@@ -15,7 +15,7 @@ class Currencies {
 
     initData() {
         const _self = this
-        let data = $.parseJSON($('#currencies').html())
+        let data = JSON.parse($('#currencies').html())
 
         $.each(data, (index, item) => {
             let template = _self.template

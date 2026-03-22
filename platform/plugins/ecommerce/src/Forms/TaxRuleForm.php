@@ -40,20 +40,42 @@ class TaxRuleForm extends FormAbstract
                             ->add('tax_id', 'customSelect', [
                                 'label' => trans('plugins/ecommerce::tax.tax'),
                                 'choices' => $taxes,
+                                'empty_value' => trans('plugins/ecommerce::tax.rule.tax_placeholder'),
+                                'help_block' => [
+                                    'text' => trans('plugins/ecommerce::tax.rule.tax_helper'),
+                                ],
                             ]);
                     }
                 );
         }
 
         $this
-            ->addLocationFields(countryAttributes: ['required' => true])
+            ->addLocationFields(
+                countryAttributes: [
+                    'required' => true,
+                    'empty_value' => trans('plugins/ecommerce::tax.rule.country_placeholder'),
+                    'help_block' => ['text' => trans('plugins/ecommerce::tax.rule.country_helper')],
+                ],
+                stateAttributes: [
+                    'empty_value' => trans('plugins/ecommerce::tax.rule.state_placeholder'),
+                    'help_block' => ['text' => trans('plugins/ecommerce::tax.rule.state_helper')],
+                ],
+                cityAttributes: [
+                    'empty_value' => trans('plugins/ecommerce::tax.rule.city_placeholder'),
+                    'help_block' => ['text' => trans('plugins/ecommerce::tax.rule.city_helper')],
+                ],
+            )
             ->remove('address')
             ->add(
                 'percentage',
                 NumberField::class,
                 NumberFieldOption::make()
                     ->label(trans('plugins/ecommerce::tax.percentage'))
-                    ->attributes(['step' => '0.01'])
+                    ->helperText(trans('plugins/ecommerce::tax.rule.percentage_helper'))
+                    ->attributes([
+                        'step' => '0.01',
+                        'placeholder' => trans('plugins/ecommerce::tax.rule.percentage_placeholder'),
+                    ])
                     ->required()
             )
             ->when($this->request->ajax(), function (TaxRuleForm $form): void {

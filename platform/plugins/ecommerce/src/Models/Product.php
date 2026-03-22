@@ -17,6 +17,7 @@ use Botble\Ecommerce\Facades\EcommerceHelper;
 use Botble\Ecommerce\Services\ProductCacheService;
 use Botble\Ecommerce\Services\Products\UpdateDefaultProductService;
 use Botble\Faq\Models\Faq;
+use Botble\LanguageAdvanced\Supports\LanguageAdvancedManager;
 use Botble\Media\Facades\RvMedia;
 use Botble\Media\Models\MediaFile;
 use Botble\Slug\Facades\SlugHelper;
@@ -73,10 +74,12 @@ class Product extends BaseModel
         'height',
         'weight',
         'tax_id',
+        'tax_class',
         'views',
         'stock_status',
         'barcode',
         'cost_per_item',
+        'currency_code',
         'price_includes_tax',
         'generate_license_code',
         'license_code_type',
@@ -275,7 +278,13 @@ class Product extends BaseModel
 
     public function upSales(): BelongsToMany
     {
-        return $this->belongsToMany(Product::class, 'ec_product_up_sale_relations', 'from_product_id', 'to_product_id');
+        return $this->belongsToMany(
+            Product::class,
+            'ec_product_up_sale_relations',
+            'from_product_id',
+            'to_product_id'
+        )
+        ->withPivot(['price', 'price_type', 'apply_to_all_variations', 'is_variant']);
     }
 
     public function groupedProduct(): BelongsToMany
@@ -369,7 +378,7 @@ class Product extends BaseModel
 
     public function variationInfo(): HasOne
     {
-        return $this->hasOne(ProductVariation::class, 'product_id')->withDefault();
+        return $this->hasOne(ProductVariation::class, 'product_id')->orderByDesc('id')->withDefault();
     }
 
     public function defaultVariation(): HasOne
@@ -415,6 +424,17 @@ class Product extends BaseModel
             $this->loadMissing('crossSales');
 
             return $this->crossSales->filter(
+                fn (Product $product) => ! $product->pivot->is_variant
+            );
+        });
+    }
+
+    protected function upSaleProducts(): Attribute
+    {
+        return Attribute::get(function () {
+            $this->loadMissing('upSales');
+
+            return $this->upSales->filter(
                 fn (Product $product) => ! $product->pivot->is_variant
             );
         });
@@ -670,6 +690,39 @@ class Product extends BaseModel
     protected function variationAttributes(): Attribute
     {
         return Attribute::get(function () {
+            if (
+                is_plugin_active('language-advanced')
+                && class_exists(LanguageAdvancedManager::class)
+                && ! LanguageAdvancedManager::isDefaultLocale()
+            ) {
+                $variation = ProductVariation::query()
+                    ->where('product_id', $this->getKey())
+                    ->first();
+
+                if (! $variation) {
+                    return '';
+                }
+
+                $translatedAttributes = $variation
+                    ->productAttributes()
+                    ->with('productAttributeSet')
+                    ->get()
+                    ->sortBy([
+                        fn ($a) => $a->productAttributeSet?->order ?? 0,
+                        fn ($a) => $a->order ?? 0,
+                    ]);
+
+                if ($translatedAttributes->isEmpty()) {
+                    return '';
+                }
+
+                $mapped = $translatedAttributes
+                    ->mapWithKeys(fn ($attr) => [$attr->productAttributeSet?->title ?? '' => $attr->title])
+                    ->toArray();
+
+                return '(' . mapped_implode(', ', $mapped, ': ') . ')';
+            }
+
             if (! $this->variationProductAttributes->count()) {
                 return '';
             }

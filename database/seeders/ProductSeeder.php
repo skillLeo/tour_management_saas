@@ -16,8 +16,6 @@ class ProductSeeder extends BaseSeeder
     {
         $this->uploadFiles('products');
 
-        $faker = $this->fake();
-
         $products = [
             [
                 'name' => 'Seeds of Change Organic Quinoe',
@@ -133,14 +131,14 @@ class ProductSeeder extends BaseSeeder
 
             $item['content'] = file_get_contents(__DIR__ . '/contents/product-content.html');
             $item['status'] = BaseStatusEnum::PUBLISHED;
-            $item['sku'] = 'HS-' . $faker->numberBetween(100, 200);
-            $item['brand_id'] = $faker->numberBetween(1, 7);
-            $item['views'] = $faker->numberBetween(1000, 200000);
-            $item['quantity'] = $faker->numberBetween(10, 20);
-            $item['length'] = $faker->numberBetween(10, 20);
-            $item['wide'] = $faker->numberBetween(10, 20);
-            $item['height'] = $faker->numberBetween(10, 20);
-            $item['weight'] = $faker->numberBetween(500, 900);
+            $item['sku'] = 'HS-' . rand(100, 200);
+            $item['brand_id'] = rand(1, 7);
+            $item['views'] = rand(1000, 200000);
+            $item['quantity'] = rand(10, 20);
+            $item['length'] = rand(10, 20);
+            $item['wide'] = rand(10, 20);
+            $item['height'] = rand(10, 20);
+            $item['weight'] = rand(500, 900);
             $item['with_storehouse_management'] = true;
 
             if ($key % 2 == 0) {

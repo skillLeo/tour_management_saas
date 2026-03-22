@@ -2,8 +2,8 @@
 
 return [
     'name' => 'ინვოისის შაბლონი',
-    'setting' => 'ინვოისის შაბლონის პარამეტრები',
-    'setting_description' => 'ინვოისის შაბლონის პარამეტრები',
+    'setting' => 'Template design & layout',
+    'setting_description' => 'Customize invoice HTML template and CSS styles',
     'setting_content' => 'შინაარსი',
     'preview' => 'წინასწარი ნახვა',
     'preview_heading' => 'ინვოისის შაბლონის წინასწარი ნახვა',

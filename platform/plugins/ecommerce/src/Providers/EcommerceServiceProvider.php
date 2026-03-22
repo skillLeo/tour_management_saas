@@ -33,11 +33,13 @@ use Botble\Ecommerce\Http\Middleware\CaptureFootprintsMiddleware;
 use Botble\Ecommerce\Http\Middleware\OptionalApiAuthentication;
 use Botble\Ecommerce\Http\Middleware\RedirectIfCustomer;
 use Botble\Ecommerce\Http\Middleware\RedirectIfNotCustomer;
+use Botble\Ecommerce\Http\Middleware\RestoreCustomerCartMiddleware;
 use Botble\Ecommerce\Http\Middleware\TrackAbandonedCart;
 use Botble\Ecommerce\Http\Requests\Fronts\Auth\ForgotPasswordRequest;
 use Botble\Ecommerce\Http\Requests\Fronts\Auth\ResetPasswordRequest;
 use Botble\Ecommerce\Http\Requests\LoginRequest;
 use Botble\Ecommerce\Http\Requests\RegisterRequest;
+use Botble\Ecommerce\Listeners\StoreTaxComponentsListener;
 use Botble\Ecommerce\Models\Address;
 use Botble\Ecommerce\Models\Brand;
 use Botble\Ecommerce\Models\Currency;
@@ -158,6 +160,12 @@ use Botble\Ecommerce\Services\Footprints\TrackingLogger;
 use Botble\Ecommerce\Services\Footprints\TrackingLoggerInterface;
 use Botble\Ecommerce\Services\Products\ProductCrossSalePriceService;
 use Botble\Ecommerce\Services\Products\ProductPriceService;
+use Botble\Ecommerce\Services\Products\ProductUpSalePriceService;
+use Botble\Ecommerce\Supports\CartBundleHelper;
+use Botble\Ecommerce\Tax\Contracts\TaxZoneResolverInterface;
+use Botble\Ecommerce\Tax\DefaultTaxCalculator;
+use Botble\Ecommerce\Tax\TaxEngineManager;
+use Botble\Ecommerce\Tax\TaxZoneResolver;
 use Botble\LanguageAdvanced\Supports\LanguageAdvancedManager;
 use Botble\Payment\Models\Payment;
 use Botble\SeoHelper\Facades\SeoHelper;
@@ -243,6 +251,13 @@ class EcommerceServiceProvider extends ServiceProvider
         $this->app->bind(TaxInterface::class, function () {
             return new TaxRepository(new Tax());
         });
+
+        $this->app->singleton(TaxEngineManager::class);
+
+        $this->app->singleton(
+            TaxZoneResolverInterface::class,
+            TaxZoneResolver::class
+        );
 
         $this->app->bind(ReviewInterface::class, function () {
             return new ReviewRepository(new Review());
@@ -353,6 +368,10 @@ class EcommerceServiceProvider extends ServiceProvider
 
         $this->app->singleton(ProductCrossSalePriceService::class);
 
+        $this->app->singleton(ProductUpSalePriceService::class);
+
+        $this->app->singleton(CartBundleHelper::class);
+
         $this->app->singleton(AbandonedCartService::class);
 
         $this->app->singleton(GoogleTagManager::class);
@@ -390,6 +409,7 @@ class EcommerceServiceProvider extends ServiceProvider
                 'order',
                 'discount',
                 'customer',
+                'customer-cart',
                 'cart',
                 'shipment',
                 'wishlist',
@@ -411,6 +431,8 @@ class EcommerceServiceProvider extends ServiceProvider
             ->loadMigrations()
             ->loadAnonymousComponents()
             ->publishAssets();
+
+        $this->registerTaxEngine();
 
         Discount::observe(DiscountObserver::class);
 
@@ -536,6 +558,7 @@ class EcommerceServiceProvider extends ServiceProvider
 
             LanguageAdvancedManager::registerModule(ProductTag::class, [
                 'name',
+                'content',
             ]);
 
             LanguageAdvancedManager::registerModule(Tax::class, [
@@ -728,6 +751,7 @@ class EcommerceServiceProvider extends ServiceProvider
             $router->pushMiddlewareToGroup('web', CaptureFootprintsMiddleware::class);
             $router->pushMiddlewareToGroup('web', CaptureCouponMiddleware::class);
             $router->pushMiddlewareToGroup('web', TrackAbandonedCart::class);
+            $router->pushMiddlewareToGroup('web', RestoreCustomerCartMiddleware::class);
         });
 
         $this->app->booted(function (): void {
@@ -930,6 +954,17 @@ class EcommerceServiceProvider extends ServiceProvider
                     'url' => fn () => route('discounts.index'),
                     'permissions' => ['discounts.index'],
                 ])
+                ->when(EcommerceHelper::isTaxEnabled(), function (DashboardMenuSupport $dashboardMenu): void {
+                    $dashboardMenu->registerItem([
+                        'id' => 'cms-plugins-ecommerce-tax',
+                        'priority' => 185,
+                        'parent_id' => 'cms-plugins-ecommerce',
+                        'name' => 'plugins/ecommerce::tax.name',
+                        'icon' => 'ti ti-receipt-tax',
+                        'url' => fn () => route('tax.index'),
+                        'permissions' => ['tax.index'],
+                    ]);
+                })
                 ->registerItem([
                     'id' => 'cms-plugins-ecommerce-customer',
                     'priority' => 190,
@@ -938,6 +973,15 @@ class EcommerceServiceProvider extends ServiceProvider
                     'icon' => 'ti ti-users',
                     'url' => fn () => route('customers.index'),
                     'permissions' => ['customers.index'],
+                ])
+                ->registerItem([
+                    'id' => 'cms-plugins-ecommerce-customer-carts',
+                    'priority' => 195,
+                    'parent_id' => 'cms-plugins-ecommerce',
+                    'name' => 'plugins/ecommerce::cart.customer_carts',
+                    'icon' => 'ti ti-shopping-cart',
+                    'url' => fn () => route('ecommerce.customer-carts.index'),
+                    'permissions' => ['ecommerce.customer-carts.index'],
                 ])
                 ->when(EcommerceHelper::isProductSpecificationEnabled(), function (DashboardMenuSupport $dashboardMenu): void {
                     $dashboardMenu
@@ -1137,6 +1181,28 @@ class EcommerceServiceProvider extends ServiceProvider
                         ->withPermission('ecommerce.customers.import')
                         ->withRoute('ecommerce.customers.import.index')
                 );
+
+            if (EcommerceHelper::isProductSpecificationEnabled()) {
+                PanelSectionManager::default()
+                    ->registerItem(
+                        ImportPanelSection::class,
+                        fn () => PanelSectionItem::make('product-specifications')
+                            ->setTitle(trans('plugins/ecommerce::product-specification.name'))
+                            ->withDescription(trans('plugins/ecommerce::product-specification.import.description'))
+                            ->withPriority(95)
+                            ->withPermission('ecommerce.product-specifications.import')
+                            ->withRoute('ecommerce.product-specifications.import.index')
+                    )
+                    ->registerItem(
+                        ExportPanelSection::class,
+                        fn () => PanelSectionItem::make('product-specifications')
+                            ->setTitle(trans('plugins/ecommerce::product-specification.name'))
+                            ->withDescription(trans('plugins/ecommerce::product-specification.export.description'))
+                            ->withPriority(115)
+                            ->withPermission('ecommerce.product-specifications.export')
+                            ->withRoute('ecommerce.product-specifications.export.index')
+                    );
+            }
         });
 
         $this->app->booted(function (): void {
@@ -1174,5 +1240,18 @@ class EcommerceServiceProvider extends ServiceProvider
 
         $this->app->register(EventServiceProvider::class);
         $this->app->register(CommandServiceProvider::class);
+    }
+
+    protected function registerTaxEngine(): void
+    {
+        $manager = $this->app->make(TaxEngineManager::class);
+
+        $manager->register('default', new DefaultTaxCalculator(), priority: 0);
+
+        do_action('ecommerce_tax_engine_registered', $manager);
+
+        add_action('ecommerce_after_each_order_product_created', function ($orderProduct): void {
+            $this->app->make(StoreTaxComponentsListener::class)->handle($orderProduct);
+        }, 20);
     }
 }

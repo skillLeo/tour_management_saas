@@ -192,6 +192,7 @@ return [
         'order_date' => 'Ordredato',
         'scan_qr_code' => 'Scan QR-kode for at spore din forsendelse',
         'total_amount' => 'Samlet beløb',
+        'amount_to_collect' => 'Beløb at indsamle',
         'cod_amount_to_collect' => 'COD-beløb at indsamle',
     ],
     'customer_confirmed_delivery_at' => 'Kunde bekræftede levering den',

@@ -95,7 +95,9 @@ export default defineComponent({
                             stroke-linejoin="round"
                         >
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M3 5m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z"></path>
+                            <path
+                                d="M3 5m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z"
+                            ></path>
                             <path d="M3 10l18 0"></path>
                             <path d="M7 15l.01 0"></path>
                             <path d="M11 15l2 0"></path>

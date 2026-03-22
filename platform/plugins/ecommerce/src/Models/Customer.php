@@ -55,6 +55,8 @@ class Customer extends BaseModel implements
         'phone',
         'status',
         'private_notes',
+        'tax_class',
+        'tax_id',
     ];
 
     protected $hidden = [
@@ -66,6 +68,7 @@ class Customer extends BaseModel implements
         'status' => CustomerStatusEnum::class,
         'dob' => 'date',
         'confirmed_at' => 'datetime',
+        'tax_id' => 'encrypted',
     ];
 
     public function sendPasswordResetNotification($token): void
@@ -104,6 +107,10 @@ class Customer extends BaseModel implements
 
     public function payments(): HasMany
     {
+        if (! is_plugin_active('payment')) {
+            return $this->hasMany(self::class, 'customer_id', 'id')->whereRaw('1 = 0');
+        }
+
         return $this->hasMany(Payment::class, 'customer_id', 'id');
     }
 
@@ -117,6 +124,18 @@ class Customer extends BaseModel implements
         return $this->hasMany(Wishlist::class, 'customer_id');
     }
 
+    public function storedCarts(): HasMany
+    {
+        return $this->hasMany(Cart::class, 'customer_id');
+    }
+
+    public function activeCart(): HasOne
+    {
+        return $this->hasOne(Cart::class, 'customer_id')
+            ->where('instance', 'cart')
+            ->latest('updated_at');
+    }
+
     protected static function booted(): void
     {
         self::deleted(function (Customer $customer): void {
@@ -125,6 +144,7 @@ class Customer extends BaseModel implements
             $customer->orders()->update(['user_id' => 0]);
             $customer->addresses()->delete();
             $customer->wishlist()->delete();
+            $customer->storedCarts()->delete();
             $customer->reviews()->each(fn (Review $review) => $review->delete());
         });
 

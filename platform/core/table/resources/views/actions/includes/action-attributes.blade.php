@@ -26,4 +26,4 @@
     target="_blank"
 @endif
 
-{!! Html::attributes($action->getAttributes()) !!}
+{!! Html::attributes($attributes ?? $action->getAttributes()) !!}

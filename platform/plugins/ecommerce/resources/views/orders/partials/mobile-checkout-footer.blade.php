@@ -45,22 +45,22 @@
             </svg>
         </a>
 
-        @if ($hasCoupons)
-            <button
-                type="button"
-                class="btn mobile-checkout-footer__btn-secondary mobile-checkout-footer__coupon-btn {{ $appliedDiscount ? 'has-coupon' : '' }}"
-                data-bs-toggle="offcanvas"
-                data-bs-target="#mobile-coupon-sheet"
-            >
-                @if ($appliedDiscount)
-                    <x-core::icon name="ti ti-discount-2" />
-                    <x-core::icon name="ti ti-check" class="coupon-applied-icon" />
-                @else
-                    <img width="20" height="20" src="{{ asset('vendor/core/plugins/ecommerce/images/coupon-code.gif') }}" alt="">
-                    <span class="coupon-count">{{ $discounts->count() }}</span>
-                @endif
-            </button>
-        @endif
+        <button
+            type="button"
+            class="btn mobile-checkout-footer__btn-secondary mobile-checkout-footer__coupon-btn {{ $appliedDiscount ? 'has-coupon' : '' }}"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#mobile-coupon-sheet"
+        >
+            @if ($appliedDiscount)
+                <x-core::icon name="ti ti-discount-2" />
+                <x-core::icon name="ti ti-check" class="coupon-applied-icon" />
+            @elseif ($hasCoupons)
+                <img width="20" height="20" src="{{ asset('vendor/core/plugins/ecommerce/images/coupon-code.gif') }}" alt="">
+                <span class="coupon-count">{{ $discounts->count() }}</span>
+            @else
+                <x-core::icon name="ti ti-ticket" />
+            @endif
+        </button>
 
         @if (EcommerceHelper::isValidToProcessCheckout())
             <button

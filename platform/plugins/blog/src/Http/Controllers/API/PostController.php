@@ -101,7 +101,7 @@ class PostController extends BaseApiController
 
         $data = [
             'items' => $posts,
-            'query' => $query,
+            'query' => e($query),
             'count' => $posts->count(),
         ];
 

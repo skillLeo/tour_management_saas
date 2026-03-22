@@ -120,8 +120,14 @@ return [
             'success_header' => '成功',
         ],
         'download' => [
-            'error' => '未选择文件或无法下载这些文件',
+            'error' => 'No files selected or cannot download these files',
         ],
+
+        'move' => [
+            'select_destination' => '请选择目标文件夹',
+            'same_location' => '项目已在此位置',
+        ],
+
         'actions_list' => [
             'basic' => [
                 'preview' => '预览',
@@ -132,6 +138,7 @@ return [
                 'copy_indirect_link' => '复制间接链接',
                 'rename' => '重命名',
                 'make_copy' => '制作副本',
+                'move' => '移动',
                 'alt_text' => 'ALT文本',
                 'share' => '分享',
             ],

@@ -1,0 +1,53 @@
+<?php
+
+return [
+    'name' => 'עמלות',
+    'view' => 'צפייה בעמלה #:id',
+    'affiliate' => 'שותף',
+    'order' => 'הזמנה',
+    'amount' => 'סכום',
+    'description' => 'תיאור',
+    'status' => 'סטטוס',
+    'created_at' => 'נוצר בתאריך',
+    'approve' => 'אשר',
+    'reject' => 'דחה',
+    'approve_success' => 'העמלה אושרה בהצלחה',
+    'reject_success' => 'העמלה נדחתה בהצלחה',
+    'approve_commission' => 'אשר עמלה',
+    'reject_commission' => 'דחה עמלה',
+    'approve_commission_confirmation' => 'האם אתה בטוח שברצונך לאשר את העמלה #:id? פעולה זו אינה ניתנת לביטול.',
+    'reject_commission_confirmation' => 'האם אתה בטוח שברצונך לדחות את העמלה #:id? פעולה זו אינה ניתנת לביטול.',
+    'statuses' => [
+        'pending' => 'ממתין',
+        'approved' => 'מאושר',
+        'rejected' => 'נדחה',
+    ],
+
+    // Customer-facing translations
+    'history' => 'היסטוריית עמלות',
+    'no_commissions' => 'לא נמצאו עמלות.',
+    'no_commissions_description' => 'טרם הרווחת עמלות. התחל לקדם את המוצרים שלנו כדי להרוויח את העמלה הראשונה שלך!',
+    'commission_id' => 'מזהה עמלה',
+    'order_id' => 'מזהה הזמנה',
+    'customer' => 'לקוח',
+    'product' => 'מוצר',
+    'type' => 'סוג',
+    'date' => 'תאריך',
+
+    // New UI translations
+    'total_commissions' => ':count סה"כ עמלות',
+    'filter_by_status' => 'סינון לפי סטטוס',
+    'all_statuses' => 'כל הסטטוסים',
+    'date_from' => 'תאריך התחלה',
+    'date_to' => 'תאריך סיום',
+    'filter' => 'סנן',
+    'clear' => 'נקה',
+    'approved_earnings' => 'רווחים מאושרים',
+    'pending_earnings' => 'רווחים ממתינים',
+    'successful_orders' => 'הזמנות מוצלחות',
+    'approval_rate' => 'שיעור אישורים',
+    'commission_earned' => 'עמלה שהורווחה',
+    'showing_results' => 'מציג :from עד :to מתוך :total תוצאות',
+    'start_promoting' => 'התחל לקדם',
+    'back_to_dashboard' => 'חזרה ללוח הבקרה',
+];

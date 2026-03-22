@@ -59,6 +59,10 @@ class MarketplaceController extends BaseController
                 ->setMessage($data['message']);
         }
 
+        if (empty($data['data'])) {
+            return $data;
+        }
+
         $coreVersion = get_core_version();
 
         foreach ($data['data'] as $key => $item) {

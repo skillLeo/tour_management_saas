@@ -37,6 +37,9 @@ class ShippingRuleItemTable extends TableAbstract
     {
         $data = $this->table
             ->eloquent($this->query())
+            ->editColumn('name', function (ShippingRuleItem $item) {
+                return $item->name_item;
+            })
             ->editColumn('shipping_rule_id', function (ShippingRuleItem $item) {
                 return $item->shippingRule->name;
             })
@@ -53,6 +56,14 @@ class ShippingRuleItemTable extends TableAbstract
                 return $item->city_name ?: '&mdash;';
             })
             ->editColumn('zip_code', function (ShippingRuleItem $item) {
+                if ($item->zip_code_from) {
+                    if ($item->zip_code_to && $item->zip_code_from !== $item->zip_code_to) {
+                        return $item->zip_code_from . ' - ' . $item->zip_code_to;
+                    }
+
+                    return $item->zip_code_from;
+                }
+
                 return $item->zip_code ?: '&mdash;';
             })
             ->editColumn('adjustment_price', function (ShippingRuleItem $item) {
@@ -75,6 +86,7 @@ class ShippingRuleItemTable extends TableAbstract
             ->with(['shippingRule', 'shippingRule.shipping'])
             ->select([
                 'id',
+                'name',
                 'shipping_rule_id',
                 'country',
                 'state',
@@ -82,6 +94,8 @@ class ShippingRuleItemTable extends TableAbstract
                 'adjustment_price',
                 'is_enabled',
                 'zip_code',
+                'zip_code_from',
+                'zip_code_to',
                 'created_at',
             ]);
 
@@ -92,6 +106,9 @@ class ShippingRuleItemTable extends TableAbstract
     {
         return [
             IdColumn::make(),
+            Column::make('name')
+                ->title(trans('plugins/ecommerce::shipping.rule.item.tables.name'))
+                ->orderable(true),
             Column::make('shipping_rule_id')
                 ->title(trans('plugins/ecommerce::shipping.rule.item.tables.shipping_rule')),
             Column::make('country')
@@ -101,7 +118,7 @@ class ShippingRuleItemTable extends TableAbstract
             Column::make('city')
                 ->title(trans('plugins/ecommerce::shipping.rule.item.tables.city')),
             Column::make('zip_code')
-                ->title(trans('plugins/ecommerce::shipping.rule.item.tables.zip_code')),
+                ->title(trans('plugins/ecommerce::shipping.rule.item.tables.zip_range')),
             Column::make('adjustment_price')
                 ->title(trans('plugins/ecommerce::shipping.rule.item.tables.adjustment_price')),
             YesNoColumn::make('is_enabled')

@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'menu_name' => 'مستويات الأعضاء',
+    'create' => 'إنشاء مستوى',
+    'edit' => 'تعديل المستوى :name',
+    'min_commission' => 'الحد الأدنى للعمولة',
+    'max_commission' => 'الحد الأقصى للعمولة',
+    'max_commission_help' => 'اتركه فارغاً للغير محدود',
+    'unlimited' => 'غير محدود',
+    'commission_rate' => 'معدل العمولة',
+    'commission_rate_help' => 'مضاعف للعمولة (مثال: 1.1 لمكافأة 10%)',
+    'benefits' => 'المزايا',
+    'benefits_help' => 'اذكر المزايا، واحدة في كل سطر',
+    'benefits_placeholder' => 'دعم ذو أولوية' . PHP_EOL . 'معدل عمولة أعلى',
+    'next_level' => 'المستوى التالي: :name',
+    'commission_needed' => 'تحتاج :amount إضافية في العمولات للوصول إلى :name',
+    'tier_rules_tooltip' => 'اكسب عمولات مع كل إحالة لفتح مستويات أعلى ومكافآت حصرية. المستويات مبنية على إجمالي عمولاتك المكتسبة.',
+    'top_tier_reached' => 'تم الوصول للمستوى الأعلى',
+    'top_tier_message' => 'لقد وصلت إلى أعلى مستوى شريك! استمتع بمزاياك الحصرية.',
+    'default_member' => 'عضو',
+    'member_since' => 'منذ',
+    'no_benefits' => 'ابدأ بكسب العمولات لفتح مزايا المستوى!',
+    'current_commission' => ':amount مكتسبة',
+    'target_commission' => 'الهدف :amount',
+];

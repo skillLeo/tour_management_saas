@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'name' => 'Szablon etykiety wysyłki',
-    'setting' => 'Ustawienia szablonu etykiety wysyłki',
-    'setting_description' => 'Ustawienia dla szablonu etykiety wysyłki',
+    'name' => 'Etykiety wysyłkowe',
+    'setting' => 'Design i układ etykiety',
+    'setting_description' => 'Dostosuj szablon HTML i style CSS etykiety wysyłkowej',
     'setting_content' => 'Zawartość',
     'preview' => 'Podgląd',
     'preview_heading' => 'Podgląd szablonu etykiety wysyłki',

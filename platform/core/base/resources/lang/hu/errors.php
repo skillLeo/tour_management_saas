@@ -22,4 +22,6 @@ return [
     '503_temporarily_down' => 'Ideiglenesen karbantartás alatt',
     '503_admin_instruction' => 'Ha Ön az adminisztrátor, és a karbantartási mód engedélyezése után nem éri el az oldalát, csak törölje a <strong>storage/framework/down</strong> fájlt a karbantartási mód kikapcsolásához.',
     'take_me_home' => 'Vissza a kezdőlapra',
+    'bad_request' => 'Hibás kérés',
+
 ];

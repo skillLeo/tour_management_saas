@@ -87,6 +87,8 @@ return [
     'total' => 'Всього',
     'status' => 'Статус',
     'default_payment_method' => 'Метод оплати за замовчуванням',
+    'sort_order_instruction' => 'Перетягніть для зміни порядку способів оплати на сторінці оформлення замовлення.',
+    'default_method_instruction' => 'Натисніть на значок зірки, щоб встановити спосіб оплати за замовчуванням.',
     'available_countries' => 'Доступні країни',
     'available_countries_help' => 'Виберіть країни, де цей метод оплати доступний.',
     'all_countries_checkbox' => 'Всі',

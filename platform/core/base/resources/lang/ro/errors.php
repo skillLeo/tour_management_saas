@@ -22,4 +22,6 @@ return [
     '503_temporarily_down' => 'Temporar indisponibil pentru întreținere',
     '503_admin_instruction' => 'Dacă sunteți administrator și nu puteți accesa site-ul dvs. după activarea modului de întreținere, trebuie doar să ștergeți fișierul <strong>storage/framework/down</strong> pentru a dezactiva modul de întreținere.',
     'take_me_home' => 'Du-mă acasă',
+    'bad_request' => 'Cerere incorectă',
+
 ];

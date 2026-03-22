@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'name' => 'Szállítási címke sablon',
-    'setting' => 'Szállítási címke sablon beállítások',
-    'setting_description' => 'Szállítási címke sablon beállításai',
+    'name' => 'Shipping Labels',
+    'setting' => 'Label design & layout',
+    'setting_description' => 'Customize shipping label HTML template and CSS styles',
     'setting_content' => 'Tartalom',
     'preview' => 'Előnézet',
     'preview_heading' => 'Szállítási címke sablon előnézete',

@@ -2,8 +2,8 @@
 
 return [
     'name' => 'Sąskaitos šablonas',
-    'setting' => 'Sąskaitos šablono nustatymai',
-    'setting_description' => 'Sąskaitos šablono nustatymai',
+    'setting' => 'Template design & layout',
+    'setting_description' => 'Customize invoice HTML template and CSS styles',
     'setting_content' => 'Turinys',
     'preview' => 'Peržiūra',
     'preview_heading' => 'Peržiūrėti sąskaitos šabloną',

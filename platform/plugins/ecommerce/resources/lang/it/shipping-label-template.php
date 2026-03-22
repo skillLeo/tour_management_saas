@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'name' => 'Template Etichetta Spedizione',
-    'setting' => 'Impostazioni Template Etichetta Spedizione',
-    'setting_description' => 'Impostazioni per il template Etichetta Spedizione',
+    'name' => 'Etichette di spedizione',
+    'setting' => 'Design e layout etichetta',
+    'setting_description' => 'Personalizza template HTML e stili CSS dell\'etichetta di spedizione',
     'setting_content' => 'Contenuto',
     'preview' => 'Anteprima',
     'preview_heading' => 'Anteprima template Etichetta Spedizione',

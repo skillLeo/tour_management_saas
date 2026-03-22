@@ -26,6 +26,8 @@ return [
     'categories' => 'קטגוריות',
     'category' => 'קטגוריה',
     'author' => 'מחבר',
+    'author_helper' => 'Select an author from admin users.',
+    'select_author' => 'Select author',
     'is_featured' => 'פוסט מומלץ?',
     'export' => [
         'description' => 'ייצא פוסטים לקובץ CSV/Excel.',

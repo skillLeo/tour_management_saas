@@ -12,4 +12,16 @@ return [
     'return' => [
         'description' => 'Renvoyé depuis la commande n°:order',
     ],
+    'thank_you' => [
+        'count_orders' => ':count commandes',
+        'order' => 'Commande',
+        'thank_you_name' => 'Merci, :name !',
+        'order_confirmed' => 'Votre commande est confirmée',
+        'order_accepted' => 'Nous avons accepté votre commande et nous la préparons.',
+        'customer' => 'Client',
+        'need_help' => 'Besoin d\'aide ?',
+        'contact_us' => 'Contactez-nous',
+        'view_order_history' => 'Voir l\'historique des commandes',
+        'order_total' => 'Total de la commande',
+    ],
 ];

@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'menu_name' => 'Livelli Membro',
+    'create' => 'Crea Livello',
+    'edit' => 'Modifica Livello :name',
+    'min_commission' => 'Commissione Minima',
+    'max_commission' => 'Commissione Massima',
+    'max_commission_help' => 'Lasciare vuoto per illimitato',
+    'unlimited' => 'Illimitato',
+    'commission_rate' => 'Tasso di Commissione',
+    'commission_rate_help' => 'Moltiplicatore per le commissioni (es: 1.1 per il 10% di bonus)',
+    'benefits' => 'Vantaggi',
+    'benefits_help' => 'Elenca i vantaggi, uno per riga',
+    'benefits_placeholder' => 'Supporto Prioritario' . PHP_EOL . 'Tasso di Commissione Più Alto',
+    'next_level' => 'Prossimo Livello: :name',
+    'commission_needed' => 'Ti servono ancora :amount in commissioni per raggiungere :name',
+    'tier_rules_tooltip' => 'Guadagna commissioni con ogni referral per sbloccare livelli superiori e premi esclusivi. I livelli sono basati sulle tue commissioni totali guadagnate.',
+    'top_tier_reached' => 'Livello Massimo Raggiunto',
+    'top_tier_message' => 'Hai raggiunto il livello affiliato più alto! Goditi i tuoi vantaggi esclusivi.',
+    'default_member' => 'Membro',
+    'member_since' => 'Dal',
+    'no_benefits' => 'Inizia a guadagnare commissioni per sbloccare i vantaggi del livello!',
+    'current_commission' => ':amount guadagnato',
+    'target_commission' => 'Obiettivo :amount',
+];

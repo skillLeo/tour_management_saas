@@ -1,0 +1,66 @@
+<?php
+
+return [
+    'name' => 'Rút tiền',
+    'view' => 'Xem lệnh rút tiền #:id',
+    'affiliate' => 'Đối tác liên kết',
+    'amount' => 'Số tiền',
+    'status' => 'Trạng thái',
+    'payment_method' => 'Phương thức thanh toán',
+    'payment_details' => 'Chi tiết thanh toán',
+    'notes' => 'Ghi chú',
+    'created_at' => 'Tạo lúc',
+    'approve' => 'Phê duyệt',
+    'reject' => 'Từ chối',
+    'approve_success' => 'Đã phê duyệt lệnh rút tiền thành công',
+    'reject_success' => 'Đã từ chối lệnh rút tiền thành công',
+    'approve_withdrawal' => 'Phê duyệt lệnh rút tiền',
+    'reject_withdrawal' => 'Từ chối lệnh rút tiền',
+    'approve_withdrawal_confirmation' => 'Bạn có chắc chắn muốn phê duyệt lệnh rút tiền #:id không? Hành động này không thể hoàn tác.',
+    'reject_withdrawal_confirmation' => 'Bạn có chắc chắn muốn từ chối lệnh rút tiền #:id không? Hành động này không thể hoàn tác.',
+    'statuses' => [
+        'pending' => 'Đang chờ xử lý',
+        'processing' => 'Đang xử lý',
+        'approved' => 'Đã phê duyệt',
+        'rejected' => 'Đã từ chối',
+        'canceled' => 'Đã hủy',
+    ],
+
+    // Customer-facing translations
+    'request' => 'Yêu cầu rút tiền',
+    'history' => 'Lịch sử rút tiền',
+    'no_withdrawals' => 'Không tìm thấy lệnh rút tiền nào.',
+    'withdrawal_id' => 'Mã rút tiền',
+    'date' => 'Ngày',
+    'amount_required' => 'Số tiền rút là bắt buộc.',
+    'amount_numeric' => 'Số tiền rút phải là một số.',
+    'amount_min' => 'Số tiền rút phải ít nhất là 0.',
+    'payment_method_required' => 'Phương thức thanh toán là bắt buộc.',
+    'payment_details_required' => 'Chi tiết thanh toán là bắt buộc.',
+    'account_not_approved' => 'Tài khoản affiliate của bạn chưa được phê duyệt.',
+    'minimum_amount' => 'Số tiền rút tối thiểu là :amount.',
+    'insufficient_balance' => 'Bạn không có đủ số dư cho lần rút tiền này.',
+    'request_submitted' => 'Yêu cầu rút tiền của bạn đã được gửi thành công.',
+    'submit_request' => 'Gửi yêu cầu rút tiền',
+    'available_balance' => 'Số dư khả dụng',
+    'enter_amount' => 'Nhập số tiền',
+    'select_payment_method' => 'Chọn phương thức thanh toán',
+    'payment_details_placeholder' => 'Nhập chi tiết thanh toán của bạn (ví dụ: email PayPal, chi tiết tài khoản ngân hàng)',
+    'no_payment_methods_available' => 'Hiện không có phương thức thanh toán nào khả dụng. Vui lòng liên hệ quản trị viên.',
+
+    // Additional translations for PayoutPaymentMethodsEnum
+    'bank_transfer' => 'Chuyển khoản ngân hàng',
+    'paypal' => 'PayPal',
+    'stripe' => 'Stripe',
+    'other' => 'Khác',
+    'bank_information' => 'Thông tin ngân hàng',
+    'paypal_id' => 'ID PayPal',
+
+    // Payout payment methods
+    'payout_payment_methods' => [
+        'bank_transfer' => 'Chuyển khoản ngân hàng',
+        'paypal' => 'PayPal',
+        'stripe' => 'Stripe',
+        'other' => 'Khác',
+    ],
+];

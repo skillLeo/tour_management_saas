@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'name' => 'Šablona štítku zásilky',
-    'setting' => 'Nastavení šablony štítku zásilky',
-    'setting_description' => 'Nastavení pro šablonu štítku zásilky',
+    'name' => 'Shipping Labels',
+    'setting' => 'Label design & layout',
+    'setting_description' => 'Customize shipping label HTML template and CSS styles',
     'setting_content' => 'Obsah',
     'preview' => 'Náhled',
     'preview_heading' => 'Náhled šablony štítku zásilky',

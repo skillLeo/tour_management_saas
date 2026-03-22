@@ -2,8 +2,8 @@
 
 return [
     'name' => 'Predloga računa',
-    'setting' => 'Nastavitve predloge računa',
-    'setting_description' => 'Nastavitve za predlogo računa',
+    'setting' => 'Template design & layout',
+    'setting_description' => 'Customize invoice HTML template and CSS styles',
     'setting_content' => 'Vsebina',
     'preview' => 'Predogled',
     'preview_heading' => 'Predogled predloge računa',

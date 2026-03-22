@@ -12,4 +12,16 @@ return [
     'return' => [
         'description' => 'Vraćeno iz porudžbine #:order',
     ],
+    'thank_you' => [
+        'count_orders' => ':count narudžbina',
+        'order' => 'Narudžbina',
+        'thank_you_name' => 'Hvala, :name!',
+        'order_confirmed' => 'Vaša narudžbina je potvrđena',
+        'order_accepted' => 'Prihvatili smo vašu narudžbinu i pripremamo je.',
+        'customer' => 'Kupac',
+        'need_help' => 'Potrebna vam je pomoć?',
+        'contact_us' => 'Kontaktirajte nas',
+        'view_order_history' => 'Pogledajte istoriju narudžbina',
+        'order_total' => 'Ukupno narudžbina',
+    ],
 ];

@@ -1,0 +1,73 @@
+<?php
+
+return [
+    'name' => 'Raporlar',
+    'commission_this_month' => 'Bu ayki komisyon',
+    'pending_commissions' => 'Bekleyen komisyonlar',
+    'approved_commissions' => 'Onaylanan komisyonlar',
+    'pending_withdrawals' => 'Bekleyen para çekme işlemleri',
+    'approved_withdrawals' => 'Onaylanan para çekme işlemleri',
+    'active_affiliates' => 'Aktif satış ortakları',
+    'affiliate_stats' => 'Satış Ortaklığı İstatistikleri',
+    'top_affiliates' => 'En İyi Satış Ortakları',
+    'recent_commissions' => 'Son Komisyonlar',
+    'recent_withdrawals' => 'Son Para Çekme İşlemleri',
+    'commission_chart' => 'Komisyon Grafiği',
+    'withdrawal_chart' => 'Para Çekme Grafiği',
+
+    // Enhanced reports
+    'geographic_data' => 'Coğrafi Veriler',
+    'top_countries' => 'En İyi Ülkeler',
+    'top_cities' => 'En İyi Şehirler',
+    'short_link_performance' => 'Kısa Bağlantı Performansı',
+    'top_performing_links' => 'En İyi Performans Gösteren Bağlantılar',
+    'link' => 'Bağlantı',
+    'clicks' => 'Tıklamalar',
+    'conversions' => 'Dönüşümler',
+    'commission_trends' => 'Komisyon Trendleri',
+    'commission_amount' => 'Komisyon Tutarı',
+    'loading' => 'Yükleniyor...',
+    'no_data' => 'Veri yok',
+    'no_commission_data' => 'Seçilen dönem için komisyon verisi yok',
+    'no_geographic_data' => 'Seçilen dönem için coğrafi veri yok',
+    'no_city_data' => 'Seçilen ülke için şehir verisi yok',
+    'chart_error' => 'Grafik oluşturulurken hata. Lütfen sayfayı yenileyin.',
+
+    // Performance metrics widget
+    'performance_metrics' => 'Performans Metrikleri',
+    'total_clicks' => 'Toplam Tıklamalar',
+    'earnings' => 'Kazançlar',
+    'avg_commission' => 'Ortalama Komisyon',
+    'avg_conversion_rate' => 'Ort. Dönüşüm Oranı',
+    'vs_previous' => 'öncekine göre',
+    'no_change' => 'Değişiklik yok',
+    'performance_over_time' => 'Zaman İçinde Performans',
+    'clicks_conversions' => 'Tıklamalar ve Dönüşümler',
+
+    // Conversion rate widget
+    'conversion_rate_analysis' => 'Dönüşüm Oranı Analizi',
+    'overall_conversion_rate' => 'Genel Dönüşüm Oranı',
+    'conversion_breakdown' => 'Dönüşüm Dağılımı',
+    'source' => 'Kaynak',
+    'rate' => 'Oran',
+    'conversion_rate_percentage' => 'Dönüşüm Oranı (%)',
+    'optimization_opportunity' => 'Optimizasyon Fırsatı',
+    'conversion_rate_below_average' => 'Dönüşüm oranınız ortalamanın altında. Bu ipuçlarını değerlendirin:',
+    'target_relevant_audiences' => 'Daha alakalı kitleleri hedefleyin',
+    'improve_promotional_content' => 'Promosyon içeriğinizi geliştirin',
+    'focus_higher_conversion_products' => 'Daha yüksek dönüşüm oranına sahip ürünlere odaklanın',
+    'great_performance' => 'Harika Performans!',
+    'excellent_conversion_rate' => 'Dönüşüm oranınız mükemmel. İyi işe devam edin!',
+    'good_performance' => 'İyi Performans',
+    'average_conversion_rate' => 'Dönüşüm oranınız ortalama aralıkta. Gelişme için yer var.',
+
+    // Date ranges (copied from ecommerce for consistency)
+    'ranges' => [
+        'today' => 'Bugün',
+        'this_week' => 'Bu hafta',
+        'last_7_days' => 'Son 7 gün',
+        'last_30_days' => 'Son 30 gün',
+        'this_month' => 'Bu ay',
+        'this_year' => 'Bu yıl',
+    ],
+];

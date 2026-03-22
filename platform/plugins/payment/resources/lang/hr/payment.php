@@ -88,6 +88,8 @@ return [
     'total' => 'Ukupno',
     'status' => 'Status',
     'default_payment_method' => 'Zadani način plaćanja',
+    'sort_order_instruction' => 'Povucite i ispustite za promjenu redoslijeda načina plaćanja na stranici naplate.',
+    'default_method_instruction' => 'Kliknite na ikonu zvjezdice za postavljanje zadanog načina plaćanja.',
     'payment_logs' => 'Dnevnici plaćanja',
     'request_data' => 'Podaci zahtjeva',
     'response_data' => 'Podaci odgovora',

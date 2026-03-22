@@ -192,6 +192,7 @@ return [
         'order_date' => 'Sipariş tarihi',
         'scan_qr_code' => 'Kargonuzu takip etmek için QR kodu tarayın',
         'total_amount' => 'Toplam Tutar',
+        'amount_to_collect' => 'Tahsil Edilecek Tutar',
         'cod_amount_to_collect' => 'Tahsil Edilecek Kapıda Ödeme Tutarı',
     ],
     'customer_confirmed_delivery_at' => 'Müşteri teslimatı onayladığı tarih',

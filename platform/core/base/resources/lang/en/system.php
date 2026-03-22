@@ -121,6 +121,7 @@ return [
     'new_version_available' => 'A new version (:version / released on :date) is available to update!',
     'system_up_to_date' => 'The system is up-to-date. There are no new versions to update!',
     'run' => 'Run',
+    'license_activation' => 'License Activation',
     'cleanup' => [
         'title' => 'Cleanup System',
         'description' => 'Cleanup your unused data in database',

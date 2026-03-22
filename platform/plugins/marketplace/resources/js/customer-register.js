@@ -24,7 +24,7 @@ $(() => {
         $.ajax({
             url: currentTarget.data('url'),
             type: 'POST',
-            data: { url },
+            data: { url, _token: form.find('input[name="_token"]').val() || $('meta[name="csrf-token"]').attr('content') },
             beforeSend: () => {
                 currentTarget.prop('disabled', true)
                 form.find('button[type=submit]').prop('disabled', true)

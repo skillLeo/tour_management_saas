@@ -1,0 +1,73 @@
+<?php
+
+return [
+    'name' => 'Laporan',
+    'commission_this_month' => 'Komisi bulan ini',
+    'pending_commissions' => 'Komisi tertunda',
+    'approved_commissions' => 'Komisi disetujui',
+    'pending_withdrawals' => 'Penarikan tertunda',
+    'approved_withdrawals' => 'Penarikan disetujui',
+    'active_affiliates' => 'Afiliasi aktif',
+    'affiliate_stats' => 'Statistik Afiliasi',
+    'top_affiliates' => 'Afiliasi Teratas',
+    'recent_commissions' => 'Komisi Terbaru',
+    'recent_withdrawals' => 'Penarikan Terbaru',
+    'commission_chart' => 'Grafik Komisi',
+    'withdrawal_chart' => 'Grafik Penarikan',
+
+    // Enhanced reports
+    'geographic_data' => 'Data Geografis',
+    'top_countries' => 'Negara Teratas',
+    'top_cities' => 'Kota Teratas',
+    'short_link_performance' => 'Kinerja Tautan Pendek',
+    'top_performing_links' => 'Tautan Berkinerja Terbaik',
+    'link' => 'Tautan',
+    'clicks' => 'Klik',
+    'conversions' => 'Konversi',
+    'commission_trends' => 'Tren Komisi',
+    'commission_amount' => 'Jumlah Komisi',
+    'loading' => 'Memuat...',
+    'no_data' => 'Tidak ada data tersedia',
+    'no_commission_data' => 'Tidak ada data komisi tersedia untuk periode yang dipilih',
+    'no_geographic_data' => 'Tidak ada data geografis tersedia untuk periode yang dipilih',
+    'no_city_data' => 'Tidak ada data kota tersedia untuk negara yang dipilih',
+    'chart_error' => 'Kesalahan memuat grafik. Silakan coba refresh halaman.',
+
+    // Performance metrics widget
+    'performance_metrics' => 'Metrik Kinerja',
+    'total_clicks' => 'Total Klik',
+    'earnings' => 'Penghasilan',
+    'avg_commission' => 'Rata-rata Komisi',
+    'avg_conversion_rate' => 'Tingkat Konversi Rata-rata',
+    'vs_previous' => 'vs sebelumnya',
+    'no_change' => 'Tidak ada perubahan',
+    'performance_over_time' => 'Kinerja Seiring Waktu',
+    'clicks_conversions' => 'Klik & Konversi',
+
+    // Conversion rate widget
+    'conversion_rate_analysis' => 'Analisis Tingkat Konversi',
+    'overall_conversion_rate' => 'Tingkat Konversi Keseluruhan',
+    'conversion_breakdown' => 'Rincian Konversi',
+    'source' => 'Sumber',
+    'rate' => 'Tingkat',
+    'conversion_rate_percentage' => 'Tingkat Konversi (%)',
+    'optimization_opportunity' => 'Peluang Optimisasi',
+    'conversion_rate_below_average' => 'Tingkat konversi Anda di bawah rata-rata. Pertimbangkan tips berikut:',
+    'target_relevant_audiences' => 'Target audiens yang lebih relevan',
+    'improve_promotional_content' => 'Tingkatkan konten promosi Anda',
+    'focus_higher_conversion_products' => 'Fokus pada produk dengan tingkat konversi lebih tinggi',
+    'great_performance' => 'Kinerja Hebat!',
+    'excellent_conversion_rate' => 'Tingkat konversi Anda sangat baik. Pertahankan kerja bagus!',
+    'good_performance' => 'Kinerja Baik',
+    'average_conversion_rate' => 'Tingkat konversi Anda dalam kisaran rata-rata. Ada ruang untuk perbaikan.',
+
+    // Date ranges (copied from ecommerce for consistency)
+    'ranges' => [
+        'today' => 'Hari ini',
+        'this_week' => 'Minggu ini',
+        'last_7_days' => '7 hari terakhir',
+        'last_30_days' => '30 hari terakhir',
+        'this_month' => 'Bulan ini',
+        'this_year' => 'Tahun ini',
+    ],
+];

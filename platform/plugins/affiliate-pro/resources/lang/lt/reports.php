@@ -1,0 +1,73 @@
+<?php
+
+return [
+    'name' => 'Ataskaitos',
+    'commission_this_month' => 'Komisiniai šį mėnesį',
+    'pending_commissions' => 'Laukiantys komisiniai',
+    'approved_commissions' => 'Patvirtinti komisiniai',
+    'pending_withdrawals' => 'Laukiantys išmokėjimai',
+    'approved_withdrawals' => 'Patvirtinti išmokėjimai',
+    'active_affiliates' => 'Aktyvūs partneriai',
+    'affiliate_stats' => 'Partnerių statistika',
+    'top_affiliates' => 'Geriausi partneriai',
+    'recent_commissions' => 'Naujausi komisiniai',
+    'recent_withdrawals' => 'Naujausi išmokėjimai',
+    'commission_chart' => 'Komisinių diagrama',
+    'withdrawal_chart' => 'Išmokėjimų diagrama',
+
+    // Enhanced reports
+    'geographic_data' => 'Geografiniai duomenys',
+    'top_countries' => 'Geriausios šalys',
+    'top_cities' => 'Geriausi miestai',
+    'short_link_performance' => 'Trumpų nuorodų efektyvumas',
+    'top_performing_links' => 'Efektyviausios nuorodos',
+    'link' => 'Nuoroda',
+    'clicks' => 'Paspaudimai',
+    'conversions' => 'Konversijos',
+    'commission_trends' => 'Komisinių tendencijos',
+    'commission_amount' => 'Komisinio suma',
+    'loading' => 'Įkeliama...',
+    'no_data' => 'Duomenų nėra',
+    'no_commission_data' => 'Pasirinktu laikotarpiu komisinių duomenų nėra',
+    'no_geographic_data' => 'Pasirinktu laikotarpiu geografinių duomenų nėra',
+    'no_city_data' => 'Pasirinktoje šalyje miestų duomenų nėra',
+    'chart_error' => 'Klaida rodant diagramą. Bandykite atnaujinti puslapį.',
+
+    // Performance metrics widget
+    'performance_metrics' => 'Efektyvumo metrika',
+    'total_clicks' => 'Viso paspaudimų',
+    'earnings' => 'Uždarbiai',
+    'avg_commission' => 'Vid. komisinis',
+    'avg_conversion_rate' => 'Vid. konversijos lygis',
+    'vs_previous' => 'lyginant su ankstesniu',
+    'no_change' => 'Nėra pokyčių',
+    'performance_over_time' => 'Efektyvumas per laiką',
+    'clicks_conversions' => 'Paspaudimai ir konversijos',
+
+    // Conversion rate widget
+    'conversion_rate_analysis' => 'Konversijos lygio analizė',
+    'overall_conversion_rate' => 'Bendras konversijos lygis',
+    'conversion_breakdown' => 'Konversijos suskirstymas',
+    'source' => 'Šaltinis',
+    'rate' => 'Lygis',
+    'conversion_rate_percentage' => 'Konversijos lygis (%)',
+    'optimization_opportunity' => 'Optimizavimo galimybė',
+    'conversion_rate_below_average' => 'Jūsų konversijos lygis žemesnis nei vidutinis. Apsvarstykite šiuos patarimus:',
+    'target_relevant_audiences' => 'Nukreipkite dėmesį į atitinkamas auditorijas',
+    'improve_promotional_content' => 'Patobulinkite savo reklaminį turinį',
+    'focus_higher_conversion_products' => 'Sutelkite dėmesį į produktus su didesniu konversijos lygiu',
+    'great_performance' => 'Puikūs rezultatai!',
+    'excellent_conversion_rate' => 'Jūsų konversijos lygis puikus. Tęskite puikų darbą!',
+    'good_performance' => 'Geri rezultatai',
+    'average_conversion_rate' => 'Jūsų konversijos lygis yra vidutiniame diapazone. Yra galimybių tobulėti.',
+
+    // Date ranges (copied from ecommerce for consistency)
+    'ranges' => [
+        'today' => 'Šiandien',
+        'this_week' => 'Šią savaitę',
+        'last_7_days' => 'Paskutinės 7 dienos',
+        'last_30_days' => 'Paskutinės 30 dienų',
+        'this_month' => 'Šį mėnesį',
+        'this_year' => 'Šiais metais',
+    ],
+];

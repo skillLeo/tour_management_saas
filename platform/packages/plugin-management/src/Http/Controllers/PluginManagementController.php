@@ -9,6 +9,7 @@ use Botble\Base\Http\Responses\BaseHttpResponse;
 use Botble\Base\Supports\Breadcrumb;
 use Botble\PluginManagement\Enums\PluginFilterStatus;
 use Botble\PluginManagement\Events\RenderingPluginListingPage;
+use Botble\PluginManagement\Services\MarketplaceService;
 use Botble\PluginManagement\Services\PluginService;
 use Exception;
 use Illuminate\Contracts\View\View;
@@ -151,7 +152,7 @@ class PluginManagementController extends BaseController
         }
     }
 
-    public function checkRequirement(Request $request): BaseHttpResponse
+    public function checkRequirement(Request $request, MarketplaceService $marketplaceService): BaseHttpResponse
     {
         $name = $request->input('name');
 
@@ -160,13 +161,29 @@ class PluginManagementController extends BaseController
         if (! empty($requiredPlugins)) {
             $content = $this->pluginService->getPluginInfo($name);
 
+            $data = $marketplaceService->callApi('POST', '/products/check-update', [
+                'products' => collect($requiredPlugins)->mapWithKeys(fn ($item) => [$item => '0.0.0'])->toArray(),
+            ])->json('data');
+
+            $existingPluginsOnMarketplace = collect($data)->pluck('id')->all();
+
+            if (empty($existingPluginsOnMarketplace)) {
+                return $this
+                    ->httpResponse()
+                    ->setError()
+                    ->setMessage(trans('packages/plugin-management::plugin.missing_required_plugins', [
+                        'plugins' => implode(',', $requiredPlugins),
+                    ]));
+            }
+
             return $this
                 ->httpResponse()
                 ->setError()
                 ->setData([
                     'pluginName' => $content['id'],
+                    'existing_plugins_on_marketplace' => $existingPluginsOnMarketplace,
                 ])
-                ->setMessage(__('packages/plugin-management::plugin.requirement_not_met', [
+                ->setMessage(trans('packages/plugin-management::plugin.requirement_not_met', [
                     'plugin' => "<strong>{$content['name']}</strong>",
                     'required_plugins' => '<strong>' . implode(', ', $requiredPlugins) . '</strong>',
                 ]));

@@ -1,85 +1,97 @@
 <div class="mb-80 mt-50">
     <div class="row">
         <div class="col-lg-12 m-auto">
-            <h1 class="heading-2 mb-10">{{ __('Products Compare') }}</h1>
-            @if ($products->isNotEmpty())
-                <p class="text-body mb-40 font-heading h6">{!! BaseHelper::clean(__('There are :total products to compare', ['total' => '<span class="text-brand">' . $products->count() . '</span>'])) !!}</p>
-                <div class="table-responsive table__compare">
-                    <table class="table text-center table-compare">
-                        <tbody class="border-0">
-                            <tr class="pr_image">
-                                <td class="text-muted font-sm fw-600 font-heading mw-200">{{ __('Preview') }}</td>
+            <h1 class="compare-page-title mb-10">{{ __('Products Compare') }}</h1>
+            <div class="table__compare">
+                @if ($products->isNotEmpty())
+                    <p class="text-body mb-30 font-heading h6">{!! BaseHelper::clean(__('There are :total products to compare', ['total' => '<span class="text-brand">' . $products->count() . '</span>'])) !!}</p>
+                    <div class="compare-grid" style="--compare-cols: {{ $products->count() }}">
+                        <div class="compare-section compare-section--products">
+                            <div class="compare-row">
                                 @foreach($products as $product)
-                                    <td class="row_img">
-                                        <a href="{{ $product->original_product->url }}">
+                                    <div class="compare-cell compare-product-card">
+                                        <a href="#" class="compare-remove-btn js-remove-from-compare-button" data-url="{{ route('public.compare.remove', $product->id) }}" title="{{ __('Remove') }}">
+                                            <i class="fi-rs-cross-small"></i>
+                                        </a>
+                                        <a href="{{ $product->original_product->url }}" class="compare-product-img">
                                             <img src="{{ RvMedia::getImageUrl($product->image, 'product-thumb', false, RvMedia::getDefaultImage()) }}" alt="{{ $product->name }}">
                                         </a>
-                                    </td>
-                                @endforeach
-                            </tr>
-                            <tr class="pr_title">
-                                <td class="text-muted font-sm fw-600 font-heading">{{ __('Name') }}</td>
-                                @foreach($products as $product)
-                                    <td class="product_name">
-                                        <p class="font-heading h6"><a href="{{ $product->original_product->url }}" class="text-heading">{!! BaseHelper::clean($product->name) !!}</a></p>
-
+                                        <h6 class="compare-product-name">
+                                            <a href="{{ $product->original_product->url }}">{!! BaseHelper::clean($product->name) !!}</a>
+                                        </h6>
                                         @if (is_plugin_active('marketplace') && $product->original_product->store->id)
-                                            <p class="d-block mb-0 sold-by">
-                                                <small>
-                                                    <span>{{ __('Sold by') }}: </span>
-                                                    <a href="{{ $product->original_product->store->url }}">{{ $product->original_product->store->name }}</a>
-                                                </small>
+                                            <p class="compare-sold-by">
+                                                <span>{{ __('Sold by') }}: </span>
+                                                <a href="{{ $product->original_product->store->url }}">{{ $product->original_product->store->name }}</a>
                                             </p>
                                         @endif
-                                    </td>
+                                    </div>
                                 @endforeach
-                            </tr>
-                            @if (! EcommerceHelper::hideProductPrice() || EcommerceHelper::isCartEnabled())
-                                <tr class="pr_price">
-                                    <td class="text-muted font-sm fw-600 font-heading">{{ __('Price') }}</td>
+                            </div>
+                        </div>
+
+                        @if (! EcommerceHelper::hideProductPrice() || EcommerceHelper::isCartEnabled())
+                            <div class="compare-section">
+                                <div class="compare-section-label">{{ __('Price') }}</div>
+                                <div class="compare-row">
                                     @foreach($products as $product)
-                                        <td class="product_price">
-                                            <h4 class="price text-brand">{{ format_price($product->front_sale_price_with_taxes) }}</h4>
-                                            @if ($product->front_sale_price !== $product->price)
-                                                <del>{{ format_price($product->price_with_taxes) }}</del>
-                                                <small>({{ get_sale_percentage($product->price, $product->front_sale_price) }})</small>
-                                            @endif
-                                        </td>
+                                        <div class="compare-cell">
+                                            <div class="compare-price">
+                                                <span class="price text-brand">{{ format_price($product->front_sale_price_with_taxes) }}</span>
+                                                @if ($product->front_sale_price !== $product->price)
+                                                    <span class="compare-price-old">
+                                                        <del>{{ format_price($product->price_with_taxes) }}</del>
+                                                        <span class="compare-discount-badge">{{ get_sale_percentage($product->price, $product->front_sale_price) }}</span>
+                                                    </span>
+                                                @endif
+                                            </div>
+                                        </div>
                                     @endforeach
-                                </tr>
-                            @endif
-                            @if (EcommerceHelper::isReviewEnabled())
-                                <tr class="pr_rating">
-                                    <td class="text-muted font-sm fw-600 font-heading">{{ __('Rating') }}</td>
+                                </div>
+                            </div>
+                        @endif
+
+                        @if (EcommerceHelper::isReviewEnabled())
+                            <div class="compare-section">
+                                <div class="compare-section-label">{{ __('Rating') }}</div>
+                                <div class="compare-row">
                                     @foreach($products as $product)
-                                        <td>
+                                        <div class="compare-cell">
                                             @if ($product->reviews_count)
-                                                <div class="rating_wrap">
+                                                <div class="compare-rating">
                                                     <div class="product-rate d-inline-block">
                                                         <div class="product-rating" style="width: {{ $product->reviews_avg * 20 }}%"></div>
                                                     </div>
                                                     <span class="rating_num">({{ $product->reviews_count }})</span>
                                                 </div>
+                                            @else
+                                                <span class="text-muted font-sm">&mdash;</span>
                                             @endif
-                                        </td>
+                                        </div>
                                     @endforeach
-                                </tr>
-                            @endif
-                            <tr class="description text-start">
-                                <td class="text-muted font-sm fw-600 font-heading">{{ __('Description') }}</td>
-                                @foreach($products as $product)
-                                    <td class="row_text font-xs">
-                                        <div class="font-sm text-muted p-3">{!! BaseHelper::clean($product->description) !!}</div>
-                                    </td>
-                                @endforeach
-                            </tr>
-                            @foreach($attributeSets as $attributeSet)
-                                @if ($attributeSet->is_comparable)
-                                    <tr>
-                                        <td class="text-muted font-sm fw-600 font-heading">
-                                            {{ $attributeSet->title }}
-                                        </td>
+                                </div>
+                            </div>
+                        @endif
 
+                        <div class="compare-section">
+                            <div class="compare-section-label">{{ __('Description') }}</div>
+                            <div class="compare-row">
+                                @foreach($products as $product)
+                                    <div class="compare-cell">
+                                        <div class="compare-description compare-description--collapsed">
+                                            <div class="compare-description__content">{!! BaseHelper::clean($product->description) !!}</div>
+                                        </div>
+                                        <button type="button" class="compare-toggle-desc" onclick="this.previousElementSibling.classList.toggle('compare-description--collapsed'); this.textContent = this.previousElementSibling.classList.contains('compare-description--collapsed') ? '{{ __('Show more') }}' : '{{ __('Show less') }}'">{{ __('Show more') }}</button>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+
+                        @foreach($attributeSets as $attributeSet)
+                            @if ($attributeSet->is_comparable)
+                                <div class="compare-section">
+                                    <div class="compare-section-label">{{ $attributeSet->title }}</div>
+                                    <div class="compare-row">
                                         @foreach($products as $product)
                                             @php
                                                 $attributes = app(\Botble\Ecommerce\Repositories\Interfaces\ProductInterface::class)
@@ -87,81 +99,56 @@
                                                         ->where('attribute_set_id', $attributeSet->id)
                                                         ->sortBy('order');
                                             @endphp
-
-                                            @if ($attributes->count())
-                                                @if ($attributeSet->display_layout == 'dropdown')
-                                                    <td>
-                                                        {{ $attributes->pluck('title')->implode(', ') }}
-                                                    </td>
-                                                @elseif ($attributeSet->display_layout == 'text')
-                                                    <td>
-                                                        <div class="attribute-values">
-                                                            <ul class="text-swatch attribute-swatch color-swatch">
-                                                                @foreach($attributes as $attribute)
-                                                                    <li class="attribute-swatch-item" style="display: inline-block">
-                                                                        <label>
-                                                                            <input class="form-control product-filter-item" type="radio" disabled>
-                                                                            <span style="cursor: default">{{ $attribute->title }}</span>
-                                                                        </label>
-                                                                    </li>
-                                                                @endforeach
-                                                            </ul>
+                                            <div class="compare-cell">
+                                                @if ($attributes->count())
+                                                    @if ($attributeSet->display_layout == 'dropdown')
+                                                        <span class="compare-attr-text">{{ $attributes->pluck('title')->implode(', ') }}</span>
+                                                    @elseif ($attributeSet->display_layout == 'text')
+                                                        <div class="compare-attr-swatches">
+                                                            @foreach($attributes as $attribute)
+                                                                <span class="compare-text-swatch">{{ $attribute->title }}</span>
+                                                            @endforeach
                                                         </div>
-                                                    </td>
+                                                    @else
+                                                        <div class="compare-attr-swatches">
+                                                            @foreach($attributes as $attribute)
+                                                                <span class="compare-color-swatch" style="{{ $attribute->image ? 'background-image: url(' . RvMedia::getImageUrl($attribute->image) . ');' : 'background-color: ' . $attribute->color . ';' }}" title="{{ $attribute->title }}"></span>
+                                                            @endforeach
+                                                        </div>
+                                                    @endif
                                                 @else
-                                                    <td>
-                                                        <div class="attribute-values">
-                                                            <ul class="visual-swatch color-swatch attribute-swatch">
-                                                                @foreach($attributes as $attribute)
-                                                                    <li class="attribute-swatch-item" style="display: inline-block">
-                                                                        <div class="custom-radio">
-                                                                            <label>
-                                                                                <input class="form-control product-filter-item" type="radio" disabled>
-                                                                                <span style="{{ $attribute->image ? 'background-image: url(' . RvMedia::getImageUrl($attribute->image) . ');' : 'background-color: ' . $attribute->color . ';' }}; cursor: default;"></span>
-                                                                            </label>
-                                                                        </div>
-                                                                    </li>
-                                                                @endforeach
-                                                            </ul>
-                                                        </div>
-                                                    </td>
+                                                    <span class="text-muted">&mdash;</span>
                                                 @endif
-                                            @else
-                                                <td>&mdash;</td>
-                                            @endif
+                                            </div>
                                         @endforeach
-                                    </tr>
-                                @endif
-                            @endforeach
-                            @if (EcommerceHelper::isCartEnabled())
-                                <tr class="pr_add_to_cart">
-                                    <td class="text-muted font-sm fw-600 font-heading">{{ __('Buy now') }}</td>
+                                    </div>
+                                </div>
+                            @endif
+                        @endforeach
+
+                        @if (EcommerceHelper::isCartEnabled())
+                            <div class="compare-section">
+                                <div class="compare-row">
                                     @foreach($products as $product)
-                                        <td class="row_btn">
-                                            <a href="#" class="btn btn-rounded btn-sm add-to-cart-button" data-id="{{ $product->id }}" data-url="{{ route('public.ajax.cart.store') }}">
+                                        <div class="compare-cell">
+                                            <a href="#" class="btn btn-sm add-to-cart-button" data-id="{{ $product->id }}" data-url="{{ route('public.ajax.cart.store') }}">
                                                 <i class="fi-rs-shopping-bag mr-5"></i>{{ __('Add To Cart') }}
                                             </a>
-                                        </td>
+                                        </div>
                                     @endforeach
-                                </tr>
-                            @endif
-                            <tr class="pr_remove text-muted">
-                                <td class="text-muted font-sm fw-600 font-heading">&nbsp;</td>
-                                @foreach($products as $product)
-                                    <td class="row_remove">
-                                        <a class="text-muted js-remove-from-compare-button" href="#" data-url="{{ route('public.compare.remove', $product->id) }}">
-                                            <i class="fi-rs-trash mr-5"></i>
-                                            <span>{{ __('Remove') }}</span>
-                                        </a>
-                                    </td>
-                                @endforeach
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            @else
-                <p class="text-center">{{ __('No products in compare list!') }}</p>
-            @endif
+                                </div>
+                            </div>
+                        @endif
+                    </div>
+                @else
+                    <div class="empty-state">
+                        <img src="{{ Theme::asset()->url('imgs/theme/icons/icon-compare.svg') }}" alt="{{ __('No products in compare list!') }}" class="empty-state__icon">
+                        <h5 class="empty-state__title">{{ __('No products in compare list!') }}</h5>
+                        <p class="empty-state__text">{{ __('Add products to compare by clicking the compare icon on any product.') }}</p>
+                        <a href="{{ route('public.products') }}" class="btn btn-sm">{{ __('Browse Products') }}</a>
+                    </div>
+                @endif
+            </div>
         </div>
     </div>
 </div>

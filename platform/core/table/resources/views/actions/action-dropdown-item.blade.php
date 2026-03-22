@@ -1,14 +1,15 @@
 @php
     /** @var Botble\Table\Actions\Action $action */
+    $attributes = collect($action->getAttributes())->except('class')->all();
 @endphp
 
 <li>
     <a
-        @if (!$action->getAttribute('class')) @class([
+        @class([
             'dropdown-item',
             str_replace('btn-', 'text-', $action->getColor()),
-        ]) @endif
-        @include('core/table::actions.includes.action-attributes')
+        ])
+        @include('core/table::actions.includes.action-attributes', ['attributes' => $attributes])
     >
         @include('core/table::actions.includes.action-icon')
 

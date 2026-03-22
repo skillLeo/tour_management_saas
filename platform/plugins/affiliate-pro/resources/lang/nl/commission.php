@@ -1,0 +1,53 @@
+<?php
+
+return [
+    'name' => 'Commissies',
+    'view' => 'Commissie #:id Bekijken',
+    'affiliate' => 'Partner',
+    'order' => 'Bestelling',
+    'amount' => 'Bedrag',
+    'description' => 'Beschrijving',
+    'status' => 'Status',
+    'created_at' => 'Aangemaakt Op',
+    'approve' => 'Goedkeuren',
+    'reject' => 'Afwijzen',
+    'approve_success' => 'Commissie succesvol goedgekeurd',
+    'reject_success' => 'Commissie succesvol afgewezen',
+    'approve_commission' => 'Commissie Goedkeuren',
+    'reject_commission' => 'Commissie Afwijzen',
+    'approve_commission_confirmation' => 'Weet u zeker dat u commissie #:id wilt goedkeuren? Deze actie kan niet ongedaan worden gemaakt.',
+    'reject_commission_confirmation' => 'Weet u zeker dat u commissie #:id wilt afwijzen? Deze actie kan niet ongedaan worden gemaakt.',
+    'statuses' => [
+        'pending' => 'In afwachting',
+        'approved' => 'Goedgekeurd',
+        'rejected' => 'Afgewezen',
+    ],
+
+    // Customer-facing translations
+    'history' => 'Commissiegeschiedenis',
+    'no_commissions' => 'Geen commissies gevonden.',
+    'no_commissions_description' => 'U hebt nog geen commissies verdiend. Begin met het promoten van onze producten om uw eerste commissie te verdienen!',
+    'commission_id' => 'Commissie ID',
+    'order_id' => 'Bestelling ID',
+    'customer' => 'Klant',
+    'product' => 'Product',
+    'type' => 'Type',
+    'date' => 'Datum',
+
+    // New UI translations
+    'total_commissions' => ':count Totaal Aantal Commissies',
+    'filter_by_status' => 'Filteren op Status',
+    'all_statuses' => 'Alle Statussen',
+    'date_from' => 'Datum Van',
+    'date_to' => 'Datum Tot',
+    'filter' => 'Filter',
+    'clear' => 'Wissen',
+    'approved_earnings' => 'Goedgekeurde Inkomsten',
+    'pending_earnings' => 'Openstaande Inkomsten',
+    'successful_orders' => 'Succesvolle Bestellingen',
+    'approval_rate' => 'Goedkeuringspercentage',
+    'commission_earned' => 'Commissie Verdiend',
+    'showing_results' => ':from tot :to van :total resultaten worden weergegeven',
+    'start_promoting' => 'Begin met Promoten',
+    'back_to_dashboard' => 'Terug naar Dashboard',
+];

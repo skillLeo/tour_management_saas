@@ -88,6 +88,8 @@ return [
     'total' => 'Összesen',
     'status' => 'Állapot',
     'default_payment_method' => 'Alapértelmezett fizetési mód',
+    'sort_order_instruction' => 'Húzza és ejtse a fizetési módok átrendezéséhez a pénztár oldalon.',
+    'default_method_instruction' => 'Kattintson a csillag ikonra az alapértelmezett fizetési mód beállításához.',
     'payment_logs' => 'Fizetési naplók',
     'request_data' => 'Kérés adatok',
     'response_data' => 'Válasz adatok',

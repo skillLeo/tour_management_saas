@@ -68,4 +68,6 @@ return [
     'enable_light_mode' => 'Hellen Modus aktivieren',
     'enable_dark_mode' => 'Dunklen Modus aktivieren',
     'close' => 'Schließen',
+    'search_country' => 'Land suchen...',
+    'no_results' => 'Keine Ergebnisse gefunden',
 ];

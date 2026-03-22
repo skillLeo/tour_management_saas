@@ -15,12 +15,15 @@ class ShippingRuleItem extends BaseModel
 
     protected $fillable = [
         'shipping_rule_id',
+        'name',
         'country',
         'state',
         'city',
         'adjustment_price',
         'is_enabled',
         'zip_code',
+        'zip_code_from',
+        'zip_code_to',
     ];
 
     public function shippingRule(): BelongsTo
@@ -33,8 +36,53 @@ class ShippingRuleItem extends BaseModel
         return Attribute::set(fn (?string $value) => (float) str_replace(',', '', $value));
     }
 
+    public static function normalizeZipCode(?string $zipCode): ?int
+    {
+        if ($zipCode === null || $zipCode === '') {
+            return null;
+        }
+
+        $numeric = preg_replace('/\D/', '', $zipCode);
+
+        return $numeric !== '' ? (int) $numeric : null;
+    }
+
+    protected function zipCodeFrom(): Attribute
+    {
+        return Attribute::set(function (?string $value) {
+            if ($value === null || $value === '') {
+                return null;
+            }
+
+            return preg_replace('/\D/', '', $value);
+        });
+    }
+
+    protected function zipCodeTo(): Attribute
+    {
+        return Attribute::set(function (?string $value) {
+            if ($value === null || $value === '') {
+                return null;
+            }
+
+            return preg_replace('/\D/', '', $value);
+        });
+    }
+
     protected function nameItem(): Attribute
     {
-        return Attribute::get(fn () => trim(implode(', ', array_filter([$this->state_name, $this->city_name, $this->zip_code]))));
+        return Attribute::get(function () {
+            if ($this->name) {
+                return $this->name;
+            }
+
+            $zipDisplay = $this->zip_code_from;
+
+            if ($this->zip_code_from && $this->zip_code_to && $this->zip_code_from !== $this->zip_code_to) {
+                $zipDisplay = $this->zip_code_from . ' - ' . $this->zip_code_to;
+            }
+
+            return trim(implode(', ', array_filter([$this->state_name, $this->city_name, $zipDisplay ?: $this->zip_code])));
+        });
     }
 }

@@ -88,6 +88,8 @@ return [
     'total' => 'Gesamt',
     'status' => 'Status',
     'default_payment_method' => 'Standard-Zahlungsmethode',
+    'sort_order_instruction' => 'Ziehen und ablegen, um die Zahlungsmethoden auf der Kassenseite neu zu ordnen.',
+    'default_method_instruction' => 'Klicken Sie auf das Sternsymbol, um eine Zahlungsmethode als Standard festzulegen.',
     'payment_logs' => 'Zahlungsprotokolle',
     'request_data' => 'Anfragedaten',
     'response_data' => 'Antwortdaten',

@@ -25,6 +25,8 @@ return [
     'categories' => 'Categories',
     'category' => 'Category',
     'author' => 'Author',
+    'author_helper' => 'Select an author from admin users.',
+    'select_author' => 'Select author',
     'is_featured' => 'Is featured?',
     'export' => [
         'description' => 'Export posts to CSV/Excel file.',

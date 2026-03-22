@@ -55,6 +55,12 @@ return [
     'selected_items_move_success' => 'A kijelölt elemek sikeresen áthelyezve ide: :name!',
     'selected_items_move_error' => 'Hiba a kijelölt elemek áthelyezésekor ide: :name',
     'destination' => 'Cél',
+    'move' => 'Move',
+    'move_items' => 'Move items',
+    'move_here' => 'Move here',
+    'move_to_root' => 'Move to root folder',
+    'root' => 'Root',
+    'go_up' => 'Go up',
     'restore_error' => 'Hiba a kijelölt elemek visszaállításakor',
     'restore_success' => 'A kijelölt elemek sikeresen visszaállítva!',
     'copy_success' => 'A kijelölt elemek sikeresen másolva!',
@@ -133,7 +139,12 @@ return [
         ],
 
         'download' => [
-            'error' => 'Nincsenek kijelölt fájlok vagy ezek a fájlok nem tölthetők le',
+            'error' => 'No files selected or cannot download these files',
+        ],
+
+        'move' => [
+            'select_destination' => 'Please select a destination folder',
+            'same_location' => 'Items are already in this location',
         ],
 
         'actions_list' => [

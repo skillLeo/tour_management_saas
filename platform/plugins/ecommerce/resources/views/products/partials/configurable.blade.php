@@ -1,4 +1,32 @@
-<div id="product-variations-wrapper">
+@php
+    $currencies = \Botble\Ecommerce\Models\Currency::query()->oldest('order')->get();
+    $defaultCurrency = get_application_currency();
+    $productCurrencyCode = old('currency_code', $product?->currency_code ?? $defaultCurrency->title);
+    $selectedCurrency = $currencies->firstWhere('title', $productCurrencyCode) ?? $defaultCurrency;
+
+    if (is_in_admin()) {
+        $showCurrencySelector = EcommerceHelper::isEnabledProductCurrencySelection();
+    } else {
+        $showCurrencySelector = EcommerceHelper::isEnabledProductCurrencySelection()
+            && \Botble\Marketplace\Facades\MarketplaceHelper::allowVendorManageProductCurrency();
+    }
+@endphp
+
+@if ($showCurrencySelector)
+    <div class="d-flex align-items-center gap-2 mt-3 mb-3 mx-3">
+        <label for="currency_code" class="form-label mb-0 text-nowrap">{{ trans('plugins/ecommerce::products.form.currency') }}:</label>
+        <select name="currency_code" id="currency_code" class="form-select form-select-sm product-currency-selector" style="width: auto; min-width: 120px;">
+            @foreach($currencies as $currency)
+                <option value="{{ $currency->title }}" data-symbol="{{ $currency->symbol }}" @selected($productCurrencyCode === $currency->title)>
+                    {{ $currency->title }} ({{ $currency->symbol }})
+                </option>
+            @endforeach
+        </select>
+        <small class="text-muted d-none d-md-inline">{{ trans('plugins/ecommerce::products.form.currency_for_variations_hint') }}</small>
+    </div>
+@endif
+
+<div id="product-variations-wrapper" data-clear-filters="{{ trans('plugins/ecommerce::products.clear_filters') }}">
     {!! $productVariationTable->renderTable() !!}
 </div>
 

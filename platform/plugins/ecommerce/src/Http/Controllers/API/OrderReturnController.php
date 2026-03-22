@@ -12,6 +12,7 @@ use Botble\Ecommerce\Http\Resources\API\OrderReturnResource;
 use Botble\Ecommerce\Models\Order;
 use Botble\Ecommerce\Models\OrderHistory;
 use Botble\Ecommerce\Models\OrderReturn;
+use Botble\Media\Facades\RvMedia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 
@@ -111,6 +112,28 @@ class OrderReturnController extends BaseApiController
                 ->setError()
                 ->setMessage(__('You cannot return this order'))
                 ->toApiResponse();
+        }
+
+        $orderReturnData = [];
+
+        $uploadedImages = [];
+        if (EcommerceHelper::isReturnImageUploadEnabled() && $request->hasFile('images')) {
+            $images = (array) $request->file('images', []);
+            foreach ($images as $image) {
+                $result = RvMedia::handleUpload($image, 0, 'returns');
+                if ($result['error']) {
+                    return $this
+                        ->httpResponse()
+                        ->setError()
+                        ->setMessage($result['message'])
+                        ->toApiResponse();
+                }
+                $uploadedImages[] = $result['data']['url'];
+            }
+        }
+
+        if ($uploadedImages) {
+            $orderReturnData['images'] = $uploadedImages;
         }
 
         if ($reason = $request->input('reason')) {

@@ -55,6 +55,9 @@ use Illuminate\Support\Facades\Facade;
  * @method static mixed getHomepageUrl()
  * @method static array getFonts()
  * @method static bool isAdminRequest()
+ * @method static bool isFrontendRequest()
+ * @method static bool isConsoleRequest()
+ * @method static void resetAdminRequestCache()
  *
  * @see \Botble\Base\Helpers\BaseHelper
  */

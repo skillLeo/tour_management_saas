@@ -1,0 +1,73 @@
+<?php
+
+return [
+    'name' => 'Berichte',
+    'commission_this_month' => 'Provision diesen Monat',
+    'pending_commissions' => 'Ausstehende Provisionen',
+    'approved_commissions' => 'Genehmigte Provisionen',
+    'pending_withdrawals' => 'Ausstehende Auszahlungen',
+    'approved_withdrawals' => 'Genehmigte Auszahlungen',
+    'active_affiliates' => 'Aktive Partner',
+    'affiliate_stats' => 'Partner-Statistiken',
+    'top_affiliates' => 'Top-Partner',
+    'recent_commissions' => 'Letzte Provisionen',
+    'recent_withdrawals' => 'Letzte Auszahlungen',
+    'commission_chart' => 'Provisionsdiagramm',
+    'withdrawal_chart' => 'Auszahlungsdiagramm',
+
+    // Enhanced reports
+    'geographic_data' => 'Geografische Daten',
+    'top_countries' => 'Top-Länder',
+    'top_cities' => 'Top-Städte',
+    'short_link_performance' => 'Kurzlink-Performance',
+    'top_performing_links' => 'Top-performende Links',
+    'link' => 'Link',
+    'clicks' => 'Klicks',
+    'conversions' => 'Konversionen',
+    'commission_trends' => 'Provisionstrends',
+    'commission_amount' => 'Provisionsbetrag',
+    'loading' => 'Lädt...',
+    'no_data' => 'Keine Daten verfügbar',
+    'no_commission_data' => 'Keine Provisionsdaten für den ausgewählten Zeitraum verfügbar',
+    'no_geographic_data' => 'Keine geografischen Daten für den ausgewählten Zeitraum verfügbar',
+    'no_city_data' => 'Keine Städtedaten für das ausgewählte Land verfügbar',
+    'chart_error' => 'Fehler beim Rendern des Diagramms. Bitte versuchen Sie, die Seite zu aktualisieren.',
+
+    // Performance metrics widget
+    'performance_metrics' => 'Leistungsmetriken',
+    'total_clicks' => 'Gesamtklicks',
+    'earnings' => 'Einnahmen',
+    'avg_commission' => 'Durchschn. Provision',
+    'avg_conversion_rate' => 'Durchschn. Konversionsrate',
+    'vs_previous' => 'vs. vorherige',
+    'no_change' => 'Keine Änderung',
+    'performance_over_time' => 'Leistung im Zeitverlauf',
+    'clicks_conversions' => 'Klicks & Konversionen',
+
+    // Conversion rate widget
+    'conversion_rate_analysis' => 'Konversionsraten-Analyse',
+    'overall_conversion_rate' => 'Gesamtkonversionsrate',
+    'conversion_breakdown' => 'Konversionsaufschlüsselung',
+    'source' => 'Quelle',
+    'rate' => 'Quote',
+    'conversion_rate_percentage' => 'Konversionsrate (%)',
+    'optimization_opportunity' => 'Optimierungsmöglichkeit',
+    'conversion_rate_below_average' => 'Ihre Konversionsrate liegt unter dem Durchschnitt. Beachten Sie diese Tipps:',
+    'target_relevant_audiences' => 'Sprechen Sie relevantere Zielgruppen an',
+    'improve_promotional_content' => 'Verbessern Sie Ihre Werbeinhalte',
+    'focus_higher_conversion_products' => 'Konzentrieren Sie sich auf Produkte mit höheren Konversionsraten',
+    'great_performance' => 'Hervorragende Leistung!',
+    'excellent_conversion_rate' => 'Ihre Konversionsrate ist ausgezeichnet. Weiter so!',
+    'good_performance' => 'Gute Leistung',
+    'average_conversion_rate' => 'Ihre Konversionsrate liegt im durchschnittlichen Bereich. Es gibt Raum für Verbesserungen.',
+
+    // Date ranges (copied from ecommerce for consistency)
+    'ranges' => [
+        'today' => 'Heute',
+        'this_week' => 'Diese Woche',
+        'last_7_days' => 'Letzte 7 Tage',
+        'last_30_days' => 'Letzte 30 Tage',
+        'this_month' => 'Diesen Monat',
+        'this_year' => 'Dieses Jahr',
+    ],
+];

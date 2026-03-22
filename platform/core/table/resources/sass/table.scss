@@ -316,6 +316,10 @@ div.dt-buttons {
     .dataTables_filter {
         display: none !important;
     }
+
+    .table-responsive.dropdown-visible {
+        overflow: visible;
+    }
 }
 
 .additional-page-name {
@@ -373,7 +377,18 @@ div.dt-buttons {
 }
 
 [data-bs-theme='dark'] {
-    .dataTables_processing {
-        background-color: rgba($color: var(--bb-body-color-rgb), $alpha: 0.05);
+    div.dataTables_wrapper .dataTables_processing {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    // DataTables Responsive - dtr-control caret icon
+    table.dataTable > tbody > tr > td.dtr-control:before,
+    table.dataTable > tbody > tr > th.dtr-control:before {
+        color: rgba(255, 255, 255, 0.7) !important;
+    }
+
+    // Child row details border
+    table.dataTable > tbody > tr.child ul.dtr-details > li {
+        border-bottom-color: var(--bb-border-color);
     }
 }

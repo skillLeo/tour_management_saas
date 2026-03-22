@@ -1,0 +1,25 @@
+<?php
+
+return [
+    'name' => 'Poročila', 'commission_this_month' => 'Provizija ta mesec', 'pending_commissions' => 'Provizije na čakanju',
+    'approved_commissions' => 'Odobrene provizije', 'pending_withdrawals' => 'Dvigi na čakanju', 'approved_withdrawals' => 'Odobreni dvigi',
+    'active_affiliates' => 'Aktivni partnerji', 'affiliate_stats' => 'Statistika partnerjev', 'top_affiliates' => 'Najboljši partnerji',
+    'recent_commissions' => 'Nedavne provizije', 'recent_withdrawals' => 'Nedavni dvigi', 'commission_chart' => 'Graf provizij',
+    'withdrawal_chart' => 'Graf dvigov', 'geographic_data' => 'Geografski podatki', 'top_countries' => 'Najboljše države',
+    'top_cities' => 'Najboljša mesta', 'short_link_performance' => 'Uspešnost kratkih povezav', 'top_performing_links' => 'Najbolje delujoče povezave',
+    'link' => 'Povezava', 'clicks' => 'Kliki', 'conversions' => 'Konverzije', 'commission_trends' => 'Trendi provizij',
+    'commission_amount' => 'Znesek provizije', 'loading' => 'Nalaganje...', 'no_data' => 'Ni razpoložljivih podatkov',
+    'no_commission_data' => 'Za izbrano obdobje ni razpoložljivih podatkov o provizijah', 'no_geographic_data' => 'Za izbrano obdobje ni razpoložljivih geografskih podatkov',
+    'no_city_data' => 'Za izbrano državo ni razpoložljivih podatkov o mestih', 'chart_error' => 'Napaka pri upodabljanju grafa. Poskusite osvežiti stran.',
+    'performance_metrics' => 'Metrike uspešnosti', 'total_clicks' => 'Skupni kliki', 'earnings' => 'Zaslužki',
+    'avg_commission' => 'Pov. provizija', 'avg_conversion_rate' => 'Pov. stopnja konverzije', 'vs_previous' => 'proti prejšnjemu',
+    'no_change' => 'Brez sprememb', 'performance_over_time' => 'Uspešnost skozi čas', 'clicks_conversions' => 'Kliki in konverzije',
+    'conversion_rate_analysis' => 'Analiza stopnje konverzije', 'overall_conversion_rate' => 'Splošna stopnja konverzije', 'conversion_breakdown' => 'Razčlenitev konverzij',
+    'source' => 'Vir', 'rate' => 'Stopnja', 'conversion_rate_percentage' => 'Stopnja konverzije (%)',
+    'optimization_opportunity' => 'Priložnost za optimizacijo', 'conversion_rate_below_average' => 'Vaša stopnja konverzije je pod povprečjem. Razmislite o teh nasvenih:',
+    'target_relevant_audiences' => 'Ciljajte na bolj relevantna občinstva', 'improve_promotional_content' => 'Izboljšajte svojo promocijsko vsebino',
+    'focus_higher_conversion_products' => 'Osredotočite se na izdelke z višjo stopnjo konverzije', 'great_performance' => 'Odlična uspešnost!',
+    'excellent_conversion_rate' => 'Vaša stopnja konverzije je odlična. Nadaljujte z dobrim delom!', 'good_performance' => 'Dobra uspešnost',
+    'average_conversion_rate' => 'Vaša stopnja konverzije je v povprečnem razponu. Prostor je za izboljšave.',
+    'ranges' => ['today' => 'Danes', 'this_week' => 'Ta teden', 'last_7_days' => 'Zadnjih 7 dni', 'last_30_days' => 'Zadnjih 30 dni', 'this_month' => 'Ta mesec', 'this_year' => 'Letos'],
+];

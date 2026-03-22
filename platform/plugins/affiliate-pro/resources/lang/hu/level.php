@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'menu_name' => 'Tagsági szintek',
+    'create' => 'Szint létrehozása',
+    'edit' => 'Szint szerkesztése :name',
+    'min_commission' => 'Minimális jutalék',
+    'max_commission' => 'Maximális jutalék',
+    'max_commission_help' => 'Hagyja üresen a korlátlanhoz',
+    'unlimited' => 'Korlátlan',
+    'commission_rate' => 'Jutalék mértéke',
+    'commission_rate_help' => 'Szorzó a jutalékokhoz (pl. 1.1 a 10% bónuszhoz)',
+    'benefits' => 'Előnyök',
+    'benefits_help' => 'Sorolja fel az előnyöket, soronként egyet',
+    'benefits_placeholder' => 'Elsőbbségi támogatás' . PHP_EOL . 'Magasabb jutalék mérték',
+    'next_level' => 'Következő szint: :name',
+    'commission_needed' => 'Még :amount jutalékra van szüksége a :name eléréséhez',
+    'tier_rules_tooltip' => 'Szerezzen jutalékot minden ajánlással a magasabb szintek és exkluzív jutalmak feloldásához. A szintek az összes megszerzett jutalék alapján kerülnek meghatározásra.',
+    'top_tier_reached' => 'Elérte a legmagasabb szintet',
+    'top_tier_message' => 'Elérte a legmagasabb affiliate szintet! Élvezze exkluzív előnyeit.',
+    'default_member' => 'Tag',
+    'member_since' => 'Tagság kezdete',
+    'no_benefits' => 'Kezdjen jutalékot keresni a szint előnyeinek feloldásához!',
+    'current_commission' => ':amount megszerzett',
+    'target_commission' => ':amount cél',
+];

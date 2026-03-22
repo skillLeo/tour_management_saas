@@ -846,6 +846,10 @@ class Ecommerce {
     }
 
     initProductGallery(onlyQuickView = false) {
+        if (typeof $.fn.slick === 'undefined') {
+            return
+        }
+
         if (!onlyQuickView) {
             const $gallery = $(document).find('.bb-product-gallery-images')
 
@@ -856,8 +860,22 @@ class Ecommerce {
             const $thumbnails = $(document).find('.bb-product-gallery-thumbnails')
 
             function postMessageToPlayer(player, command) {
-                if (player == null || command == null) return
-                player.contentWindow.postMessage(JSON.stringify(command), '*')
+                if (!player || !command || !player.src) {
+                    return
+                }
+
+                let origin
+
+                try {
+                    origin = new URL(player.src).origin
+                } catch (e) {
+                    return
+                }
+
+                player.contentWindow.postMessage(
+                    JSON.stringify(command),
+                    origin
+                )
             }
 
             function playPauseVideo(slick, control) {
@@ -942,6 +960,7 @@ class Ecommerce {
                 const $button = $(e.currentTarget)
                 const videoElement = document.getElementById($button.data('target'))
 
+                videoElement.muted = false
                 videoElement.play()
 
                 $button.closest('.bb-product-video').addClass('bb-product-video-playing')
@@ -1632,15 +1651,26 @@ class Ecommerce {
                     })
                 }
 
-                $galleryImages.find('.bb-product-gallery-thumbnails').slick('unslick').html(finalThumbHtml)
+                const $thumbnails = $galleryImages.find('.bb-product-gallery-thumbnails')
+                if ($.fn.slick && $thumbnails.length && $thumbnails.hasClass('slick-initialized')) {
+                    $thumbnails.slick('unslick')
+                }
+                $thumbnails.html(finalThumbHtml)
 
                 const $quickViewGalleryImages = $(document).find('.bb-quick-view-gallery-images')
 
                 if ($quickViewGalleryImages.length) {
-                    $quickViewGalleryImages.slick('unslick').html(finalImageHtml)
+                    if ($.fn.slick && $quickViewGalleryImages.hasClass('slick-initialized')) {
+                        $quickViewGalleryImages.slick('unslick')
+                    }
+                    $quickViewGalleryImages.html(finalImageHtml)
                 }
 
-                $galleryImages.find('.bb-product-gallery-images').slick('unslick').html(finalImageHtml)
+                const $galleryImagesSlider = $galleryImages.find('.bb-product-gallery-images')
+                if ($.fn.slick && $galleryImagesSlider.length && $galleryImagesSlider.hasClass('slick-initialized')) {
+                    $galleryImagesSlider.slick('unslick')
+                }
+                $galleryImagesSlider.html(finalImageHtml)
 
                 if (typeof EcommerceApp !== 'undefined') {
                     EcommerceApp.initProductGallery()

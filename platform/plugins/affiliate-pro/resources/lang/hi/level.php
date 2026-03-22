@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'menu_name' => 'सदस्य स्तर',
+    'create' => 'स्तर बनाएं',
+    'edit' => 'स्तर :name संपादित करें',
+    'min_commission' => 'न्यूनतम कमीशन',
+    'max_commission' => 'अधिकतम कमीशन',
+    'max_commission_help' => 'असीमित के लिए खाली छोड़ें',
+    'unlimited' => 'असीमित',
+    'commission_rate' => 'कमीशन दर',
+    'commission_rate_help' => 'कमीशन के लिए गुणक (उदाहरण: 10% बोनस के लिए 1.1)',
+    'benefits' => 'लाभ',
+    'benefits_help' => 'लाभ सूचीबद्ध करें, प्रति पंक्ति एक',
+    'benefits_placeholder' => 'प्राथमिकता सहायता' . PHP_EOL . 'उच्च कमीशन दर',
+    'next_level' => 'अगला स्तर: :name',
+    'commission_needed' => ':name तक पहुंचने के लिए आपको :amount और कमीशन की आवश्यकता है',
+    'tier_rules_tooltip' => 'उच्च स्तरों और विशेष पुरस्कारों को अनलॉक करने के लिए हर रेफ़रल से कमीशन कमाएं। स्तर आपके कुल अर्जित कमीशन पर आधारित हैं।',
+    'top_tier_reached' => 'शीर्ष स्तर प्राप्त',
+    'top_tier_message' => 'आपने उच्चतम एफिलिएट स्तर प्राप्त कर लिया है! अपने विशेष लाभों का आनंद लें।',
+    'default_member' => 'सदस्य',
+    'member_since' => 'से',
+    'no_benefits' => 'स्तर लाभ अनलॉक करने के लिए कमीशन कमाना शुरू करें!',
+    'current_commission' => ':amount कमाया',
+    'target_commission' => ':amount लक्ष्य',
+];

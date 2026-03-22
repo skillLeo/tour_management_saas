@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'name' => 'Modelo de Etiqueta de Envio',
-    'setting' => 'Configurações do Modelo de Etiqueta de Envio',
-    'setting_description' => 'Configurações para o modelo de Etiqueta de Envio',
+    'name' => 'Etiquetas de envio',
+    'setting' => 'Design e layout da etiqueta',
+    'setting_description' => 'Personalizar template HTML e estilos CSS da etiqueta de envio',
     'setting_content' => 'Conteúdo',
     'preview' => 'Visualizar',
     'preview_heading' => 'Visualizar modelo de Etiqueta de Envio',

@@ -1,0 +1,73 @@
+<?php
+
+return [
+    'name' => 'Отчёты',
+    'commission_this_month' => 'Комиссия в этом месяце',
+    'pending_commissions' => 'Ожидающие комиссии',
+    'approved_commissions' => 'Одобренные комиссии',
+    'pending_withdrawals' => 'Ожидающие выводы',
+    'approved_withdrawals' => 'Одобренные выводы',
+    'active_affiliates' => 'Активные партнёры',
+    'affiliate_stats' => 'Статистика партнёров',
+    'top_affiliates' => 'Лучшие партнёры',
+    'recent_commissions' => 'Последние комиссии',
+    'recent_withdrawals' => 'Последние выводы',
+    'commission_chart' => 'График комиссий',
+    'withdrawal_chart' => 'График выводов',
+
+    // Enhanced reports
+    'geographic_data' => 'Географические данные',
+    'top_countries' => 'Топ стран',
+    'top_cities' => 'Топ городов',
+    'short_link_performance' => 'Производительность коротких ссылок',
+    'top_performing_links' => 'Лучшие ссылки',
+    'link' => 'Ссылка',
+    'clicks' => 'Клики',
+    'conversions' => 'Конверсии',
+    'commission_trends' => 'Тренды комиссий',
+    'commission_amount' => 'Сумма комиссии',
+    'loading' => 'Загрузка...',
+    'no_data' => 'Нет данных',
+    'no_commission_data' => 'Нет данных о комиссиях за выбранный период',
+    'no_geographic_data' => 'Нет географических данных за выбранный период',
+    'no_city_data' => 'Нет данных о городах для выбранной страны',
+    'chart_error' => 'Ошибка при отрисовке графика. Попробуйте обновить страницу.',
+
+    // Performance metrics widget
+    'performance_metrics' => 'Метрики производительности',
+    'total_clicks' => 'Всего кликов',
+    'earnings' => 'Заработок',
+    'avg_commission' => 'Средняя комиссия',
+    'avg_conversion_rate' => 'Средний коэффициент конверсии',
+    'vs_previous' => 'по сравнению с предыдущим',
+    'no_change' => 'Без изменений',
+    'performance_over_time' => 'Производительность со временем',
+    'clicks_conversions' => 'Клики и конверсии',
+
+    // Conversion rate widget
+    'conversion_rate_analysis' => 'Анализ коэффициента конверсии',
+    'overall_conversion_rate' => 'Общий коэффициент конверсии',
+    'conversion_breakdown' => 'Разбивка конверсий',
+    'source' => 'Источник',
+    'rate' => 'Коэффициент',
+    'conversion_rate_percentage' => 'Коэффициент конверсии (%)',
+    'optimization_opportunity' => 'Возможность оптимизации',
+    'conversion_rate_below_average' => 'Ваш коэффициент конверсии ниже среднего. Рассмотрите эти советы:',
+    'target_relevant_audiences' => 'Ориентируйтесь на более релевантную аудиторию',
+    'improve_promotional_content' => 'Улучшите свой рекламный контент',
+    'focus_higher_conversion_products' => 'Сосредоточьтесь на товарах с более высокой конверсией',
+    'great_performance' => 'Отличная производительность!',
+    'excellent_conversion_rate' => 'Ваш коэффициент конверсии отличный. Продолжайте в том же духе!',
+    'good_performance' => 'Хорошая производительность',
+    'average_conversion_rate' => 'Ваш коэффициент конверсии в пределах среднего. Есть возможности для улучшения.',
+
+    // Date ranges (copied from ecommerce for consistency)
+    'ranges' => [
+        'today' => 'Сегодня',
+        'this_week' => 'На этой неделе',
+        'last_7_days' => 'Последние 7 дней',
+        'last_30_days' => 'Последние 30 дней',
+        'this_month' => 'В этом месяце',
+        'this_year' => 'В этом году',
+    ],
+];

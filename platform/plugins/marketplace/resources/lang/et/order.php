@@ -12,4 +12,16 @@ return [
     'return' => [
         'description' => 'Tagastatud tellimusest #:order',
     ],
+    'thank_you' => [
+        'count_orders' => ':count tellimust',
+        'order' => 'Tellimus',
+        'thank_you_name' => 'Täname, :name!',
+        'order_confirmed' => 'Teie tellimus on kinnitatud',
+        'order_accepted' => 'Oleme teie tellimuse vastu võtnud ja valmistame seda ette.',
+        'customer' => 'Klient',
+        'need_help' => 'Vajate abi?',
+        'contact_us' => 'Võtke meiega ühendust',
+        'view_order_history' => 'Vaata tellimuste ajalugu',
+        'order_total' => 'Tellimuse summa',
+    ],
 ];

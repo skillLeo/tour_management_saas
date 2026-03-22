@@ -68,4 +68,6 @@ return [
     'enable_light_mode' => 'Enable light mode',
     'enable_dark_mode' => 'Enable dark mode',
     'close' => 'Close',
+    'search_country' => 'Search country...',
+    'no_results' => 'No results found',
 ];

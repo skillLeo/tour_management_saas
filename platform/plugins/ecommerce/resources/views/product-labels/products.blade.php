@@ -25,7 +25,7 @@
                             {{ $product->name }}
                         </a>
                         <div class="text-secondary text-truncate">
-                            {{ format_price($product->sale_price ?: $product->price) }}
+                            {{ format_price($product->display_sale_price ?: $product->display_price) }}
                         </div>
                     </div>
                     <div class="col-auto">

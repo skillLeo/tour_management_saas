@@ -192,6 +192,7 @@ return [
         'order_date' => 'შეკვეთის თარიღი',
         'scan_qr_code' => 'სკანირეთ QR კოდი თქვენი გზავნილის თვალყურის დევნისთვის',
         'total_amount' => 'სრული თანხა',
+        'amount_to_collect' => 'შესაგროვებელი თანხა',
         'cod_amount_to_collect' => 'COD თანხა შესაგროვებლად',
     ],
     'customer_confirmed_delivery_at' => 'მომხმარებელმა დაადასტურა მიწოდება',

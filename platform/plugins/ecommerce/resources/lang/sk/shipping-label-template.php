@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'name' => 'Šablóna prepravného štítku',
-    'setting' => 'Nastavenia šablóny prepravného štítku',
-    'setting_description' => 'Nastavenia pre šablónu prepravného štítku',
+    'name' => 'Shipping Labels',
+    'setting' => 'Label design & layout',
+    'setting_description' => 'Customize shipping label HTML template and CSS styles',
     'setting_content' => 'Obsah',
     'preview' => 'Náhľad',
     'preview_heading' => 'Náhľad šablóny prepravného štítku',

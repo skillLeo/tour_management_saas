@@ -88,6 +88,8 @@ return [
     'total' => 'Totalt',
     'status' => 'Status',
     'default_payment_method' => 'Standardbetalningsmetod',
+    'sort_order_instruction' => 'Dra och släpp för att ändra ordning på betalningsmetoder på kassasidan.',
+    'default_method_instruction' => 'Klicka på stjärneikonet för att ange en betalningsmetod som standard.',
     'payment_logs' => 'Betalningsloggar',
     'request_data' => 'Förfrågningsdata',
     'response_data' => 'Svarsdata',

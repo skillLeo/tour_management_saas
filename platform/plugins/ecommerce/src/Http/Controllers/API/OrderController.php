@@ -112,6 +112,71 @@ class OrderController extends BaseApiController
     }
 
     /**
+     * Get order by checkout token
+     *
+     * @group Orders
+     *
+     * Public endpoint that returns order info by the checkout token.
+     * Used to display order info on the success page for guest users.
+     *
+     * @urlParam token string required The checkout token. Example: abc123def456
+     *
+     * @param string $token
+     * @return JsonResponse
+     */
+    public function showByToken(string $token)
+    {
+        $order = Order::query()
+            ->where('token', $token)
+            ->where('is_finished', 1)
+            ->with(['products', 'payment', 'address', 'shipment'])
+            ->latest('id')
+            ->first();
+
+        if (! $order) {
+            return $this
+                ->httpResponse()
+                ->setError()
+                ->setCode(404)
+                ->setMessage(__('Order not found'))
+                ->toApiResponse();
+        }
+
+        // Return a simplified response that doesn't require user relationship
+        $data = [
+            'id' => $order->id,
+            'code' => $order->code,
+            'status' => $order->status,
+            'status_html' => $order->status->toHtml(),
+            'customer' => [
+                'name' => $order->address?->name,
+                'email' => $order->address?->email,
+                'phone' => $order->address?->phone,
+            ],
+            'created_at' => $order->created_at->translatedFormat('Y-m-d\TH:i:sP'),
+            'amount' => $order->amount,
+            'amount_formatted' => format_price($order->amount),
+            'tax_amount' => $order->tax_amount,
+            'tax_amount_formatted' => format_price($order->tax_amount),
+            'shipping_amount' => $order->shipping_amount,
+            'shipping_amount_formatted' => format_price($order->shipping_amount),
+            'shipping_method' => $order->shipping_method,
+            'shipping_status' => $order->shipment?->status,
+            'shipping_status_html' => $order->shipment?->status?->toHtml(),
+            'payment_method' => $order->payment?->payment_channel,
+            'payment_status' => $order->payment?->status,
+            'payment_status_html' => $order->payment?->status?->toHtml(),
+            'products_count' => $order->products->count(),
+            'products' => [],
+        ];
+
+        return $this
+            ->httpResponse()
+            ->setData($data)
+            ->toApiResponse();
+    }
+
+    /**
      * Cancel an order
      *
      * @group Orders

@@ -1,0 +1,73 @@
+<?php
+
+return [
+    'name' => 'Отчети',
+    'commission_this_month' => 'Комисионна за този месец',
+    'pending_commissions' => 'Чакащи комисионни',
+    'approved_commissions' => 'Одобрени комисионни',
+    'pending_withdrawals' => 'Чакащи тегления',
+    'approved_withdrawals' => 'Одобрени тегления',
+    'active_affiliates' => 'Активни партньори',
+    'affiliate_stats' => 'Партньорска статистика',
+    'top_affiliates' => 'Топ партньори',
+    'recent_commissions' => 'Последни комисионни',
+    'recent_withdrawals' => 'Последни тегления',
+    'commission_chart' => 'Графика на комисионните',
+    'withdrawal_chart' => 'Графика на теглениата',
+
+    // Enhanced reports
+    'geographic_data' => 'Географски данни',
+    'top_countries' => 'Топ държави',
+    'top_cities' => 'Топ градове',
+    'short_link_performance' => 'Ефективност на къси линкове',
+    'top_performing_links' => 'Топ ефективни линкове',
+    'link' => 'Линк',
+    'clicks' => 'Кликвания',
+    'conversions' => 'Преобразувания',
+    'commission_trends' => 'Тенденции на комисионните',
+    'commission_amount' => 'Размер на комисионната',
+    'loading' => 'Зареждане...',
+    'no_data' => 'Няма налични данни',
+    'no_commission_data' => 'Няма налични данни за комисионни за избрания период',
+    'no_geographic_data' => 'Няма налични географски данни за избрания период',
+    'no_city_data' => 'Няма налични данни за градове за избраната държава',
+    'chart_error' => 'Грешка при изобразяване на графиката. Моля, опитайте да презаредите страницата.',
+
+    // Performance metrics widget
+    'performance_metrics' => 'Показатели за ефективност',
+    'total_clicks' => 'Общо кликвания',
+    'earnings' => 'Приходи',
+    'avg_commission' => 'Средна комисионна',
+    'avg_conversion_rate' => 'Среден процент на преобразуване',
+    'vs_previous' => 'спрямо предходния',
+    'no_change' => 'Без промяна',
+    'performance_over_time' => 'Ефективност във времето',
+    'clicks_conversions' => 'Кликвания и преобразувания',
+
+    // Conversion rate widget
+    'conversion_rate_analysis' => 'Анализ на процента на преобразуване',
+    'overall_conversion_rate' => 'Общ процент на преобразуване',
+    'conversion_breakdown' => 'Разбивка на преобразуванията',
+    'source' => 'Източник',
+    'rate' => 'Процент',
+    'conversion_rate_percentage' => 'Процент на преобразуване (%)',
+    'optimization_opportunity' => 'Възможност за оптимизация',
+    'conversion_rate_below_average' => 'Вашият процент на преобразуване е под средния. Обмислете тези съвети:',
+    'target_relevant_audiences' => 'Насочете се към по-релевантна аудитория',
+    'improve_promotional_content' => 'Подобрете вашето промоционално съдържание',
+    'focus_higher_conversion_products' => 'Фокусирайте се върху продукти с по-висок процент на преобразуване',
+    'great_performance' => 'Чудесна ефективност!',
+    'excellent_conversion_rate' => 'Вашият процент на преобразуване е отличен. Продължавайте по същия начин!',
+    'good_performance' => 'Добра ефективност',
+    'average_conversion_rate' => 'Вашият процент на преобразуване е в средния диапазон. Има място за подобрение.',
+
+    // Date ranges (copied from ecommerce for consistency)
+    'ranges' => [
+        'today' => 'Днес',
+        'this_week' => 'Тази седмица',
+        'last_7_days' => 'Последните 7 дни',
+        'last_30_days' => 'Последните 30 дни',
+        'this_month' => 'Този месец',
+        'this_year' => 'Тази година',
+    ],
+];

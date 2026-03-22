@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'name' => 'Predložak naljepnice za dostavu',
-    'setting' => 'Postavke predloška naljepnice za dostavu',
-    'setting_description' => 'Postavke za predložak naljepnice za dostavu',
+    'name' => 'Shipping Labels',
+    'setting' => 'Label design & layout',
+    'setting_description' => 'Customize shipping label HTML template and CSS styles',
     'setting_content' => 'Sadržaj',
     'preview' => 'Pregled',
     'preview_heading' => 'Pregled predloška naljepnice za dostavu',

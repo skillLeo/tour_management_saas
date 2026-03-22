@@ -53,8 +53,11 @@
                 </div>
             @endif
 
+            @php
+                $filteredProducts = apply_filters('marketplace_checkout_store_products', $grouped['products'], $store);
+            @endphp
             <div class="py-3">
-                @foreach ($grouped['products'] as $product)
+                @foreach ($filteredProducts as $product)
                     @include('plugins/ecommerce::orders.checkout.product', [
                         'product' => $product,
                         'cartItem' => $product->cartItem,
@@ -62,6 +65,8 @@
                     ])
                 @endforeach
             </div>
+
+            {!! apply_filters('marketplace_checkout_after_store_products', null, $grouped['products'], $store) !!}
 
             @if ($isAvailableShipping && MarketplaceHelper::isChargeShippingPerVendor())
                 <div class="shipping-method-wrapper py-3" @style(['display: none' => (bool) get_ecommerce_setting('disable_shipping_options', false)])>

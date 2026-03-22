@@ -108,8 +108,14 @@ return [
             'success_header' => 'Succès',
         ],
         'download' => [
-            'error' => 'Aucun fichier sélectionné ou impossibilité de télécharger ces fichiers',
+            'error' => 'No files selected or cannot download these files',
         ],
+
+        'move' => [
+            'select_destination' => 'Veuillez sélectionner un dossier de destination',
+            'same_location' => 'Les éléments sont déjà dans cet emplacement',
+        ],
+
         'actions_list' => [
             'basic' => [
                 'preview' => 'Aperçu',

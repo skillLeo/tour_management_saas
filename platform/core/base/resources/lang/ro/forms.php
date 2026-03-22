@@ -68,4 +68,6 @@ return [
     'enable_light_mode' => 'Activează modul luminos',
     'enable_dark_mode' => 'Activează modul întunecat',
     'close' => 'Închide',
+    'search_country' => 'Caută țara...',
+    'no_results' => 'Nu au fost găsite rezultate',
 ];

@@ -34,6 +34,7 @@ use Botble\Base\Widgets\Contracts\AdminWidget as AdminWidgetContract;
 use Botble\Setting\Providers\SettingServiceProvider;
 use Botble\Setting\Supports\SettingStore;
 use DateTimeZone;
+use Fruitcake\LaravelDebugbar\LaravelDebugbar;
 use Illuminate\Config\Repository;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Database\Schema\Builder;
@@ -116,6 +117,8 @@ class BaseServiceProvider extends ServiceProvider
         $this->overridePackagesConfigs();
 
         $this->app->booted(function (): void {
+            $this->overrideDebugbarConfig();
+
             do_action(BASE_ACTION_INIT);
         });
 
@@ -266,11 +269,6 @@ class BaseServiceProvider extends ServiceProvider
                     'password',
                 ],
             ],
-            'debugbar.enabled' => $this->app->hasDebugModeEnabled() &&
-                ! $this->app->runningInConsole() &&
-                ! $this->app->environment(['testing', 'production']),
-            'debugbar.capture_ajax' => false,
-            'debugbar.remote_sites_path' => '',
             'scribe.type' => 'static',
             'scribe.assets_directory' => 'vendor/core/packages/api',
             'scribe.routes' => [
@@ -379,6 +377,21 @@ class BaseServiceProvider extends ServiceProvider
             'database.connections.mysql.prefix' => Arr::get($baseConfig, 'db_prefix'),
             'excel.imports.ignore_empty' => true,
             'excel.imports.csv.input_encoding' => Arr::get($baseConfig, 'csv_import_input_encoding', 'UTF-8'),
+        ]);
+    }
+
+    protected function overrideDebugbarConfig(): void
+    {
+        if (! class_exists(LaravelDebugbar::class)) {
+            return;
+        }
+
+        $this->app['config']->set([
+            'debugbar.enabled' => $this->app->hasDebugModeEnabled() &&
+                ! $this->app->runningInConsole() &&
+                ! $this->app->environment(['testing', 'production']),
+            'debugbar.capture_ajax' => false,
+            'debugbar.remote_sites_path' => '',
         ]);
     }
 

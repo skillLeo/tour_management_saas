@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'name' => 'Fraktetikett-mal',
-    'setting' => 'Innstillinger for fraktetikett-mal',
-    'setting_description' => 'Innstillinger for fraktetikett-mal',
+    'name' => 'Shipping Labels',
+    'setting' => 'Label design & layout',
+    'setting_description' => 'Customize shipping label HTML template and CSS styles',
     'setting_content' => 'Innhold',
     'preview' => 'Forhåndsvisning',
     'preview_heading' => 'Forhåndsvisning av fraktetikett-mal',

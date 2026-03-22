@@ -12,4 +12,16 @@ return [
     'return' => [
         'description' => 'Palautettu tilauksesta #:order',
     ],
+    'thank_you' => [
+        'count_orders' => ':count tilausta',
+        'order' => 'Tilaus',
+        'thank_you_name' => 'Kiitos, :name!',
+        'order_confirmed' => 'Tilauksesi on vahvistettu',
+        'order_accepted' => 'Olemme vastaanottaneet tilauksesi ja valmistelemme sitä.',
+        'customer' => 'Asiakas',
+        'need_help' => 'Tarvitsetko apua?',
+        'contact_us' => 'Ota yhteyttä',
+        'view_order_history' => 'Näytä tilaushistoria',
+        'order_total' => 'Tilauksen summa',
+    ],
 ];

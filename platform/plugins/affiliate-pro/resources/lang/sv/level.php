@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'menu_name' => 'Medlemsnivåer',
+    'create' => 'Skapa nivå',
+    'edit' => 'Redigera nivå :name',
+    'min_commission' => 'Minsta provision',
+    'max_commission' => 'Högsta provision',
+    'max_commission_help' => 'Lämna tomt för obegränsad',
+    'unlimited' => 'Obegränsad',
+    'commission_rate' => 'Provisionssats',
+    'commission_rate_help' => 'Multiplikator för provision (t.ex. 1.1 för 10% bonus)',
+    'benefits' => 'Förmåner',
+    'benefits_help' => 'Lista förmåner, en per rad',
+    'benefits_placeholder' => 'Prioriterad support' . PHP_EOL . 'Högre provisionssats',
+    'next_level' => 'Nästa nivå: :name',
+    'commission_needed' => 'Du behöver :amount mer i provisioner för att nå :name',
+    'tier_rules_tooltip' => 'Tjäna provisioner med varje hänvisning för att låsa upp högre nivåer och exklusiva belöningar. Nivåer baseras på dina totalt intjänade provisioner.',
+    'top_tier_reached' => 'Högsta nivå uppnådd',
+    'top_tier_message' => 'Du har nått den högsta affiliate-nivån! Njut av dina exklusiva förmåner.',
+    'default_member' => 'Medlem',
+    'member_since' => 'Sedan',
+    'no_benefits' => 'Börja tjäna provisioner för att låsa upp nivåförmåner!',
+    'current_commission' => ':amount intjänat',
+    'target_commission' => ':amount mål',
+];

@@ -1,0 +1,66 @@
+<?php
+
+return [
+    'name' => 'Uttag',
+    'view' => 'Visa Uttag #:id',
+    'affiliate' => 'Partner',
+    'amount' => 'Belopp',
+    'status' => 'Status',
+    'payment_method' => 'Betalningsmetod',
+    'payment_details' => 'Betalningsdetaljer',
+    'notes' => 'Anteckningar',
+    'created_at' => 'Skapad Den',
+    'approve' => 'Godkänn',
+    'reject' => 'Avvisa',
+    'approve_success' => 'Uttag godkänt',
+    'reject_success' => 'Uttag avvisat',
+    'approve_withdrawal' => 'Godkänn Uttag',
+    'reject_withdrawal' => 'Avvisa Uttag',
+    'approve_withdrawal_confirmation' => 'Är du säker på att du vill godkänna uttag #:id? Denna åtgärd kan inte ångras.',
+    'reject_withdrawal_confirmation' => 'Är du säker på att du vill avvisa uttag #:id? Denna åtgärd kan inte ångras.',
+    'statuses' => [
+        'pending' => 'Väntande',
+        'processing' => 'Behandlas',
+        'approved' => 'Godkänt',
+        'rejected' => 'Avvisat',
+        'canceled' => 'Avbrutet',
+    ],
+
+    // Customer-facing translations
+    'request' => 'Uttagsbegäran',
+    'history' => 'Uttagshistorik',
+    'no_withdrawals' => 'Inga uttag hittades.',
+    'withdrawal_id' => 'Uttags-ID',
+    'date' => 'Datum',
+    'amount_required' => 'Uttagsbeloppet krävs.',
+    'amount_numeric' => 'Uttagsbeloppet måste vara ett nummer.',
+    'amount_min' => 'Uttagsbeloppet måste vara minst 0.',
+    'payment_method_required' => 'Betalningsmetoden krävs.',
+    'payment_details_required' => 'Betalningsdetaljerna krävs.',
+    'account_not_approved' => 'Ditt affiliate-konto är inte godkänt ännu.',
+    'minimum_amount' => 'Minsta uttagsbelopp är :amount.',
+    'insufficient_balance' => 'Du har inte tillräckligt saldo för detta uttag.',
+    'request_submitted' => 'Din uttagsbegäran har skickats in.',
+    'submit_request' => 'Skicka Uttagsbegäran',
+    'available_balance' => 'Tillgängligt Saldo',
+    'enter_amount' => 'Ange Belopp',
+    'select_payment_method' => 'Välj Betalningsmetod',
+    'payment_details_placeholder' => 'Ange dina betalningsdetaljer (t.ex. PayPal-e-post, bankkontodetaljer)',
+    'no_payment_methods_available' => 'Inga betalningsmetoder är för närvarande tillgängliga. Kontakta administratören.',
+
+    // Additional translations for PayoutPaymentMethodsEnum
+    'bank_transfer' => 'Banköverföring',
+    'paypal' => 'PayPal',
+    'stripe' => 'Stripe',
+    'other' => 'Annat',
+    'bank_information' => 'Bankinformation',
+    'paypal_id' => 'PayPal-ID',
+
+    // Payout payment methods
+    'payout_payment_methods' => [
+        'bank_transfer' => 'Banköverföring',
+        'paypal' => 'PayPal',
+        'stripe' => 'Stripe',
+        'other' => 'Annat',
+    ],
+];

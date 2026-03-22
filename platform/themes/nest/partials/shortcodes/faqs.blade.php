@@ -8,13 +8,13 @@
                 <div class="card">
                     <div class="card-header" id="heading-faq-{{ $categoryIndex }}-{{ $faqIndex }}">
                         <h2 class="mb-0">
-                            <button class="btn btn-link btn-block text-left @if (!($categoryIndex == 0 && $faqIndex == 0)) collapsed @endif" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-faq-{{ $categoryIndex }}-{{ $faqIndex }}" aria-expanded="true" aria-controls="collapse-faq-{{ $categoryIndex }}-{{ $faqIndex }}">
+                            <button class="btn btn-link w-100 text-start @if (!($categoryIndex == 0 && $faqIndex == 0)) collapsed @endif" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-faq-{{ $categoryIndex }}-{{ $faqIndex }}" aria-expanded="true" aria-controls="collapse-faq-{{ $categoryIndex }}-{{ $faqIndex }}">
                                 {!! BaseHelper::clean($faq->question) !!}
                             </button>
                         </h2>
                     </div>
 
-                    <div id="collapse-faq-{{ $categoryIndex }}-{{ $faqIndex }}" class="collapse @if ($categoryIndex == 0 && $faqIndex == 0) show @endif" aria-labelledby="heading-faq-{{ $categoryIndex }}-{{ $faqIndex }}" data-parent="#faq-accordion-{{ $categoryIndex }}">
+                    <div id="collapse-faq-{{ $categoryIndex }}-{{ $faqIndex }}" class="collapse @if ($categoryIndex == 0 && $faqIndex == 0) show @endif" aria-labelledby="heading-faq-{{ $categoryIndex }}-{{ $faqIndex }}" data-bs-parent="#faq-accordion-{{ $categoryIndex }}">
                         <div class="card-body">
                             {!! BaseHelper::clean($faq->answer) !!}
                         </div>

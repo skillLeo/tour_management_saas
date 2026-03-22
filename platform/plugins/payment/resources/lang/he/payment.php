@@ -88,6 +88,8 @@ return [
     'total' => 'סה"כ',
     'status' => 'סטטוס',
     'default_payment_method' => 'אמצעי תשלום ברירת מחדל',
+    'sort_order_instruction' => 'גרור ושחרר כדי לסדר מחדש את שיטות התשלום בדף התשלום.',
+    'default_method_instruction' => 'לחץ על סמל הכוכב כדי להגדיר שיטת תשלום כברירת מחדל.',
     'payment_logs' => 'יומני תשלום',
     'request_data' => 'נתוני בקשה',
     'response_data' => 'נתוני תגובה',

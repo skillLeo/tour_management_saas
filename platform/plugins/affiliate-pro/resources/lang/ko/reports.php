@@ -1,0 +1,73 @@
+<?php
+
+return [
+    'name' => '보고서',
+    'commission_this_month' => '이번 달 커미션',
+    'pending_commissions' => '대기 중인 커미션',
+    'approved_commissions' => '승인된 커미션',
+    'pending_withdrawals' => '대기 중인 출금',
+    'approved_withdrawals' => '승인된 출금',
+    'active_affiliates' => '활성 제휴 파트너',
+    'affiliate_stats' => '제휴 통계',
+    'top_affiliates' => '상위 제휴 파트너',
+    'recent_commissions' => '최근 커미션',
+    'recent_withdrawals' => '최근 출금',
+    'commission_chart' => '커미션 차트',
+    'withdrawal_chart' => '출금 차트',
+
+    // Enhanced reports
+    'geographic_data' => '지리 데이터',
+    'top_countries' => '상위 국가',
+    'top_cities' => '상위 도시',
+    'short_link_performance' => '단축 링크 성과',
+    'top_performing_links' => '최고 성과 링크',
+    'link' => '링크',
+    'clicks' => '클릭 수',
+    'conversions' => '전환 수',
+    'commission_trends' => '커미션 추세',
+    'commission_amount' => '커미션 금액',
+    'loading' => '로드 중...',
+    'no_data' => '데이터 없음',
+    'no_commission_data' => '선택한 기간의 커미션 데이터가 없습니다',
+    'no_geographic_data' => '선택한 기간의 지리 데이터가 없습니다',
+    'no_city_data' => '선택한 국가의 도시 데이터가 없습니다',
+    'chart_error' => '차트 렌더링 오류. 페이지를 새로고침해 주세요.',
+
+    // Performance metrics widget
+    'performance_metrics' => '성과 지표',
+    'total_clicks' => '총 클릭 수',
+    'earnings' => '수익',
+    'avg_commission' => '평균 커미션',
+    'avg_conversion_rate' => '평균 전환율',
+    'vs_previous' => '이전 대비',
+    'no_change' => '변화 없음',
+    'performance_over_time' => '시간별 성과',
+    'clicks_conversions' => '클릭 및 전환',
+
+    // Conversion rate widget
+    'conversion_rate_analysis' => '전환율 분석',
+    'overall_conversion_rate' => '전체 전환율',
+    'conversion_breakdown' => '전환 분석',
+    'source' => '출처',
+    'rate' => '비율',
+    'conversion_rate_percentage' => '전환율 (%)',
+    'optimization_opportunity' => '최적화 기회',
+    'conversion_rate_below_average' => '전환율이 평균보다 낮습니다. 다음 팁을 고려하세요:',
+    'target_relevant_audiences' => '더 관련성 높은 청중을 타겟팅하세요',
+    'improve_promotional_content' => '프로모션 콘텐츠를 개선하세요',
+    'focus_higher_conversion_products' => '전환율이 높은 제품에 집중하세요',
+    'great_performance' => '훌륭한 성과!',
+    'excellent_conversion_rate' => '전환율이 우수합니다. 계속 잘하세요!',
+    'good_performance' => '좋은 성과',
+    'average_conversion_rate' => '전환율이 평균 범위 내에 있습니다. 개선의 여지가 있습니다.',
+
+    // Date ranges (copied from ecommerce for consistency)
+    'ranges' => [
+        'today' => '오늘',
+        'this_week' => '이번 주',
+        'last_7_days' => '지난 7일',
+        'last_30_days' => '지난 30일',
+        'this_month' => '이번 달',
+        'this_year' => '올해',
+    ],
+];

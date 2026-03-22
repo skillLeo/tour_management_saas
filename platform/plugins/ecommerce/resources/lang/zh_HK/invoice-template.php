@@ -2,8 +2,8 @@
 
 return [
     'name' => '發票範本',
-    'setting' => '發票範本設定',
-    'setting_description' => '發票範本的設定',
+    'setting' => 'Template design & layout',
+    'setting_description' => 'Customize invoice HTML template and CSS styles',
     'setting_content' => '內容',
     'preview' => '預覽',
     'preview_heading' => '預覽發票範本',

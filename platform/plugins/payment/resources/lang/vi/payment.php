@@ -89,6 +89,8 @@ return [
     'total' => 'Tổng cộng',
     'status' => 'Trạng thái',
     'default_payment_method' => 'Phương thức thanh toán mặc định',
+    'sort_order_instruction' => 'Kéo và thả để sắp xếp lại thứ tự các phương thức thanh toán trên trang thanh toán.',
+    'default_method_instruction' => 'Nhấp vào biểu tượng ngôi sao để đặt phương thức thanh toán mặc định.',
     'payment_logs' => 'Nhật ký thanh toán',
     'request_data' => 'Dữ liệu yêu cầu',
     'response_data' => 'Dữ liệu phản hồi',

@@ -192,6 +192,92 @@
                 </div>
             </div>
         </div>
+
+        @if ($orderReturn->images && count($orderReturn->images))
+            <!-- Return Images Card -->
+            <div class="bb-customer-card order-return-images-card mt-4">
+                <div class="bb-customer-card-header">
+                    <h5 class="bb-customer-card-title h6 mb-0">
+                        <x-core::icon name="ti ti-photo" class="me-1" />
+                        {{ trans('plugins/ecommerce::order.return_images') }}
+                        <span class="badge bg-secondary ms-1" style="font-size: 11px;">{{ count($orderReturn->images) }}</span>
+                    </h5>
+                </div>
+
+                <div class="bb-customer-card-body pt-3">
+                    <div class="return-images-gallery">
+                        @foreach ($orderReturn->images as $index => $image)
+                            <a
+                                href="{{ RvMedia::getImageUrl($image) }}"
+                                target="_blank"
+                                class="return-image-item"
+                                title="{{ trans('plugins/ecommerce::order.return_image') }} {{ $index + 1 }}"
+                            >
+                                <img
+                                    src="{{ RvMedia::getImageUrl($image, 'thumb') }}"
+                                    alt="{{ trans('plugins/ecommerce::order.return_image') }} {{ $index + 1 }}"
+                                >
+                                <span class="return-image-overlay">
+                                    <x-core::icon name="ti ti-zoom-in" />
+                                </span>
+                            </a>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+
+            <style>
+                .return-images-gallery {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 12px;
+                }
+                .return-image-item {
+                    position: relative;
+                    width: 100px;
+                    height: 100px;
+                    border-radius: 8px;
+                    overflow: hidden;
+                    border: 2px solid #e5e7eb;
+                    transition: all 0.2s ease;
+                    display: block;
+                }
+                .return-image-item:hover {
+                    border-color: var(--primary-color, #0d6efd);
+                    transform: translateY(-2px);
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                }
+                .return-image-item img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+                .return-image-overlay {
+                    position: absolute;
+                    inset: 0;
+                    background: rgba(0, 0, 0, 0.5);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    opacity: 0;
+                    transition: opacity 0.2s ease;
+                }
+                .return-image-overlay svg {
+                    width: 24px;
+                    height: 24px;
+                    color: #fff;
+                }
+                .return-image-item:hover .return-image-overlay {
+                    opacity: 1;
+                }
+                @media (max-width: 576px) {
+                    .return-image-item {
+                        width: 80px;
+                        height: 80px;
+                    }
+                }
+            </style>
+        @endif
     </div>
 @else
     <div class="bb-empty">

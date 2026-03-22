@@ -138,7 +138,7 @@ class ShippingMethodController extends BaseController
     {
         $shipping = Shipping::query()->findOrFail($request->input('shipping_id'));
 
-        if (! $shipping->country && in_array($request->input('type'), [ShippingRuleTypeEnum::BASED_ON_ZIPCODE, ShippingRuleTypeEnum::BASED_ON_LOCATION])) {
+        if (! $shipping->country && in_array($request->input('type'), [ShippingRuleTypeEnum::BASED_ON_ZIPCODE, ShippingRuleTypeEnum::BASED_ON_ZIPCODE_AND_WEIGHT, ShippingRuleTypeEnum::BASED_ON_LOCATION])) {
             return $this
                 ->httpResponse()
                 ->setError()

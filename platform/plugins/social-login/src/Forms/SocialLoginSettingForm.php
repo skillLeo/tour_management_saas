@@ -63,13 +63,15 @@ class SocialLoginSettingForm extends SettingForm
                     );
             }
 
+            $callbackUrl = apply_filters('social_login_callback_url', route('auth.social.callback', $provider), $provider);
+
             $this
                 ->add(
                     'social_login_' . $provider . '_helper',
                     AlertField::class,
                     AlertFieldOption::make()
                         ->content(BaseHelper::clean($item['label']['helper'] ?? trans('plugins/social-login::social-login.settings.' . $provider . '.helper', [
-                            'callback' => '<code class=\'text-danger\'>' . route('auth.social.callback', $provider) . '</code>',
+                            'callback' => '<code class=\'text-danger\'>' . $callbackUrl . '</code>',
                         ])))
                 )
                 ->when($provider === 'facebook', function (FormAbstract $form): void {

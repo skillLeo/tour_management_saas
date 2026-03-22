@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'name' => '運送標籤範本',
-    'setting' => '運送標籤範本設定',
-    'setting_description' => '運送標籤範本的設定',
+    'name' => 'Shipping Labels',
+    'setting' => 'Label design & layout',
+    'setting_description' => 'Customize shipping label HTML template and CSS styles',
     'setting_content' => '內容',
     'preview' => '預覽',
     'preview_heading' => '預覽運送標籤範本',

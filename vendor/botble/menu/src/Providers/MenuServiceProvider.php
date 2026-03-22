@@ -50,28 +50,30 @@ class MenuServiceProvider extends ServiceProvider
             ->loadMigrations()
             ->publishAssets();
 
-        DashboardMenu::default()->beforeRetrieving(function (): void {
-            DashboardMenu::make()
-                ->registerItem(
-                    DashboardMenuItem::make()
-                        ->id('cms-core-menu')
-                        ->parentId('cms-core-appearance')
-                        ->priority(2)
-                        ->name('packages/menu::menu.name')
-                        ->icon('ti ti-tournament')
-                        ->route('menus.index')
-                        ->permissions('menus.index')
-                );
-        });
+        if (! $this->app['config']->get('core.base.general.disable_front_theme')) {
+            DashboardMenu::default()->beforeRetrieving(function (): void {
+                DashboardMenu::make()
+                    ->registerItem(
+                        DashboardMenuItem::make()
+                            ->id('cms-core-menu')
+                            ->parentId('cms-core-appearance')
+                            ->priority(2)
+                            ->name('packages/menu::menu.name')
+                            ->icon('ti ti-tournament')
+                            ->route('menus.index')
+                            ->permissions('menus.index')
+                    );
+            });
 
-        $this->app['events']->listen(RenderingAdminBar::class, function (): void {
-            AdminBar::registerLink(
-                trans('packages/menu::menu.name'),
-                route('menus.index'),
-                'appearance',
-                'menus.index'
-            );
-        });
+            $this->app['events']->listen(RenderingAdminBar::class, function (): void {
+                AdminBar::registerLink(
+                    trans('packages/menu::menu.name'),
+                    route('menus.index'),
+                    'appearance',
+                    'menus.index'
+                );
+            });
+        }
 
         $this->app['events']->listen('cms.menu::registering-locations', function (): void {
             Menu::addMenuLocation('main-menu', trans('packages/menu::menu.main_navigation'));

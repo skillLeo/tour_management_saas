@@ -2,12 +2,20 @@
     /** @var \Botble\Table\Abstracts\TableAbstract $table */
     /** @var \Botble\Table\Abstracts\TableActionAbstract[] $actions */
     /** @var \Illuminate\Database\Eloquent\Model $model */
+
+    $renderedActions = collect($actions)
+        ->map(fn ($action) => ['action' => $action, 'html' => (string) $action->setItem($model)])
+        ->filter(fn ($item) => $item['html'] !== '');
+
+    $visibleCount = $renderedActions->count();
+    $showAsDropdown = $table->hasDisplayActionsAsDropdown()
+        && $visibleCount > $table->getDisplayActionsAsDropdownWhenActionsMoresThan();
 @endphp
 
 <div class="table-actions">
-    @if (!$table->hasDisplayActionsAsDropdown())
-        @foreach ($actions as $action)
-            {{ $action->setItem($model) }}
+    @if (!$showAsDropdown)
+        @foreach ($renderedActions as $item)
+            {!! $item['html'] !!}
         @endforeach
     @else
         <div class="dropdown">
@@ -22,11 +30,11 @@
                 {{ trans('core/base::tables.action') }}
             </button>
             <div
-                class="dropdown-menu"
+                class="dropdown-menu dropdown-menu-end"
                 aria-labelledby="{{ $id }}"
             >
-                @foreach ($actions as $action)
-                    {{ $action->setItem($model)->displayAsDropdownItem() }}
+                @foreach ($renderedActions as $item)
+                    {{ $item['action']->setItem($model)->displayAsDropdownItem() }}
                 @endforeach
             </div>
         </div>

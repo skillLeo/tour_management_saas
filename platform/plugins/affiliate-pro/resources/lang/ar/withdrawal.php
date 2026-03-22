@@ -1,0 +1,66 @@
+<?php
+
+return [
+    'name' => 'المسحوبات',
+    'view' => 'عرض السحب #:id',
+    'affiliate' => 'المسوق',
+    'amount' => 'المبلغ',
+    'status' => 'الحالة',
+    'payment_method' => 'طريقة الدفع',
+    'payment_details' => 'تفاصيل الدفع',
+    'notes' => 'ملاحظات',
+    'created_at' => 'تم الإنشاء في',
+    'approve' => 'موافقة',
+    'reject' => 'رفض',
+    'approve_success' => 'تمت الموافقة على السحب بنجاح',
+    'reject_success' => 'تم رفض السحب بنجاح',
+    'approve_withdrawal' => 'الموافقة على السحب',
+    'reject_withdrawal' => 'رفض السحب',
+    'approve_withdrawal_confirmation' => 'هل أنت متأكد من رغبتك في الموافقة على السحب #:id؟ لا يمكن التراجع عن هذا الإجراء.',
+    'reject_withdrawal_confirmation' => 'هل أنت متأكد من رغبتك في رفض السحب #:id؟ لا يمكن التراجع عن هذا الإجراء.',
+    'statuses' => [
+        'pending' => 'معلق',
+        'processing' => 'قيد المعالجة',
+        'approved' => 'موافق عليه',
+        'rejected' => 'مرفوض',
+        'canceled' => 'ملغي',
+    ],
+
+    // Customer-facing translations
+    'request' => 'طلب سحب',
+    'history' => 'سجل السحب',
+    'no_withdrawals' => 'لم يتم العثور على مسحوبات.',
+    'withdrawal_id' => 'رقم السحب',
+    'date' => 'التاريخ',
+    'amount_required' => 'مبلغ السحب مطلوب.',
+    'amount_numeric' => 'يجب أن يكون مبلغ السحب رقماً.',
+    'amount_min' => 'يجب أن يكون مبلغ السحب على الأقل 0.',
+    'payment_method_required' => 'طريقة الدفع مطلوبة.',
+    'payment_details_required' => 'تفاصيل الدفع مطلوبة.',
+    'account_not_approved' => 'لم تتم الموافقة على حساب المسوق الخاص بك بعد.',
+    'minimum_amount' => 'الحد الأدنى لمبلغ السحب هو :amount.',
+    'insufficient_balance' => 'ليس لديك رصيد كافٍ لهذا السحب.',
+    'request_submitted' => 'تم تقديم طلب السحب الخاص بك بنجاح.',
+    'submit_request' => 'إرسال طلب سحب',
+    'available_balance' => 'الرصيد المتاح',
+    'enter_amount' => 'أدخل المبلغ',
+    'select_payment_method' => 'اختر طريقة الدفع',
+    'payment_details_placeholder' => 'أدخل تفاصيل الدفع الخاصة بك (مثل: بريد PayPal الإلكتروني، تفاصيل الحساب البنكي)',
+    'no_payment_methods_available' => 'لا توجد طرق دفع متاحة حالياً. يرجى الاتصال بالمدير.',
+
+    // Additional translations for PayoutPaymentMethodsEnum
+    'bank_transfer' => 'تحويل بنكي',
+    'paypal' => 'PayPal',
+    'stripe' => 'Stripe',
+    'other' => 'أخرى',
+    'bank_information' => 'معلومات البنك',
+    'paypal_id' => 'معرف PayPal',
+
+    // Payout payment methods
+    'payout_payment_methods' => [
+        'bank_transfer' => 'تحويل بنكي',
+        'paypal' => 'PayPal',
+        'stripe' => 'Stripe',
+        'other' => 'أخرى',
+    ],
+];

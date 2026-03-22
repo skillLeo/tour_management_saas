@@ -55,6 +55,12 @@ return [
     'selected_items_move_success' => 'Τα επιλεγμένα στοιχεία μετακινήθηκαν στο :name επιτυχώς!',
     'selected_items_move_error' => 'Σφάλμα κατά τη μετακίνηση των επιλεγμένων στοιχείων στο :name',
     'destination' => 'Προορισμός',
+    'move' => 'Move',
+    'move_items' => 'Move items',
+    'move_here' => 'Move here',
+    'move_to_root' => 'Move to root folder',
+    'root' => 'Root',
+    'go_up' => 'Go up',
     'restore_error' => 'Σφάλμα κατά την επαναφορά των επιλεγμένων στοιχείων',
     'restore_success' => 'Τα επιλεγμένα στοιχεία επαναφέρθηκαν επιτυχώς!',
     'copy_success' => 'Τα επιλεγμένα στοιχεία αντιγράφηκαν επιτυχώς!',
@@ -133,7 +139,12 @@ return [
         ],
 
         'download' => [
-            'error' => 'Δεν επιλέχθηκαν αρχεία ή αδυναμία λήψης αυτών των αρχείων',
+            'error' => 'No files selected or cannot download these files',
+        ],
+
+        'move' => [
+            'select_destination' => 'Please select a destination folder',
+            'same_location' => 'Items are already in this location',
         ],
 
         'actions_list' => [

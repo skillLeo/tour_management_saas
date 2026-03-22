@@ -25,11 +25,13 @@ use Botble\Ecommerce\Listeners\ClearShippingRuleCache;
 use Botble\Ecommerce\Listeners\GenerateInvoiceListener;
 use Botble\Ecommerce\Listeners\GenerateLicenseCodeAfterOrderCompleted;
 use Botble\Ecommerce\Listeners\HandleDiscountUsageOnOrderCompletion;
+use Botble\Ecommerce\Listeners\LinkCartOnRegistration;
 use Botble\Ecommerce\Listeners\MarkCartAsRecovered;
 use Botble\Ecommerce\Listeners\OrderCancelledNotification;
 use Botble\Ecommerce\Listeners\OrderCreatedNotification;
 use Botble\Ecommerce\Listeners\OrderPaymentConfirmedNotification;
 use Botble\Ecommerce\Listeners\OrderReturnedNotification;
+use Botble\Ecommerce\Listeners\PersistCartOnLogout;
 use Botble\Ecommerce\Listeners\RegisterEcommerceWidget;
 use Botble\Ecommerce\Listeners\RenderingSiteMapListener;
 use Botble\Ecommerce\Listeners\SaveProductFaqListener;
@@ -47,6 +49,7 @@ use Botble\Ecommerce\Listeners\SendWebhookWhenOrderPlaced;
 use Botble\Ecommerce\Listeners\SendWebhookWhenOrderUpdated;
 use Botble\Ecommerce\Listeners\SendWebhookWhenPaymentStatusUpdated;
 use Botble\Ecommerce\Listeners\SendWebhookWhenShippingStatusUpdated;
+use Botble\Ecommerce\Listeners\SyncCartOnLogin;
 use Botble\Ecommerce\Listeners\SyncProductSlug;
 use Botble\Ecommerce\Listeners\UpdateInvoiceAndShippingWhenOrderCancelled;
 use Botble\Ecommerce\Listeners\UpdateInvoiceWhenOrderCompleted;
@@ -55,9 +58,11 @@ use Botble\Ecommerce\Listeners\UpdateProductVariationInfo;
 use Botble\Ecommerce\Listeners\UpdateProductView;
 use Botble\Ecommerce\Services\HandleApplyCouponService;
 use Botble\Ecommerce\Services\HandleApplyProductCrossSaleService;
+use Botble\Ecommerce\Services\HandleApplyProductUpSaleService;
 use Botble\Ecommerce\Services\HandleRemoveCouponService;
 use Botble\Slug\Events\UpdatedSlugEvent;
 use Botble\Theme\Events\RenderingSiteMapEvent;
+use Illuminate\Auth\Events\Login;
 use Illuminate\Auth\Events\Logout;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -88,8 +93,15 @@ class EventServiceProvider extends ServiceProvider
         DeletedContentEvent::class => [
             ClearShippingRuleCache::class,
         ],
+        Login::class => [
+            SyncCartOnLogin::class,
+        ],
+        Logout::class => [
+            PersistCartOnLogout::class,
+        ],
         Registered::class => [
             SendMailsAfterCustomerRegistered::class,
+            LinkCartOnRegistration::class,
         ],
         CustomerEmailVerified::class => [
             SendMailsAfterCustomerEmailVerified::class,
@@ -156,6 +168,11 @@ class EventServiceProvider extends ServiceProvider
         $events->listen(
             ['cart.added', 'cart.updated'],
             fn () => $this->app->make(HandleApplyProductCrossSaleService::class)->handle()
+        );
+
+        $events->listen(
+            ['cart.added', 'cart.updated'],
+            fn () => $this->app->make(HandleApplyProductUpSaleService::class)->handle()
         );
 
         $events->listen(

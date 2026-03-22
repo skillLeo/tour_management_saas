@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'name' => 'Toimitustarra-pohja',
-    'setting' => 'Toimitustarra-pohjan asetukset',
-    'setting_description' => 'Toimitustarra-pohjan asetukset',
+    'name' => 'Shipping Labels',
+    'setting' => 'Label design & layout',
+    'setting_description' => 'Customize shipping label HTML template and CSS styles',
     'setting_content' => 'Sisältö',
     'preview' => 'Esikatselu',
     'preview_heading' => 'Toimitustarra-pohjan esikatselu',

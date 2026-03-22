@@ -192,6 +192,7 @@ return [
         'order_date' => 'Datum naročila',
         'scan_qr_code' => 'Skeniraj QR kodo za sledenje vaši pošiljki',
         'total_amount' => 'Skupni znesek',
+        'amount_to_collect' => 'Znesek za pobiranje',
         'cod_amount_to_collect' => 'Znesek COD za pobiranje',
     ],
     'customer_confirmed_delivery_at' => 'Stranka je potrdila dostavo ob',

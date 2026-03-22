@@ -10,7 +10,9 @@ use Botble\Ecommerce\Enums\InvoiceStatusEnum;
 use Botble\Ecommerce\Facades\EcommerceHelper as EcommerceHelperFacade;
 use Botble\Ecommerce\Models\Invoice;
 use Botble\Ecommerce\Models\InvoiceItem;
+use Botble\Ecommerce\Models\InvoiceItemTaxComponent;
 use Botble\Ecommerce\Models\Order;
+use Botble\Ecommerce\Models\OrderProduct;
 use Botble\Ecommerce\Models\Product;
 use Botble\Location\Models\City;
 use Botble\Location\Models\State;
@@ -60,6 +62,7 @@ class InvoiceHelper
             'paid_at' => Carbon::now(),
             'tax_amount' => $order->tax_amount ?: 0,
             'shipping_amount' => $order->shipping_amount ?: 0,
+            'shipping_tax_amount' => $order->shipping_tax_amount ?: 0,
             'payment_fee' => $order->payment_fee,
             'discount_amount' => $order->discount_amount ?: 0,
             'sub_total' => $order->sub_total,
@@ -86,7 +89,7 @@ class InvoiceHelper
         $invoice->save();
 
         foreach ($order->products as $orderProduct) {
-            $invoice->items()->create([
+            $invoiceItem = $invoice->items()->create([
                 'reference_id' => $orderProduct->product_id,
                 'reference_type' => Product::class,
                 'name' => $orderProduct->product_name,
@@ -108,6 +111,8 @@ class InvoiceHelper
                     ] : [],
                 ),
             ]);
+
+            $this->copyTaxComponentsToInvoiceItem($orderProduct, $invoiceItem);
         }
 
         do_action(INVOICE_PAYMENT_CREATED, $invoice);
@@ -308,9 +313,18 @@ class InvoiceHelper
             'invoice_payment_info_filter' => apply_filters('invoice_payment_info_filter', null, $invoice),
             'tax_classes_name' => $invoice->taxClassesName,
             'tax_groups' => $taxGroups,
+            'tax_component_summary' => apply_filters(
+                'ecommerce_invoice_tax_summary_rows',
+                $invoice->taxComponentsSummary(),
+                $invoice
+            ),
+            'tax_legal_text' => BaseHelper::clean(
+                (string) apply_filters('ecommerce_invoice_tax_legal_text', '', $invoice)
+            ),
             'has_multiple_products' => $hasMultipleProducts,
             'has_product_options' => $hasProductOptions,
             'summary_colspan' => 4 + ($hasMultipleProducts ? 1 : 0),
+            'shipping_tax_amount' => $invoice->shipping_tax_amount ?: 0,
         ];
 
         $data['settings']['font_css'] = null;
@@ -530,5 +544,32 @@ class InvoiceHelper
     public function getInvoiceDownloadUrl(Invoice $invoice): string
     {
         return route('customer.invoices.generate_invoice', $invoice->getKey());
+    }
+
+    protected function copyTaxComponentsToInvoiceItem(OrderProduct $orderProduct, InvoiceItem $invoiceItem): void
+    {
+        $orderProduct->loadMissing('taxComponents');
+
+        if ($orderProduct->taxComponents->isEmpty()) {
+            return;
+        }
+
+        $componentsData = [];
+
+        foreach ($orderProduct->taxComponents as $component) {
+            $componentsData[] = [
+                'invoice_item_id' => $invoiceItem->id,
+                'name' => $component->name,
+                'code' => $component->code,
+                'rate' => $component->rate,
+                'amount' => $component->amount,
+                'jurisdiction' => $component->jurisdiction,
+                'metadata' => $component->metadata ? json_encode($component->metadata) : null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ];
+        }
+
+        InvoiceItemTaxComponent::query()->insert($componentsData);
     }
 }

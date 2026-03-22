@@ -347,6 +347,17 @@ return [
     ],
 
     [
+        'name' => 'Customer Carts',
+        'flag' => 'ecommerce.customer-carts.index',
+        'parent_flag' => 'plugins.ecommerce',
+    ],
+    [
+        'name' => 'Delete',
+        'flag' => 'ecommerce.customer-carts.destroy',
+        'parent_flag' => 'ecommerce.customer-carts.index',
+    ],
+
+    [
         'name' => 'Flash sales',
         'flag' => 'flash-sale.index',
         'parent_flag' => 'plugins.ecommerce',
@@ -594,6 +605,11 @@ return [
         'parent_flag' => 'tools.data-synchronize',
     ],
     [
+        'name' => 'Import Product License Codes',
+        'flag' => 'product-license-codes.import',
+        'parent_flag' => 'tools.data-synchronize',
+    ],
+    [
         'name' => 'Export Orders',
         'flag' => 'orders.export',
         'parent_flag' => 'tools.data-synchronize',
@@ -663,5 +679,15 @@ return [
         'name' => 'Delete',
         'flag' => 'ecommerce.specification-tables.destroy',
         'parent_flag' => 'ecommerce.specification-tables.index',
+    ],
+    [
+        'name' => 'Import Product Specifications',
+        'flag' => 'ecommerce.product-specifications.import',
+        'parent_flag' => 'ecommerce.product-specification.index',
+    ],
+    [
+        'name' => 'Export Product Specifications',
+        'flag' => 'ecommerce.product-specifications.export',
+        'parent_flag' => 'ecommerce.product-specification.index',
     ],
 ];

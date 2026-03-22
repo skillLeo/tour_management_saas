@@ -88,6 +88,8 @@ return [
     'total' => 'Total',
     'status' => 'Status',
     'default_payment_method' => 'Metodă de plată implicită',
+    'sort_order_instruction' => 'Trageți și plasați pentru a reordona metodele de plată pe pagina de finalizare a comenzii.',
+    'default_method_instruction' => 'Faceți clic pe pictograma stea pentru a seta o metodă de plată implicită.',
     'payment_logs' => 'Jurnale de plată',
     'request_data' => 'Date cerere',
     'response_data' => 'Date răspuns',

@@ -2,8 +2,8 @@
 
 return [
     'name' => 'Fakturamal',
-    'setting' => 'Innstillinger for fakturamal',
-    'setting_description' => 'Innstillinger for fakturamal',
+    'setting' => 'Template design & layout',
+    'setting_description' => 'Customize invoice HTML template and CSS styles',
     'setting_content' => 'Innhold',
     'preview' => 'Forhåndsvisning',
     'preview_heading' => 'Forhåndsvisning av fakturamal',

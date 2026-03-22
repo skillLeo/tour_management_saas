@@ -26,6 +26,8 @@ return [
     'categories' => 'Kategorier',
     'category' => 'Kategori',
     'author' => 'Forfatter',
+    'author_helper' => 'Select an author from admin users.',
+    'select_author' => 'Select author',
     'is_featured' => 'Er fremhævet?',
     'export' => [
         'description' => 'Eksporter indlæg til CSV/Excel-fil.',

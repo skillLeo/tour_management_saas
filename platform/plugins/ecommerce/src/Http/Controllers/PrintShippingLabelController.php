@@ -87,7 +87,6 @@ class PrintShippingLabelController extends BaseController
             && $order->payment
             && $order->payment->id
             && $order->payment->payment_channel == PaymentMethodEnum::COD;
-        $totalCollectableAmount = $isCOD ? $order->amount : 0;
         $codAmount = $isCOD ? $order->amount : 0;
 
         $extraCss = apply_filters('ecommerce_shipping_label_extra_css', null, $shipment);
@@ -113,7 +112,7 @@ class PrintShippingLabelController extends BaseController
                     'created_at' => BaseHelper::formatDate($shipment->created_at),
                     'shipping_method' => $order->shipping_method_name,
                     'shipping_fee' => format_price($shipment->price),
-                    'total_collectable_amount' => format_price($totalCollectableAmount),
+                    'total_collectable_amount' => format_price($codAmount),
                     'cod_amount' => format_price($codAmount),
                     'is_cod' => $isCOD,
                     'shipping_company_name' => $shipment->shipping_company_name,

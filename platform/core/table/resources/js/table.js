@@ -333,6 +333,17 @@
             this.init()
             this.handleActionsRow()
             this.handleActionsExport()
+            this.handleDropdownOverflow()
+        }
+
+        handleDropdownOverflow() {
+            $(document).on('show.bs.dropdown', '.table-actions .dropdown', (event) => {
+                $(event.currentTarget).closest('.table-responsive').addClass('dropdown-visible')
+            })
+
+            $(document).on('hide.bs.dropdown', '.table-actions .dropdown', (event) => {
+                $(event.currentTarget).closest('.table-responsive').removeClass('dropdown-visible')
+            })
         }
 
         init() {

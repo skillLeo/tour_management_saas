@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'name' => 'Template ng Label ng Paghahatid',
-    'setting' => 'Mga Setting ng Template ng Label ng Paghahatid',
-    'setting_description' => 'Mga setting para sa template ng Label ng Paghahatid',
+    'name' => 'Shipping Labels',
+    'setting' => 'Label design & layout',
+    'setting_description' => 'Customize shipping label HTML template and CSS styles',
     'setting_content' => 'Nilalaman',
     'preview' => 'Preview',
     'preview_heading' => 'I-preview ang template ng Label ng Paghahatid',

@@ -22,4 +22,6 @@ return [
     '503_temporarily_down' => 'Temporalmente fuera de servicio por mantenimiento',
     '503_admin_instruction' => 'Si es el administrador y no puede acceder a su sitio después de habilitar el modo de mantenimiento, solo necesita eliminar el archivo <strong>storage/framework/down</strong> para desactivar el modo de mantenimiento.',
     'take_me_home' => 'Llévame a casa',
+    'bad_request' => 'Solicitud incorrecta',
+
 ];

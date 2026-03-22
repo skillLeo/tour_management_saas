@@ -1,0 +1,25 @@
+<?php
+
+return [
+    'name' => 'Извештаји', 'commission_this_month' => 'Провизија овог месеца', 'pending_commissions' => 'Провизије на чекању',
+    'approved_commissions' => 'Одобрене провизије', 'pending_withdrawals' => 'Повлачења на чекању', 'approved_withdrawals' => 'Одобрена повлачења',
+    'active_affiliates' => 'Активни партнери', 'affiliate_stats' => 'Статистика партнера', 'top_affiliates' => 'Најбољи партнери',
+    'recent_commissions' => 'Недавне провизије', 'recent_withdrawals' => 'Недавна повлачења', 'commission_chart' => 'Графикон провизија',
+    'withdrawal_chart' => 'Графикон повлачења', 'geographic_data' => 'Географски подаци', 'top_countries' => 'Најбоље земље',
+    'top_cities' => 'Најбољи градови', 'short_link_performance' => 'Учинак кратких веза', 'top_performing_links' => 'Најуспешније везе',
+    'link' => 'Веза', 'clicks' => 'Кликови', 'conversions' => 'Конверзије', 'commission_trends' => 'Трендови провизија',
+    'commission_amount' => 'Износ провизије', 'loading' => 'Учитавање...', 'no_data' => 'Нема доступних података',
+    'no_commission_data' => 'Нема података о провизијама за изабрани период', 'no_geographic_data' => 'Нема географских података за изабрани период',
+    'no_city_data' => 'Нема података о градовима за изабрану земљу', 'chart_error' => 'Грешка при приказивању графикона. Покушајте да освежите страницу.',
+    'performance_metrics' => 'Метрике учинка', 'total_clicks' => 'Укупни кликови', 'earnings' => 'Зараде',
+    'avg_commission' => 'Прос. провизија', 'avg_conversion_rate' => 'Прос. стопа конверзије', 'vs_previous' => 'у односу на претходни',
+    'no_change' => 'Без промене', 'performance_over_time' => 'Учинак током времена', 'clicks_conversions' => 'Кликови и конверзије',
+    'conversion_rate_analysis' => 'Анализа стопе конверзије', 'overall_conversion_rate' => 'Укупна стопа конверзије', 'conversion_breakdown' => 'Разбијање конверзија',
+    'source' => 'Извор', 'rate' => 'Стопа', 'conversion_rate_percentage' => 'Стопа конверзије (%)',
+    'optimization_opportunity' => 'Прилика за оптимизацију', 'conversion_rate_below_average' => 'Ваша стопа конверзије је испод просека. Размотрите ове савете:',
+    'target_relevant_audiences' => 'Циљајте на релевантније публике', 'improve_promotional_content' => 'Побољшајте свој промотивни садржај',
+    'focus_higher_conversion_products' => 'Фокусирајте се на производе са већом стопом конверзије', 'great_performance' => 'Одличан учинак!',
+    'excellent_conversion_rate' => 'Ваша стопа конверзије је одлична. Наставите са добрим радом!', 'good_performance' => 'Добар учинак',
+    'average_conversion_rate' => 'Ваша стопа конверзије је у просечном опсегу. Постоји простор за побољшање.',
+    'ranges' => ['today' => 'Данас', 'this_week' => 'Ове недеље', 'last_7_days' => 'Последњих 7 дана', 'last_30_days' => 'Последњих 30 дана', 'this_month' => 'Овог месеца', 'this_year' => 'Ове године'],
+];

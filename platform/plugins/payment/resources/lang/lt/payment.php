@@ -88,6 +88,8 @@ return [
     'total' => 'Iš viso',
     'status' => 'Būsena',
     'default_payment_method' => 'Numatytasis mokėjimo būdas',
+    'sort_order_instruction' => 'Vilkite ir numeskite, kad pertvarkytumėte mokėjimo būdus atsiskaitymo puslapyje.',
+    'default_method_instruction' => 'Spustelėkite žvaigždės piktogramą, kad nustatytumėte numatytąjį mokėjimo būdą.',
     'payment_logs' => 'Mokėjimų žurnalai',
     'request_data' => 'Užklausos duomenys',
     'response_data' => 'Atsakymo duomenys',

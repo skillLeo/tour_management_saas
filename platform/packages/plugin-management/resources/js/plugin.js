@@ -18,7 +18,7 @@ class PluginManagement {
                 .delete(_self.data('url'))
                 .then(({ data }) => {
                     Botble.showSuccess(data.message)
-                    window.location.reload()
+                    setTimeout(() => window.location.reload(), 1000)
                 })
                 .finally(() => $('#remove-plugin-modal').modal('hide'))
         })
@@ -243,7 +243,7 @@ class PluginManagement {
                 Botble.showSuccess(data.message)
 
                 if (reload) {
-                    window.location.reload()
+                    setTimeout(() => window.location.reload(), 1000)
                 }
             })
     }

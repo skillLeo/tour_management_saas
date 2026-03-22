@@ -1,0 +1,66 @@
+<?php
+
+return [
+    'name' => 'Väljamaksed',
+    'view' => 'Vaata väljamakset #:id',
+    'affiliate' => 'Partner',
+    'amount' => 'Summa',
+    'status' => 'Olek',
+    'payment_method' => 'Maksemeetod',
+    'payment_details' => 'Makse üksikasjad',
+    'notes' => 'Märkused',
+    'created_at' => 'Loodud',
+    'approve' => 'Kinnita',
+    'reject' => 'Keeldu',
+    'approve_success' => 'Väljamakse edukalt kinnitatud',
+    'reject_success' => 'Väljamakse edukalt tagasi lükatud',
+    'approve_withdrawal' => 'Kinnita väljamakse',
+    'reject_withdrawal' => 'Keeldu väljamaksest',
+    'approve_withdrawal_confirmation' => 'Kas olete kindel, et soovite kinnitada väljamakse #:id? Seda tegevust ei saa tagasi võtta.',
+    'reject_withdrawal_confirmation' => 'Kas olete kindel, et soovite tagasi lükata väljamakse #:id? Seda tegevust ei saa tagasi võtta.',
+    'statuses' => [
+        'pending' => 'Ootel',
+        'processing' => 'Töötlemisel',
+        'approved' => 'Kinnitatud',
+        'rejected' => 'Tagasi lükatud',
+        'canceled' => 'Tühistatud',
+    ],
+
+    // Customer-facing translations
+    'request' => 'Väljamakse taotlus',
+    'history' => 'Väljamaksete ajalugu',
+    'no_withdrawals' => 'Väljamakseid ei leitud.',
+    'withdrawal_id' => 'Väljamakse ID',
+    'date' => 'Kuupäev',
+    'amount_required' => 'Väljamakse summa on kohustuslik.',
+    'amount_numeric' => 'Väljamakse summa peab olema number.',
+    'amount_min' => 'Väljamakse summa peab olema vähemalt 0.',
+    'payment_method_required' => 'Maksemeetod on kohustuslik.',
+    'payment_details_required' => 'Makse üksikasjad on kohustuslikud.',
+    'account_not_approved' => 'Teie partneri konto ei ole veel kinnitatud.',
+    'minimum_amount' => 'Minimaalne väljamakse summa on :amount.',
+    'insufficient_balance' => 'Teil pole selle väljamakse jaoks piisavalt saldot.',
+    'request_submitted' => 'Teie väljamakse taotlus on edukalt esitatud.',
+    'submit_request' => 'Esita väljamakse taotlus',
+    'available_balance' => 'Saadaval olev saldo',
+    'enter_amount' => 'Sisestage summa',
+    'select_payment_method' => 'Valige maksemeetod',
+    'payment_details_placeholder' => 'Sisestage oma makse üksikasjad (nt PayPal e-post, pangakonto andmed)',
+    'no_payment_methods_available' => 'Maksemeetodid pole praegu saadaval. Palun võtke ühendust administraatoriga.',
+
+    // Additional translations
+    'bank_transfer' => 'Pangaülekanne',
+    'paypal' => 'PayPal',
+    'stripe' => 'Stripe',
+    'other' => 'Muu',
+    'bank_information' => 'Pangateave',
+    'paypal_id' => 'PayPal ID',
+
+    // Payout payment methods
+    'payout_payment_methods' => [
+        'bank_transfer' => 'Pangaülekanne',
+        'paypal' => 'PayPal',
+        'stripe' => 'Stripe',
+        'other' => 'Muu',
+    ],
+];

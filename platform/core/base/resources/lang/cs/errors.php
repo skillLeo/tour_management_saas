@@ -22,4 +22,6 @@ return [
     '503_temporarily_down' => 'Dočasně nedostupné z důvodu údržby',
     '503_admin_instruction' => 'Pokud jste administrátor a po zapnutí režimu údržby se nemůžete dostat na svůj web, jednoduše odstraňte soubor <strong>storage/framework/down</strong> a režim údržby se vypne.',
     'take_me_home' => 'Zpět na úvodní stránku',
+    'bad_request' => 'Neplatný požadavek',
+
 ];

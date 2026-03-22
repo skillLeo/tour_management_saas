@@ -68,4 +68,6 @@ return [
     'enable_light_mode' => 'Включить светлый режим',
     'enable_dark_mode' => 'Включить темный режим',
     'close' => 'Закрыть',
+    'search_country' => 'Поиск страны...',
+    'no_results' => 'Результатов не найдено',
 ];

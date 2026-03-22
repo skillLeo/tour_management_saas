@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'name' => 'শিপিং লেবেল টেমপ্লেট',
-    'setting' => 'শিপিং লেবেল টেমপ্লেট সেটিংস',
-    'setting_description' => 'শিপিং লেবেল টেমপ্লেটের জন্য সেটিংস',
+    'name' => 'Shipping Labels',
+    'setting' => 'Label design & layout',
+    'setting_description' => 'Customize shipping label HTML template and CSS styles',
     'setting_content' => 'কন্টেন্ট',
     'preview' => 'প্রিভিউ',
     'preview_heading' => 'শিপিং লেবেল টেমপ্লেট প্রিভিউ করুন',

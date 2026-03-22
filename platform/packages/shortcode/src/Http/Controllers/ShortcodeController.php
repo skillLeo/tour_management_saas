@@ -32,10 +32,12 @@ class ShortcodeController extends BaseController
 
         if ($code = $request->input('code')) {
             $compiler = shortcode()->getCompiler();
-            $attributes = $compiler->getAttributes(html_entity_decode($code));
+
+            $processedCode = $this->protectHtmlInAttributes($code);
+            $attributes = $compiler->getAttributes(html_entity_decode($processedCode));
             $content = $compiler->getContent();
+            $attributes = $this->restoreHtmlInAttributes($attributes);
         } else {
-            // Get attributes from request (for Visual Builder)
             $attributes = $request->except(['_token', 'key', 'code']);
             if (isset($attributes['content'])) {
                 $content = $attributes['content'];
@@ -144,5 +146,37 @@ class ShortcodeController extends BaseController
         ];
 
         return in_array($name, $cacheableShortcodes);
+    }
+
+    protected function protectHtmlInAttributes(string $code): string
+    {
+        return preg_replace_callback(
+            '/(\w+)="([^"]*)"/',
+            function ($matches) {
+                $name = $matches[1];
+                $value = $matches[2];
+
+                $value = preg_replace('/<br[^>]*\/?>/i', '{{BR}}', $value);
+                $value = str_replace('&nbsp;', '{{NBSP}}', $value);
+
+                return $name . '="' . $value . '"';
+            },
+            $code
+        );
+    }
+
+    protected function restoreHtmlInAttributes(array $attributes): array
+    {
+        foreach ($attributes as $key => $value) {
+            if (is_string($value)) {
+                $attributes[$key] = str_replace(
+                    ['{{BR}}', '{{NBSP}}', '{{NEWLINE}}'],
+                    ['<br>', '&nbsp;', "\n"],
+                    $value
+                );
+            }
+        }
+
+        return $attributes;
     }
 }

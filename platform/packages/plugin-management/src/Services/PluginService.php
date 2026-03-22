@@ -366,7 +366,7 @@ class PluginService
 
     public function getPluginNamespace(string $plugin): string
     {
-        return $this->app['config']->get('core.base.general.plugin_namespaces.' . $plugin, $plugin);
+        return $this->app['config']->get('core.base.general.plugin_namespaces.' . $plugin, 'plugins/' . $plugin);
     }
 
     protected function saveActivatedPlugins(array $plugins): array
@@ -659,6 +659,19 @@ class PluginService
             }
         }
 
-        return true;
+        return null;
+    }
+
+    public function getPluginPurchaseCode(string $name): ?string
+    {
+        $licenseSettingKey = $this->getPluginLicenseSettingKey($name);
+
+        if (! $licenseSettingKey) {
+            return null;
+        }
+
+        $purchaseCode = Setting::get($licenseSettingKey);
+
+        return Crypt::decryptString($purchaseCode);
     }
 }

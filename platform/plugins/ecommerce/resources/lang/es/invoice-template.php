@@ -2,8 +2,8 @@
 
 return [
     'name' => 'Plantilla de Factura',
-    'setting' => 'Configuración de Plantilla de Factura',
-    'setting_description' => 'Configuración para la plantilla de factura',
+    'setting' => 'Diseño y disposición de plantilla',
+    'setting_description' => 'Personalizar plantilla HTML y estilos CSS de factura',
     'setting_content' => 'Contenido',
     'preview' => 'Vista previa',
     'preview_heading' => 'Vista previa de la plantilla de factura',

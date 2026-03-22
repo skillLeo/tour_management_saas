@@ -1,0 +1,66 @@
+<?php
+
+return [
+    'name' => 'Para Çekme',
+    'view' => 'Para Çekme İşlemini Görüntüle #:id',
+    'affiliate' => 'Satış Ortağı',
+    'amount' => 'Tutar',
+    'status' => 'Durum',
+    'payment_method' => 'Ödeme Yöntemi',
+    'payment_details' => 'Ödeme Detayları',
+    'notes' => 'Notlar',
+    'created_at' => 'Oluşturulma Tarihi',
+    'approve' => 'Onayla',
+    'reject' => 'Reddet',
+    'approve_success' => 'Para çekme işlemi başarıyla onaylandı',
+    'reject_success' => 'Para çekme işlemi başarıyla reddedildi',
+    'approve_withdrawal' => 'Para Çekme İşlemini Onayla',
+    'reject_withdrawal' => 'Para Çekme İşlemini Reddet',
+    'approve_withdrawal_confirmation' => 'Para çekme işlemi #:id\'yi onaylamak istediğinizden emin misiniz? Bu işlem geri alınamaz.',
+    'reject_withdrawal_confirmation' => 'Para çekme işlemi #:id\'yi reddetmek istediğinizden emin misiniz? Bu işlem geri alınamaz.',
+    'statuses' => [
+        'pending' => 'Beklemede',
+        'processing' => 'İşleniyor',
+        'approved' => 'Onaylandı',
+        'rejected' => 'Reddedildi',
+        'canceled' => 'İptal Edildi',
+    ],
+
+    // Customer-facing translations
+    'request' => 'Para Çekme İsteği',
+    'history' => 'Para Çekme Geçmişi',
+    'no_withdrawals' => 'Para çekme işlemi bulunamadı.',
+    'withdrawal_id' => 'Para Çekme ID',
+    'date' => 'Tarih',
+    'amount_required' => 'Para çekme tutarı gereklidir.',
+    'amount_numeric' => 'Para çekme tutarı bir sayı olmalıdır.',
+    'amount_min' => 'Para çekme tutarı en az 0 olmalıdır.',
+    'payment_method_required' => 'Ödeme yöntemi gereklidir.',
+    'payment_details_required' => 'Ödeme detayları gereklidir.',
+    'account_not_approved' => 'Satış ortaklığı hesabınız henüz onaylanmadı.',
+    'minimum_amount' => 'Minimum para çekme tutarı :amount.',
+    'insufficient_balance' => 'Bu para çekme için yeterli bakiyeniz yok.',
+    'request_submitted' => 'Para çekme isteğiniz başarıyla gönderildi.',
+    'submit_request' => 'Para Çekme İsteği Gönder',
+    'available_balance' => 'Kullanılabilir Bakiye',
+    'enter_amount' => 'Tutar Girin',
+    'select_payment_method' => 'Ödeme Yöntemi Seçin',
+    'payment_details_placeholder' => 'Ödeme detaylarınızı girin (örneğin, PayPal e-postası, banka hesap detayları)',
+    'no_payment_methods_available' => 'Şu anda hiçbir ödeme yöntemi mevcut değil. Lütfen yöneticiyle iletişime geçin.',
+
+    // Additional translations for PayoutPaymentMethodsEnum
+    'bank_transfer' => 'Banka Transferi',
+    'paypal' => 'PayPal',
+    'stripe' => 'Stripe',
+    'other' => 'Diğer',
+    'bank_information' => 'Banka bilgileri',
+    'paypal_id' => 'PayPal ID',
+
+    // Payout payment methods
+    'payout_payment_methods' => [
+        'bank_transfer' => 'Banka Transferi',
+        'paypal' => 'PayPal',
+        'stripe' => 'Stripe',
+        'other' => 'Diğer',
+    ],
+];

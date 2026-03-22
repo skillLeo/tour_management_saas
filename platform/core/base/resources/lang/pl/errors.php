@@ -22,4 +22,6 @@ return [
     '503_temporarily_down' => 'Tymczasowo wyłączone z powodu konserwacji',
     '503_admin_instruction' => 'Jeśli jesteś administratorem i nie możesz uzyskać dostępu do swojej witryny po włączeniu trybu konserwacji, wystarczy usunąć plik <strong>storage/framework/down</strong>, aby wyłączyć tryb konserwacji.',
     'take_me_home' => 'Zabierz mnie do domu',
+    'bad_request' => 'Nieprawidłowe żądanie',
+
 ];

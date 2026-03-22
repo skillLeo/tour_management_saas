@@ -1,0 +1,66 @@
+<?php
+
+return [
+    'name' => 'Uttak',
+    'view' => 'Vis Uttak #:id',
+    'affiliate' => 'Partner',
+    'amount' => 'Beløp',
+    'status' => 'Status',
+    'payment_method' => 'Betalingsmetode',
+    'payment_details' => 'Betalingsdetaljer',
+    'notes' => 'Notater',
+    'created_at' => 'Opprettet Den',
+    'approve' => 'Godkjenn',
+    'reject' => 'Avvis',
+    'approve_success' => 'Uttak godkjent',
+    'reject_success' => 'Uttak avvist',
+    'approve_withdrawal' => 'Godkjenn Uttak',
+    'reject_withdrawal' => 'Avvis Uttak',
+    'approve_withdrawal_confirmation' => 'Er du sikker på at du vil godkjenne uttak #:id? Denne handlingen kan ikke angres.',
+    'reject_withdrawal_confirmation' => 'Er du sikker på at du vil avvise uttak #:id? Denne handlingen kan ikke angres.',
+    'statuses' => [
+        'pending' => 'Ventende',
+        'processing' => 'Behandles',
+        'approved' => 'Godkjent',
+        'rejected' => 'Avvist',
+        'canceled' => 'Kansellert',
+    ],
+
+    // Customer-facing translations
+    'request' => 'Uttaksforespørsel',
+    'history' => 'Uttakshistorikk',
+    'no_withdrawals' => 'Ingen uttak funnet.',
+    'withdrawal_id' => 'Uttaks-ID',
+    'date' => 'Dato',
+    'amount_required' => 'Uttaksbeløpet er påkrevd.',
+    'amount_numeric' => 'Uttaksbeløpet må være et tall.',
+    'amount_min' => 'Uttaksbeløpet må være minst 0.',
+    'payment_method_required' => 'Betalingsmetoden er påkrevd.',
+    'payment_details_required' => 'Betalingsdetaljene er påkrevd.',
+    'account_not_approved' => 'Din affiliate-konto er ikke godkjent ennå.',
+    'minimum_amount' => 'Minimum uttaksbeløp er :amount.',
+    'insufficient_balance' => 'Du har ikke tilstrekkelig saldo for dette uttaket.',
+    'request_submitted' => 'Din uttaksforespørsel er blitt sendt inn.',
+    'submit_request' => 'Send Uttaksforespørsel',
+    'available_balance' => 'Tilgjengelig Saldo',
+    'enter_amount' => 'Oppgi Beløp',
+    'select_payment_method' => 'Velg Betalingsmetode',
+    'payment_details_placeholder' => 'Oppgi dine betalingsdetaljer (f.eks. PayPal-e-post, bankkontoopplysninger)',
+    'no_payment_methods_available' => 'Ingen betalingsmetoder er for øyeblikket tilgjengelige. Kontakt administratoren.',
+
+    // Additional translations for PayoutPaymentMethodsEnum
+    'bank_transfer' => 'Bankoverføring',
+    'paypal' => 'PayPal',
+    'stripe' => 'Stripe',
+    'other' => 'Annet',
+    'bank_information' => 'Bankinformasjon',
+    'paypal_id' => 'PayPal-ID',
+
+    // Payout payment methods
+    'payout_payment_methods' => [
+        'bank_transfer' => 'Bankoverføring',
+        'paypal' => 'PayPal',
+        'stripe' => 'Stripe',
+        'other' => 'Annet',
+    ],
+];

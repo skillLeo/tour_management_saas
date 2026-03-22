@@ -88,6 +88,8 @@ return [
     'total' => 'Kopā',
     'status' => 'Statuss',
     'default_payment_method' => 'Noklusējuma maksājuma metode',
+    'sort_order_instruction' => 'Velciet un nometiet, lai pārkārtotu maksājumu metodes norēķinu lapā.',
+    'default_method_instruction' => 'Noklikšķiniet uz zvaigznes ikonas, lai iestatītu noklusējuma maksājuma metodi.',
     'payment_logs' => 'Maksājumu žurnāli',
     'request_data' => 'Pieprasījuma dati',
     'response_data' => 'Atbildes dati',

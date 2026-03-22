@@ -351,7 +351,7 @@
         (function() {
             var productItems = document.querySelectorAll('.product-item, .product-card, [data-product-id]');
             pushEvent('search', {
-                search_term: '{{ request('q') }}',
+                search_term: @json(BaseHelper::stringify(request('q'))),
                 result_count: productItems.length
             });
         })();

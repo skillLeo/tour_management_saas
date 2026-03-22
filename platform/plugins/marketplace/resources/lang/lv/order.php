@@ -12,4 +12,16 @@ return [
     'return' => [
         'description' => 'Atgriezts no pasūtījuma #:order',
     ],
+    'thank_you' => [
+        'count_orders' => ':count pasūtījumi',
+        'order' => 'Pasūtījums',
+        'thank_you_name' => 'Paldies, :name!',
+        'order_confirmed' => 'Jūsu pasūtījums ir apstiprināts',
+        'order_accepted' => 'Mēs esam pieņēmuši jūsu pasūtījumu un to sagatavojam.',
+        'customer' => 'Klients',
+        'need_help' => 'Nepieciešama palīdzība?',
+        'contact_us' => 'Sazinieties ar mums',
+        'view_order_history' => 'Skatīt pasūtījumu vēsturi',
+        'order_total' => 'Pasūtījuma kopsumma',
+    ],
 ];

@@ -68,4 +68,6 @@ return [
     'enable_light_mode' => 'Ota vaalea tila käyttöön',
     'enable_dark_mode' => 'Ota tumma tila käyttöön',
     'close' => 'Sulje',
+    'search_country' => 'Hae maata...',
+    'no_results' => 'Tuloksia ei löytynyt',
 ];

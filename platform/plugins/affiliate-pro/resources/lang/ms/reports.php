@@ -1,0 +1,73 @@
+<?php
+
+return [
+    'name' => 'Laporan',
+    'commission_this_month' => 'Komisen bulan ini',
+    'pending_commissions' => 'Komisen menunggu',
+    'approved_commissions' => 'Komisen diluluskan',
+    'pending_withdrawals' => 'Pengeluaran menunggu',
+    'approved_withdrawals' => 'Pengeluaran diluluskan',
+    'active_affiliates' => 'Afiliasi aktif',
+    'affiliate_stats' => 'Statistik Afiliasi',
+    'top_affiliates' => 'Afiliasi Teratas',
+    'recent_commissions' => 'Komisen Terkini',
+    'recent_withdrawals' => 'Pengeluaran Terkini',
+    'commission_chart' => 'Carta Komisen',
+    'withdrawal_chart' => 'Carta Pengeluaran',
+
+    // Enhanced reports
+    'geographic_data' => 'Data Geografi',
+    'top_countries' => 'Negara Teratas',
+    'top_cities' => 'Bandar Teratas',
+    'short_link_performance' => 'Prestasi Pautan Pendek',
+    'top_performing_links' => 'Pautan Berprestasi Tinggi',
+    'link' => 'Pautan',
+    'clicks' => 'Klik',
+    'conversions' => 'Penukaran',
+    'commission_trends' => 'Trend Komisen',
+    'commission_amount' => 'Jumlah Komisen',
+    'loading' => 'Memuatkan...',
+    'no_data' => 'Tiada data tersedia',
+    'no_commission_data' => 'Tiada data komisen tersedia untuk tempoh yang dipilih',
+    'no_geographic_data' => 'Tiada data geografi tersedia untuk tempoh yang dipilih',
+    'no_city_data' => 'Tiada data bandar tersedia untuk negara yang dipilih',
+    'chart_error' => 'Ralat memaparkan carta. Sila cuba muat semula halaman.',
+
+    // Performance metrics widget
+    'performance_metrics' => 'Metrik Prestasi',
+    'total_clicks' => 'Jumlah Klik',
+    'earnings' => 'Pendapatan',
+    'avg_commission' => 'Komisen Purata',
+    'avg_conversion_rate' => 'Kadar Penukaran Purata',
+    'vs_previous' => 'berbanding sebelumnya',
+    'no_change' => 'Tiada perubahan',
+    'performance_over_time' => 'Prestasi Sepanjang Masa',
+    'clicks_conversions' => 'Klik & Penukaran',
+
+    // Conversion rate widget
+    'conversion_rate_analysis' => 'Analisis Kadar Penukaran',
+    'overall_conversion_rate' => 'Kadar Penukaran Keseluruhan',
+    'conversion_breakdown' => 'Pecahan Penukaran',
+    'source' => 'Sumber',
+    'rate' => 'Kadar',
+    'conversion_rate_percentage' => 'Kadar Penukaran (%)',
+    'optimization_opportunity' => 'Peluang Pengoptimuman',
+    'conversion_rate_below_average' => 'Kadar penukaran anda di bawah purata. Pertimbangkan petua ini:',
+    'target_relevant_audiences' => 'Sasarkan khalayak yang lebih relevan',
+    'improve_promotional_content' => 'Tingkatkan kandungan promosi anda',
+    'focus_higher_conversion_products' => 'Fokus pada produk dengan kadar penukaran lebih tinggi',
+    'great_performance' => 'Prestasi Hebat!',
+    'excellent_conversion_rate' => 'Kadar penukaran anda sangat baik. Teruskan kerja yang baik!',
+    'good_performance' => 'Prestasi Baik',
+    'average_conversion_rate' => 'Kadar penukaran anda dalam julat purata. Masih ada ruang untuk penambahbaikan.',
+
+    // Date ranges
+    'ranges' => [
+        'today' => 'Hari ini',
+        'this_week' => 'Minggu ini',
+        'last_7_days' => '7 hari lepas',
+        'last_30_days' => '30 hari lepas',
+        'this_month' => 'Bulan ini',
+        'this_year' => 'Tahun ini',
+    ],
+];

@@ -25,6 +25,8 @@ return [
     'categories' => 'หมวดหมู่',
     'category' => 'หมวดหมู่',
     'author' => 'ผู้เขียน',
+    'author_helper' => 'Select an author from admin users.',
+    'select_author' => 'Select author',
     'is_featured' => 'โพสต์แนะนำ?',
     'export' => [
         'description' => 'ส่งออกโพสต์เป็นไฟล์ CSV/Excel',

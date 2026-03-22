@@ -8,15 +8,13 @@ use Botble\Base\Facades\Assets;
 use Botble\Base\Facades\BaseHelper;
 use Botble\Base\Http\Actions\DeleteResourceAction;
 use Botble\Base\Supports\Language;
+use Botble\Language\Events\LanguageCreated;
 use Botble\Language\Facades\Language as LanguageFacade;
 use Botble\Language\Forms\Settings\LanguageSettingForm;
 use Botble\Language\Http\Requests\LanguageRequest;
 use Botble\Language\LanguageManager;
 use Botble\Language\Models\Language as LanguageModel;
 use Botble\Language\Models\LanguageMeta;
-use Botble\Menu\Models\Menu;
-use Botble\Menu\Models\MenuLocation;
-use Botble\Menu\Models\MenuNode;
 use Botble\Setting\Facades\Setting;
 use Botble\Setting\Http\Controllers\SettingController;
 use Botble\Theme\Facades\Theme;
@@ -93,7 +91,7 @@ class LanguageController extends SettingController
 
             event(new CreatedContentEvent(LANGUAGE_MODULE_SCREEN_NAME, $request, $language));
 
-            $this->cloneMenusToLanguage($language);
+            LanguageCreated::dispatch($language);
 
             try {
                 $models = $languageManager->supportedModels();
@@ -493,58 +491,5 @@ class LanguageController extends SettingController
         }
 
         File::copy($themeLocalePath, lang_path($locale . '.json'));
-    }
-
-    protected function cloneMenusToLanguage(LanguageModel $language): void
-    {
-        $menus = Menu::query()
-            ->with(['menuNodes', 'locations'])
-            ->join('language_meta', 'language_meta.reference_id', '=', 'menus.id')
-            ->where('language_meta.reference_type', Menu::class)
-            ->where('language_meta.lang_meta_code', LanguageFacade::getDefaultLocaleCode())
-            ->select('menus.*')
-            ->get();
-
-        foreach ($menus as $menu) {
-            /**
-             * @var Menu $menuItem
-             */
-            $menuItem = $menu->replicate();
-            $menuItem->slug = $menu->slug . '-' . $language->lang_code;
-            $menuItem->save();
-
-            $originValue = LanguageMeta::query()
-                ->where('reference_id', $menu->id)
-                ->where('reference_type', Menu::class)
-                ->value('lang_meta_origin');
-
-            LanguageMeta::saveMetaData($menuItem, $language->lang_code, $originValue);
-
-            foreach ($menu->locations as $location) {
-                $menuLocationItem = $location->replicate();
-                $menuLocationItem->menu_id = $menuItem->getKey();
-                $menuLocationItem->save();
-
-                $originValue = LanguageMeta::query()
-                    ->where('reference_id', $location->id)
-                    ->where('reference_type', MenuLocation::class)
-                    ->value('lang_meta_origin');
-
-                LanguageMeta::saveMetaData($menuLocationItem, $language->lang_code, $originValue);
-            }
-
-            foreach ($menu->menuNodes as $menuNode) {
-                $menuNodeItem = $menuNode->replicate();
-                $menuNodeItem->menu_id = $menuItem->getKey();
-                $menuNodeItem->save();
-
-                $originValue = LanguageMeta::query()
-                    ->where('reference_id', $menuNode->id)
-                    ->where('reference_type', MenuNode::class)
-                    ->value('lang_meta_origin');
-
-                LanguageMeta::saveMetaData($menuNodeItem, $language->lang_code, $originValue);
-            }
-        }
     }
 }

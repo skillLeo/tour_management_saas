@@ -1,0 +1,53 @@
+<?php
+
+return [
+    'name' => 'Комисионни',
+    'view' => 'Преглед на комисионна #:id',
+    'affiliate' => 'Партньор',
+    'order' => 'Поръчка',
+    'amount' => 'Сума',
+    'description' => 'Описание',
+    'status' => 'Статус',
+    'created_at' => 'Създадена на',
+    'approve' => 'Одобри',
+    'reject' => 'Отхвърли',
+    'approve_success' => 'Комисионната е одобрена успешно',
+    'reject_success' => 'Комисионната е отхвърлена успешно',
+    'approve_commission' => 'Одобряване на комисионна',
+    'reject_commission' => 'Отхвърляне на комисионна',
+    'approve_commission_confirmation' => 'Сигурни ли сте, че искате да одобрите комисионна #:id? Това действие не може да бъде отменено.',
+    'reject_commission_confirmation' => 'Сигурни ли сте, че искате да отхвърлите комисионна #:id? Това действие не може да бъде отменено.',
+    'statuses' => [
+        'pending' => 'Чакаща',
+        'approved' => 'Одобрена',
+        'rejected' => 'Отхвърлена',
+    ],
+
+    // Customer-facing translations
+    'history' => 'История на комисионните',
+    'no_commissions' => 'Няма намерени комисионни.',
+    'no_commissions_description' => 'Все още не сте спечелили комисионни. Започнете да промотирате нашите продукти, за да спечелите първата си комисионна!',
+    'commission_id' => 'ID на комисионна',
+    'order_id' => 'ID на поръчка',
+    'customer' => 'Клиент',
+    'product' => 'Продукт',
+    'type' => 'Тип',
+    'date' => 'Дата',
+
+    // New UI translations
+    'total_commissions' => ':count Общо комисионни',
+    'filter_by_status' => 'Филтриране по статус',
+    'all_statuses' => 'Всички статуси',
+    'date_from' => 'Дата от',
+    'date_to' => 'Дата до',
+    'filter' => 'Филтър',
+    'clear' => 'Изчисти',
+    'approved_earnings' => 'Одобрени приходи',
+    'pending_earnings' => 'Чакащи приходи',
+    'successful_orders' => 'Успешни поръчки',
+    'approval_rate' => 'Процент на одобрение',
+    'commission_earned' => 'Спечелена комисионна',
+    'showing_results' => 'Показване на :from до :to от :total резултата',
+    'start_promoting' => 'Започнете промотиране',
+    'back_to_dashboard' => 'Обратно към таблото',
+];

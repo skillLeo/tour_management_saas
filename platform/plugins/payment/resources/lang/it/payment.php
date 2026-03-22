@@ -88,6 +88,8 @@ return [
     'total' => 'Totale',
     'status' => 'Stato',
     'default_payment_method' => 'Metodo di pagamento predefinito',
+    'sort_order_instruction' => 'Trascina e rilascia per riordinare i metodi di pagamento nella pagina di checkout.',
+    'default_method_instruction' => 'Fai clic sull\'icona stella per impostare un metodo di pagamento predefinito.',
     'payment_logs' => 'Log pagamenti',
     'request_data' => 'Dati richiesta',
     'response_data' => 'Dati risposta',

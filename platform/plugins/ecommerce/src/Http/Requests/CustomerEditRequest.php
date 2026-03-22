@@ -31,8 +31,8 @@ class CustomerEditRequest extends Request
         ];
 
         if ($this->boolean('is_change_password')) {
-            $rules['password'] = 'required|string|min:6';
-            $rules['password_confirmation'] = 'required|same:password';
+            $rules['password'] = ['required', 'string', 'min:6'];
+            $rules['password_confirmation'] = ['required', 'string', 'same:password'];
         }
 
         return $rules;

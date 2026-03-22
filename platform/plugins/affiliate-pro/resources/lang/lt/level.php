@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'menu_name' => 'Narių lygiai',
+    'create' => 'Sukurti lygį',
+    'edit' => 'Redaguoti lygį :name',
+    'min_commission' => 'Minimali komisija',
+    'max_commission' => 'Maksimali komisija',
+    'max_commission_help' => 'Palikite tuščią neribotam',
+    'unlimited' => 'Neribotas',
+    'commission_rate' => 'Komisijos norma',
+    'commission_rate_help' => 'Daugiklis komisijoms (pvz., 1.1 10% bonusui)',
+    'benefits' => 'Privalumai',
+    'benefits_help' => 'Išvardykite privalumus, po vieną eilutėje',
+    'benefits_placeholder' => 'Prioritetinis palaikymas' . PHP_EOL . 'Aukštesnė komisijos norma',
+    'next_level' => 'Kitas lygis: :name',
+    'commission_needed' => 'Jums reikia dar :amount komisijų, kad pasiektumėte :name',
+    'tier_rules_tooltip' => 'Uždirbkite komisijas su kiekvienu nukreipimu, kad atrakintumėte aukštesnius lygius ir išskirtinius apdovanojimus. Lygiai pagrįsti jūsų visomis uždirbtomis komisijomis.',
+    'top_tier_reached' => 'Pasiektas aukščiausias lygis',
+    'top_tier_message' => 'Jūs pasiekėte aukščiausią partnerių lygį! Mėgaukitės išskirtiniais privalumais.',
+    'default_member' => 'Narys',
+    'member_since' => 'Nuo',
+    'no_benefits' => 'Pradėkite uždirbti komisijas, kad atrakintumėte lygio privalumus!',
+    'current_commission' => 'Uždirta :amount',
+    'target_commission' => 'Tikslas :amount',
+];

@@ -1,0 +1,73 @@
+<?php
+
+return [
+    'name' => 'Pārskati',
+    'commission_this_month' => 'Komisija šajā mēnesī',
+    'pending_commissions' => 'Gaidošās komisijas',
+    'approved_commissions' => 'Apstiprinātās komisijas',
+    'pending_withdrawals' => 'Gaidošās izmaksas',
+    'approved_withdrawals' => 'Apstiprinātās izmaksas',
+    'active_affiliates' => 'Aktīvie partneri',
+    'affiliate_stats' => 'Partneru statistika',
+    'top_affiliates' => 'Labākie partneri',
+    'recent_commissions' => 'Jaunākās komisijas',
+    'recent_withdrawals' => 'Jaunākās izmaksas',
+    'commission_chart' => 'Komisiju diagramma',
+    'withdrawal_chart' => 'Izmaksu diagramma',
+
+    // Enhanced reports
+    'geographic_data' => 'Ģeogrāfiskie dati',
+    'top_countries' => 'Populārākās valstis',
+    'top_cities' => 'Populārākās pilsētas',
+    'short_link_performance' => 'Īso saišu veiktspēja',
+    'top_performing_links' => 'Labākās saites',
+    'link' => 'Saite',
+    'clicks' => 'Klikšķi',
+    'conversions' => 'Konversijas',
+    'commission_trends' => 'Komisiju tendences',
+    'commission_amount' => 'Komisijas summa',
+    'loading' => 'Ielādē...',
+    'no_data' => 'Nav pieejamu datu',
+    'no_commission_data' => 'Atlasītajam periodam nav pieejamu komisiju datu',
+    'no_geographic_data' => 'Atlasītajam periodam nav pieejamu ģeogrāfisko datu',
+    'no_city_data' => 'Atlasītajai valstij nav pieejamu pilsētu datu',
+    'chart_error' => 'Kļūda attēlojot diagrammu. Lūdzu, mēģiniet atsvaidzināt lapu.',
+
+    // Performance metrics widget
+    'performance_metrics' => 'Veiktspējas metrika',
+    'total_clicks' => 'Kopējie klikšķi',
+    'earnings' => 'Ienākumi',
+    'avg_commission' => 'Vid. komisija',
+    'avg_conversion_rate' => 'Vid. konversijas līmenis',
+    'vs_previous' => 'salīdzinot ar iepriekšējo',
+    'no_change' => 'Nav izmaiņu',
+    'performance_over_time' => 'Veiktspēja laika gaitā',
+    'clicks_conversions' => 'Klikšķi un konversijas',
+
+    // Conversion rate widget
+    'conversion_rate_analysis' => 'Konversijas līmeņa analīze',
+    'overall_conversion_rate' => 'Vispārējais konversijas līmenis',
+    'conversion_breakdown' => 'Konversijas sadalījums',
+    'source' => 'Avots',
+    'rate' => 'Līmenis',
+    'conversion_rate_percentage' => 'Konversijas līmenis (%)',
+    'optimization_opportunity' => 'Optimizācijas iespēja',
+    'conversion_rate_below_average' => 'Jūsu konversijas līmenis ir zem vidējā. Apsveriet šos padomus:',
+    'target_relevant_audiences' => 'Mērķējiet uz atbilstošākām auditorijām',
+    'improve_promotional_content' => 'Uzlabojiet savu reklāmas saturu',
+    'focus_higher_conversion_products' => 'Koncentrējieties uz produktiem ar augstāku konversijas līmeni',
+    'great_performance' => 'Lieliska veiktspēja!',
+    'excellent_conversion_rate' => 'Jūsu konversijas līmenis ir izcils. Turpiniet labo darbu!',
+    'good_performance' => 'Laba veiktspēja',
+    'average_conversion_rate' => 'Jūsu konversijas līmenis ir vidējā diapazonā. Ir telpa uzlabojumiem.',
+
+    // Date ranges (copied from ecommerce for consistency)
+    'ranges' => [
+        'today' => 'Šodien',
+        'this_week' => 'Šonedēļ',
+        'last_7_days' => 'Pēdējās 7 dienas',
+        'last_30_days' => 'Pēdējās 30 dienas',
+        'this_month' => 'Šomēnes',
+        'this_year' => 'Šogad',
+    ],
+];

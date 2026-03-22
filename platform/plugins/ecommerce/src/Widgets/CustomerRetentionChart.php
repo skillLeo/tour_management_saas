@@ -4,11 +4,14 @@ namespace Botble\Ecommerce\Widgets;
 
 use Botble\Base\Widgets\Chart;
 use Botble\Ecommerce\Models\Order;
+use Botble\Ecommerce\Widgets\Traits\HasCategory;
 use Botble\Payment\Enums\PaymentStatusEnum;
 use Carbon\CarbonPeriod;
 
 class CustomerRetentionChart extends Chart
 {
+    use HasCategory;
+
     protected int $columns = 6;
 
     protected string $type = 'line';
@@ -27,7 +30,7 @@ class CustomerRetentionChart extends Chart
 
         foreach ($period as $date) {
             $dateString = $date->toDateString();
-            $dates[] = $dateString;
+            $dates[$date->translatedFormat('d M')] = $dateString;
 
             // Get all orders for this date
             $query = Order::query()
@@ -104,13 +107,7 @@ class CustomerRetentionChart extends Chart
                 'curve' => 'smooth',
             ],
             'xaxis' => [
-                'type' => 'datetime',
-                'categories' => $dates,
-            ],
-            'tooltip' => [
-                'x' => [
-                    'format' => 'dd/MM/yy',
-                ],
+                'categories' => array_keys($dates),
             ],
             'colors' => ['#4ade80', '#f59e0b'],
         ];

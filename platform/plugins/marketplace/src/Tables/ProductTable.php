@@ -10,6 +10,7 @@ use Botble\Ecommerce\Enums\ProductTypeEnum;
 use Botble\Ecommerce\Facades\EcommerceHelper;
 use Botble\Ecommerce\Models\Product;
 use Botble\Marketplace\Exports\ProductExport;
+use Botble\Marketplace\Facades\MarketplaceHelper;
 use Botble\Marketplace\Tables\Traits\ForVendor;
 use Botble\Table\Abstracts\TableAbstract;
 use Botble\Table\Actions\DeleteAction;
@@ -94,6 +95,7 @@ class ProductTable extends TableAbstract
                 'quantity',
                 'with_storehouse_management',
                 'product_type',
+                'currency_code',
             ])
             ->where('is_variation', 0)
             ->where('store_id', auth('customer')->user()->store?->id);
@@ -128,7 +130,7 @@ class ProductTable extends TableAbstract
     {
         $buttons = [];
 
-        if (EcommerceHelper::isEnabledSupportDigitalProducts() && ! EcommerceHelper::isDisabledPhysicalProduct()) {
+        if (MarketplaceHelper::isVendorDigitalProductsEnabled() && ! EcommerceHelper::isDisabledPhysicalProduct()) {
             $buttons['create'] = [
                 'extend' => 'collection',
                 'text' => view('core/table::partials.create')->render(),
@@ -152,7 +154,7 @@ class ProductTable extends TableAbstract
                     ],
                 ],
             ];
-        } elseif (! EcommerceHelper::isEnabledSupportDigitalProducts() || EcommerceHelper::isDisabledPhysicalProduct()) {
+        } else {
             $buttons = $this->addCreateButton(route('marketplace.vendor.products.create'));
         }
 

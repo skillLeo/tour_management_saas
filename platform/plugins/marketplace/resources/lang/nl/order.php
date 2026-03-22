@@ -12,4 +12,16 @@ return [
     'return' => [
         'description' => 'Geretourneerd van bestelling #:order',
     ],
+    'thank_you' => [
+        'count_orders' => ':count bestellingen',
+        'order' => 'Bestelling',
+        'thank_you_name' => 'Bedankt, :name!',
+        'order_confirmed' => 'Uw bestelling is bevestigd',
+        'order_accepted' => 'We hebben uw bestelling geaccepteerd en maken deze klaar.',
+        'customer' => 'Klant',
+        'need_help' => 'Hulp nodig?',
+        'contact_us' => 'Neem contact met ons op',
+        'view_order_history' => 'Bekijk bestelgeschiedenis',
+        'order_total' => 'Besteltotaal',
+    ],
 ];

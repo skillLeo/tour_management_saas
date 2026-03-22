@@ -60,7 +60,7 @@ class BackupController extends BaseSystemController
             $this->backup->backupDb($key);
 
             if (! $backupOnlyDb) {
-                $this->backup->backupFolder(RvMedia::getUploadPath(), $key);
+                $this->backup->backupFolder(base_path(), $key);
             }
 
             do_action(BACKUP_ACTION_AFTER_BACKUP, BACKUP_MODULE_SCREEN_NAME, $request);
@@ -126,8 +126,7 @@ class BackupController extends BaseSystemController
 
             foreach (BaseHelper::scanFolder($path) as $file) {
                 if (Str::contains(basename($file), 'storage')) {
-                    $pathTo = config('filesystems.disks.public.root');
-                    $this->backup->cleanDirectory($pathTo);
+                    $pathTo = base_path();
                     $this->backup->extractFileTo($path . DIRECTORY_SEPARATOR . $file, $pathTo);
                 }
             }

@@ -1,0 +1,73 @@
+<?php
+
+return [
+    'name' => 'Rapporten',
+    'commission_this_month' => 'Commissie deze maand',
+    'pending_commissions' => 'Openstaande commissies',
+    'approved_commissions' => 'Goedgekeurde commissies',
+    'pending_withdrawals' => 'Openstaande opnames',
+    'approved_withdrawals' => 'Goedgekeurde opnames',
+    'active_affiliates' => 'Actieve partners',
+    'affiliate_stats' => 'Partnerstatistieken',
+    'top_affiliates' => 'Top Partners',
+    'recent_commissions' => 'Recente Commissies',
+    'recent_withdrawals' => 'Recente Opnames',
+    'commission_chart' => 'Commissiegrafiek',
+    'withdrawal_chart' => 'Opnamegrafiek',
+
+    // Enhanced reports
+    'geographic_data' => 'Geografische Gegevens',
+    'top_countries' => 'Top Landen',
+    'top_cities' => 'Top Steden',
+    'short_link_performance' => 'Prestaties Korte Links',
+    'top_performing_links' => 'Best Presterende Links',
+    'link' => 'Link',
+    'clicks' => 'Clicks',
+    'conversions' => 'Conversies',
+    'commission_trends' => 'Commissietrends',
+    'commission_amount' => 'Commissiebedrag',
+    'loading' => 'Laden...',
+    'no_data' => 'Geen gegevens beschikbaar',
+    'no_commission_data' => 'Geen commissiegegevens beschikbaar voor de geselecteerde periode',
+    'no_geographic_data' => 'Geen geografische gegevens beschikbaar voor de geselecteerde periode',
+    'no_city_data' => 'Geen stadsgegevens beschikbaar voor het geselecteerde land',
+    'chart_error' => 'Fout bij weergeven grafiek. Probeer de pagina te vernieuwen.',
+
+    // Performance metrics widget
+    'performance_metrics' => 'Prestatiemetingen',
+    'total_clicks' => 'Totaal Aantal Clicks',
+    'earnings' => 'Inkomsten',
+    'avg_commission' => 'Gem. Commissie',
+    'avg_conversion_rate' => 'Gem. Conversiepercentage',
+    'vs_previous' => 'vs vorige',
+    'no_change' => 'Geen verandering',
+    'performance_over_time' => 'Prestaties in de Tijd',
+    'clicks_conversions' => 'Clicks & Conversies',
+
+    // Conversion rate widget
+    'conversion_rate_analysis' => 'Conversiepercentage Analyse',
+    'overall_conversion_rate' => 'Algemeen Conversiepercentage',
+    'conversion_breakdown' => 'Conversie Uitsplitsing',
+    'source' => 'Bron',
+    'rate' => 'Percentage',
+    'conversion_rate_percentage' => 'Conversiepercentage (%)',
+    'optimization_opportunity' => 'Optimalisatiemogelijkheid',
+    'conversion_rate_below_average' => 'Uw conversiepercentage ligt onder het gemiddelde. Overweeg deze tips:',
+    'target_relevant_audiences' => 'Richt u op meer relevante doelgroepen',
+    'improve_promotional_content' => 'Verbeter uw promotie-inhoud',
+    'focus_higher_conversion_products' => 'Focus op producten met hogere conversiepercentages',
+    'great_performance' => 'Geweldige Prestaties!',
+    'excellent_conversion_rate' => 'Uw conversiepercentage is uitstekend. Ga zo door!',
+    'good_performance' => 'Goede Prestaties',
+    'average_conversion_rate' => 'Uw conversiepercentage ligt binnen het gemiddelde bereik. Er is ruimte voor verbetering.',
+
+    // Date ranges
+    'ranges' => [
+        'today' => 'Vandaag',
+        'this_week' => 'Deze week',
+        'last_7_days' => 'Laatste 7 dagen',
+        'last_30_days' => 'Laatste 30 dagen',
+        'this_month' => 'Deze maand',
+        'this_year' => 'Dit jaar',
+    ],
+];

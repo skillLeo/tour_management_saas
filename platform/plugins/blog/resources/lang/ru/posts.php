@@ -26,6 +26,8 @@ return [
     'categories' => 'Категории',
     'category' => 'Категория',
     'author' => 'Автор',
+    'author_helper' => 'Select an author from admin users.',
+    'select_author' => 'Select author',
     'export' => [
         'description' => 'Экспортировать записи в файл CSV/Excel.',
         'total' => 'Всего записей',

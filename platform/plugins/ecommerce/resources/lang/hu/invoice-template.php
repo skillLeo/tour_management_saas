@@ -2,8 +2,8 @@
 
 return [
     'name' => 'Számla sablon',
-    'setting' => 'Számla sablon beállítások',
-    'setting_description' => 'Számla sablon beállításai',
+    'setting' => 'Template design & layout',
+    'setting_description' => 'Customize invoice HTML template and CSS styles',
     'setting_content' => 'Tartalom',
     'preview' => 'Előnézet',
     'preview_heading' => 'Számla sablon előnézete',

@@ -61,19 +61,21 @@ $(() => {
                     if (data.error) {
                         Botble.showError(data.message)
                     } else {
+                        const newUrl = new URL(window.location.href)
+
+                        newUrl.searchParams.set('date_from', start.format('YYYY-MM-DD'))
+                        newUrl.searchParams.set('date_to', end.format('YYYY-MM-DD'))
+
+                        history.pushState({ urlPath: newUrl.href }, '', newUrl.href)
+
                         if (!$('#report-stats-content').length) {
-                            const newUrl = new URL(window.location.href)
-
-                            newUrl.searchParams.set('date_from', start.format('YYYY-MM-DD'))
-                            newUrl.searchParams.set('date_to', end.format('YYYY-MM-DD'))
-
-                            history.pushState({ urlPath: newUrl.href }, '', newUrl.href)
-
                             window.location.reload()
                         } else {
                             $('.widget-item').each((key, widget) => {
                                 const widgetEl = $(widget).prop('id')
-                                $(`#${widgetEl}`).replaceWith($(data.data).find(`#${widgetEl}`))
+                                if (widgetEl) {
+                                    $(`#${widgetEl}`).replaceWith($(data.data).find(`#${widgetEl}`))
+                                }
                             })
                         }
 

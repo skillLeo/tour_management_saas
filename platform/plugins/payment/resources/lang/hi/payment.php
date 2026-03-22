@@ -88,6 +88,8 @@ return [
     'total' => 'कुल',
     'status' => 'स्थिति',
     'default_payment_method' => 'डिफ़ॉल्ट भुगतान विधि',
+    'sort_order_instruction' => 'चेकआउट पृष्ठ पर भुगतान विधियों को पुनर्व्यवस्थित करने के लिए खींचें और छोड़ें।',
+    'default_method_instruction' => 'डिफ़ॉल्ट भुगतान विधि सेट करने के लिए स्टार आइकन पर क्लिक करें।',
     'payment_logs' => 'भुगतान लॉग',
     'request_data' => 'अनुरोध डेटा',
     'response_data' => 'प्रतिक्रिया डेटा',

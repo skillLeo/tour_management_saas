@@ -1,0 +1,66 @@
+<?php
+
+return [
+    'name' => 'Retraits',
+    'view' => 'Voir le retrait #:id',
+    'affiliate' => 'Affilié',
+    'amount' => 'Montant',
+    'status' => 'Statut',
+    'payment_method' => 'Méthode de paiement',
+    'payment_details' => 'Détails de paiement',
+    'notes' => 'Notes',
+    'created_at' => 'Créé le',
+    'approve' => 'Approuver',
+    'reject' => 'Rejeter',
+    'approve_success' => 'Retrait approuvé avec succès',
+    'reject_success' => 'Retrait rejeté avec succès',
+    'approve_withdrawal' => 'Approuver le retrait',
+    'reject_withdrawal' => 'Rejeter le retrait',
+    'approve_withdrawal_confirmation' => 'Êtes-vous sûr de vouloir approuver le retrait #:id? Cette action ne peut pas être annulée.',
+    'reject_withdrawal_confirmation' => 'Êtes-vous sûr de vouloir rejeter le retrait #:id? Cette action ne peut pas être annulée.',
+    'statuses' => [
+        'pending' => 'En attente',
+        'processing' => 'En cours de traitement',
+        'approved' => 'Approuvé',
+        'rejected' => 'Rejeté',
+        'canceled' => 'Annulé',
+    ],
+
+    // Customer-facing translations
+    'request' => 'Demande de retrait',
+    'history' => 'Historique des retraits',
+    'no_withdrawals' => 'Aucun retrait trouvé.',
+    'withdrawal_id' => 'ID de retrait',
+    'date' => 'Date',
+    'amount_required' => 'Le montant du retrait est requis.',
+    'amount_numeric' => 'Le montant du retrait doit être un nombre.',
+    'amount_min' => 'Le montant du retrait doit être d\'au moins 0.',
+    'payment_method_required' => 'La méthode de paiement est requise.',
+    'payment_details_required' => 'Les détails de paiement sont requis.',
+    'account_not_approved' => 'Votre compte d\'affiliation n\'est pas encore approuvé.',
+    'minimum_amount' => 'Le montant minimum de retrait est de :amount.',
+    'insufficient_balance' => 'Vous n\'avez pas assez de solde pour ce retrait.',
+    'request_submitted' => 'Votre demande de retrait a été soumise avec succès.',
+    'submit_request' => 'Soumettre la Demande de Retrait',
+    'available_balance' => 'Solde Disponible',
+    'enter_amount' => 'Entrez le Montant',
+    'select_payment_method' => 'Sélectionner la Méthode de Paiement',
+    'payment_details_placeholder' => 'Entrez vos détails de paiement (ex : email PayPal, détails du compte bancaire)',
+    'no_payment_methods_available' => 'Aucune méthode de paiement n\'est actuellement disponible. Veuillez contacter l\'administrateur.',
+
+    // Additional translations for PayoutPaymentMethodsEnum
+    'bank_transfer' => 'Virement Bancaire',
+    'paypal' => 'PayPal',
+    'stripe' => 'Stripe',
+    'other' => 'Autre',
+    'bank_information' => 'Informations bancaires',
+    'paypal_id' => 'ID PayPal',
+
+    // Payout payment methods
+    'payout_payment_methods' => [
+        'bank_transfer' => 'Virement Bancaire',
+        'paypal' => 'PayPal',
+        'stripe' => 'Stripe',
+        'other' => 'Autre',
+    ],
+];

@@ -439,6 +439,9 @@ class EmailHandler
             $content = $this->prepareData($content);
             $title = $this->prepareData($title);
 
+            $content = $this->sanitizeUtf8($content);
+            $title = $this->sanitizeUtf8($title);
+
             event(new SendMailEvent($content, $title, $to, $args, $debug));
         } catch (Throwable $throwable) {
             if ($debug) {
@@ -570,5 +573,29 @@ class EmailHandler
 
             unset($this->coreVariableValues);
         }
+    }
+
+    public static function getDefaultEmailLocale(): string
+    {
+        $locale = setting('email_default_locale');
+
+        if ($locale) {
+            return $locale;
+        }
+
+        if (is_plugin_active('language')) {
+            return \Botble\Language\Facades\Language::getDefaultLocale() ?: config('app.locale', 'en');
+        }
+
+        return config('app.locale', 'en');
+    }
+
+    protected function sanitizeUtf8(string $content): string
+    {
+        if (json_encode($content) === false) {
+            $content = iconv('UTF-8', 'UTF-8//IGNORE', $content) ?: $content;
+        }
+
+        return $content;
     }
 }

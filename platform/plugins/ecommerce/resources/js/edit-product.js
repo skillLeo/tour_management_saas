@@ -691,6 +691,7 @@ class EcommerceProduct {
         const searchDelay = settings.searchDelay || 0
         const _fnThrottle = $.fn.dataTable.util.throttle
         const wrapper = $(settings.nTableWrapper)
+        const filterSelects = []
 
         const searchFn = function (column, val) {
             searchDelay
@@ -700,6 +701,11 @@ class EcommerceProduct {
                 : function () {
                       column.search(val).draw()
                   }
+        }
+
+        const updateClearAllButton = function () {
+            const hasActiveFilter = filterSelects.some((s) => s.val())
+            wrapper.find('.btn-clear-all-filters').toggleClass('d-none', !hasActiveFilter)
         }
 
         table.columns().every(function (index) {
@@ -713,19 +719,19 @@ class EcommerceProduct {
                     setting?.search_data?.type == 'customSelect' &&
                     typeof window.CustomDataApdapterSelect2 !== 'undefined'
                 ) {
+                    let attributeSet = productAttributeSets.find(
+                        (item) => item.id == setting.search_data.attribute_set_id
+                    )
+
+                    const placeholder = attributeSet ? attributeSet.title : setting.search_data.placeholder || 'Select'
+
                     let select = $(
-                        `<div><select class='form-select input-sm' data-placeholder='${
-                            setting.search_data.placeholder || 'Select'
-                        }'></select></div>`
+                        `<div class="variation-filter-wrapper"><select class='form-select input-sm variation-filter-select' data-placeholder='${placeholder}'></select></div>`
                     )
 
                     th.append(select)
 
                     select = th.find('select')
-
-                    let attributeSet = productAttributeSets.find(
-                        (item) => item.id == setting.search_data.attribute_set_id
-                    )
 
                     let data = [{ id: '', text: '' }]
                     if (attributeSet) {
@@ -745,8 +751,14 @@ class EcommerceProduct {
                         dataAdapter: CustomDataApdapterSelect2,
                     })
 
+                    filterSelects.push(select)
+
                     select.on('change', function () {
-                        searchFn(column, $(this).val() || '')
+                        const val = $(this).val() || ''
+                        const $wrapper = $(this).closest('.variation-filter-wrapper')
+                        $wrapper.toggleClass('has-active-filter', !!val)
+                        searchFn(column, val)
+                        updateClearAllButton()
                     })
                 }
             }
@@ -758,6 +770,21 @@ class EcommerceProduct {
         })
 
         $(tr).appendTo(wrapper.find('thead'))
+
+        if (filterSelects.length > 0) {
+            const clearAllBtn = $(
+                `<button type="button" class="btn btn-sm btn-outline-secondary btn-clear-all-filters d-none"><i class="fas fa-times me-1"></i>${$('#product-variations-wrapper').data('clear-filters') || 'Clear filters'}</button>`
+            )
+            clearAllBtn.on('click', function () {
+                filterSelects.forEach((select) => {
+                    select.val(null).trigger('change')
+                })
+            })
+
+            const filterHeader = wrapper.find('.dataTable-custom-filter')
+            const lastTh = filterHeader.find('th:last')
+            lastTh.append(clearAllBtn)
+        }
 
         if (settings.oInit.responsive) {
             table.on('responsive-resize', function (e, dt, columns) {
@@ -805,6 +832,15 @@ class EcommerceProduct {
 $(() => {
     new EcommerceProduct()
     window.EcommerceProduct = EcommerceProduct
+
+    // Handle currency selector change to update all currency symbols
+    $(document).on('change', '.product-currency-selector', function () {
+        const $selected = $(this).find('option:selected')
+        const symbol = $selected.data('symbol')
+        if (symbol) {
+            $(this).closest('.price-group').find('.currency-symbol').text(symbol)
+        }
+    })
 
     $('body').on('click', '.list-gallery-media-images .btn_remove_image', (event) => {
         event.preventDefault()
@@ -1023,7 +1059,7 @@ $(() => {
 
         const $input = _self.closest('.box-search-advance').find('input[type=hidden]')
 
-        if ($input.length && templateName !== 'selected-cross-sell-product-list-template') {
+        if ($input.length && templateName !== 'selected-cross-sell-product-list-template' && templateName !== 'selected-up-sell-product-list-template') {
             const existedValues = $input.val().split(',')
             $.each(existedValues, (index, el) => {
                 existedValues[index] = parseInt(el)
@@ -1243,6 +1279,7 @@ $(() => {
 
             let newId = Math.floor(Math.random() * 26) + Date.now()
 
+            $box.find('.digital-attachments-empty-row').hide()
             $box.find('table tbody').append($template)
             $box.find('.digital_attachments_input').append(
                 `<input type="file" name="product_files_input[]" data-id="${newId}">`
@@ -1263,10 +1300,14 @@ $(() => {
     $(document).on('click', '.remove-attachment-input', function (e) {
         const $this = $(e.currentTarget)
         const $tr = $this.closest('tr')
+        const $box = $this.closest('.product-type-digital-management')
         let id = $tr.data('id')
         $('input[data-id=' + id + ']').remove()
         $tr.fadeOut(300, function () {
             $(this).remove()
+            if ($box.find('table tbody tr:not(.digital-attachments-empty-row)').length === 0) {
+                $box.find('.digital-attachments-empty-row').show()
+            }
         })
     })
 
@@ -1278,6 +1319,7 @@ $(() => {
         let $template = $('#digital_attachment_external_template').html()
         $template = $template.replace(/__id__/gi, id)
 
+        $box.find('.digital-attachments-empty-row').hide()
         $box.find('table tbody').append($template)
     })
 

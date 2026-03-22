@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'menu_name' => 'সদস্য স্তর',
+    'create' => 'স্তর তৈরি করুন',
+    'edit' => 'স্তর :name সম্পাদনা করুন',
+    'min_commission' => 'ন্যূনতম কমিশন',
+    'max_commission' => 'সর্বোচ্চ কমিশন',
+    'max_commission_help' => 'সীমাহীন করতে খালি রাখুন',
+    'unlimited' => 'সীমাহীন',
+    'commission_rate' => 'কমিশন হার',
+    'commission_rate_help' => 'কমিশনের জন্য গুণক (যেমন, ১০% বোনাসের জন্য ১.১)',
+    'benefits' => 'সুবিধা',
+    'benefits_help' => 'সুবিধা তালিকা করুন, প্রতি লাইনে একটি',
+    'benefits_placeholder' => 'অগ্রাধিকার সহায়তা' . PHP_EOL . 'উচ্চতর কমিশন হার',
+    'next_level' => 'পরবর্তী স্তর: :name',
+    'commission_needed' => ':name এ পৌঁছাতে আপনার আরও :amount কমিশন প্রয়োজন',
+    'tier_rules_tooltip' => 'উচ্চতর স্তর এবং একচেটিয়া পুরস্কার আনলক করতে প্রতিটি রেফারেলের সাথে কমিশন উপার্জন করুন। স্তরগুলি আপনার আজীবন উপার্জিত কমিশনের উপর ভিত্তি করে।',
+    'top_tier_reached' => 'শীর্ষ স্তরে পৌঁছেছে',
+    'top_tier_message' => 'আপনি সর্বোচ্চ অ্যাফিলিয়েট স্তরে পৌঁছেছেন! আপনার একচেটিয়া সুবিধা উপভোগ করুন।',
+    'default_member' => 'সদস্য',
+    'member_since' => 'থেকে',
+    'no_benefits' => 'স্তর সুবিধা আনলক করতে কমিশন উপার্জন শুরু করুন!',
+    'current_commission' => ':amount উপার্জিত',
+    'target_commission' => ':amount লক্ষ্য',
+];

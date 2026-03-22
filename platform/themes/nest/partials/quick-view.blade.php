@@ -6,7 +6,7 @@
     <div class="col-md-6 col-sm-12 col-xs-12 mb-md-0 mb-sm-5">
         <div class="detail-gallery">
             <span class="zoom-icon"><i class="fi-rs-search"></i></span>
-            @include(EcommerceHelper::viewPath('includes.product-gallery'))
+            @include(EcommerceHelper::viewPath('includes.product-gallery'), ['productImageSize' => 'medium'])
         </div>
         <!-- End Gallery -->
     </div>

@@ -5,6 +5,7 @@ namespace Botble\Ecommerce\Http\Middleware;
 use Botble\Ecommerce\Services\AbandonedCartService;
 use Closure;
 use Illuminate\Http\Request;
+use Throwable;
 
 class TrackAbandonedCart
 {
@@ -21,21 +22,25 @@ class TrackAbandonedCart
             return $response;
         }
 
-        if ($request->route() && in_array($request->route()->getName(), [
-            'public.cart',
-            'public.cart.update',
-            'public.cart.add-to-cart',
-            'public.ajax.cart.update',
-        ])) {
-            $this->abandonedCartService->trackCart();
-        }
+        try {
+            if ($request->route() && in_array($request->route()->getName(), [
+                'public.cart',
+                'public.cart.update',
+                'public.cart.add-to-cart',
+                'public.ajax.cart.update',
+            ])) {
+                $this->abandonedCartService->trackCart();
+            }
 
-        if ($request->isMethod('post') && $request->has(['email', 'name'])) {
-            $this->abandonedCartService->updateCustomerInfo([
-                'email' => $request->input('email'),
-                'phone' => $request->input('phone'),
-                'name' => $request->input('name'),
-            ]);
+            if ($request->isMethod('post') && $request->has(['email', 'name'])) {
+                $this->abandonedCartService->updateCustomerInfo([
+                    'email' => $request->input('email'),
+                    'phone' => $request->input('phone'),
+                    'name' => $request->input('name'),
+                ]);
+            }
+        } catch (Throwable $e) {
+            report($e);
         }
 
         return $response;

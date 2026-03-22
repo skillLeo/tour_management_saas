@@ -23,5 +23,6 @@
 @stop
 
 @push('footer')
+    <script type="text/javascript" src="{{ asset('vendor/core/core/base/libraries/jquery-compat/jquery4-compat.js') }}?v={{ EcommerceHelper::getAssetVersion() }}"></script>
     <script type="text/javascript" src="{{ asset('vendor/core/core/js-validation/js/js-validation.js') }}?v={{ EcommerceHelper::getAssetVersion() }}"></script>
 @endpush

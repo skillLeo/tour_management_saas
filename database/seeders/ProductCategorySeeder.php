@@ -7,6 +7,7 @@ use Botble\Base\Supports\BaseSeeder;
 use Botble\Ecommerce\Models\ProductCategory;
 use Botble\Slug\Facades\SlugHelper;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 
 class ProductCategorySeeder extends BaseSeeder
 {
@@ -85,6 +86,7 @@ class ProductCategorySeeder extends BaseSeeder
         $category['is_featured'] = $index < 12;
         $category['image'] = 'product-categories/image-' . ($index + 1) . '.png';
         $category['icon_image'] = 'product-categories/icon-' . ($index + 1) . '.png';
+        $category['slug'] = Str::slug($category['name']);
 
         if (Arr::has($category, 'children')) {
             $children = $category['children'];

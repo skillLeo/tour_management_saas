@@ -12,4 +12,16 @@ return [
     'return' => [
         'description' => 'অর্ডার #:order থেকে ফেরত',
     ],
+    'thank_you' => [
+        'count_orders' => ':count অর্ডার',
+        'order' => 'অর্ডার',
+        'thank_you_name' => 'ধন্যবাদ, :name!',
+        'order_confirmed' => 'আপনার অর্ডার নিশ্চিত করা হয়েছে',
+        'order_accepted' => 'আমরা আপনার অর্ডার গ্রহণ করেছি এবং এটি প্রস্তুত করছি।',
+        'customer' => 'গ্রাহক',
+        'need_help' => 'সাহায্য দরকার?',
+        'contact_us' => 'যোগাযোগ করুন',
+        'view_order_history' => 'অর্ডার ইতিহাস দেখুন',
+        'order_total' => 'অর্ডার মোট',
+    ],
 ];

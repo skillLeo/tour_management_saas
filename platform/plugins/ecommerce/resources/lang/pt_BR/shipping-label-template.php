@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'name' => 'Modelo de Etiqueta de Envio',
-    'setting' => 'Configurações do Modelo de Etiqueta de Envio',
-    'setting_description' => 'Configurações para o modelo de etiqueta de envio',
+    'name' => 'Shipping Labels',
+    'setting' => 'Label design & layout',
+    'setting_description' => 'Customize shipping label HTML template and CSS styles',
     'setting_content' => 'Conteúdo',
     'preview' => 'Visualizar',
     'preview_heading' => 'Visualizar modelo de etiqueta de envio',

@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'name' => 'Verzendlabel Sjabloon',
-    'setting' => 'Verzendlabel Sjabloon Instellingen',
-    'setting_description' => 'Instellingen voor Verzendlabel sjabloon',
+    'name' => 'Verzendlabels',
+    'setting' => 'Label ontwerp & layout',
+    'setting_description' => 'Pas HTML-sjabloon en CSS-stijlen van verzendlabel aan',
     'setting_content' => 'Inhoud',
     'preview' => 'Voorvertoning',
     'preview_heading' => 'Voorvertoning Verzendlabel sjabloon',

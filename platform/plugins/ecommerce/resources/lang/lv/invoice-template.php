@@ -2,8 +2,8 @@
 
 return [
     'name' => 'Rēķina veidne',
-    'setting' => 'Rēķina veidnes iestatījumi',
-    'setting_description' => 'Iestatījumi rēķina veidnei',
+    'setting' => 'Template design & layout',
+    'setting_description' => 'Customize invoice HTML template and CSS styles',
     'setting_content' => 'Saturs',
     'preview' => 'Priekšskatījums',
     'preview_heading' => 'Priekšskatīt rēķina veidni',

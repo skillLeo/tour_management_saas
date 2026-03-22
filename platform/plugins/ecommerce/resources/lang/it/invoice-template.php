@@ -2,8 +2,8 @@
 
 return [
     'name' => 'Template Fattura',
-    'setting' => 'Impostazioni Template Fattura',
-    'setting_description' => 'Impostazioni per il template Fattura',
+    'setting' => 'Design e layout del modello',
+    'setting_description' => 'Personalizza template HTML e stili CSS della fattura',
     'setting_content' => 'Contenuto',
     'preview' => 'Anteprima',
     'preview_heading' => 'Anteprima template Fattura',

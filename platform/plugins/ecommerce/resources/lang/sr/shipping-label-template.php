@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'name' => 'Šablon etikete za dostavu',
-    'setting' => 'Podešavanja šablona etikete za dostavu',
-    'setting_description' => 'Podešavanja za šablon etikete za dostavu',
+    'name' => 'Shipping Labels',
+    'setting' => 'Label design & layout',
+    'setting_description' => 'Customize shipping label HTML template and CSS styles',
     'setting_content' => 'Sadržaj',
     'preview' => 'Pregled',
     'preview_heading' => 'Pregled šablona etikete za dostavu',

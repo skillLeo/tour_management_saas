@@ -103,55 +103,6 @@
     </x-slot:footer>
 </x-core::modal>
 
-<style>
-.widget-config-item {
-    border: 1px solid #e9ecef;
-    transition: all 0.2s ease;
-    cursor: pointer;
-}
-
-.widget-config-item:hover {
-    border-color: #007bff;
-    box-shadow: 0 2px 4px rgba(0,123,255,0.1);
-}
-
-.widget-config-item .form-check-input:checked ~ .flex-fill {
-    opacity: 1;
-}
-
-.widget-config-item .form-check-input:not(:checked) ~ .flex-fill {
-    opacity: 0.6;
-}
-
-.widget-category-header {
-    background: #f8f9fa;
-    border-radius: 0.375rem;
-    padding: 0.75rem;
-    margin-bottom: 1rem;
-}
-
-.widget-grid {
-    max-height: 400px;
-    overflow-y: auto;
-}
-
-#widget-config-modal .modal-dialog {
-    max-width: 900px;
-}
-
-.widget-config-item label {
-    cursor: pointer;
-}
-
-.icon-spin {
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-</style>
 
 <script>
 $(document).ready(function() {

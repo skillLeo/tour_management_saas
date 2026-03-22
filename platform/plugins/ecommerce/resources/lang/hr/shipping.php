@@ -192,6 +192,7 @@ return [
         'order_date' => 'Datum narudžbe',
         'scan_qr_code' => 'Skenirajte QR kod za praćenje vaše pošiljke',
         'total_amount' => 'Ukupan iznos',
+        'amount_to_collect' => 'Iznos za naplatu',
         'cod_amount_to_collect' => 'COD iznos za naplatu',
     ],
     'customer_confirmed_delivery_at' => 'Kupac je potvrdio dostavu u',

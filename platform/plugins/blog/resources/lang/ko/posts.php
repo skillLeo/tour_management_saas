@@ -25,6 +25,8 @@ return [
     'categories' => '카테고리',
     'category' => '카테고리',
     'author' => '작성자',
+    'author_helper' => 'Select an author from admin users.',
+    'select_author' => 'Select author',
     'is_featured' => '추천 게시물인가요?',
     'export' => [
         'description' => '게시물을 CSV/Excel 파일로 내보냅니다.',

@@ -2,9 +2,13 @@
 
 namespace Botble\Marketplace\Http\Controllers\Fronts;
 
+use Botble\Base\Events\AdminNotificationEvent;
+use Botble\Base\Facades\EmailHandler;
 use Botble\Base\Forms\FieldOptions\HtmlFieldOption;
 use Botble\Base\Forms\Fields\HtmlField;
 use Botble\Base\Http\Responses\BaseHttpResponse;
+use Botble\Base\Supports\AdminNotificationItem;
+use Botble\Ecommerce\Facades\EcommerceHelper;
 use Botble\Marketplace\Facades\MarketplaceHelper;
 use Botble\Marketplace\Forms\Fronts\BecomeVendorForm;
 use Botble\Marketplace\Http\Controllers\BaseController;
@@ -53,6 +57,13 @@ class BecomeVendorController extends BaseController
 
         if ($customer->is_vendor) {
             $store = $customer->store;
+
+            if (! $store) {
+                $form = BecomeVendorForm::create();
+
+                return Theme::scope('marketplace.become-vendor', compact('form'), MarketplaceHelper::viewPath('become-vendor', false))
+                    ->render();
+            }
 
             if (
                 MarketplaceHelper::getSetting('requires_vendor_documentations_verification', true)
@@ -154,7 +165,41 @@ class BecomeVendorController extends BaseController
             $store->government_id_file = $governmentIdFilePath;
         }
 
+        $documentsUploaded = $store->isDirty(['certificate_file', 'government_id_file']);
+
         $store->save();
+
+        if ($documentsUploaded && MarketplaceHelper::getSetting('verify_vendor', 1)) {
+            $customer->vendor_verified_at = null;
+            $customer->save();
+
+            $mailer = EmailHandler::setModule(MARKETPLACE_MODULE_SCREEN_NAME);
+
+            if ($mailer->templateEnabled('verify_vendor')) {
+                $mailer
+                    ->setVariableValues([
+                        'customer_name' => $customer->name,
+                        'customer_email' => $customer->email,
+                        'customer_phone' => $customer->phone,
+                        'store_name' => $store->name,
+                        'store_phone' => $store->phone,
+                        'store_address' => $store->address,
+                        'store_link' => route('marketplace.unverified-vendors.view', $customer->getKey()),
+                        'store_url' => route('marketplace.unverified-vendors.view', $customer->getKey()),
+                    ])
+                    ->sendUsingTemplate('verify_vendor', EcommerceHelper::getAdminNotificationEmails());
+            }
+
+            event(new AdminNotificationEvent(
+                AdminNotificationItem::make()
+                    ->title(trans('plugins/marketplace::unverified-vendor.new_vendor_notifications.new_vendor'))
+                    ->description(trans('plugins/marketplace::unverified-vendor.new_vendor_notifications.description', [
+                        'customer' => $customer->name,
+                    ]))
+                    ->action(trans('plugins/marketplace::unverified-vendor.new_vendor_notifications.view'), route('marketplace.unverified-vendors.view', $customer->id))
+                    ->permission('marketplace.unverified-vendors.edit')
+            ));
+        }
 
         return $this
             ->httpResponse()

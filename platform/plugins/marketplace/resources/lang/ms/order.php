@@ -12,4 +12,16 @@ return [
     'return' => [
         'description' => 'Dipulangkan daripada pesanan #:order',
     ],
+    'thank_you' => [
+        'count_orders' => ':count pesanan',
+        'order' => 'Pesanan',
+        'thank_you_name' => 'Terima kasih, :name!',
+        'order_confirmed' => 'Pesanan anda telah disahkan',
+        'order_accepted' => 'Kami telah menerima pesanan anda dan sedang menyediakannya.',
+        'customer' => 'Pelanggan',
+        'need_help' => 'Perlukan bantuan?',
+        'contact_us' => 'Hubungi kami',
+        'view_order_history' => 'Lihat sejarah pesanan',
+        'order_total' => 'Jumlah pesanan',
+    ],
 ];

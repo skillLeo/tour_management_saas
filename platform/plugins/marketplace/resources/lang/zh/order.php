@@ -12,4 +12,16 @@ return [
     'return' => [
         'description' => '从订单 #:order 退货',
     ],
+    'thank_you' => [
+        'count_orders' => ':count 个订单',
+        'order' => '订单',
+        'thank_you_name' => '谢谢，:name！',
+        'order_confirmed' => '您的订单已确认',
+        'order_accepted' => '我们已接受您的订单，正在准备中。',
+        'customer' => '客户',
+        'need_help' => '需要帮助？',
+        'contact_us' => '联系我们',
+        'view_order_history' => '查看订单历史',
+        'order_total' => '订单总额',
+    ],
 ];

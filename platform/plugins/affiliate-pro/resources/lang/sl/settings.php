@@ -1,0 +1,28 @@
+<?php
+
+return [
+    'title' => 'Nastavitve partnerja', 'description' => 'Konfiguracija nastavitev partnerskega programa', 'name' => 'Nastavitve partnerja',
+    'commission_type' => 'Tip provizije', 'commission_value' => 'Vrednost provizije', 'commission_percentage' => 'Odstotek provizije',
+    'default_commission_percentage' => 'Privzeti odstotek provizije', 'enable_commission_for_each_category' => 'Omogoči provizijo za vsako kategorijo',
+    'commission_percentage_each_category_name' => 'Odstotek provizije za skupino kategorij :key', 'commission_percentage_each_category_categories' => 'Kategorije za skupino :key',
+    'categories' => 'Kategorije', 'select_categories' => 'Izberi kategorije', 'add_new' => 'Dodaj novo',
+    'minimum_withdrawal' => 'Minimalni znesek dviga', 'minimum_withdrawal_amount' => 'Minimalni znesek dviga',
+    'minimum_withdrawal_amount_helper' => 'Minimalni znesek, potreben za zahtevo za dvig', 'cookie_lifetime' => 'Življenjska doba piškotka (dni)',
+    'enable_registration' => 'Omogoči registracijo partnerjev', 'enable_registration_helper' => 'Dovoli strankam, da se registrirajo kot partnerji',
+    'auto_approve_affiliates' => 'Samodejno odobri partnerje', 'auto_approve_affiliates_helper' => 'Samodejno odobri registracije partnerjev',
+    'auto_approve_commissions' => 'Samodejno odobri provizije', 'auto_approve_commissions_helper' => 'Samodejno odobri provizije po zaključkih naročil',
+    'affiliate_rules_content' => 'Pravila in pogoji partnerskega programa', 'affiliate_rules_content_helper' => 'Vnesite pravila in pogoje partnerskega programa, ki bodo prikazani na registracijski strani. Lahko uporabite HTML oblikovanje.',
+    'affiliate_rules_content_placeholder' => 'Vnesite pravila in pogoje partnerjev za :language...', 'default_language' => 'Privzeti jezik',
+    'default' => 'Privzeto', 'default_language_note' => 'To je vsebina v privzetem jeziku. Drugi jeziki bodo uporabili to vsebino, če je njihova specifična vsebina prazna.',
+    'fallback_language_note' => 'Če je ta vsebina prazna, bo uporabljena vsebina v privzetem jeziku.',
+    'percentage' => 'Odstotek', 'fixed_amount' => 'Fiksni znesek', 'promotional_banners_section' => 'Promocijski bannerji',
+    'banner_1_name' => 'Ime bannerja 1', 'banner_1_name_helper' => 'Prikazano ime za prvi promocijski banner (npr. "Banner 1 (468x60)")',
+    'banner_1_image' => 'Slika bannerja 1', 'banner_1_image_helper' => 'Naložite sliko promocijskega bannerja. Priporočena velikost: 468x60 slikovnih točk. Ta banner bo na voljo partnerjem za uporabo v njihovih marketinških materialih.',
+    'banner_2_name' => 'Ime bannerja 2', 'banner_2_name_helper' => 'Prikazano ime za drugi promocijski banner (npr. "Banner 2 (300x250)")',
+    'banner_2_image' => 'Slika bannerja 2', 'banner_2_image_helper' => 'Naložite sliko promocijskega bannerja. Priporočena velikost: 300x250 slikovnih točk. Ta banner bo na voljo partnerjem za uporabo v njihovih marketinških materialih.',
+    'banner_3_name' => 'Ime bannerja 3', 'banner_3_name_helper' => 'Prikazano ime za tretji promocijski banner (npr. "Banner 3 (728x90)")',
+    'banner_3_image' => 'Slika bannerja 3', 'banner_3_image_helper' => 'Naložite sliko promocijskega bannerja. Priporočena velikost: 728x90 slikovnih točk. Ta banner bo na voljo partnerjem za uporabo v njihovih marketinških materialih.',
+    'withdrawal_payment_methods_section' => 'Načini plačila za dvige', 'available_withdrawal_methods' => 'Razpoložljivi načini dviga',
+    'available_withdrawal_methods_helper' => 'Izberite, katere načine plačila lahko partnerji uporabljajo za dvige',
+    'enable_bank_transfer' => 'Omogoči bančno nakazilo', 'enable_paypal' => 'Omogoči PayPal', 'enable_stripe' => 'Omogoči Stripe', 'enable_other' => 'Omogoči druge načine plačila',
+];

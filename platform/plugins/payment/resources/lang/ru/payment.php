@@ -87,6 +87,8 @@ return [
     'total' => 'Всего',
     'status' => 'Состояние',
     'default_payment_method' => 'Способ оплаты по умолчанию',
+    'sort_order_instruction' => 'Перетащите для изменения порядка способов оплаты на странице оформления заказа.',
+    'default_method_instruction' => 'Нажмите на значок звезды, чтобы установить способ оплаты по умолчанию.',
     'available_countries' => 'Available countries',
     'available_countries_help' => 'Choose the countries where this payment method is available.',
     'all_countries_checkbox' => 'All',

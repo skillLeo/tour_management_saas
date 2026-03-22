@@ -120,8 +120,14 @@ return [
             'success_header' => 'Успіх',
         ],
         'download' => [
-            'error' => 'Файли не вибрані або не можна завантажити ці файли',
+            'error' => 'No files selected or cannot download these files',
         ],
+
+        'move' => [
+            'select_destination' => 'Будь ласка, виберіть папку призначення',
+            'same_location' => 'Елементи вже знаходяться в цьому місці',
+        ],
+
         'actions_list' => [
             'basic' => [
                 'preview' => 'Попередній перегляд',
@@ -131,6 +137,7 @@ return [
                 'copy_link' => 'Копіювати посилання',
                 'rename' => 'Перейменувати',
                 'make_copy' => 'Зробити копію',
+                'move' => 'Перемістити',
                 'alt_text' => 'ALT текст',
                 'copy_indirect_link' => 'Копіювати непряме посилання',
                 'share' => 'Поділіться',

@@ -192,6 +192,7 @@ return [
         'order_date' => 'Dátum objednávky',
         'scan_qr_code' => 'Naskenujte QR kód na sledovanie vašej zásielky',
         'total_amount' => 'Celková suma',
+        'amount_to_collect' => 'Suma na vybratie',
         'cod_amount_to_collect' => 'Suma COD na vybratie',
     ],
     'customer_confirmed_delivery_at' => 'Zákazník potvrdil doručenie o',

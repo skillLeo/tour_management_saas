@@ -132,7 +132,9 @@ class PublicProductController extends BaseController
                         'ec_products.barcode',
                         'ec_products.description',
                         'ec_products.is_variation',
+                        'ec_products.price_includes_tax',
                         'original_products.images as original_images',
+                        'original_products.currency_code',
                         'ec_products.height',
                         'ec_products.weight',
                         'ec_products.wide',
@@ -158,6 +160,8 @@ class PublicProductController extends BaseController
                     'sku',
                     'description',
                     'is_variation',
+                    'price_includes_tax',
+                    'currency_code',
                     'height',
                     'weight',
                     'wide',
@@ -208,6 +212,8 @@ class PublicProductController extends BaseController
                     'sku',
                     'description',
                     'is_variation',
+                    'price_includes_tax',
+                    'currency_code',
                     'height',
                     'weight',
                     'wide',
@@ -236,9 +242,9 @@ class PublicProductController extends BaseController
         }
 
         // Cache variation data for better performance
-        $cacheKey = 'product_variation_ajax_' . $originalProduct->id . '_' . md5(json_encode($attributes)) . '_' . app()->getLocale();
+        $cacheKey = 'product_variation_ajax_' . $originalProduct->id . '_' . app()->getLocale();
 
-        $variationData = Cache::remember($cacheKey, 60, function () use ($originalProduct, $productRepository) {
+        $variationData = Cache::remember($cacheKey, 1800, function () use ($originalProduct, $productRepository) {
             $productAttributes = $productRepository->getRelatedProductAttributes($originalProduct)->sortBy('order');
             $attributeSets = $originalProduct->productAttributeSets()->orderBy('order')->get();
 
@@ -389,6 +395,40 @@ class PublicProductController extends BaseController
 
         return Theme::scope('ecommerce.order-tracking', compact('order', 'form'), 'plugins/ecommerce::themes.order-tracking')
             ->render();
+    }
+
+    public function ajaxGetUpSaleProducts(Product $product)
+    {
+        $parentProduct = $product;
+        $products = get_up_sale_products($product);
+
+        return $this
+            ->httpResponse()
+            ->setData(
+                Theme::scope(
+                    'ecommerce.includes.up-sale-products',
+                    compact('products', 'parentProduct'),
+                    'plugins/ecommerce::themes.includes.up-sale-products'
+                )->content()
+            );
+    }
+
+    public function ajaxGetCrossSaleProducts(Product $product, ProductCrossSalePriceService $productCrossSalePriceService)
+    {
+        $parentProduct = $product;
+        $products = get_cross_sale_products($product);
+
+        $productCrossSalePriceService->applyProduct($product);
+
+        return $this
+            ->httpResponse()
+            ->setData(
+                Theme::scope(
+                    'ecommerce.includes.cross-sale-products',
+                    compact('products', 'parentProduct'),
+                    'plugins/ecommerce::themes.includes.cross-sale-products'
+                )->content()
+            );
     }
 
     protected function ajaxFilterProductsResponse($products, ?ProductCategory $category = null)

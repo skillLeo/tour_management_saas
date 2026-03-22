@@ -22,4 +22,6 @@ return [
     '503_temporarily_down' => 'Midlertidig nede for vedlikehold',
     '503_admin_instruction' => 'Hvis du er administrator og ikke får tilgang til nettstedet ditt etter å ha aktivert vedlikeholdsmodus, trenger du bare å slette filen <strong>storage/framework/down</strong> for å slå av vedlikeholdsmodus.',
     'take_me_home' => 'Ta meg hjem',
+    'bad_request' => 'Ugyldig forespørsel',
+
 ];

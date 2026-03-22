@@ -31,6 +31,7 @@ class FlashSaleSeeder extends BaseSeeder
 
         foreach ($data as $index => $item) {
             $item['end_date'] = Carbon::now()
+                ->addMonths(rand(7, 12))
                 ->addDays(rand(15, 50))
                 ->addHours(rand(1, 23))
                 ->addMinutes(rand(1, 59))

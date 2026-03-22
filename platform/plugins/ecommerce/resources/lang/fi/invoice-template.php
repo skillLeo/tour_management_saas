@@ -2,8 +2,8 @@
 
 return [
     'name' => 'Laskupohja',
-    'setting' => 'Laskupohjan asetukset',
-    'setting_description' => 'Laskupohjan asetukset',
+    'setting' => 'Template design & layout',
+    'setting_description' => 'Customize invoice HTML template and CSS styles',
     'setting_content' => 'Sisältö',
     'preview' => 'Esikatselu',
     'preview_heading' => 'Laskupohjan esikatselu',

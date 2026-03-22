@@ -135,7 +135,7 @@ class ProductCategoryImporter extends Importer implements WithMapping
         $total = 0;
 
         foreach ($data as $row) {
-            $slug = Arr::pull($row, 'slug');
+            $slug = Arr::get($row, 'slug');
 
             $parentName = Arr::pull($row, 'parent');
 

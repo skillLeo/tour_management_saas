@@ -1,0 +1,73 @@
+<?php
+
+return [
+    'name' => 'Rapporter',
+    'commission_this_month' => 'Provisjon denne måneden',
+    'pending_commissions' => 'Ventende provisjoner',
+    'approved_commissions' => 'Godkjente provisjoner',
+    'pending_withdrawals' => 'Ventende uttak',
+    'approved_withdrawals' => 'Godkjente uttak',
+    'active_affiliates' => 'Aktive affiliater',
+    'affiliate_stats' => 'Affiliate-statistikk',
+    'top_affiliates' => 'Topp Affiliater',
+    'recent_commissions' => 'Nylige Provisjoner',
+    'recent_withdrawals' => 'Nylige Uttak',
+    'commission_chart' => 'Provisjonsdiagram',
+    'withdrawal_chart' => 'Uttaksdiagram',
+
+    // Enhanced reports
+    'geographic_data' => 'Geografiske Data',
+    'top_countries' => 'Toppland',
+    'top_cities' => 'Toppbyer',
+    'short_link_performance' => 'Kortlenke-ytelse',
+    'top_performing_links' => 'Bestytende Lenker',
+    'link' => 'Lenke',
+    'clicks' => 'Klikk',
+    'conversions' => 'Konverteringer',
+    'commission_trends' => 'Provisjonstrender',
+    'commission_amount' => 'Provisjonsbeløp',
+    'loading' => 'Laster...',
+    'no_data' => 'Ingen data tilgjengelig',
+    'no_commission_data' => 'Ingen provisjonsdata tilgjengelig for den valgte perioden',
+    'no_geographic_data' => 'Ingen geografiske data tilgjengelig for den valgte perioden',
+    'no_city_data' => 'Ingen bydata tilgjengelig for det valgte landet',
+    'chart_error' => 'Feil ved rendering av diagram. Prøv å oppdatere siden.',
+
+    // Performance metrics widget
+    'performance_metrics' => 'Ytelsesmålinger',
+    'total_clicks' => 'Totale Klikk',
+    'earnings' => 'Inntjening',
+    'avg_commission' => 'Gj.snittl. Provisjon',
+    'avg_conversion_rate' => 'Gj.snittl. Konverteringsrate',
+    'vs_previous' => 'sammenlignet med forrige',
+    'no_change' => 'Ingen endring',
+    'performance_over_time' => 'Ytelse Over Tid',
+    'clicks_conversions' => 'Klikk & Konverteringer',
+
+    // Conversion rate widget
+    'conversion_rate_analysis' => 'Konverteringsrateanalyse',
+    'overall_conversion_rate' => 'Samlet Konverteringsrate',
+    'conversion_breakdown' => 'Konverteringsfordeling',
+    'source' => 'Kilde',
+    'rate' => 'Rate',
+    'conversion_rate_percentage' => 'Konverteringsrate (%)',
+    'optimization_opportunity' => 'Optimeringsmulighet',
+    'conversion_rate_below_average' => 'Din konverteringsrate er under gjennomsnittet. Vurder disse tipsene:',
+    'target_relevant_audiences' => 'Henvis til mer relevante målgrupper',
+    'improve_promotional_content' => 'Forbedre markedsføringsinnholdet ditt',
+    'focus_higher_conversion_products' => 'Fokuser på produkter med høyere konverteringsrate',
+    'great_performance' => 'Flott Ytelse!',
+    'excellent_conversion_rate' => 'Din konverteringsrate er utmerket. Fortsett det gode arbeidet!',
+    'good_performance' => 'God Ytelse',
+    'average_conversion_rate' => 'Din konverteringsrate ligger innenfor det gjennomsnittlige området. Det er rom for forbedring.',
+
+    // Date ranges (copied from ecommerce for consistency)
+    'ranges' => [
+        'today' => 'I dag',
+        'this_week' => 'Denne uken',
+        'last_7_days' => 'Siste 7 dager',
+        'last_30_days' => 'Siste 30 dager',
+        'this_month' => 'Denne måneden',
+        'this_year' => 'Dette året',
+    ],
+];

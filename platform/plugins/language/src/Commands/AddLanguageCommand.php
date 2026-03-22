@@ -4,6 +4,7 @@ namespace Botble\Language\Commands;
 
 use Botble\Base\Commands\Traits\ValidateCommandInput;
 use Botble\Base\Supports\Language;
+use Botble\Language\Events\LanguageCreated;
 use Botble\Language\Facades\Language as LanguageFacade;
 use Botble\Language\Models\Language as LanguageModel;
 use Exception;
@@ -133,7 +134,7 @@ class AddLanguageCommand extends Command implements PromptsForMissingInput
             $isDefault = true;
         }
 
-        return LanguageModel::query()->create([
+        $language = LanguageModel::query()->create([
             'lang_name' => $name,
             'lang_locale' => $locale,
             'lang_code' => $code,
@@ -142,6 +143,10 @@ class AddLanguageCommand extends Command implements PromptsForMissingInput
             'lang_order' => $order,
             'lang_is_default' => $isDefault,
         ]);
+
+        LanguageCreated::dispatch($language);
+
+        return $language;
     }
 
     protected function clearRoutesCache(): void

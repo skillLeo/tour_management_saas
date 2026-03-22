@@ -23,11 +23,16 @@ class GetProductService
         array $withCount = [],
         array $conditions = []
     ): Collection|LengthAwarePaginator {
-        $num = $request->integer('num') ?: $request->integer('per-page') ?: $request->input('per_page');
-        $shows = EcommerceHelper::getShowParams();
+        $num = $request->integer('num') ?: $request->integer('per-page') ?: $request->integer('per_page');
 
-        if (! array_key_exists($num, $shows)) {
-            $num = (int) theme_option('number_of_products_per_page', 12);
+        // Allow any per_page value between 1 and 100 for API flexibility
+        // Only validate against getShowParams for non-API requests (e.g., web frontend)
+        if ($num < 1 || $num > 100) {
+            $shows = EcommerceHelper::getShowParams();
+
+            if (! array_key_exists($num, $shows)) {
+                $num = (int) theme_option('number_of_products_per_page', 12);
+            }
         }
 
         $keyword = $request->input('q') ?: $request->input('keyword') ?: $request->input('search');

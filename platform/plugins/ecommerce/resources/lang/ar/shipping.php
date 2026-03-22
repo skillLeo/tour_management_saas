@@ -196,6 +196,7 @@ return [
         'order_date' => 'تاريخ الطلب',
         'scan_qr_code' => 'امسح رمز QR لتتبع شحنتك',
         'total_amount' => 'المبلغ الإجمالي',
+        'amount_to_collect' => 'المبلغ المطلوب تحصيله',
         'cod_amount_to_collect' => 'مبلغ الدفع عند الاستلام المطلوب تحصيله',
     ],
     'customer_confirmed_delivery_at' => 'أكد العميل التسليم في',

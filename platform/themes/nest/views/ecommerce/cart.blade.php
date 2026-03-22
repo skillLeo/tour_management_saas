@@ -1,7 +1,7 @@
 <div class="mb-80 mt-50 section--shopping-cart">
     <div class="row">
         <div class="col-lg-8 mb-40">
-            <h1 class="heading-2 mb-10">{{ __('Your Cart') }}</h1>
+            <h1 class="compare-page-title mb-10">{{ __('Your Cart') }}</h1>
             <div class="d-flex justify-content-between">
                 @if (! empty($products))
                     <p class="text-body font-heading h6">{!! BaseHelper::clean(__('There are :total products in your cart', ['total' => '<span class="text-brand">' . count($products) . '</span>'])) !!}</p>
@@ -12,6 +12,9 @@
     <form method="post" action="{{ route('public.ajax.cart.update') }}">
         @csrf
         @method('PUT')
+        @php
+            $showProductPrice = ! EcommerceHelper::hideProductPrice() || EcommerceHelper::isCartEnabled();
+        @endphp
         <div class="row">
             <div class="col-lg-8">
                 @if (count($products) > 0)
@@ -20,9 +23,13 @@
                             <thead>
                                 <tr class="main-heading">
                                     <th scope="col" colspan="2" class="start pl-30">{{ __('Product') }}</th>
-                                    <th scope="col">{{ __('Unit Price') }}</th>
+                                    @if ($showProductPrice)
+                                        <th scope="col">{{ __('Unit Price') }}</th>
+                                    @endif
                                     <th scope="col">{{ __('Quantity') }}</th>
-                                    <th scope="col">{{ __('Subtotal') }}</th>
+                                    @if ($showProductPrice)
+                                        <th scope="col">{{ __('Subtotal') }}</th>
+                                    @endif
                                     <th scope="col" class="end">{{ __('Remove') }}</th>
                                 </tr>
                             </thead>
@@ -61,6 +68,7 @@
                                                         @endif
                                                     @endforeach
                                                 @endif
+                                                {!! app(\Botble\Ecommerce\Supports\CartBundleHelper::class)->renderBundleBadge($cartItem) !!}
 
                                                 @if (EcommerceHelper::isReviewEnabled() && $product->reviews_count)
                                                     <div class="product-rate-cover">
@@ -71,22 +79,33 @@
                                                     </div>
                                                 @endif
                                             </td>
-                                            <td class="price" data-title="{{ __('Unit Price') }}">
-                                                <h4 class="text-body">{{ format_price($cartItem->price) }} </h4>
-                                                @include(Theme::getThemeNamespace('views.ecommerce.includes.product-price', ['priceFormatted' => format_price($cartItem->price)]))
-                                            </td>
+                                            @if ($showProductPrice)
+                                                <td class="price" data-title="{{ __('Unit Price') }}">
+                                                    @include(Theme::getThemeNamespace('views.ecommerce.includes.product-price'), ['product' => $product, 'priceFormatted' => format_price($cartItem->price)])
+                                                </td>
+                                            @endif
                                             <td class="text-center detail-info" data-title="{{ __('Quantity') }}">
+                                                @php
+                                                    $cartBundleHelper = app(\Botble\Ecommerce\Supports\CartBundleHelper::class);
+                                                    $isBundleItem = $cartBundleHelper->isBundleItem($cartItem);
+                                                @endphp
                                                 <div class="detail-extralink mr-15">
                                                     <div class="detail-qty border radius m-auto">
-                                                        <a href="#" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
-                                                        <input type="number" min="1" value="{{ $cartItem->qty }}" name="items[{{ $key }}][values][qty]" class="qty-val qty-input" />
-                                                        <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
+                                                        @if ($cartBundleHelper->shouldShowQuantityControls($cartItem))
+                                                            <a href="#" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
+                                                        @endif
+                                                        <input type="number" min="1" value="{{ $isBundleItem ? 1 : $cartItem->qty }}" name="items[{{ $key }}][values][qty]" class="qty-val qty-input" @if($isBundleItem) readonly style="background: #f5f5f5; pointer-events: none;" @endif />
+                                                        @if ($cartBundleHelper->shouldShowQuantityControls($cartItem))
+                                                            <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td class="price" data-title="{{ __('Subtotal') }}">
-                                                <h4 class="text-brand">{{ format_price($cartItem->price * $cartItem->qty) }} </h4>
-                                            </td>
+                                            @if ($showProductPrice)
+                                                <td class="price" data-title="{{ __('Subtotal') }}">
+                                                    <h4 class="text-brand">{{ format_price($cartItem->price * $cartItem->qty) }} </h4>
+                                                </td>
+                                            @endif
                                             <td class="action text-center" data-title="{{ __('Remove') }}">
                                                 <a href="#" class="text-body remove-cart-button" data-url="{{ route('public.ajax.cart.destroy', $cartItem->rowId) }}"><i class="fi-rs-trash"></i></a>
                                             </td>
@@ -115,10 +134,15 @@
                         @endif
                     </div>
                 @else
-                    <p class="text-center">{{ __('Your cart is empty!') }}</p>
+                    <div class="empty-state">
+                        <img src="{{ Theme::asset()->url('imgs/theme/icons/icon-cart.svg') }}" alt="{{ __('Your cart is empty!') }}" class="empty-state__icon">
+                        <h5 class="empty-state__title">{{ __('Your cart is empty!') }}</h5>
+                        <p class="empty-state__text">{{ __('Looks like you haven\'t added any products to your cart yet.') }}</p>
+                        <a href="{{ route('public.products') }}" class="btn btn-sm">{{ __('Browse Products') }}</a>
+                    </div>
                 @endif
             </div>
-            @if (Cart::instance('cart')->isNotEmpty())
+            @if ($showProductPrice && Cart::instance('cart')->isNotEmpty())
                 <div class="col-lg-4">
                     <div class="border p-md-4 cart-totals ml-30">
                         <div class="table-responsive">

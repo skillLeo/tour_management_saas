@@ -1,0 +1,73 @@
+<?php
+
+return [
+    'name' => 'Rapoarte',
+    'commission_this_month' => 'Comision luna aceasta',
+    'pending_commissions' => 'Comisioane în așteptare',
+    'approved_commissions' => 'Comisioane aprobate',
+    'pending_withdrawals' => 'Retrageri în așteptare',
+    'approved_withdrawals' => 'Retrageri aprobate',
+    'active_affiliates' => 'Afiliați activi',
+    'affiliate_stats' => 'Statistici afiliați',
+    'top_affiliates' => 'Afiliați de top',
+    'recent_commissions' => 'Comisioane recente',
+    'recent_withdrawals' => 'Retrageri recente',
+    'commission_chart' => 'Grafic comisioane',
+    'withdrawal_chart' => 'Grafic retrageri',
+
+    // Enhanced reports
+    'geographic_data' => 'Date geografice',
+    'top_countries' => 'Țări de top',
+    'top_cities' => 'Orașe de top',
+    'short_link_performance' => 'Performanță link-uri scurte',
+    'top_performing_links' => 'Link-uri de top',
+    'link' => 'Link',
+    'clicks' => 'Clicuri',
+    'conversions' => 'Conversii',
+    'commission_trends' => 'Tendințe comisioane',
+    'commission_amount' => 'Sumă comision',
+    'loading' => 'Se încarcă...',
+    'no_data' => 'Nu există date disponibile',
+    'no_commission_data' => 'Nu există date de comisioane disponibile pentru perioada selectată',
+    'no_geographic_data' => 'Nu există date geografice disponibile pentru perioada selectată',
+    'no_city_data' => 'Nu există date de orașe disponibile pentru țara selectată',
+    'chart_error' => 'Eroare la afișarea graficului. Încercați să reîmprospătați pagina.',
+
+    // Performance metrics widget
+    'performance_metrics' => 'Metrici performanță',
+    'total_clicks' => 'Total clicuri',
+    'earnings' => 'Câștiguri',
+    'avg_commission' => 'Comision med.',
+    'avg_conversion_rate' => 'Rată med. conversie',
+    'vs_previous' => 'față de anterior',
+    'no_change' => 'Fără schimbare',
+    'performance_over_time' => 'Performanță în timp',
+    'clicks_conversions' => 'Clicuri și conversii',
+
+    // Conversion rate widget
+    'conversion_rate_analysis' => 'Analiză rată conversie',
+    'overall_conversion_rate' => 'Rată globală conversie',
+    'conversion_breakdown' => 'Defalcare conversii',
+    'source' => 'Sursă',
+    'rate' => 'Rată',
+    'conversion_rate_percentage' => 'Rată conversie (%)',
+    'optimization_opportunity' => 'Oportunitate optimizare',
+    'conversion_rate_below_average' => 'Rata dvs. de conversie este sub medie. Luați în considerare aceste sfaturi:',
+    'target_relevant_audiences' => 'Vizați publicuri mai relevante',
+    'improve_promotional_content' => 'Îmbunătățiți conținutul promoțional',
+    'focus_higher_conversion_products' => 'Concentrați-vă pe produsele cu rate de conversie mai mari',
+    'great_performance' => 'Performanță grozavă!',
+    'excellent_conversion_rate' => 'Rata dvs. de conversie este excelentă. Continuați munca bună!',
+    'good_performance' => 'Performanță bună',
+    'average_conversion_rate' => 'Rata dvs. de conversie este în intervalul mediu. Există spațiu pentru îmbunătățiri.',
+
+    // Date ranges
+    'ranges' => [
+        'today' => 'Astăzi',
+        'this_week' => 'Această săptămână',
+        'last_7_days' => 'Ultimele 7 zile',
+        'last_30_days' => 'Ultimele 30 de zile',
+        'this_month' => 'Luna aceasta',
+        'this_year' => 'Anul acesta',
+    ],
+];

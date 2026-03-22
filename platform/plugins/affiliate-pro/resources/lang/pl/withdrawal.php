@@ -1,0 +1,66 @@
+<?php
+
+return [
+    'name' => 'Wypłaty',
+    'view' => 'Zobacz Wypłatę #:id',
+    'affiliate' => 'Partner',
+    'amount' => 'Kwota',
+    'status' => 'Status',
+    'payment_method' => 'Metoda Płatności',
+    'payment_details' => 'Szczegóły Płatności',
+    'notes' => 'Notatki',
+    'created_at' => 'Utworzono',
+    'approve' => 'Zatwierdź',
+    'reject' => 'Odrzuć',
+    'approve_success' => 'Wypłata została pomyślnie zatwierdzona',
+    'reject_success' => 'Wypłata została pomyślnie odrzucona',
+    'approve_withdrawal' => 'Zatwierdź Wypłatę',
+    'reject_withdrawal' => 'Odrzuć Wypłatę',
+    'approve_withdrawal_confirmation' => 'Czy na pewno chcesz zatwierdzić wypłatę #:id? Tej czynności nie można cofnąć.',
+    'reject_withdrawal_confirmation' => 'Czy na pewno chcesz odrzucić wypłatę #:id? Tej czynności nie można cofnąć.',
+    'statuses' => [
+        'pending' => 'Oczekujące',
+        'processing' => 'Przetwarzanie',
+        'approved' => 'Zatwierdzone',
+        'rejected' => 'Odrzucone',
+        'canceled' => 'Anulowane',
+    ],
+
+    // Customer-facing translations
+    'request' => 'Wniosek o Wypłatę',
+    'history' => 'Historia Wypłat',
+    'no_withdrawals' => 'Nie znaleziono wypłat.',
+    'withdrawal_id' => 'ID Wypłaty',
+    'date' => 'Data',
+    'amount_required' => 'Kwota wypłaty jest wymagana.',
+    'amount_numeric' => 'Kwota wypłaty musi być liczbą.',
+    'amount_min' => 'Kwota wypłaty musi wynosić co najmniej 0.',
+    'payment_method_required' => 'Metoda płatności jest wymagana.',
+    'payment_details_required' => 'Szczegóły płatności są wymagane.',
+    'account_not_approved' => 'Twoje konto partnera nie zostało jeszcze zatwierdzone.',
+    'minimum_amount' => 'Minimalna kwota wypłaty to :amount.',
+    'insufficient_balance' => 'Nie masz wystarczającego salda na tę wypłatę.',
+    'request_submitted' => 'Twój wniosek o wypłatę został pomyślnie przesłany.',
+    'submit_request' => 'Prześlij Wniosek o Wypłatę',
+    'available_balance' => 'Dostępne Saldo',
+    'enter_amount' => 'Wprowadź Kwotę',
+    'select_payment_method' => 'Wybierz Metodę Płatności',
+    'payment_details_placeholder' => 'Wprowadź szczegóły płatności (np. e-mail PayPal, dane konta bankowego)',
+    'no_payment_methods_available' => 'Obecnie nie ma dostępnych metod płatności. Skontaktuj się z administratorem.',
+
+    // Additional translations for PayoutPaymentMethodsEnum
+    'bank_transfer' => 'Przelew Bankowy',
+    'paypal' => 'PayPal',
+    'stripe' => 'Stripe',
+    'other' => 'Inne',
+    'bank_information' => 'Informacje bankowe',
+    'paypal_id' => 'ID PayPal',
+
+    // Payout payment methods
+    'payout_payment_methods' => [
+        'bank_transfer' => 'Przelew Bankowy',
+        'paypal' => 'PayPal',
+        'stripe' => 'Stripe',
+        'other' => 'Inne',
+    ],
+];

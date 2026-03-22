@@ -10,14 +10,20 @@
 
 @php
     $id = $id ?? Str::slug($name);
+    $isDefault = setting('default_payment_method') === $id;
 @endphp
 
-<x-core::card class="mb-3">
+<x-core::card class="mb-3 payment-method-item" data-payment-type="{{ $id }}">
     <x-core::table :hover="false" :striped="false">
         <x-core::table.body>
             <x-core::table.body.row>
-                <x-core::table.body.cell class="border-end" style="width: 5%">
-                    <x-core::icon name="ti ti-wallet" />
+                <x-core::table.body.cell class="border-end drag-handle" style="width: 40px; cursor: grab;">
+                    <x-core::icon name="ti ti-grip-vertical" />
+                </x-core::table.body.cell>
+                <x-core::table.body.cell class="border-end" style="width: 40px;">
+                    <button type="button" class="btn btn-icon btn-sm set-default-payment-method @if($isDefault) text-warning @else text-muted @endif" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ trans('plugins/payment::payment.default_payment_method') }}">
+                        <x-core::icon name="ti ti-star{{ $isDefault ? '-filled' : '' }}" />
+                    </button>
                 </x-core::table.body.cell>
                 <x-core::table.body.cell style="width: 20%">
                     <img src="{{ $logo }}" alt="{{ $name }}" style="width: 8rem">
@@ -34,7 +40,7 @@
                 </x-core::table.body.cell>
             </x-core::table.body.row>
             <x-core::table.body.row>
-                <x-core::table.body.cell colspan="3">
+                <x-core::table.body.cell colspan="4">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <div @class(['payment-name-label-group', 'hidden' => !$status])>
@@ -53,7 +59,7 @@
                 </x-core::table.body.cell>
             </x-core::table.body.row>
             <x-core::table.body.row class="payment-content-item hidden">
-                <x-core::table.body.cell colspan="3">
+                <x-core::table.body.cell colspan="4">
                     <x-core::form>
                         <input type="hidden" name="type" value="{{ $id }}" class="payment_type" />
 

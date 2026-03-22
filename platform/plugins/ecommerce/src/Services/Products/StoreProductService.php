@@ -8,6 +8,7 @@ use Botble\Base\Facades\BaseHelper;
 use Botble\Ecommerce\Enums\CrossSellPriceType;
 use Botble\Ecommerce\Enums\ProductLicenseCodeStatusEnum;
 use Botble\Ecommerce\Enums\ProductTypeEnum;
+use Botble\Ecommerce\Enums\UpSellPriceType;
 use Botble\Ecommerce\Events\ProductFileUpdatedEvent;
 use Botble\Ecommerce\Events\ProductQuantityUpdatedEvent;
 use Botble\Ecommerce\Facades\EcommerceHelper;
@@ -122,11 +123,37 @@ class StoreProductService
         }
 
         if ($request->has('up_sale_products')) {
+            $upSaleProducts = $request->input('up_sale_products', []);
             $product->upSales()->detach();
 
-            if ($upSaleProducts = $request->input('up_sale_products', '')) {
-                $product->upSales()->attach(array_filter(explode(',', $upSaleProducts)));
-            }
+            $upSaleProducts = array_map(function ($item) use ($upSaleProducts) {
+                unset($item['id']);
+
+                $item['is_variant'] = isset($item['is_variant']) && ($item['is_variant'] == '1' || $item['is_variant']);
+                $item['price'] = $item['price'] ?? 0;
+                $item['price_type'] = $item['price_type'] ?? UpSellPriceType::FIXED;
+
+                if (! $item['is_variant']) {
+                    $item['apply_to_all_variations'] = isset($item['apply_to_all_variations']) && $item['apply_to_all_variations'] == '1';
+                } else {
+                    $item['apply_to_all_variations'] = '0';
+
+                    $parentId = $item['parent_id'] ?? null;
+
+                    if ($parentId) {
+                        $item['price'] = $upSaleProducts[$parentId]['price'] ?? 0;
+                        $item['price_type'] = $upSaleProducts[$parentId]['price_type'] ?? UpSellPriceType::FIXED;
+                    }
+                }
+
+                unset($item['parent_id']);
+
+                return $item;
+            }, $upSaleProducts);
+
+            $product->upSales()->sync($upSaleProducts);
+        } else {
+            $product->upSales()->detach();
         }
 
         if ($request->has('cross_sale_products')) {
@@ -167,11 +194,11 @@ class StoreProductService
             $this->saveProductFiles($request, $product);
         }
 
-        if (EcommerceHelper::isEnabledProductOptions() && $request->input('has_product_options')) {
-            $this->saveProductOptions((array) $request->input('options', []), $product);
-        }
-
         $refLang = $request->input('ref_lang');
+
+        if (EcommerceHelper::isEnabledProductOptions() && $request->input('has_product_options')) {
+            $this->saveProductOptions((array) $request->input('options', []), $product, $refLang);
+        }
 
         $isDefaultLanguage = ProductSpecificationAttributeTranslation::isDefaultLanguage($refLang);
 
@@ -192,18 +219,24 @@ class StoreProductService
                 if (isset($attributeData['value'])) {
                     $attribute = SpecificationAttribute::query()->find($attributeId);
 
-                    if ($attribute) {
-                        ProductSpecificationAttributeTranslation::query()->updateOrCreate(
-                            [
-                                'product_id' => $product->id,
-                                'attribute_id' => $attributeId,
-                                'lang_code' => $langCode,
-                            ],
-                            [
-                                'value' => $attributeData['value'],
-                            ]
-                        );
+                    if (! $attribute) {
+                        continue;
                     }
+
+                    if ($attribute->hasOptions() && $attribute->hasIdBasedOptions()) {
+                        continue;
+                    }
+
+                    ProductSpecificationAttributeTranslation::query()->updateOrCreate(
+                        [
+                            'product_id' => $product->id,
+                            'attribute_id' => $attributeId,
+                            'lang_code' => $langCode,
+                        ],
+                        [
+                            'value' => $attributeData['value'],
+                        ]
+                    );
                 }
             }
         }
@@ -321,7 +354,19 @@ class StoreProductService
         ];
     }
 
-    protected function saveProductOptions(array $options, Product $product): void
+    protected function saveProductOptions(array $options, Product $product, ?string $refLang = null): void
+    {
+        $isDefaultLanguage = ProductSpecificationAttributeTranslation::isDefaultLanguage($refLang);
+
+        if ($isDefaultLanguage) {
+            $this->saveProductOptionsForDefaultLanguage($options, $product);
+        } else {
+            $langCode = ProductSpecificationAttributeTranslation::getCurrentLanguageCode($refLang);
+            $this->saveProductOptionsTranslations($options, $product, $langCode);
+        }
+    }
+
+    protected function saveProductOptionsForDefaultLanguage(array $options, Product $product): void
     {
         $optionIds = [];
 
@@ -337,24 +382,37 @@ class StoreProductService
                 }
 
                 $opt['required'] = isset($opt['required']) && $opt['required'] == 1;
+                $opt['price_per_product'] = isset($opt['price_per_product']) && $opt['price_per_product'] == 1;
                 $option->fill($opt);
                 $option->product_id = $product->getKey();
                 $option->save();
-                $option->values()->delete();
+
+                $valueIds = [];
 
                 if (! empty($opt['values'])) {
-                    $optionValues = [];
                     foreach ($opt['values'] as $value) {
-                        $optionValue = new OptionValue();
+                        $valueId = $value['id'] ?? null;
+                        $optionValue = $valueId ? $option->values()->find($valueId) : null;
+
+                        if (! $optionValue) {
+                            $optionValue = new OptionValue();
+                            $optionValue->option_id = $option->id;
+                        }
+
                         if (! isset($value['option_value'])) {
                             $value['option_value'] = '';
                         }
-                        $optionValue->fill($value);
-                        $optionValues[] = $optionValue;
-                    }
 
-                    $option->values()->saveMany($optionValues);
+                        $optionValue->fill($value);
+                        $optionValue->save();
+
+                        $valueIds[] = $optionValue->id;
+                    }
                 }
+
+                $option->values()->whereNotIn('id', $valueIds)->get()->each(function (OptionValue $deletedValue): void {
+                    $deletedValue->delete();
+                });
 
                 $optionIds[] = $option->getKey();
             }
@@ -362,6 +420,52 @@ class StoreProductService
             $product->options()->whereNotIn('id', $optionIds)->get()->each(function (Option $deletedOption): void {
                 $deletedOption->delete();
             });
+        } catch (Exception $exception) {
+            info($exception->getMessage());
+        }
+    }
+
+    protected function saveProductOptionsTranslations(array $options, Product $product, string $langCode): void
+    {
+        try {
+            foreach ($options as $opt) {
+                $optionId = $opt['id'] ?? null;
+
+                if (! $optionId) {
+                    continue;
+                }
+
+                /**
+                 * @var Option|null $option
+                 */
+                $option = $product->options()->find($optionId);
+
+                if (! $option) {
+                    continue;
+                }
+
+                if (isset($opt['name'])) {
+                    $option->saveTranslation($langCode, $opt['name']);
+                }
+
+                if (! empty($opt['values'])) {
+                    $existingValues = $option->values()->get()->keyBy('id');
+
+                    foreach ($opt['values'] as $value) {
+                        $valueId = $value['id'] ?? null;
+
+                        if (! $valueId) {
+                            continue;
+                        }
+
+                        $optionValue = $existingValues->get($valueId);
+
+                        if ($optionValue && isset($value['option_value'])) {
+                            $optionValue->saveTranslation($langCode, $value['option_value']);
+                        }
+                    }
+                }
+            }
         } catch (Exception $exception) {
             info($exception->getMessage());
         }

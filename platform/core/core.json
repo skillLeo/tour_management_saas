@@ -1,5 +1,10 @@
 {
-    "version": "1.26.3",
-    "minimumPhpVersion": "8.2.0",
-	"nulled_by": "Nulled by J.C. from Babiato"
+    "productId": "5F061D22",
+    "source": "envato",
+    "apiUrl": "https://license.botble.com",
+    "apiKey": "CAF4B17F6D3F656125F9",
+    "version": "1.26.5",
+    "marketplaceUrl": "https://marketplace.botble.com/api/v1",
+    "marketplaceToken": "ef595699344d15d1a294b95143211b52b6bb6a19",
+    "minimumPhpVersion": "8.2.0"
 }

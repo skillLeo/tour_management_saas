@@ -285,9 +285,34 @@ class ProductController extends BaseController
 
     public function getRelationBoxes($id)
     {
+        if (! EcommerceHelper::isEnabledCrossSaleProducts()
+            && ! EcommerceHelper::isEnabledRelatedProducts()
+            && ! EcommerceHelper::isEnabledUpSaleProducts()
+        ) {
+            return $this->httpResponse()->setData('');
+        }
+
         $product = null;
+
         if ($id) {
-            $product = Product::query()->find($id);
+            $with = [];
+
+            if (EcommerceHelper::isEnabledCrossSaleProducts()) {
+                $with[] = 'crossSales';
+            }
+
+            if (EcommerceHelper::isEnabledUpSaleProducts()) {
+                $with[] = 'upSales';
+            }
+
+            if (EcommerceHelper::isEnabledRelatedProducts()) {
+                $with[] = 'products';
+            }
+
+            $product = Product::query()
+                ->with($with)
+                ->where('store_id', auth('customer')->user()->store?->id)
+                ->find($id);
         }
 
         $dataUrl = route(

@@ -1,3 +1,3 @@
 @foreach($products as $product)
-    @include(Theme::getThemeNamespace('views.ecommerce.includes.product-item'))
+    @include(EcommerceHelper::viewPath('includes.product-item'))
 @endforeach

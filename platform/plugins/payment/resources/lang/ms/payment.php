@@ -88,6 +88,8 @@ return [
     'total' => 'Jumlah',
     'status' => 'Status',
     'default_payment_method' => 'Kaedah pembayaran lalai',
+    'sort_order_instruction' => 'Seret dan lepas untuk menyusun semula kaedah pembayaran di halaman pembayaran.',
+    'default_method_instruction' => 'Klik ikon bintang untuk menetapkan kaedah pembayaran lalai.',
     'payment_logs' => 'Log Pembayaran',
     'request_data' => 'Data Permintaan',
     'response_data' => 'Data Respons',

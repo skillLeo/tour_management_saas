@@ -68,4 +68,6 @@ return [
     'enable_light_mode' => '启用亮色模式',
     'enable_dark_mode' => '启用暗色模式',
     'close' => '关闭',
+    'search_country' => '搜索国家...',
+    'no_results' => '未找到结果',
 ];

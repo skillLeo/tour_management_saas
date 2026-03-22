@@ -1,0 +1,53 @@
+<?php
+
+return [
+    'name' => 'Comisioane',
+    'view' => 'Vizualizare comision #:id',
+    'affiliate' => 'Afiliat',
+    'order' => 'Comandă',
+    'amount' => 'Sumă',
+    'description' => 'Descriere',
+    'status' => 'Status',
+    'created_at' => 'Creat la',
+    'approve' => 'Aprobă',
+    'reject' => 'Respinge',
+    'approve_success' => 'Comision aprobat cu succes',
+    'reject_success' => 'Comision respins cu succes',
+    'approve_commission' => 'Aprobă comision',
+    'reject_commission' => 'Respinge comision',
+    'approve_commission_confirmation' => 'Sunteți sigur că doriți să aprobați comisionul #:id? Această acțiune nu poate fi anulată.',
+    'reject_commission_confirmation' => 'Sunteți sigur că doriți să respingeți comisionul #:id? Această acțiune nu poate fi anulată.',
+    'statuses' => [
+        'pending' => 'În așteptare',
+        'approved' => 'Aprobat',
+        'rejected' => 'Respins',
+    ],
+
+    // Customer-facing translations
+    'history' => 'Istoric comisioane',
+    'no_commissions' => 'Nu s-au găsit comisioane.',
+    'no_commissions_description' => 'Nu ați câștigat încă comisioane. Începeți să promovați produsele noastre pentru a câștiga primul comision!',
+    'commission_id' => 'ID comision',
+    'order_id' => 'ID comandă',
+    'customer' => 'Client',
+    'product' => 'Produs',
+    'type' => 'Tip',
+    'date' => 'Data',
+
+    // New UI translations
+    'total_commissions' => ':count Total comisioane',
+    'filter_by_status' => 'Filtrare după status',
+    'all_statuses' => 'Toate statusurile',
+    'date_from' => 'Data de la',
+    'date_to' => 'Data până la',
+    'filter' => 'Filtrare',
+    'clear' => 'Ștergere',
+    'approved_earnings' => 'Câștiguri aprobate',
+    'pending_earnings' => 'Câștiguri în așteptare',
+    'successful_orders' => 'Comenzi cu succes',
+    'approval_rate' => 'Rată aprobare',
+    'commission_earned' => 'Comision câștigat',
+    'showing_results' => 'Se afișează de la :from la :to din :total rezultate',
+    'start_promoting' => 'Începeți promovarea',
+    'back_to_dashboard' => 'Înapoi la tabloul de bord',
+];

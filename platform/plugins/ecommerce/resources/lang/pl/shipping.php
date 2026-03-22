@@ -192,6 +192,7 @@ return [
         'order_date' => 'Data zamówienia',
         'scan_qr_code' => 'Zeskanuj kod QR, aby śledzić swoją przesyłkę',
         'total_amount' => 'Całkowita kwota',
+        'amount_to_collect' => 'Kwota do zebrania',
         'cod_amount_to_collect' => 'Kwota pobrania do zebrania',
     ],
     'customer_confirmed_delivery_at' => 'Klient potwierdził dostawę o',

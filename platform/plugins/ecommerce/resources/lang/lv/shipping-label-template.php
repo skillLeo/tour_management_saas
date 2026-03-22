@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'name' => 'Piegādes etiķetes veidne',
-    'setting' => 'Piegādes etiķetes veidnes iestatījumi',
-    'setting_description' => 'Iestatījumi piegādes etiķetes veidnei',
+    'name' => 'Shipping Labels',
+    'setting' => 'Label design & layout',
+    'setting_description' => 'Customize shipping label HTML template and CSS styles',
     'setting_content' => 'Saturs',
     'preview' => 'Priekšskatījums',
     'preview_heading' => 'Priekšskatīt piegādes etiķetes veidni',

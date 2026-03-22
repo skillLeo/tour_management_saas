@@ -1,0 +1,66 @@
+<?php
+
+return [
+    'name' => 'Retrageri',
+    'view' => 'Vizualizare retragere #:id',
+    'affiliate' => 'Afiliat',
+    'amount' => 'Sumă',
+    'status' => 'Status',
+    'payment_method' => 'Metodă de plată',
+    'payment_details' => 'Detalii plată',
+    'notes' => 'Notițe',
+    'created_at' => 'Creat la',
+    'approve' => 'Aprobă',
+    'reject' => 'Respinge',
+    'approve_success' => 'Retragere aprobată cu succes',
+    'reject_success' => 'Retragere respinsă cu succes',
+    'approve_withdrawal' => 'Aprobă retragere',
+    'reject_withdrawal' => 'Respinge retragere',
+    'approve_withdrawal_confirmation' => 'Sunteți sigur că doriți să aprobați retragerea #:id? Această acțiune nu poate fi anulată.',
+    'reject_withdrawal_confirmation' => 'Sunteți sigur că doriți să respingeți retragerea #:id? Această acțiune nu poate fi anulată.',
+    'statuses' => [
+        'pending' => 'În așteptare',
+        'processing' => 'În procesare',
+        'approved' => 'Aprobat',
+        'rejected' => 'Respins',
+        'canceled' => 'Anulat',
+    ],
+
+    // Customer-facing translations
+    'request' => 'Cerere retragere',
+    'history' => 'Istoric retrageri',
+    'no_withdrawals' => 'Nu s-au găsit retrageri.',
+    'withdrawal_id' => 'ID retragere',
+    'date' => 'Data',
+    'amount_required' => 'Suma retragerii este obligatorie.',
+    'amount_numeric' => 'Suma retragerii trebuie să fie un număr.',
+    'amount_min' => 'Suma retragerii trebuie să fie cel puțin 0.',
+    'payment_method_required' => 'Metoda de plată este obligatorie.',
+    'payment_details_required' => 'Detaliile plății sunt obligatorii.',
+    'account_not_approved' => 'Contul dvs. de afiliat nu este încă aprobat.',
+    'minimum_amount' => 'Suma minimă de retragere este :amount.',
+    'insufficient_balance' => 'Nu aveți suficient sold pentru această retragere.',
+    'request_submitted' => 'Cererea dvs. de retragere a fost trimisă cu succes.',
+    'submit_request' => 'Trimite cerere de retragere',
+    'available_balance' => 'Sold disponibil',
+    'enter_amount' => 'Introduceți suma',
+    'select_payment_method' => 'Selectați metoda de plată',
+    'payment_details_placeholder' => 'Introduceți detaliile plății (de ex., e-mail PayPal, detalii cont bancar)',
+    'no_payment_methods_available' => 'Nu sunt disponibile metode de plată momentan. Vă rugăm să contactați administratorul.',
+
+    // Additional translations
+    'bank_transfer' => 'Transfer bancar',
+    'paypal' => 'PayPal',
+    'stripe' => 'Stripe',
+    'other' => 'Altele',
+    'bank_information' => 'Informații bancare',
+    'paypal_id' => 'ID PayPal',
+
+    // Payout payment methods
+    'payout_payment_methods' => [
+        'bank_transfer' => 'Transfer bancar',
+        'paypal' => 'PayPal',
+        'stripe' => 'Stripe',
+        'other' => 'Altele',
+    ],
+];

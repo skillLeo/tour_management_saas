@@ -1,0 +1,66 @@
+<?php
+
+return [
+    'name' => 'निकासी',
+    'view' => 'निकासी देखें #:id',
+    'affiliate' => 'सहयोगी',
+    'amount' => 'राशि',
+    'status' => 'स्थिति',
+    'payment_method' => 'भुगतान विधि',
+    'payment_details' => 'भुगतान विवरण',
+    'notes' => 'नोट्स',
+    'created_at' => 'बनाया गया',
+    'approve' => 'स्वीकृत करें',
+    'reject' => 'अस्वीकार करें',
+    'approve_success' => 'निकासी सफलतापूर्वक स्वीकृत',
+    'reject_success' => 'निकासी सफलतापूर्वक अस्वीकृत',
+    'approve_withdrawal' => 'निकासी स्वीकृत करें',
+    'reject_withdrawal' => 'निकासी अस्वीकार करें',
+    'approve_withdrawal_confirmation' => 'क्या आप वाकई निकासी #:id को स्वीकृत करना चाहते हैं? यह कार्रवाई पूर्ववत नहीं की जा सकती।',
+    'reject_withdrawal_confirmation' => 'क्या आप वाकई निकासी #:id को अस्वीकार करना चाहते हैं? यह कार्रवाई पूर्ववत नहीं की जा सकती।',
+    'statuses' => [
+        'pending' => 'लंबित',
+        'processing' => 'प्रक्रियाधीन',
+        'approved' => 'स्वीकृत',
+        'rejected' => 'अस्वीकृत',
+        'canceled' => 'रद्द किया गया',
+    ],
+
+    // Customer-facing translations
+    'request' => 'निकासी अनुरोध',
+    'history' => 'निकासी इतिहास',
+    'no_withdrawals' => 'कोई निकासी नहीं मिली।',
+    'withdrawal_id' => 'निकासी ID',
+    'date' => 'तारीख',
+    'amount_required' => 'निकासी राशि आवश्यक है।',
+    'amount_numeric' => 'निकासी राशि एक संख्या होनी चाहिए।',
+    'amount_min' => 'निकासी राशि कम से कम 0 होनी चाहिए।',
+    'payment_method_required' => 'भुगतान विधि आवश्यक है।',
+    'payment_details_required' => 'भुगतान विवरण आवश्यक हैं।',
+    'account_not_approved' => 'आपका सहयोगी खाता अभी तक स्वीकृत नहीं है।',
+    'minimum_amount' => 'न्यूनतम निकासी राशि :amount है।',
+    'insufficient_balance' => 'इस निकासी के लिए आपके पास पर्याप्त शेष राशि नहीं है।',
+    'request_submitted' => 'आपका निकासी अनुरोध सफलतापूर्वक सबमिट किया गया है।',
+    'submit_request' => 'निकासी अनुरोध सबमिट करें',
+    'available_balance' => 'उपलब्ध शेष राशि',
+    'enter_amount' => 'राशि दर्ज करें',
+    'select_payment_method' => 'भुगतान विधि चुनें',
+    'payment_details_placeholder' => 'अपने भुगतान विवरण दर्ज करें (उदाहरण, PayPal ईमेल, बैंक खाता विवरण)',
+    'no_payment_methods_available' => 'वर्तमान में कोई भुगतान विधि उपलब्ध नहीं है। कृपया व्यवस्थापक से संपर्क करें।',
+
+    // Additional translations for PayoutPaymentMethodsEnum
+    'bank_transfer' => 'बैंक ट्रांसफर',
+    'paypal' => 'PayPal',
+    'stripe' => 'Stripe',
+    'other' => 'अन्य',
+    'bank_information' => 'बैंक जानकारी',
+    'paypal_id' => 'PayPal ID',
+
+    // Payout payment methods
+    'payout_payment_methods' => [
+        'bank_transfer' => 'बैंक ट्रांसफर',
+        'paypal' => 'PayPal',
+        'stripe' => 'Stripe',
+        'other' => 'अन्य',
+    ],
+];

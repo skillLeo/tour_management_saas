@@ -1,0 +1,66 @@
+<?php
+
+return [
+    'name' => 'გატანები',
+    'view' => 'გატანის ნახვა #:id',
+    'affiliate' => 'პარტნიორი',
+    'amount' => 'თანხა',
+    'status' => 'სტატუსი',
+    'payment_method' => 'გადახდის მეთოდი',
+    'payment_details' => 'გადახდის დეტალები',
+    'notes' => 'შენიშვნები',
+    'created_at' => 'შექმნის თარიღი',
+    'approve' => 'დამტკიცება',
+    'reject' => 'უარყოფა',
+    'approve_success' => 'გატანა წარმატებით დამტკიცდა',
+    'reject_success' => 'გატანა წარმატებით უარყოფილია',
+    'approve_withdrawal' => 'გატანის დამტკიცება',
+    'reject_withdrawal' => 'გატანის უარყოფა',
+    'approve_withdrawal_confirmation' => 'დარწმუნებული ხართ, რომ გსურთ გატანის დამტკიცება #:id? ეს ქმედება შეუქცევადია.',
+    'reject_withdrawal_confirmation' => 'დარწმუნებული ხართ, რომ გსურთ გატანის უარყოფა #:id? ეს ქმედება შეუქცევადია.',
+    'statuses' => [
+        'pending' => 'მოლოდინში',
+        'processing' => 'მუშავდება',
+        'approved' => 'დამტკიცებული',
+        'rejected' => 'უარყოფილი',
+        'canceled' => 'გაუქმებული',
+    ],
+
+    // Customer-facing translations
+    'request' => 'გატანის მოთხოვნა',
+    'history' => 'გატანების ისტორია',
+    'no_withdrawals' => 'გატანები არ მოიძებნა.',
+    'withdrawal_id' => 'გატანის ID',
+    'date' => 'თარიღი',
+    'amount_required' => 'გატანის თანხა სავალდებულოა.',
+    'amount_numeric' => 'გატანის თანხა უნდა იყოს რიცხვი.',
+    'amount_min' => 'გატანის თანხა უნდა იყოს მინიმუმ 0.',
+    'payment_method_required' => 'გადახდის მეთოდი სავალდებულოა.',
+    'payment_details_required' => 'გადახდის დეტალები სავალდებულოა.',
+    'account_not_approved' => 'თქვენი პარტნიორის ანგარიში ჯერ არ არის დამტკიცებული.',
+    'minimum_amount' => 'მინიმალური გატანის თანხაა :amount.',
+    'insufficient_balance' => 'თქვენ არ გაქვთ საკმარისი ბალანსი ამ გატანისთვის.',
+    'request_submitted' => 'თქვენი გატანის მოთხოვნა წარმატებით გაიგზავნა.',
+    'submit_request' => 'მოთხოვნის გაგზავნა',
+    'available_balance' => 'ხელმისაწვდომი ბალანსი',
+    'enter_amount' => 'შეიყვანეთ თანხა',
+    'select_payment_method' => 'აირჩიეთ გადახდის მეთოდი',
+    'payment_details_placeholder' => 'შეიყვანეთ თქვენი გადახდის დეტალები (მაგ., PayPal ელფოსტა, საბანკო ანგარიშის დეტალები)',
+    'no_payment_methods_available' => 'ამჟამად გადახდის მეთოდები არ არის ხელმისაწვდომი. გთხოვთ, დაუკავშირდეთ ადმინისტრატორს.',
+
+    // Additional translations for PayoutPaymentMethodsEnum
+    'bank_transfer' => 'ბანკის გადარიცხვა',
+    'paypal' => 'PayPal',
+    'stripe' => 'Stripe',
+    'other' => 'სხვა',
+    'bank_information' => 'საბანკო ინფორმაცია',
+    'paypal_id' => 'PayPal ID',
+
+    // Payout payment methods
+    'payout_payment_methods' => [
+        'bank_transfer' => 'ბანკის გადარიცხვა',
+        'paypal' => 'PayPal',
+        'stripe' => 'Stripe',
+        'other' => 'სხვა',
+    ],
+];

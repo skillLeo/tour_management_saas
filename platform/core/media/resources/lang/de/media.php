@@ -117,8 +117,14 @@ return [
             'success_header' => 'Erfolg',
         ],
         'download' => [
-            'error' => 'Keine Dateien ausgewählt oder können diese Dateien nicht herunterladen',
+            'error' => 'No files selected or cannot download these files',
         ],
+
+        'move' => [
+            'select_destination' => 'Bitte wählen Sie einen Zielordner',
+            'same_location' => 'Elemente befinden sich bereits an diesem Ort',
+        ],
+
         'actions_list' => [
             'basic' => [
                 'preview' => 'Vorschau',

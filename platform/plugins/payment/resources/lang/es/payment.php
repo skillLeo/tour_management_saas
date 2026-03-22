@@ -87,6 +87,8 @@ return [
     'total' => 'Total',
     'status' => 'Estatus',
     'default_payment_method' => 'Método de pago por defecto',
+    'sort_order_instruction' => 'Arrastra y suelta para reordenar los métodos de pago en la página de pago.',
+    'default_method_instruction' => 'Haz clic en el icono de estrella para establecer un método de pago predeterminado.',
     'available_countries' => 'Países disponibles',
     'available_countries_help' => 'Elija los países donde está disponible este método de pago.',
     'all_countries_checkbox' => 'Todo',

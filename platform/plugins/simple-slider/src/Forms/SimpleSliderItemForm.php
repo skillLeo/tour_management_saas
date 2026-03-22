@@ -5,8 +5,10 @@ namespace Botble\SimpleSlider\Forms;
 use Botble\Base\Forms\FieldOptions\DescriptionFieldOption;
 use Botble\Base\Forms\FieldOptions\MediaImageFieldOption;
 use Botble\Base\Forms\FieldOptions\SortOrderFieldOption;
+use Botble\Base\Forms\FieldOptions\StatusFieldOption;
 use Botble\Base\Forms\Fields\MediaImageField;
 use Botble\Base\Forms\Fields\NumberField;
+use Botble\Base\Forms\Fields\SelectField;
 use Botble\Base\Forms\Fields\TextareaField;
 use Botble\Base\Forms\Fields\TextField;
 use Botble\Base\Forms\FormAbstract;
@@ -39,6 +41,7 @@ class SimpleSliderItemForm extends FormAbstract
             ])
             ->add('description', TextareaField::class, DescriptionFieldOption::make())
             ->add('order', NumberField::class, SortOrderFieldOption::make())
-            ->add('image', MediaImageField::class, MediaImageFieldOption::make()->required());
+            ->add('image', MediaImageField::class, MediaImageFieldOption::make()->required())
+            ->add('status', SelectField::class, StatusFieldOption::make());
     }
 }

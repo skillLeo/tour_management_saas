@@ -179,6 +179,10 @@ class ThemeSupport
                 return $html;
             }
 
+            if (request()->has('visual_builder') || request()->has('preview')) {
+                return $html;
+            }
+
             $preloader = null;
 
             if (theme_option('preloader_version', 'v1') === 'v1') {
@@ -195,6 +199,7 @@ class ThemeSupport
                     'section_id' => 'opt-text-subsection-general',
                     'type' => 'customSelect',
                     'label' => trans('packages/theme::theme.preloader.enable'),
+                    'shared' => true,
                     'attributes' => [
                         'name' => 'preloader_enabled',
                         'list' => [
@@ -215,6 +220,7 @@ class ThemeSupport
                             'section_id' => 'opt-text-subsection-general',
                             'type' => 'customSelect',
                             'label' => trans('packages/theme::theme.preloader.version'),
+                            'shared' => true,
                             'attributes' => [
                                 'name' => 'preloader_version',
                                 'list' => static::getPreloaderVersions(),
@@ -247,6 +253,62 @@ class ThemeSupport
 
             return $html . apply_filters('theme_toast_notification', $toastNotification);
         }, 16);
+
+        app('events')->listen(RenderingThemeOptionSettings::class, function (): void {
+            ThemeOption::setSection(
+                ThemeOptionSection::make('opt-text-subsection-toast-notification')
+                    ->title(trans('packages/theme::theme.toast_notification.title'))
+                    ->icon('ti ti-bell')
+                    ->fields([
+                        SelectField::make()
+                            ->name('toast_position')
+                            ->label(trans('packages/theme::theme.toast_notification.position'))
+                            ->options([
+                                'bottom' => trans('packages/theme::theme.toast_notification.position_bottom'),
+                                'top' => trans('packages/theme::theme.toast_notification.position_top'),
+                            ])
+                            ->defaultValue('bottom'),
+                        SelectField::make()
+                            ->name('toast_alignment')
+                            ->label(trans('packages/theme::theme.toast_notification.alignment'))
+                            ->options([
+                                'right' => trans('packages/theme::theme.toast_notification.alignment_right'),
+                                'left' => trans('packages/theme::theme.toast_notification.alignment_left'),
+                                'center' => trans('packages/theme::theme.toast_notification.alignment_center'),
+                            ])
+                            ->defaultValue('right'),
+                        NumberFieldOption::make()
+                            ->name('toast_offset_x')
+                            ->label(trans('packages/theme::theme.toast_notification.offset_x'))
+                            ->helperText(trans('packages/theme::theme.toast_notification.offset_helper'))
+                            ->attributes(['min' => 0, 'max' => 100])
+                            ->defaultValue(15),
+                        NumberFieldOption::make()
+                            ->name('toast_offset_y')
+                            ->label(trans('packages/theme::theme.toast_notification.offset_y'))
+                            ->helperText(trans('packages/theme::theme.toast_notification.offset_helper'))
+                            ->attributes(['min' => 0, 'max' => 100])
+                            ->defaultValue(15),
+                        NumberFieldOption::make()
+                            ->name('toast_timeout')
+                            ->label(trans('packages/theme::theme.toast_notification.timeout'))
+                            ->helperText(trans('packages/theme::theme.toast_notification.timeout_helper'))
+                            ->attributes(['min' => 1000, 'max' => 30000, 'step' => 500])
+                            ->defaultValue(5000)
+                            ->shared(),
+                        IconField::make()
+                            ->name('toast_success_icon')
+                            ->label(trans('packages/theme::theme.toast_notification.success_icon'))
+                            ->helperText(trans('packages/theme::theme.toast_notification.success_icon_helper'))
+                            ->shared(),
+                        IconField::make()
+                            ->name('toast_error_icon')
+                            ->label(trans('packages/theme::theme.toast_notification.error_icon'))
+                            ->helperText(trans('packages/theme::theme.toast_notification.error_icon_helper'))
+                            ->shared(),
+                    ])
+            );
+        });
     }
 
     public static function registerThemeIconFields(array $icons, array $css = [], array $js = []): void
@@ -320,6 +382,7 @@ class ThemeSupport
                     'id' => 'opt-text-subsection-facebook-integration',
                     'subsection' => true,
                     'icon' => 'ti ti-brand-facebook',
+                    'shared' => true,
                     'fields' => [
                         [
                             'id' => 'facebook_page_id',
@@ -448,6 +511,7 @@ class ThemeSupport
                 ThemeOptionSection::make('opt-text-subsection-social-links')
                     ->title(trans('packages/theme::theme.social_links.title'))
                     ->icon('ti ti-social')
+                    ->shared()
                     ->fields([
                         [
                             'id' => 'social_links',
@@ -660,6 +724,7 @@ class ThemeSupport
                 'section_id' => 'opt-text-subsection-general',
                 'type' => 'onOff',
                 'label' => trans('packages/theme::theme.lazy_load.label'),
+                'shared' => true,
                 'attributes' => [
                     'name' => 'lazy_load_images',
                     'value' => false,
@@ -670,6 +735,7 @@ class ThemeSupport
                 'section_id' => 'opt-text-subsection-general',
                 'type' => 'mediaImage',
                 'label' => trans('packages/theme::theme.lazy_load.placeholder_image'),
+                'shared' => true,
                 'attributes' => [
                     'name' => 'lazy_load_placeholder_image',
                     'value' => null,
@@ -742,6 +808,7 @@ class ThemeSupport
                 ThemeOptionSection::make('opt-text-subsection-social-sharing')
                     ->title(trans('packages/theme::theme.social_sharing.title'))
                     ->icon('ti ti-share')
+                    ->shared()
                     ->fields([
                         RepeaterField::make()
                             ->name('social_sharing')
@@ -841,17 +908,15 @@ class ThemeSupport
                 continue;
             }
 
+            $strippedTitle = strip_tags($title);
+
             $encodedTitle = match ($social) {
-                'linkedin' => rawurldecode(strip_tags($title)),
-                'email' => $title,
-                'x' => Str::limit(strip_tags($title), 200),
-                default => strip_tags($title),
+                'x' => urlencode(Str::limit($strippedTitle, 200)),
+                'email' => rawurlencode($strippedTitle),
+                default => urlencode($strippedTitle),
             };
 
-            $encodedUrl = match ($social) {
-                'x', 'whatsapp' => $url,
-                default => urlencode($url),
-            };
+            $encodedUrl = urlencode($url);
 
             $items[$social] = [
                 'name' => $name = match ($social) {
@@ -868,14 +933,14 @@ class ThemeSupport
                 'url' => match ($social) {
                     'facebook' => sprintf('https://www.facebook.com/sharer.php?u=%s', $encodedUrl),
                     'x' => sprintf('https://x.com/intent/tweet?url=%s&text=%s', $encodedUrl, $encodedTitle),
-                    'linkedin' => sprintf('https://www.linkedin.com/sharing/share-offsite?url=%s&sumary=%s', $encodedUrl, $encodedTitle),
+                    'linkedin' => sprintf('https://www.linkedin.com/sharing/share-offsite?url=%s&summary=%s', $encodedUrl, $encodedTitle),
                     'pinterest' => sprintf(
                         'https://pinterest.com/pin/create/button/?url=%s&description=%s&media=%s',
                         $encodedUrl,
                         $encodedTitle,
-                        $thumbnail
+                        urlencode((string) $thumbnail)
                     ),
-                    'whatsapp' => sprintf('https://api.whatsapp.com/send?text=%s %s', $encodedTitle, $encodedUrl),
+                    'whatsapp' => sprintf('https://api.whatsapp.com/send?text=%s%%20%s', $encodedTitle, $encodedUrl),
                     'telegram' => sprintf('https://t.me/share/url?url=%s&text=%s', $encodedUrl, $encodedTitle),
                     'email' => sprintf('mailto:?subject=%s&body=%s', $encodedTitle, $encodedUrl),
                     default => $encodedUrl,
@@ -935,6 +1000,7 @@ class ThemeSupport
                     ->sectionId('opt-text-subsection-general')
                     ->label(trans('packages/theme::theme.date_format.label'))
                     ->name('date_format')
+                    ->shared()
                     ->defaultValue(Arr::first(self::supportedDateFormats()))
                     ->options(
                         collect(self::supportedDateFormats())

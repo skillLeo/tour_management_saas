@@ -12,4 +12,16 @@ return [
     'return' => [
         'description' => 'Grąžinta iš užsakymo #:order',
     ],
+    'thank_you' => [
+        'count_orders' => ':count užsakymų',
+        'order' => 'Užsakymas',
+        'thank_you_name' => 'Ačiū, :name!',
+        'order_confirmed' => 'Jūsų užsakymas patvirtintas',
+        'order_accepted' => 'Mes priėmėme jūsų užsakymą ir jį ruošiame.',
+        'customer' => 'Klientas',
+        'need_help' => 'Reikia pagalbos?',
+        'contact_us' => 'Susisiekite su mumis',
+        'view_order_history' => 'Peržiūrėti užsakymų istoriją',
+        'order_total' => 'Užsakymo suma',
+    ],
 ];

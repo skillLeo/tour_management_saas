@@ -2,6 +2,7 @@
 
 namespace Botble\Blog\Forms;
 
+use Botble\ACL\Models\User;
 use Botble\Base\Forms\FieldOptions\ContentFieldOption;
 use Botble\Base\Forms\FieldOptions\DescriptionFieldOption;
 use Botble\Base\Forms\FieldOptions\IsFeaturedFieldOption;
@@ -42,6 +43,17 @@ class PostForm extends FormAbstract
             )
             ->add('content', EditorField::class, ContentFieldOption::make()->allowedShortcodes())
             ->add('status', SelectField::class, StatusFieldOption::make())
+            ->add(
+                'author_id',
+                SelectField::class,
+                SelectFieldOption::make()
+                    ->label(trans('plugins/blog::posts.author'))
+                    ->helperText(trans('plugins/blog::posts.author_helper'))
+                    ->choices(fn () => $this->getAuthors())
+                    ->searchable()
+                    ->emptyValue(trans('plugins/blog::posts.select_author'))
+                    ->allowClear()
+            )
             ->when(get_post_formats(true), function (PostForm $form, array $postFormats): void {
                 if (count($postFormats) > 1) {
                     $choices = [];
@@ -117,5 +129,14 @@ class PostForm extends FormAbstract
                     ->ajaxUrl(route('tags.all'))
             )
             ->setBreakFieldPoint('status');
+    }
+
+    public function getAuthors(): array
+    {
+        return User::query()
+            ->select(['id', 'first_name', 'last_name'])
+            ->get()
+            ->mapWithKeys(fn ($user) => [$user->id => $user->name])
+            ->all();
     }
 }

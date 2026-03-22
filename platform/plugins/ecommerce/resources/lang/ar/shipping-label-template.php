@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'name' => 'قالب ملصق الشحن',
-    'setting' => 'إعدادات قالب ملصق الشحن',
-    'setting_description' => 'إعدادات قالب ملصق الشحن',
+    'name' => 'ملصقات الشحن',
+    'setting' => 'تصميم الملصق والتخطيط',
+    'setting_description' => 'تخصيص قالب HTML وأنماط CSS لملصق الشحن',
     'setting_content' => 'المحتوى',
     'preview' => 'معاينة',
     'preview_heading' => 'معاينة قالب ملصق الشحن',

@@ -74,11 +74,13 @@ class SocialLoginController extends BaseController
 
     protected function setProvider(string $provider): bool
     {
+        $callbackUrl = apply_filters('social_login_callback_url', route('auth.social.callback', $provider), $provider);
+
         config()->set([
             'services.' . $provider => [
                 'client_id' => SocialService::setting($provider . '_app_id'),
                 'client_secret' => SocialService::setting($provider . '_app_secret'),
-                'redirect' => route('auth.social.callback', $provider),
+                'redirect' => $callbackUrl,
             ],
         ]);
 
@@ -126,7 +128,7 @@ class SocialLoginController extends BaseController
             return $this
                 ->httpResponse()
                 ->setError()
-                ->setNextUrl($providerData['login_url'])
+                ->setNextUrl(value($providerData['login_url']))
                 ->setMessage($message);
         }
 
@@ -134,7 +136,7 @@ class SocialLoginController extends BaseController
             return $this
                 ->httpResponse()
                 ->setError()
-                ->setNextUrl($providerData['login_url'])
+                ->setNextUrl(value($providerData['login_url']))
                 ->setMessage(trans('plugins/social-login::social-login.no_email_provided'));
         }
 
@@ -212,7 +214,9 @@ class SocialLoginController extends BaseController
 
         try {
             $url = $oAuth->getAvatar();
-            if ($url && (! $account->avatar_id || $account->avatar_id !== $avatarId)) {
+            $hasAvatar = $account->isFillable('avatar_id') ? $account->avatar_id : $account->avatar;
+
+            if ($url && ! $hasAvatar) {
                 $result = RvMedia::uploadFromUrl($url, 0, $model->upload_folder ?: 'accounts', 'image/png');
 
                 if (! $result['error']) {
@@ -231,9 +235,15 @@ class SocialLoginController extends BaseController
 
         Auth::guard($guard)->login($account, true);
 
-        $redirectUrl = $providerData['redirect_url'] ?: BaseHelper::getHomepageUrl();
+        $redirectUrl = value($providerData['redirect_url']) ?: BaseHelper::getHomepageUrl();
 
-        $redirectUrl = session()->has('url.intended') ? session('url.intended') : $redirectUrl;
+        if (session()->has('url.intended')) {
+            $intended = session('url.intended');
+
+            if (parse_url($intended, PHP_URL_HOST) === request()->getHost()) {
+                $redirectUrl = $intended;
+            }
+        }
 
         return $this
             ->httpResponse()

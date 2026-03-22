@@ -1,0 +1,73 @@
+<?php
+
+return [
+    'name' => 'Zprávy',
+    'commission_this_month' => 'Provize tento měsíc',
+    'pending_commissions' => 'Čekající provize',
+    'approved_commissions' => 'Schválené provize',
+    'pending_withdrawals' => 'Čekající výběry',
+    'approved_withdrawals' => 'Schválené výběry',
+    'active_affiliates' => 'Aktivní partneři',
+    'affiliate_stats' => 'Statistiky Partnera',
+    'top_affiliates' => 'Nejlepší Partneři',
+    'recent_commissions' => 'Nedávné Provize',
+    'recent_withdrawals' => 'Nedávné Výběry',
+    'commission_chart' => 'Graf Provizí',
+    'withdrawal_chart' => 'Graf Výběrů',
+
+    // Enhanced reports
+    'geographic_data' => 'Geografická Data',
+    'top_countries' => 'Nejlepší Země',
+    'top_cities' => 'Nejlepší Města',
+    'short_link_performance' => 'Výkon Krátkých Odkazů',
+    'top_performing_links' => 'Nejlépe Fungující Odkazy',
+    'link' => 'Odkaz',
+    'clicks' => 'Kliknutí',
+    'conversions' => 'Konverze',
+    'commission_trends' => 'Trendy Provizí',
+    'commission_amount' => 'Částka Provize',
+    'loading' => 'Načítání...',
+    'no_data' => 'Žádná data',
+    'no_commission_data' => 'Pro vybrané období nejsou k dispozici žádná data provizí',
+    'no_geographic_data' => 'Pro vybrané období nejsou k dispozici žádná geografická data',
+    'no_city_data' => 'Pro vybranou zemi nejsou k dispozici žádná data měst',
+    'chart_error' => 'Chyba při vykreslování grafu. Zkuste prosím obnovit stránku.',
+
+    // Performance metrics widget
+    'performance_metrics' => 'Metriky Výkonu',
+    'total_clicks' => 'Celkový Počet Kliknutí',
+    'earnings' => 'Výdělky',
+    'avg_commission' => 'Prům. Provize',
+    'avg_conversion_rate' => 'Prům. Konverzní Poměr',
+    'vs_previous' => 'vs předchozí',
+    'no_change' => 'Beze změny',
+    'performance_over_time' => 'Výkon v Čase',
+    'clicks_conversions' => 'Kliknutí a Konverze',
+
+    // Conversion rate widget
+    'conversion_rate_analysis' => 'Analýza Konverzního Poměru',
+    'overall_conversion_rate' => 'Celkový Konverzní Poměr',
+    'conversion_breakdown' => 'Rozpad Konverzí',
+    'source' => 'Zdroj',
+    'rate' => 'Poměr',
+    'conversion_rate_percentage' => 'Konverzní Poměr (%)',
+    'optimization_opportunity' => 'Příležitost k Optimalizaci',
+    'conversion_rate_below_average' => 'Váš konverzní poměr je pod průměrem. Zvažte tyto tipy:',
+    'target_relevant_audiences' => 'Zaměřte se na relevantnější publikum',
+    'improve_promotional_content' => 'Vylepšete svůj propagační obsah',
+    'focus_higher_conversion_products' => 'Zaměřte se na produkty s vyšším konverzním poměrem',
+    'great_performance' => 'Skvělý Výkon!',
+    'excellent_conversion_rate' => 'Váš konverzní poměr je vynikající. Tak takhle!',
+    'good_performance' => 'Dobrý Výkon',
+    'average_conversion_rate' => 'Váš konverzní poměr je v průměrném rozsahu. Je prostor pro zlepšení.',
+
+    // Date ranges
+    'ranges' => [
+        'today' => 'Dnes',
+        'this_week' => 'Tento týden',
+        'last_7_days' => 'Posledních 7 dní',
+        'last_30_days' => 'Posledních 30 dní',
+        'this_month' => 'Tento měsíc',
+        'this_year' => 'Tento rok',
+    ],
+];

@@ -1,0 +1,73 @@
+<?php
+
+return [
+    'name' => 'ანგარიშები',
+    'commission_this_month' => 'კომისია ამ თვეში',
+    'pending_commissions' => 'მოლოდინში კომისიები',
+    'approved_commissions' => 'დამტკიცებული კომისიები',
+    'pending_withdrawals' => 'მოლოდინში გატანები',
+    'approved_withdrawals' => 'დამტკიცებული გატანები',
+    'active_affiliates' => 'აქტიური პარტნიორები',
+    'affiliate_stats' => 'პარტნიორთა სტატისტიკა',
+    'top_affiliates' => 'საუკეთესო პარტნიორები',
+    'recent_commissions' => 'უახლესი კომისიები',
+    'recent_withdrawals' => 'უახლესი გატანები',
+    'commission_chart' => 'კომისიების დიაგრამა',
+    'withdrawal_chart' => 'გატანების დიაგრამა',
+
+    // Enhanced reports
+    'geographic_data' => 'გეოგრაფიული მონაცემები',
+    'top_countries' => 'საუკეთესო ქვეყნები',
+    'top_cities' => 'საუკეთესო ქალაქები',
+    'short_link_performance' => 'მოკლე ბმულების მუშაობა',
+    'top_performing_links' => 'საუკეთესო ბმულები',
+    'link' => 'ბმული',
+    'clicks' => 'კლიკები',
+    'conversions' => 'კონვერსიები',
+    'commission_trends' => 'კომისიების ტენდენციები',
+    'commission_amount' => 'კომისიის ოდენობა',
+    'loading' => 'იტვირთება...',
+    'no_data' => 'მონაცემები არ არის',
+    'no_commission_data' => 'არჩეული პერიოდისთვის კომისიის მონაცემები არ არის',
+    'no_geographic_data' => 'არჩეული პერიოდისთვის გეოგრაფიული მონაცემები არ არის',
+    'no_city_data' => 'არჩეული ქვეყნისთვის ქალაქების მონაცემები არ არის',
+    'chart_error' => 'შეცდომა დიაგრამის ჩატვირთვისას. გთხოვთ, განაახლოთ გვერდი.',
+
+    // Performance metrics widget
+    'performance_metrics' => 'მუშაობის მეტრიკები',
+    'total_clicks' => 'სულ კლიკები',
+    'earnings' => 'შემოსავალი',
+    'avg_commission' => 'საშუალო კომისია',
+    'avg_conversion_rate' => 'საშუალო კონვერსიის მაჩვენებელი',
+    'vs_previous' => 'წინასთან შედარებით',
+    'no_change' => 'ცვლილება არ არის',
+    'performance_over_time' => 'მუშაობა დროში',
+    'clicks_conversions' => 'კლიკები და კონვერსიები',
+
+    // Conversion rate widget
+    'conversion_rate_analysis' => 'კონვერსიის მაჩვენებლის ანალიზი',
+    'overall_conversion_rate' => 'მთლიანი კონვერსიის მაჩვენებელი',
+    'conversion_breakdown' => 'კონვერსიის დაშლა',
+    'source' => 'წყარო',
+    'rate' => 'მაჩვენებელი',
+    'conversion_rate_percentage' => 'კონვერსიის მაჩვენებელი (%)',
+    'optimization_opportunity' => 'ოპტიმიზაციის შესაძლებლობა',
+    'conversion_rate_below_average' => 'თქვენი კონვერსიის მაჩვენებელი საშუალოზე დაბალია. გაითვალისწინეთ ეს რჩევები:',
+    'target_relevant_audiences' => 'მიზნად აიღეთ უფრო რელევანტური აუდიტორია',
+    'improve_promotional_content' => 'გააუმჯობესეთ თქვენი სარეკლამო კონტენტი',
+    'focus_higher_conversion_products' => 'ფოკუსირება უფრო მაღალი კონვერსიის პროდუქტებზე',
+    'great_performance' => 'შესანიშნავი მუშაობა!',
+    'excellent_conversion_rate' => 'თქვენი კონვერსიის მაჩვენებელი შესანიშნავია. განაგრძეთ კარგი მუშაობა!',
+    'good_performance' => 'კარგი მუშაობა',
+    'average_conversion_rate' => 'თქვენი კონვერსიის მაჩვენებელი საშუალო დიაპაზონშია. არსებობს გაუმჯობესების შესაძლებლობა.',
+
+    // Date ranges
+    'ranges' => [
+        'today' => 'დღეს',
+        'this_week' => 'ამ კვირაში',
+        'last_7_days' => 'ბოლო 7 დღე',
+        'last_30_days' => 'ბოლო 30 დღე',
+        'this_month' => 'ამ თვეში',
+        'this_year' => 'ამ წელს',
+    ],
+];

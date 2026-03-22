@@ -22,4 +22,6 @@ return [
     '503_temporarily_down' => 'Midlertidigt nede for vedligeholdelse',
     '503_admin_instruction' => 'Hvis du er administrator og ikke kan få adgang til dit websted efter at have aktiveret vedligeholdelsestilstand, skal du blot slette filen <strong>storage/framework/down</strong> for at slå vedligeholdelsestilstand fra.',
     'take_me_home' => 'Tag mig hjem',
+    'bad_request' => 'Ugyldig anmodning',
+
 ];

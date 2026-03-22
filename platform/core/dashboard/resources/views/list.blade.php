@@ -1,7 +1,7 @@
 @extends(BaseHelper::getAdminMasterLayoutTemplate())
 
 @push('header-action')
-    @if (count($widgets) > 0)
+    @if (count($widgets) > 0 && Auth::user()->isSuperUser())
         <x-core::button
             color="primary"
             :outlined="true"

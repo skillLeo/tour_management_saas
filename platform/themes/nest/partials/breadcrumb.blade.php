@@ -43,6 +43,7 @@
                                 <a href="{{ $crumb['url'] }}"title="{{ $crumb['label'] }}">
                                     {!! BaseHelper::clean($crumb['label']) !!}
                                 </a>
+                                <span class="extra-breadcrumb-name"></span>
                             </div>
                             <span></span>
                         @else

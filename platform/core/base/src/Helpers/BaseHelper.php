@@ -24,6 +24,8 @@ use Throwable;
 
 class BaseHelper
 {
+    protected static ?bool $isAdminRequest = null;
+
     public function formatTime(CarbonInterface $timestamp, ?string $format = 'j M Y H:i', bool $translated = false): string
     {
         $first = Carbon::create(0000, 0, 0, 00, 00, 00);
@@ -659,12 +661,39 @@ class BaseHelper
 
     public function isAdminRequest(): bool
     {
+        if (self::$isAdminRequest !== null) {
+            return self::$isAdminRequest;
+        }
+
+        if (App::runningInConsole()) {
+            return self::$isAdminRequest = false;
+        }
+
         $adminPrefix = config('core.base.general.admin_dir', 'admin');
 
         if (empty($adminPrefix)) {
-            return true;
+            return self::$isAdminRequest = true;
         }
 
-        return Request::is($adminPrefix . '/*') || Request::is($adminPrefix);
+        return self::$isAdminRequest = Request::is($adminPrefix . '/*') || Request::is($adminPrefix);
+    }
+
+    public function isFrontendRequest(): bool
+    {
+        if (App::runningInConsole()) {
+            return false;
+        }
+
+        return ! $this->isAdminRequest();
+    }
+
+    public function isConsoleRequest(): bool
+    {
+        return App::runningInConsole();
+    }
+
+    public static function resetAdminRequestCache(): void
+    {
+        self::$isAdminRequest = null;
     }
 }

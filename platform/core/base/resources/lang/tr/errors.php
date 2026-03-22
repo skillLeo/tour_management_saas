@@ -22,4 +22,6 @@ return [
     '503_temporarily_down' => 'Bakım için geçici olarak kapalı',
     '503_admin_instruction' => 'Yöneticiyseniz ve bakım modunu etkinleştirdikten sonra sitenize erişemiyorsanız, bakım modunu kapatmak için sadece <strong>storage/framework/down</strong> dosyasını silmeniz yeterlidir.',
     'take_me_home' => 'Ana sayfaya dön',
+    'bad_request' => 'Geçersiz İstek',
+
 ];

@@ -22,4 +22,6 @@ return [
     '503_temporarily_down' => 'Sedang dalam pemeliharaan sementara',
     '503_admin_instruction' => 'Jika Anda adalah administrator dan tidak dapat mengakses situs Anda setelah mengaktifkan mode pemeliharaan, cukup hapus file <strong>storage/framework/down</strong> untuk menonaktifkan mode pemeliharaan.',
     'take_me_home' => 'Bawa saya pulang',
+    'bad_request' => 'Permintaan Tidak Valid',
+
 ];

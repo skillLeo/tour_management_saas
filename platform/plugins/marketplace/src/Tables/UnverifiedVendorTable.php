@@ -42,10 +42,10 @@ class UnverifiedVendorTable extends TableAbstract
                 return Html::tag('img', '', ['src' => $item->avatar_url, 'alt' => BaseHelper::clean($item->name), 'width' => 50]);
             })
             ->editColumn('store_name', function (Vendor $item) {
-                return $item->store->name ? BaseHelper::clean($item->store->name) : '&mdash;';
+                return $item->store?->name ? BaseHelper::clean($item->store->name) : '&mdash;';
             })
             ->editColumn('store_phone', function (Vendor $item) {
-                return $item->store->phone ? BaseHelper::clean($item->store->phone) : '&mdash;';
+                return $item->store?->phone ? BaseHelper::clean($item->store->phone) : '&mdash;';
             });
 
         return $this->toJson($data);

@@ -71,16 +71,28 @@ const ShortcodeSerializer = {
             return attributes
         }
 
-        const pattern = /(\w+)\s*=\s*(?:"([^"]*)"|'([^']*)')/g
+        // Pattern that handles escaped quotes within attribute values
+        // (?:[^\\"]|\\.)* matches: any char except \ or ", OR backslash followed by any char (escaped sequence)
+        const pattern = /(\w+)\s*=\s*(?:"((?:[^\\"]|\\.)*)"|'((?:[^\\']|\\.)*)')/g
         let match
 
         while ((match = pattern.exec(attributesString)) !== null) {
             const key = match[1]
             const value = match[2] || match[3] || ''
-            attributes[key] = value
+            // Unescape the value after extraction
+            attributes[key] = this.unescapeAttribute(value)
         }
 
         return attributes
+    },
+
+    unescapeAttribute(value) {
+        if (typeof value !== 'string') {
+            return value
+        }
+
+        // Unescape in reverse order: quotes first, then backslashes
+        return value.replace(/\\"/g, '"').replace(/\\\\/g, '\\')
     },
 
     validate(shortcodeString) {

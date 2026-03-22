@@ -1,0 +1,66 @@
+<?php
+
+return [
+    'name' => '출금',
+    'view' => '출금 #:id 보기',
+    'affiliate' => '제휴',
+    'amount' => '금액',
+    'status' => '상태',
+    'payment_method' => '지급 방법',
+    'payment_details' => '지급 세부정보',
+    'notes' => '메모',
+    'created_at' => '생성일',
+    'approve' => '승인',
+    'reject' => '거부',
+    'approve_success' => '출금이 성공적으로 승인되었습니다',
+    'reject_success' => '출금이 성공적으로 거부되었습니다',
+    'approve_withdrawal' => '출금 승인',
+    'reject_withdrawal' => '출금 거부',
+    'approve_withdrawal_confirmation' => '출금 #:id를 승인하시겠습니까? 이 작업은 취소할 수 없습니다.',
+    'reject_withdrawal_confirmation' => '출금 #:id를 거부하시겠습니까? 이 작업은 취소할 수 없습니다.',
+    'statuses' => [
+        'pending' => '대기 중',
+        'processing' => '처리 중',
+        'approved' => '승인됨',
+        'rejected' => '거부됨',
+        'canceled' => '취소됨',
+    ],
+
+    // Customer-facing translations
+    'request' => '출금 요청',
+    'history' => '출금 기록',
+    'no_withdrawals' => '출금을 찾을 수 없습니다.',
+    'withdrawal_id' => '출금 ID',
+    'date' => '날짜',
+    'amount_required' => '출금 금액은 필수입니다.',
+    'amount_numeric' => '출금 금액은 숫자여야 합니다.',
+    'amount_min' => '출금 금액은 0 이상이어야 합니다.',
+    'payment_method_required' => '지급 방법은 필수입니다.',
+    'payment_details_required' => '지급 세부정보는 필수입니다.',
+    'account_not_approved' => '제휴 계정이 아직 승인되지 않았습니다.',
+    'minimum_amount' => '최소 출금 금액은 :amount입니다.',
+    'insufficient_balance' => '이 출금에 충분한 잔액이 없습니다.',
+    'request_submitted' => '출금 요청이 성공적으로 제출되었습니다.',
+    'submit_request' => '출금 요청 제출',
+    'available_balance' => '사용 가능 잔액',
+    'enter_amount' => '금액 입력',
+    'select_payment_method' => '지급 방법 선택',
+    'payment_details_placeholder' => '지급 세부정보 입력(예: PayPal 이메일, 은행 계좌 세부정보)',
+    'no_payment_methods_available' => '현재 사용 가능한 지급 방법이 없습니다. 관리자에게 문의하세요.',
+
+    // Additional translations for PayoutPaymentMethodsEnum
+    'bank_transfer' => '은행 송금',
+    'paypal' => 'PayPal',
+    'stripe' => 'Stripe',
+    'other' => '기타',
+    'bank_information' => '은행 정보',
+    'paypal_id' => 'PayPal ID',
+
+    // Payout payment methods
+    'payout_payment_methods' => [
+        'bank_transfer' => '은행 송금',
+        'paypal' => 'PayPal',
+        'stripe' => 'Stripe',
+        'other' => '기타',
+    ],
+];

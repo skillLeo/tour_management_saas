@@ -58,9 +58,8 @@ class BackupRestoreCommand extends Command
                 }
 
                 if (Str::contains(basename($file), 'storage')) {
-                    $this->components->info('Restoring uploaded files...');
-                    $pathTo = config('filesystems.disks.public.root');
-                    $backupService->cleanDirectory($pathTo);
+                    $this->components->info('Restoring source code...');
+                    $pathTo = base_path();
                     $backupService->extractFileTo($path . DIRECTORY_SEPARATOR . $file, $pathTo);
                 }
             }

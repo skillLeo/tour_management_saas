@@ -12,4 +12,16 @@ return [
     'return' => [
         'description' => 'Vráceno z objednávky #:order',
     ],
+    'thank_you' => [
+        'count_orders' => ':count objednávek',
+        'order' => 'Objednávka',
+        'thank_you_name' => 'Děkujeme, :name!',
+        'order_confirmed' => 'Vaše objednávka je potvrzena',
+        'order_accepted' => 'Přijali jsme vaši objednávku a připravujeme ji.',
+        'customer' => 'Zákazník',
+        'need_help' => 'Potřebujete pomoc?',
+        'contact_us' => 'Kontaktujte nás',
+        'view_order_history' => 'Zobrazit historii objednávek',
+        'order_total' => 'Celkem objednávka',
+    ],
 ];

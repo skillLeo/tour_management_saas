@@ -26,6 +26,8 @@ return [
     'categories' => 'श्रेणियाँ',
     'category' => 'श्रेणी',
     'author' => 'लेखक',
+    'author_helper' => 'Select an author from admin users.',
+    'select_author' => 'Select author',
     'is_featured' => 'फीचर्ड है?',
     'export' => [
         'description' => 'पोस्ट को CSV/Excel फ़ाइल में निर्यात करें।',

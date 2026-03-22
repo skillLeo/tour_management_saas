@@ -97,7 +97,7 @@ class ReportGeneralHtml extends Html
         $series[] = $data;
 
         foreach ($period as $date) {
-            $dates[] = $date->toDateString();
+            $dates[] = $date->translatedFormat('d M');
         }
 
         $colors = $earningSales->pluck('color');

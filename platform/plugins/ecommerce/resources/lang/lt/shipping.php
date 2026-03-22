@@ -192,6 +192,7 @@ return [
         'order_date' => 'Užsakymo data',
         'scan_qr_code' => 'Nuskaitykite QR kodą, kad sektumėte savo siuntą',
         'total_amount' => 'Bendra suma',
+        'amount_to_collect' => 'Suma surinkimui',
         'cod_amount_to_collect' => 'COD suma surinkimui',
     ],
     'customer_confirmed_delivery_at' => 'Klientas patvirtino pristatymą ties',

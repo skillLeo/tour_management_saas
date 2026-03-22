@@ -22,6 +22,7 @@ class GeneralSettingForm extends SettingForm
             ->addStylesDirectly('vendor/core/core/setting/css/admin-email.css')
             ->addScriptsDirectly([
                 'vendor/core/core/setting/js/admin-email.js',
+                'vendor/core/core/setting/js/license-component.js',
             ]);
 
         $this

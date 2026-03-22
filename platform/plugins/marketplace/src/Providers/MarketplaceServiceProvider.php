@@ -23,6 +23,7 @@ use Botble\Ecommerce\Models\SpecificationAttribute;
 use Botble\Ecommerce\Models\SpecificationGroup;
 use Botble\Ecommerce\Models\SpecificationTable;
 use Botble\Ecommerce\PanelSections\SettingEcommercePanelSection;
+use Botble\Ecommerce\Tax\DTOs\TaxContext;
 use Botble\LanguageAdvanced\Supports\LanguageAdvancedManager;
 use Botble\Marketplace\Facades\MarketplaceHelper;
 use Botble\Marketplace\Http\Middleware\RedirectIfNotVendor;
@@ -89,6 +90,8 @@ class MarketplaceServiceProvider extends ServiceProvider
 
         add_filter(IS_IN_ADMIN_FILTER, [$this, 'setInAdmin'], 128);
         add_filter('ecommerce_checkout_show_shipping_section', [$this, 'filterCheckoutShowShippingSection'], 10);
+
+        $this->registerMarketplaceTaxHooks();
 
         $this
             ->setNamespace('plugins/marketplace')
@@ -319,8 +322,10 @@ class MarketplaceServiceProvider extends ServiceProvider
                 return;
             }
 
+            $isVendor = $customer->is_vendor || $customer->store->exists;
+
             DashboardMenu::make()
-                ->when($customer->is_vendor, function () {
+                ->when($isVendor, function () {
                     return DashboardMenu::make()
                         ->registerItem([
                             'id' => 'marketplace.vendor.dashboard',
@@ -565,5 +570,33 @@ class MarketplaceServiceProvider extends ServiceProvider
     {
         // If marketplace is active and charge_shipping_per_vendor is false, show standard shipping
         return ! MarketplaceHelper::isChargeShippingPerVendor();
+    }
+
+    protected function registerMarketplaceTaxHooks(): void
+    {
+        add_filter('ecommerce_tax_context_build', function ($context, $product) {
+            if (! $context instanceof TaxContext) {
+                return $context;
+            }
+
+            if (! $product->store_id) {
+                return $context;
+            }
+
+            $store = $product->store;
+
+            if (! $store || ! $store->id) {
+                return $context;
+            }
+
+            return $context->withSellerLocation(
+                seller_country: $store->tax_country ?? $store->country,
+                seller_state: $store->tax_state ?? $store->state,
+                extra_metadata: [
+                    'store_id' => $store->id,
+                    'store_tax_id' => $store->tax_id,
+                ],
+            );
+        }, 20, 2);
     }
 }

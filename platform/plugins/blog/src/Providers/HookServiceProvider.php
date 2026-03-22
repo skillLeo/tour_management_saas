@@ -46,7 +46,8 @@ class HookServiceProvider extends ServiceProvider
                     [
                         'import' => 'post-translations.import',
                         'export' => 'post-translations.export',
-                    ]
+                    ],
+                    1000
                 );
             }
         });
@@ -62,12 +63,13 @@ class HookServiceProvider extends ServiceProvider
             add_filter(DASHBOARD_FILTER_ADMIN_LIST, [$this, 'registerDashboardWidgets'], 21, 2);
         });
 
-        add_filter(BASE_FILTER_PUBLIC_SINGLE_DATA, [$this, 'handleSingleView'], 2);
+        if (BaseHelper::isFrontendRequest()) {
+            add_filter(BASE_FILTER_PUBLIC_SINGLE_DATA, [$this, 'handleSingleView'], 2);
+            add_filter('facebook_comment_html', [$this, 'renderBlogPostFacebookComments'], 10, 2);
 
-        add_filter('facebook_comment_html', [$this, 'renderBlogPostFacebookComments'], 10, 2);
-
-        if (defined('PAGE_MODULE_SCREEN_NAME')) {
-            add_filter(PAGE_FILTER_FRONT_PAGE_CONTENT, [$this, 'renderBlogPage'], 2, 2);
+            if (defined('PAGE_MODULE_SCREEN_NAME')) {
+                add_filter(PAGE_FILTER_FRONT_PAGE_CONTENT, [$this, 'renderBlogPage'], 2, 2);
+            }
         }
 
         PageTable::beforeRendering(function (): void {
@@ -129,7 +131,7 @@ class HookServiceProvider extends ServiceProvider
             add_action(RENDERING_THEME_OPTIONS_PAGE, [$this, 'addThemeOptions'], 35);
         });
 
-        if (defined('THEME_FRONT_HEADER') && setting('blog_post_schema_enabled', 1)) {
+        if (BaseHelper::isFrontendRequest() && defined('THEME_FRONT_HEADER') && setting('blog_post_schema_enabled', 1)) {
             add_action(BASE_ACTION_PUBLIC_RENDER_SINGLE, function ($screen, $post): void {
                 add_filter(THEME_FRONT_HEADER, function ($html) use ($post) {
                     if (! $post instanceof Post) {
@@ -192,6 +194,7 @@ class HookServiceProvider extends ServiceProvider
                 'id' => 'opt-text-subsection-blog',
                 'subsection' => true,
                 'icon' => 'ti ti-edit',
+                'shared' => true,
                 'fields' => [
                     [
                         'id' => 'blog_page_id',

@@ -2,8 +2,8 @@
 
 return [
     'name' => 'Templat Invois',
-    'setting' => 'Tetapan Templat Invois',
-    'setting_description' => 'Tetapan untuk templat Invois',
+    'setting' => 'Template design & layout',
+    'setting_description' => 'Customize invoice HTML template and CSS styles',
     'setting_content' => 'Kandungan',
     'preview' => 'Pratonton',
     'preview_heading' => 'Pratonton templat Invois',

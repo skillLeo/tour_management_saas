@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'name' => 'Kratke povezave', 'short_link' => 'Kratka povezava', 'short_links' => 'Kratke povezave',
+    'create' => 'Ustvari kratko povezavo', 'edit' => 'Uredi kratko povezavo', 'delete' => 'Izbriši kratko povezavo',
+    'short_link_details' => 'Podrobnosti kratke povezave', 'untitled' => 'Povezava brez naslova', 'affiliate' => 'Partner',
+    'title' => 'Naslov', 'title_placeholder' => 'Vnesite opisni naslov za to kratko povezavo', 'short_code' => 'Kratka koda',
+    'short_code_placeholder' => 'Vnesite edinstveno kratko kodo (npr. poletje2024)', 'short_code_help' => 'To bo uporabljeno v URL: vašastran.si/go/[kratka-koda]',
+    'destination_url' => 'Cilji URL', 'destination_url_help' => 'Polni URL, kamor bodo uporabniki preusmerjeni', 'product' => 'Izdelek',
+    'product_help' => 'Neobvezno: povežite to kratko povezavo z določenim izdelkom za boljše sledenje', 'all_products' => 'Vsi izdelki',
+    'short_url' => 'Kratki URL', 'clicks' => 'Kliki', 'conversions' => 'Konverzije', 'conversion_rate' => 'Stopnja konverzije',
+    'total_clicks' => 'Skupni kliki', 'total_conversions' => 'Skupne konverzije', 'statistics' => 'Statistika', 'actions' => 'Dejanja',
+    'created_at' => 'Ustvarjeno', 'updated_at' => 'Posodobljeno', 'affiliate_required' => 'Prosim izberite partnerja.',
+    'affiliate_not_exists' => 'Izbrani partner ne obstaja.', 'short_code_required' => 'Kratka koda je obvezna.',
+    'short_code_unique' => 'Ta kratka koda je že uporabljena.', 'short_code_alpha_dash' => 'Kratka koda lahko vsebuje samo črke, številke, pomišljaje in podčrtaje.',
+    'destination_url_required' => 'Ciljni URL je obvezen.', 'destination_url_invalid' => 'Prosim vnesite veljaven URL.',
+    'product_not_exists' => 'Izbrani izdelek ne obstaja.', 'copy_url' => 'Kopiraj URL', 'copy_short_url' => 'Kopiraj kratki URL',
+    'test_link' => 'Testiraj povezavo', 'visit_destination' => 'Obišči cilj', 'copied_to_clipboard' => 'URL kopiran v odložišče!',
+    'copy_failed' => 'Kopiranje ni uspelo. Poskusite znova.', 'url_information' => 'Informacije o URL', 'affiliate_product_info' => 'Informacije o partnerju in izdelku',
+    'quick_actions' => 'Hitra dejanja', 'performance' => 'Uspešnost', 'product_link' => 'Povezava izdelka', 'general_link' => 'Splošna povezava',
+    'excellent' => 'Odlično', 'good' => 'Dobro', 'average' => 'Povprečno', 'no_data' => 'Ni podatkov', 'back' => 'Nazaj',
+    'affiliate_not_found' => 'Partner ni najden', 'short_link_not_found' => 'Kratka povezava ni najdena', 'affiliate_column' => 'Partner',
+    'title_column' => 'Naslov in koda', 'destination_column' => 'Cilj', 'short_url_column' => 'Kratki URL', 'product_column' => 'Izdelek',
+    'stats_column' => 'Statistika', 'created_column' => 'Ustvarjeno', 'bulk_delete_confirm' => 'Ali ste prepričani, da želite izbrisati te kratke povezave?',
+    'bulk_delete_success' => 'Izbrane kratke povezave so bile uspešno izbrisane.', 'permissions' => ['index' => 'Poglej kratke povezave', 'create' => 'Ustvari kratke povezave', 'edit' => 'Uredi kratke povezave', 'destroy' => 'Izbriši kratke povezave'],
+];

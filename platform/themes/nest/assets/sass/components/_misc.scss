@@ -175,7 +175,7 @@
     margin: 0;
     border-radius: 0;
 
-    span {
+    span:not(.extra-breadcrumb-name) {
         position: relative;
         text-align: center;
         padding: 0 10px;
@@ -185,6 +185,29 @@
             font-family: "uicons-regular-straight" !important;
             display: inline-block;
             font-size: 9px;
+        }
+    }
+
+    .extra-breadcrumb-name {
+        display: none;
+    }
+
+    @media (max-width: 767.98px) {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow: hidden;
+        white-space: nowrap;
+        align-items: center;
+
+        .breadcrumb-item {
+            flex-shrink: 0;
+
+            &.active {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                min-width: 0;
+                flex-shrink: 1;
+            }
         }
     }
 }

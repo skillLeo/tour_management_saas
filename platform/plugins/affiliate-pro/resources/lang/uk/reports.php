@@ -1,0 +1,25 @@
+<?php
+
+return [
+    'name' => 'Звіти', 'commission_this_month' => 'Комісія цього місяця', 'pending_commissions' => 'Комісії в очікуванні',
+    'approved_commissions' => 'Схвалені комісії', 'pending_withdrawals' => 'Виведення в очікуванні', 'approved_withdrawals' => 'Схвалені виведення',
+    'active_affiliates' => 'Активні партнери', 'affiliate_stats' => 'Статистика партнерів', 'top_affiliates' => 'Топ партнери',
+    'recent_commissions' => 'Останні комісії', 'recent_withdrawals' => 'Останні виведення', 'commission_chart' => 'Графік комісій',
+    'withdrawal_chart' => 'Графік виведень', 'geographic_data' => 'Географічні дані', 'top_countries' => 'Топ країни',
+    'top_cities' => 'Топ міста', 'short_link_performance' => 'Ефективність коротких посилань', 'top_performing_links' => 'Найефективніші посилання',
+    'link' => 'Посилання', 'clicks' => 'Кліки', 'conversions' => 'Конверсії', 'commission_trends' => 'Тренди комісій',
+    'commission_amount' => 'Сума комісії', 'loading' => 'Завантаження...', 'no_data' => 'Немає доступних даних',
+    'no_commission_data' => 'Немає даних про комісії за обраний період', 'no_geographic_data' => 'Немає географічних даних за обраний період',
+    'no_city_data' => 'Немає даних про міста для обраної країни', 'chart_error' => 'Помилка відображення графіка. Спробуйте оновити сторінку.',
+    'performance_metrics' => 'Метрики ефективності', 'total_clicks' => 'Загальні кліки', 'earnings' => 'Заробітки',
+    'avg_commission' => 'Серед. комісія', 'avg_conversion_rate' => 'Серед. коефіцієнт конверсії', 'vs_previous' => 'порівняно з попереднім',
+    'no_change' => 'Без змін', 'performance_over_time' => 'Ефективність з часом', 'clicks_conversions' => 'Кліки та конверсії',
+    'conversion_rate_analysis' => 'Аналіз коефіцієнта конверсії', 'overall_conversion_rate' => 'Загальний коефіцієнт конверсії', 'conversion_breakdown' => 'Розподіл конверсій',
+    'source' => 'Джерело', 'rate' => 'Ставка', 'conversion_rate_percentage' => 'Коефіцієнт конверсії (%)',
+    'optimization_opportunity' => 'Можливість оптимізації', 'conversion_rate_below_average' => 'Ваш коефіцієнт конверсії нижче середнього. Розгляньте ці поради:',
+    'target_relevant_audiences' => 'Орієнтуйтесь на більш релевантну аудиторію', 'improve_promotional_content' => 'Покращте свій рекламний контент',
+    'focus_higher_conversion_products' => 'Зосередьтеся на продуктах з вищим коефіцієнтом конверсії', 'great_performance' => 'Чудова ефективність!',
+    'excellent_conversion_rate' => 'Ваш коефіцієнт конверсії чудовий. Продовжуйте в тому ж дусі!', 'good_performance' => 'Хороша ефективність',
+    'average_conversion_rate' => 'Ваш коефіцієнт конверсії в середньому діапазоні. Є простір для покращення.',
+    'ranges' => ['today' => 'Сьогодні', 'this_week' => 'Цього тижня', 'last_7_days' => 'Останні 7 днів', 'last_30_days' => 'Останні 30 днів', 'this_month' => 'Цього місяця', 'this_year' => 'Цього року'],
+];

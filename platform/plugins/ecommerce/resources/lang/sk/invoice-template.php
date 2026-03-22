@@ -2,8 +2,8 @@
 
 return [
     'name' => 'Šablóna faktúry',
-    'setting' => 'Nastavenia šablóny faktúry',
-    'setting_description' => 'Nastavenia pre šablónu faktúry',
+    'setting' => 'Template design & layout',
+    'setting_description' => 'Customize invoice HTML template and CSS styles',
     'setting_content' => 'Obsah',
     'preview' => 'Náhľad',
     'preview_heading' => 'Náhľad šablóny faktúry',

@@ -1,0 +1,73 @@
+<?php
+
+return [
+    'name' => 'Aruanded',
+    'commission_this_month' => 'Selle kuu vahendustasu',
+    'pending_commissions' => 'Ootel vahendustasud',
+    'approved_commissions' => 'Kinnitatud vahendustasud',
+    'pending_withdrawals' => 'Ootel väljamaksed',
+    'approved_withdrawals' => 'Kinnitatud väljamaksed',
+    'active_affiliates' => 'Aktiivsed partnerid',
+    'affiliate_stats' => 'Partnerite statistika',
+    'top_affiliates' => 'Parimad partnerid',
+    'recent_commissions' => 'Hiljutised vahendustasud',
+    'recent_withdrawals' => 'Hiljutised väljamaksed',
+    'commission_chart' => 'Vahendustasude diagramm',
+    'withdrawal_chart' => 'Väljamaksete diagramm',
+
+    // Enhanced reports
+    'geographic_data' => 'Geograafilised andmed',
+    'top_countries' => 'Parimad riigid',
+    'top_cities' => 'Parimad linnad',
+    'short_link_performance' => 'Lühilinkide jõudlus',
+    'top_performing_links' => 'Parimad lingid',
+    'link' => 'Link',
+    'clicks' => 'Klikid',
+    'conversions' => 'Konversioonid',
+    'commission_trends' => 'Vahendustasude trendid',
+    'commission_amount' => 'Vahendustasu summa',
+    'loading' => 'Laadimine...',
+    'no_data' => 'Andmed puuduvad',
+    'no_commission_data' => 'Valitud perioodil pole vahendustasude andmeid saadaval',
+    'no_geographic_data' => 'Valitud perioodil pole geograafilisi andmeid saadaval',
+    'no_city_data' => 'Valitud riigi kohta pole linnakohti andmeid saadaval',
+    'chart_error' => 'Viga diagrammi renderdamisel. Palun proovige lehte värskendada.',
+
+    // Performance metrics widget
+    'performance_metrics' => 'Jõudluse mõõdikud',
+    'total_clicks' => 'Kokku klikke',
+    'earnings' => 'Tulud',
+    'avg_commission' => 'Keskmine vahendustasu',
+    'avg_conversion_rate' => 'Keskmine konversioonimäär',
+    'vs_previous' => 'võrreldes eelmisega',
+    'no_change' => 'Muutusi pole',
+    'performance_over_time' => 'Jõudlus aja jooksul',
+    'clicks_conversions' => 'Klikid ja konversioonid',
+
+    // Conversion rate widget
+    'conversion_rate_analysis' => 'Konversioonimäära analüüs',
+    'overall_conversion_rate' => 'Üldine konversioonimäär',
+    'conversion_breakdown' => 'Konversioonide jaotus',
+    'source' => 'Allikas',
+    'rate' => 'Määr',
+    'conversion_rate_percentage' => 'Konversioonimäär (%)',
+    'optimization_opportunity' => 'Optimeerimise võimalus',
+    'conversion_rate_below_average' => 'Teie konversioonimäär on alla keskmise. Kaaluge neid näpunäiteid:',
+    'target_relevant_audiences' => 'Sihtida asjakohasemat publikut',
+    'improve_promotional_content' => 'Parandage oma reklaamisisu',
+    'focus_higher_conversion_products' => 'Keskenduge toodetele, millel on kõrgem konversioonimäär',
+    'great_performance' => 'Suurepärane jõudlus!',
+    'excellent_conversion_rate' => 'Teie konversioonimäär on suurepärane. Jätkake head tööd!',
+    'good_performance' => 'Hea jõudlus',
+    'average_conversion_rate' => 'Teie konversioonimäär on keskmises vahemikus. Parandamisruumi on.',
+
+    // Date ranges
+    'ranges' => [
+        'today' => 'Täna',
+        'this_week' => 'See nädal',
+        'last_7_days' => 'Viimased 7 päeva',
+        'last_30_days' => 'Viimased 30 päeva',
+        'this_month' => 'See kuu',
+        'this_year' => 'See aasta',
+    ],
+];

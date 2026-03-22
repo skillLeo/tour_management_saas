@@ -49,5 +49,10 @@ AdminHelper::registerRoutes(function (): void {
             'as' => '.json',
             'uses' => AnalyticsSettingJsonController::class . '@__invoke',
         ]);
+
+        Route::post('test-connection', [
+            'as' => '.test-connection',
+            'uses' => AnalyticsSettingController::class . '@testConnection',
+        ]);
     });
 });

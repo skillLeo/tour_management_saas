@@ -27,10 +27,6 @@ Route::group(['middleware' => ['web', 'core']], function (): void {
                 Route::get('ajax/related-products/{id}', 'ajaxGetRelatedProducts')
                     ->name('related-products')
                     ->wherePrimaryKey();
-
-                Route::get('ajax/cross-sale-products/{id}', 'ajaxGetCrossSaleProducts')
-                    ->name('cross-sale-products')
-                    ->wherePrimaryKey();
             });
 
             if (is_plugin_active('ecommerce')) {

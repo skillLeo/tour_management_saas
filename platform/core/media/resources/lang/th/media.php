@@ -55,6 +55,12 @@ return [
     'selected_items_move_success' => 'ย้ายรายการที่เลือกไปยัง :name เรียบร้อยแล้ว!',
     'selected_items_move_error' => 'เกิดข้อผิดพลาดในการย้ายรายการที่เลือกไปยัง :name',
     'destination' => 'ปลายทาง',
+    'move' => 'ย้าย',
+    'move_items' => 'ย้ายรายการ',
+    'move_here' => 'ย้ายมาที่นี่',
+    'move_to_root' => 'ย้ายไปโฟลเดอร์ราก',
+    'root' => 'ราก',
+    'go_up' => 'ขึ้น',
     'restore_error' => 'เกิดข้อผิดพลาดในการกู้คืนรายการที่เลือก',
     'restore_success' => 'กู้คืนรายการที่เลือกเรียบร้อยแล้ว!',
     'copy_success' => 'คัดลอกรายการที่เลือกเรียบร้อยแล้ว!',
@@ -133,7 +139,12 @@ return [
         ],
 
         'download' => [
-            'error' => 'ไม่ได้เลือกไฟล์หรือไม่สามารถดาวน์โหลดไฟล์เหล่านี้',
+            'error' => 'No files selected or cannot download these files',
+        ],
+
+        'move' => [
+            'select_destination' => 'กรุณาเลือกโฟลเดอร์ปลายทาง',
+            'same_location' => 'รายการอยู่ในตำแหน่งนี้แล้ว',
         ],
 
         'actions_list' => [

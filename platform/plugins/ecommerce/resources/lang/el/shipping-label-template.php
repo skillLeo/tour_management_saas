@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'name' => 'Πρότυπο Ετικέτας Αποστολής',
-    'setting' => 'Ρυθμίσεις Προτύπου Ετικέτας Αποστολής',
-    'setting_description' => 'Ρυθμίσεις για το πρότυπο ετικέτας αποστολής',
+    'name' => 'Shipping Labels',
+    'setting' => 'Label design & layout',
+    'setting_description' => 'Customize shipping label HTML template and CSS styles',
     'setting_content' => 'Περιεχόμενο',
     'preview' => 'Προεπισκόπηση',
     'preview_heading' => 'Προεπισκόπηση προτύπου ετικέτας αποστολής',

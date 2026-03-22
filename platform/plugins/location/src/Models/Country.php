@@ -6,6 +6,7 @@ use Botble\Base\Casts\SafeContent;
 use Botble\Base\Enums\BaseStatusEnum;
 use Botble\Base\Models\BaseModel;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Cache;
 
 class Country extends BaseModel
 {
@@ -36,6 +37,13 @@ class Country extends BaseModel
             $country->states()->delete();
             $country->cities()->delete();
         });
+
+        $clearCache = function (self $model): void {
+            Cache::forget('location_countries_default');
+        };
+
+        static::saved($clearCache);
+        static::deleted($clearCache);
     }
 
     public function states(): HasMany

@@ -20,7 +20,8 @@ class TaxRuleController extends BaseController
     protected function breadcrumb(): Breadcrumb
     {
         return parent::breadcrumb()
-            ->add(trans('plugins/ecommerce::tax.name'), route('ecommerce.settings.taxes'));
+            ->add(trans('plugins/ecommerce::ecommerce.name'), route('products.index'))
+            ->add(trans('plugins/ecommerce::tax.name'), route('tax.index'));
     }
 
     public function index(Tax $tax, TaxRuleTable $dataTable)

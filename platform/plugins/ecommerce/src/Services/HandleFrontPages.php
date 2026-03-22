@@ -17,6 +17,7 @@ use Botble\Ecommerce\Models\ProductCollection;
 use Botble\Ecommerce\Models\ProductTag;
 use Botble\Ecommerce\Services\Products\GetProductService;
 use Botble\Ecommerce\Services\Products\ProductCrossSalePriceService;
+use Botble\Ecommerce\Services\Products\ProductUpSalePriceService;
 use Botble\Ecommerce\Services\Products\UpdateDefaultProductService;
 use Botble\Ecommerce\Traits\CheckReviewConditionTrait;
 use Botble\Media\Facades\RvMedia;
@@ -37,7 +38,8 @@ class HandleFrontPages
     use CheckReviewConditionTrait;
 
     public function __construct(
-        protected ProductCrossSalePriceService $productCrossSalePriceService
+        protected ProductCrossSalePriceService $productCrossSalePriceService,
+        protected ProductUpSalePriceService $productUpSalePriceService
     ) {
     }
 
@@ -91,6 +93,7 @@ class HandleFrontPages
                 abort_if(! $product, 404);
 
                 $this->productCrossSalePriceService->applyProduct($product);
+                $this->productUpSalePriceService->applyProduct($product);
 
                 SeoHelper::setTitle($product->name)->setDescription($product->description);
 
@@ -120,7 +123,7 @@ class HandleFrontPages
                 SeoHelper::twitter()->setCard($card);
 
                 if (Helper::handleViewCount($product, 'viewed_product')) {
-                    event(new ProductViewed($product, Carbon::now()));
+                    event(new ProductViewed($product->getKey(), Carbon::now()));
 
                     EcommerceHelper::handleCustomerRecentlyViewedProduct($product);
                 }
@@ -142,6 +145,21 @@ class HandleFrontPages
                 Theme::breadcrumb()->add($product->name);
 
                 Theme::addBodyAttributes(['class' => 'single-product']);
+
+                // Register up-sale and cross-sale assets
+                if (EcommerceHelper::isEnabledUpSaleProducts() || EcommerceHelper::isEnabledCrossSaleProducts()) {
+                    Theme::asset()->add(
+                        'front-upsale-crosssale-css',
+                        'vendor/core/plugins/ecommerce/css/front-upsale-crosssale.css',
+                        version: EcommerceHelper::getAssetVersion()
+                    );
+                    Theme::asset()->container('footer')->add(
+                        'front-upsale-crosssale-js',
+                        'vendor/core/plugins/ecommerce/js/front-upsale-crosssale.js',
+                        ['jquery'],
+                        version: EcommerceHelper::getAssetVersion()
+                    );
+                }
 
                 if (function_exists('admin_bar')) {
                     admin_bar()
@@ -341,7 +359,7 @@ class HandleFrontPages
                 }
 
                 $tag = ProductTag::query()
-                    ->with(['slugable', 'products'])
+                    ->with(['slugable'])
                     ->where($condition)
                     ->firstOrFail();
 
@@ -407,7 +425,7 @@ class HandleFrontPages
                 }
 
                 $collection = ProductCollection::query()
-                    ->with(['slugable', 'products'])
+                    ->with(['slugable'])
                     ->where($condition)
                     ->firstOrFail();
 

@@ -4,6 +4,8 @@ namespace Botble\Ecommerce\Providers;
 
 use Botble\Ecommerce\Commands\CancelExpiredDeletionRequests;
 use Botble\Ecommerce\Commands\CheckAbandonedCartsCommand;
+use Botble\Ecommerce\Commands\CleanupExpiredCartsCommand;
+use Botble\Ecommerce\Commands\SeedEuVatRatesCommand;
 use Botble\Ecommerce\Commands\SendAbandonedCartsEmailCommand;
 use Botble\Ecommerce\Models\SharedWishlist;
 use Illuminate\Console\Scheduling\Schedule;
@@ -21,6 +23,8 @@ class CommandServiceProvider extends ServiceProvider
             SendAbandonedCartsEmailCommand::class,
             CancelExpiredDeletionRequests::class,
             CheckAbandonedCartsCommand::class,
+            CleanupExpiredCartsCommand::class,
+            SeedEuVatRatesCommand::class,
         ]);
 
         $this->app->afterResolving(Schedule::class, function (Schedule $schedule): void {
@@ -38,6 +42,8 @@ class CommandServiceProvider extends ServiceProvider
             $schedule->command('model:prune', [
                 '--model' => [SharedWishlist::class],
             ])->daily();
+
+            $schedule->command(CleanupExpiredCartsCommand::class)->daily();
         });
     }
 }

@@ -5,10 +5,12 @@ namespace Botble\Ecommerce\Services;
 use Botble\Ecommerce\Facades\EcommerceHelper;
 use Botble\Ecommerce\Models\Product;
 use Botble\Ecommerce\Services\Data\CalculateTaxData;
+use Botble\Ecommerce\Tax\DTOs\TaxContext;
+use Botble\Ecommerce\Tax\TaxEngineManager;
 
 class TaxCalculatorService
 {
-    public function __construct(protected TaxRateCalculatorService $taxRateCalculator)
+    public function __construct(protected TaxEngineManager $engine)
     {
     }
 
@@ -31,32 +33,35 @@ class TaxCalculatorService
         foreach ($input->products as $inputProduct) {
             $product = $products->firstWhere('id', $inputProduct['id']);
 
-            if (! $product) {
+            if (! $product instanceof Product) {
                 continue;
             }
 
             $quantity = $inputProduct['quantity'] ?? 1;
             $price = $inputProduct['price'] ?? $product->price;
 
-            $taxRate = $this->taxRateCalculator->execute(
-                $product,
-                $input->country,
-                $input->state,
-                $input->city,
-                $input->zipCode
+            $context = new TaxContext(
+                product: $product,
+                country: $input->country,
+                state: $input->state,
+                city: $input->city,
+                zip_code: $input->zipCode,
+                quantity: $quantity,
+                price: $price,
             );
 
-            if ($taxRate > 0) {
-                $itemTax = EcommerceHelper::roundPrice($quantity * ($price * $taxRate / 100));
+            $result = $this->engine->calculate($context);
 
-                $taxAmount += $itemTax;
+            if ($result->total_tax > 0) {
+                $taxAmount += $result->total_tax;
 
                 $taxRates[] = [
                     'product_id' => $product->id,
-                    'tax_rate' => $taxRate,
+                    'tax_rate' => $result->tax_rate,
                     'price' => $price,
                     'quantity' => $quantity,
-                    'tax_amount' => $itemTax,
+                    'tax_amount' => $result->total_tax,
+                    'components' => array_map(fn ($c) => $c->toArray(), $result->components),
                 ];
             }
         }

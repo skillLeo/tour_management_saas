@@ -68,4 +68,6 @@ return [
     'enable_light_mode' => '라이트 모드 활성화',
     'enable_dark_mode' => '다크 모드 활성화',
     'close' => '닫기',
+    'search_country' => '국가 검색...',
+    'no_results' => '결과를 찾을 수 없습니다',
 ];

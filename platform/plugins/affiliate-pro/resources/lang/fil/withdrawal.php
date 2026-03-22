@@ -1,0 +1,66 @@
+<?php
+
+return [
+    'name' => 'Mga Pag-withdraw',
+    'view' => 'Tingnan ang Pag-withdraw #:id',
+    'affiliate' => 'Kaakibat',
+    'amount' => 'Halaga',
+    'status' => 'Katayuan',
+    'payment_method' => 'Paraan ng Pagbabayad',
+    'payment_details' => 'Mga Detalye ng Pagbabayad',
+    'notes' => 'Mga Tala',
+    'created_at' => 'Ginawa Noong',
+    'approve' => 'Aprubahan',
+    'reject' => 'Tanggihan',
+    'approve_success' => 'Matagumpay na naaprubahan ang pag-withdraw',
+    'reject_success' => 'Matagumpay na tinanggihan ang pag-withdraw',
+    'approve_withdrawal' => 'Aprubahan ang Pag-withdraw',
+    'reject_withdrawal' => 'Tanggihan ang Pag-withdraw',
+    'approve_withdrawal_confirmation' => 'Sigurado ka bang nais mong aprubahan ang pag-withdraw #:id? Hindi na ito mababawi.',
+    'reject_withdrawal_confirmation' => 'Sigurado ka bang nais mong tanggihan ang pag-withdraw #:id? Hindi na ito mababawi.',
+    'statuses' => [
+        'pending' => 'Naghihintay',
+        'processing' => 'Pinoproseso',
+        'approved' => 'Naaprubahan',
+        'rejected' => 'Tinanggihan',
+        'canceled' => 'Kinansela',
+    ],
+
+    // Customer-facing translations
+    'request' => 'Kahilingan sa Pag-withdraw',
+    'history' => 'Kasaysayan ng Pag-withdraw',
+    'no_withdrawals' => 'Walang nahanap na mga pag-withdraw.',
+    'withdrawal_id' => 'ID ng Pag-withdraw',
+    'date' => 'Petsa',
+    'amount_required' => 'Kailangan ang halaga ng pag-withdraw.',
+    'amount_numeric' => 'Ang halaga ng pag-withdraw ay dapat na numero.',
+    'amount_min' => 'Ang halaga ng pag-withdraw ay dapat hindi bababa sa 0.',
+    'payment_method_required' => 'Kailangan ang paraan ng pagbabayad.',
+    'payment_details_required' => 'Kailangan ang mga detalye ng pagbabayad.',
+    'account_not_approved' => 'Ang iyong account bilang kaakibat ay hindi pa naaprubahan.',
+    'minimum_amount' => 'Ang pinakamababang halaga ng pag-withdraw ay :amount.',
+    'insufficient_balance' => 'Wala kang sapat na balanse para sa pag-withdraw na ito.',
+    'request_submitted' => 'Matagumpay na naisumite ang iyong kahilingan sa pag-withdraw.',
+    'submit_request' => 'Isumite ang Kahilingan sa Pag-withdraw',
+    'available_balance' => 'Magagamit na Balanse',
+    'enter_amount' => 'Maglagay ng Halaga',
+    'select_payment_method' => 'Pumili ng Paraan ng Pagbabayad',
+    'payment_details_placeholder' => 'Ilagay ang iyong mga detalye ng pagbabayad (hal., PayPal email, bank account details)',
+    'no_payment_methods_available' => 'Walang magagamit na mga paraan ng pagbabayad sa ngayon. Makipag-ugnayan sa administrator.',
+
+    // Additional translations for PayoutPaymentMethodsEnum
+    'bank_transfer' => 'Paglipat sa bangko',
+    'paypal' => 'PayPal',
+    'stripe' => 'Stripe',
+    'other' => 'Iba Pa',
+    'bank_information' => 'Impormasyon ng bangko',
+    'paypal_id' => 'ID ng PayPal',
+
+    // Payout payment methods
+    'payout_payment_methods' => [
+        'bank_transfer' => 'Paglipat sa bangko',
+        'paypal' => 'PayPal',
+        'stripe' => 'Stripe',
+        'other' => 'Iba Pa',
+    ],
+];

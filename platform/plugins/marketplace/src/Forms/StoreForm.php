@@ -81,6 +81,24 @@ class StoreForm extends FormAbstract
                     ->maxLength(255)
             )
             ->add(
+                'tax_country',
+                TextField::class,
+                TextFieldOption::make()
+                    ->label(trans('plugins/marketplace::store.forms.tax_country'))
+                    ->helperText(trans('plugins/marketplace::store.forms.tax_country_helper'))
+                    ->colspan(3)
+                    ->maxLength(120)
+            )
+            ->add(
+                'tax_state',
+                TextField::class,
+                TextFieldOption::make()
+                    ->label(trans('plugins/marketplace::store.forms.tax_state'))
+                    ->helperText(trans('plugins/marketplace::store.forms.tax_state_helper'))
+                    ->colspan(3)
+                    ->maxLength(120)
+            )
+            ->add(
                 'logo',
                 MediaImageField::class,
                 MediaImageFieldOption::make()

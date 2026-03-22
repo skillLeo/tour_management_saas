@@ -451,3 +451,116 @@
 	}
 }
 
+/* Ads Carousel */
+.ads-carousel-section {
+	padding: 30px 0;
+}
+
+.carousel-ads-cover {
+	position: relative;
+
+	.carousel-ads {
+		overflow: hidden;
+		margin: 0 -12px;
+
+		.carousel-ad-item {
+			padding: 0 12px;
+		}
+
+		.slick-list {
+			margin: 0 -12px;
+		}
+
+		.slick-slide {
+			> div {
+				padding: 0 12px;
+			}
+		}
+	}
+
+	.carousel-ads-arrow {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 100%;
+		z-index: 3;
+		pointer-events: none;
+
+		.slider-btn {
+			pointer-events: auto;
+		}
+	}
+
+	&.arrow-center {
+		.slider-arrow {
+			top: 50%;
+			transform: translateY(-50%);
+			margin-top: -30px;
+
+			.slider-btn.slider-next {
+				right: -15px;
+			}
+
+			.slider-btn.slider-prev {
+				left: -15px;
+			}
+		}
+	}
+
+	/* Dots styling */
+	.slick-dots {
+		display: flex !important;
+		justify-content: center;
+		margin-top: 20px;
+		padding: 0;
+		list-style: none;
+
+		li {
+			margin: 0 5px;
+
+			button {
+				width: 12px;
+				height: 12px;
+				border-radius: 50%;
+				border: 1px solid $color-heading;
+				padding: 0;
+				font-size: 0;
+				background: none;
+				cursor: pointer;
+				transition: all 0.3s ease;
+
+				&:hover {
+					background: rgba(var(--color-brand-rgb), 0.4);
+				}
+			}
+
+			&.slick-active button {
+				background: $color-brand;
+				border-color: $color-brand;
+			}
+		}
+	}
+}
+
+/* Responsive adjustments for ads carousel */
+@media (max-width: 767px) {
+	.carousel-ads-cover {
+		&.arrow-center .slider-arrow {
+			display: none;
+		}
+
+		.slick-dots {
+			margin-top: 15px;
+
+			li button {
+				width: 10px;
+				height: 10px;
+			}
+		}
+	}
+
+	.ads-carousel-section {
+		padding: 20px 0;
+	}
+}
+

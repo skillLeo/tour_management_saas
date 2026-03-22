@@ -3,6 +3,61 @@
 
     let isRTL = $('body').prop('dir') === 'rtl'
 
+    // Create global NestApp object for plugin detection
+    let NestApp = window.NestApp || {}
+    window.NestApp = NestApp
+
+    // Define show message functions using Theme's toast notifications
+    NestApp.showSuccess = function(message) {
+        if (typeof Theme !== 'undefined' && Theme.showSuccess) {
+            Theme.showSuccess(message)
+        }
+    }
+
+    NestApp.showError = function(message) {
+        if (typeof Theme !== 'undefined' && Theme.showError) {
+            Theme.showError(message)
+        }
+    }
+
+    // Make show functions available globally for plugin compatibility
+    window.showSuccess = NestApp.showSuccess
+    window.showError = NestApp.showError
+
+    // Load/refresh mini cart via AJAX
+    NestApp.loadCart = function() {
+        const cartUrl = window.siteUrl ? window.siteUrl + '/ajax/cart' : '/ajax/cart'
+
+        $.ajax({
+            url: cartUrl,
+            type: 'GET',
+            success: function(response) {
+                const data = response.data || response
+                const html = data.html || data
+                const count = data.count
+
+                // Update cart HTML
+                $('.cart-dropdown-panel').html(html)
+
+                // Update cart count from response
+                if (count !== undefined) {
+                    $('.mini-cart-icon span').text(count)
+                    $('.cart-dropdown-wrap .header-cart-count').text(count)
+                }
+            }
+        })
+    }
+
+    // Make loadCart available globally
+    window.loadCart = NestApp.loadCart
+    window.loadAjaxCart = function(cartData) {
+        if (cartData && cartData.count !== undefined) {
+            $('.mini-cart-icon span').text(cartData.count)
+            $('.cart-dropdown-wrap .header-cart-count').text(cartData.count)
+        }
+        NestApp.loadCart()
+    }
+
     // Page loading
     $(window).on('load', function() {
         $('#preloader-active').fadeOut()
@@ -294,8 +349,8 @@
                 {
                     breakpoint: 480,
                     settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1,
+                        slidesToShow: 2,
+                        slidesToScroll: 2,
                     },
                 },
             ],
@@ -360,6 +415,52 @@
         }, $(sliderID).data('slick') || {})
 
         $(sliderID).slick(slickOptions)
+    })
+
+    /* Carousel Ads */
+    $('.carousel-ads').each(function() {
+        const el = $(this)
+        const id = el.attr('id')
+        const sliderID = '#' + id
+        const appendArrowsClassName = '#' + id + '-arrows'
+
+        const slickOptions = Object.assign({}, {
+            dots: true,
+            infinite: true,
+            rtl: isRTL,
+            arrows: true,
+            autoplay: true,
+            autoplaySpeed: 5000,
+            speed: 800,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            responsive: [
+                {
+                    breakpoint: 1200,
+                    settings: {
+                        slidesToShow: 3,
+                    },
+                },
+                {
+                    breakpoint: 992,
+                    settings: {
+                        slidesToShow: 2,
+                    },
+                },
+                {
+                    breakpoint: 768,
+                    settings: {
+                        arrows: false,
+                        slidesToShow: 1,
+                    },
+                },
+            ],
+            prevArrow: '<span class="slider-btn slider-prev"><i class="fi-rs-arrow-small-left"></i></span>',
+            nextArrow: '<span class="slider-btn slider-next"><i class="fi-rs-arrow-small-right"></i></span>',
+            appendArrows: appendArrowsClassName,
+        }, el.data('slick') || {})
+
+        el.slick(slickOptions)
     })
 
     /*Carousel 4 columns*/
@@ -943,40 +1044,24 @@
         initPriceFilter()
     })
 
-    // Handle cart.added event to update mini cart
+    // Handle cart.added event to update mini cart and refresh up-sale section
     document.addEventListener('ecommerce.cart.added', function(event) {
         const { data, message } = event.detail;
-        
+
         // Update mini cart count
         if (data && data.count !== undefined) {
             $('.mini-cart-icon span').text(data.count);
             $('.cart-dropdown-wrap .header-cart-count').text(data.count);
         }
-        
+
         // Update cart dropdown panel if additional HTML is provided
         if (data && data.additional && data.additional.html) {
             $('.cart-dropdown-panel').html(data.additional.html);
         }
-        
+
         // If no additional HTML but we have cart data, reload the mini cart
         if (data && !data.additional && window.siteUrl) {
-            $.ajax({
-                url: window.siteUrl + '/ajax/cart',
-                type: 'GET',
-                success: function(response) {
-                    if (!response.error) {
-                        const $cartDropdown = $('.cart-dropdown-panel');
-                        if ($cartDropdown.length && response.data.html) {
-                            $cartDropdown.html(response.data.html);
-                        }
-                        
-                        const $headerCartCount = $('.cart-dropdown-wrap .header-cart-count');
-                        if ($headerCartCount.length && response.data.count !== undefined) {
-                            $headerCartCount.text(response.data.count);
-                        }
-                    }
-                }
-            });
+            NestApp.loadCart();
         }
     });
 
@@ -1075,13 +1160,49 @@
     
     // Try to override immediately
     overrideAttributeSelection();
-    
+
     // Also try on document ready
     $(document).ready(function() {
         overrideAttributeSelection();
     });
-    
+
     // And as a fallback, try after a short delay
     setTimeout(overrideAttributeSelection, 100);
+
+    let collapseBreadcrumb = function () {
+        if ($(window).width() >= 768) {
+            return
+        }
+
+        let $items = $('.breadcrumb-wrap .breadcrumb .breadcrumb-item')
+        let total = $items.length
+
+        if (total <= 3) {
+            return
+        }
+
+        $items.each(function (index) {
+            let $this = $(this)
+
+            if (index <= 1 || index === total - 1) {
+                return
+            }
+
+            if (index === 2) {
+                $this.find('a').hide()
+                $this.find('.extra-breadcrumb-name').text('...').show()
+                $this.next('span:not(.extra-breadcrumb-name)').hide()
+            } else {
+                $this.hide()
+                $this.next('span:not(.extra-breadcrumb-name)').hide()
+            }
+        })
+    }
+
+    collapseBreadcrumb()
+
+    $(window).on('resize', function () {
+        collapseBreadcrumb()
+    })
 
 })(jQuery)

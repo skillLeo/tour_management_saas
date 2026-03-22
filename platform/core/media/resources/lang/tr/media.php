@@ -53,6 +53,12 @@ return [
     'selected_items_move_success' => 'Seçili öğe(ler) başarıyla :name\'e taşındı!',
     'selected_items_move_error' => 'Seçili öğe(ler) :name\'e taşınırken hata oluştu',
     'destination' => 'Varış noktası',
+    'move' => 'Taşı',
+    'move_items' => 'Öğeleri taşı',
+    'move_here' => 'Buraya taşı',
+    'move_to_root' => 'Kök klasöre taşı',
+    'root' => 'Kök',
+    'go_up' => 'Yukarı',
     'restore_error' => 'Seçili öğe(ler) geri yüklenirken hata oluştu',
     'restore_success' => 'Seçili öğe(ler) başarıyla geri yüklendi!',
     'copy_success' => 'Seçili öğe(ler) başarıyla kopyalandı!',
@@ -123,8 +129,14 @@ return [
             'success_header' => 'Başarı',
         ],
         'download' => [
-            'error' => 'Hiçbir dosya seçilmedi veya bu dosyalar indirilemiyor',
+            'error' => 'No files selected or cannot download these files',
         ],
+
+        'move' => [
+            'select_destination' => 'Lütfen bir hedef klasör seçin',
+            'same_location' => 'Öğeler zaten bu konumda',
+        ],
+
         'actions_list' => [
             'basic' => [
                 'preview' => 'Önizleme',

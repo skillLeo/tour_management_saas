@@ -109,6 +109,12 @@ return [
         'download' => [
             'error' => 'No files selected or cannot download these files',
         ],
+
+        'move' => [
+            'select_destination' => 'Selecteer een doelmap',
+            'same_location' => 'Items bevinden zich al op deze locatie',
+        ],
+
         'actions_list' => [
             'basic' => [
                 'preview' => 'Preview',

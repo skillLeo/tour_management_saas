@@ -34,11 +34,18 @@ class HandleTaxService
             $zipCode = Arr::get($data, 'zip_code');
         }
 
-        if ($zipCode || ($country || $state || $city)) {
+        // Force recalculation if VAT ID is in session (for B2B reverse charge)
+        $forceRecalculation = session()->has('checkout_vat_id');
+
+        if ($forceRecalculation || $zipCode || ($country || $state || $city)) {
             $cartItems = Cart::instance('cart')->content();
 
             foreach ($products as $product) {
                 $cartItem = $cartItems->where('id', $product->getKey())->first();
+
+                if (! $cartItem) {
+                    continue;
+                }
 
                 $taxRate = $this->taxRate($product, $country, $state, $city, $zipCode);
 

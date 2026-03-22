@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'menu_name' => 'רמות חברים',
+    'create' => 'יצירת רמה',
+    'edit' => 'עריכת רמה :name',
+    'min_commission' => 'עמלה מינימלית',
+    'max_commission' => 'עמלה מקסימלית',
+    'max_commission_help' => 'השאר ריק ללא הגבלה',
+    'unlimited' => 'ללא הגבלה',
+    'commission_rate' => 'שיעור עמלה',
+    'commission_rate_help' => 'מכפיל לעמלות (לדוגמה, 1.1 עבור 10% בונוס)',
+    'benefits' => 'הטבות',
+    'benefits_help' => 'רשום הטבות, אחת בכל שורה',
+    'benefits_placeholder' => 'תמיכה בעדיפות' . PHP_EOL . 'שיעור עמלה גבוה יותר',
+    'next_level' => 'הרמה הבאה: :name',
+    'commission_needed' => 'אתה צריך עוד :amount בעמלות כדי להגיע ל-:name',
+    'tier_rules_tooltip' => 'הרווח עמלות עם כל הפניה כדי לפתוח רמות גבוהות יותר ותגמולים בלעדיים. הרמות מבוססות על סך העמלות שהרווחת.',
+    'top_tier_reached' => 'הגעת לרמה הגבוהה ביותר',
+    'top_tier_message' => 'הגעת לרמת השותף הגבוהה ביותר! תיהנה מההטבות הבלעדיות שלך.',
+    'default_member' => 'חבר',
+    'member_since' => 'מאז',
+    'no_benefits' => 'התחל להרוויח עמלות כדי לפתוח הטבות רמה!',
+    'current_commission' => 'הרווחת :amount',
+    'target_commission' => 'יעד :amount',
+];

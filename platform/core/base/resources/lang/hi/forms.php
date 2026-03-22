@@ -68,4 +68,6 @@ return [
     'enable_light_mode' => 'लाइट मोड सक्षम करें',
     'enable_dark_mode' => 'डार्क मोड सक्षम करें',
     'close' => 'बंद करें',
+    'search_country' => 'देश खोजें...',
+    'no_results' => 'कोई परिणाम नहीं मिला',
 ];

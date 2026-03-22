@@ -192,6 +192,7 @@ return [
         'order_date' => 'Дата на поръчката',
         'scan_qr_code' => 'Сканирайте QR кода, за да проследите пратката си',
         'total_amount' => 'Обща сума',
+        'amount_to_collect' => 'Сума за събиране',
         'cod_amount_to_collect' => 'Сума за събиране при доставка',
     ],
     'customer_confirmed_delivery_at' => 'Клиентът потвърди доставката на',

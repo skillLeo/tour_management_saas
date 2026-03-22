@@ -68,4 +68,6 @@ return [
     'enable_light_mode' => 'ღია რეჟიმის ჩართვა',
     'enable_dark_mode' => 'მუქი რეჟიმის ჩართვა',
     'close' => 'დახურვა',
+    'search_country' => 'ქვეყნის ძებნა...',
+    'no_results' => 'შედეგები ვერ მოიძებნა',
 ];

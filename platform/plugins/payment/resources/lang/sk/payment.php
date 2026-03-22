@@ -88,6 +88,8 @@ return [
     'total' => 'Celkom',
     'status' => 'Stav',
     'default_payment_method' => 'Predvolená platobná metóda',
+    'sort_order_instruction' => 'Potiahnite a pustite pre zmenu poradia platobných metód na stránke pokladne.',
+    'default_method_instruction' => 'Kliknite na ikonu hviezdičky pre nastavenie predvolenej platobnej metódy.',
     'payment_logs' => 'Záznamy platieb',
     'request_data' => 'Údaje požiadavky',
     'response_data' => 'Údaje odpovede',

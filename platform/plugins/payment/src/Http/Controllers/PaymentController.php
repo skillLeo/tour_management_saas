@@ -4,10 +4,10 @@ namespace Botble\Payment\Http\Controllers;
 
 use Botble\Base\Facades\Assets;
 use Botble\Base\Http\Actions\DeleteResourceAction;
+use Botble\Base\Http\Responses\BaseHttpResponse;
 use Botble\Payment\Enums\PaymentStatusEnum;
 use Botble\Payment\Forms\BankTransferPaymentMethodForm;
 use Botble\Payment\Forms\CODPaymentMethodForm;
-use Botble\Payment\Forms\Settings\PaymentMethodSettingForm;
 use Botble\Payment\Http\Requests\PaymentMethodRequest;
 use Botble\Payment\Http\Requests\Settings\PaymentMethodSettingRequest;
 use Botble\Payment\Http\Requests\UpdatePaymentRequest;
@@ -53,15 +53,15 @@ class PaymentController extends SettingController
     {
         $this->pageTitle(trans('plugins/payment::payment.payment_methods'));
 
-        Assets::addScriptsDirectly('vendor/core/plugins/payment/js/payment-methods.js');
+        Assets::addScripts(['sortable'])
+            ->addScriptsDirectly('vendor/core/plugins/payment/js/payment-methods.js');
 
-        $form = PaymentMethodSettingForm::create();
         $codForm = CODPaymentMethodForm::create();
         $bankTransferForm = BankTransferPaymentMethodForm::create();
 
         return view(
             'plugins/payment::settings.index',
-            compact('form', 'codForm', 'bankTransferForm')
+            compact('codForm', 'bankTransferForm')
         );
     }
 
@@ -101,6 +101,25 @@ class PaymentController extends SettingController
             ->httpResponse()
             ->setPreviousUrl(route('payment.index'))
             ->withUpdatedSuccessMessage();
+    }
+
+    public function updateSortOrder(Request $request, SettingStore $settingStore): BaseHttpResponse
+    {
+        $sortOrder = $request->input('order', []);
+
+        foreach ($sortOrder as $type => $order) {
+            $settingStore->set('payment_' . $type . '_sort_order', (int) $order);
+        }
+
+        if ($defaultMethod = $request->input('default_payment_method')) {
+            $settingStore->set('default_payment_method', $defaultMethod);
+        }
+
+        $settingStore->save();
+
+        return $this
+            ->httpResponse()
+            ->setMessage(trans('core/base::notices.update_success_message'));
     }
 
     public function getRefundDetail(int|string $id, int|string $refundId)

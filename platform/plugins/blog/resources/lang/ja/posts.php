@@ -26,6 +26,8 @@ return [
     'categories' => 'カテゴリー',
     'category' => 'カテゴリ',
     'author' => '著者',
+    'author_helper' => 'Select an author from admin users.',
+    'select_author' => 'Select author',
     'export' => [
         'description' => '投稿をCSV/Excelファイルにエクスポートします。',
         'total' => '総投稿数',

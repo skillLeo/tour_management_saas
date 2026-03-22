@@ -12,6 +12,7 @@ use Botble\Ecommerce\Facades\EcommerceHelper;
 use Botble\Ecommerce\Models\Brand;
 use Botble\Ecommerce\Models\Product;
 use Botble\Ecommerce\Models\ProductCategory;
+use Botble\Ecommerce\Tables\BulkChanges\StockStatusBulkChange;
 use Botble\Table\Abstracts\TableAbstract;
 use Botble\Table\Actions\DeleteAction;
 use Botble\Table\Actions\EditAction;
@@ -102,6 +103,7 @@ class ProductTable extends TableAbstract
                         'with_storehouse_management',
                         'stock_status',
                         'product_type',
+                        'currency_code',
                     ])
                     ->where('is_variation', 0);
             });
@@ -304,6 +306,7 @@ class ProductTable extends TableAbstract
                 },
             ],
             StatusBulkChange::make(),
+            StockStatusBulkChange::make(),
             CreatedAtBulkChange::make(),
             IsFeaturedBulkChange::make(),
         ];

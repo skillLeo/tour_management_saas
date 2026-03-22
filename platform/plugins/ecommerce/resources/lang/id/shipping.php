@@ -196,6 +196,7 @@ return [
         'order_date' => 'Tanggal pesanan',
         'scan_qr_code' => 'Pindai kode QR untuk melacak pengiriman Anda',
         'total_amount' => 'Jumlah Total',
+        'amount_to_collect' => 'Jumlah yang Harus Dikumpulkan',
         'cod_amount_to_collect' => 'Jumlah COD yang Harus Dikumpulkan',
     ],
     'customer_confirmed_delivery_at' => 'Pelanggan mengkonfirmasi pengiriman pada',

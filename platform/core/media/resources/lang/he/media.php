@@ -55,6 +55,12 @@ return [
     'selected_items_move_success' => 'הפריטים הנבחרים הועברו בהצלחה אל :name!',
     'selected_items_move_error' => 'שגיאה בהעברת הפריטים הנבחרים אל :name',
     'destination' => 'יעד',
+    'move' => 'העבר',
+    'move_items' => 'העבר פריטים',
+    'move_here' => 'העבר לכאן',
+    'move_to_root' => 'העבר לתיקיית שורש',
+    'root' => 'שורש',
+    'go_up' => 'למעלה',
     'restore_error' => 'שגיאה בשחזור הפריטים הנבחרים',
     'restore_success' => 'הפריטים הנבחרים שוחזרו בהצלחה!',
     'copy_success' => 'הפריטים הנבחרים הועתקו בהצלחה!',
@@ -133,7 +139,12 @@ return [
         ],
 
         'download' => [
-            'error' => 'לא נבחרו קבצים או לא ניתן להוריד קבצים אלה',
+            'error' => 'No files selected or cannot download these files',
+        ],
+
+        'move' => [
+            'select_destination' => 'אנא בחר תיקיית יעד',
+            'same_location' => 'פריטים כבר נמצאים במיקום זה',
         ],
 
         'actions_list' => [

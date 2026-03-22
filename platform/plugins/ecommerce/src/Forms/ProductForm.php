@@ -218,7 +218,7 @@ class ProductForm extends FormAbstract
                     if (empty($selectedTaxes) && get_ecommerce_setting('default_tax_rate')) {
                         $taxFieldOptions['help_block'] = [
                             'text' => trans('plugins/ecommerce::products.form.taxes_helper', [
-                                'url' => route('ecommerce.settings.taxes'),
+                                'url' => route('tax.index'),
                             ]),
                             'tag' => 'span',
                             'attr' => [
@@ -321,23 +321,24 @@ class ProductForm extends FormAbstract
                             ]
                         ),
                         'before_wrapper' => '<div id="main-manage-product-type">',
+                        'after_wrapper' => $productAttributeSets->isEmpty() ? '</div>' : null,
                         'priority' => 2,
                     ],
-                    'attributes' => [
-                        'title' => trans('plugins/ecommerce::products.attributes'),
-                        'content' => view('plugins/ecommerce::products.partials.add-product-attributes', [
-                            'product' => $this->getModel(),
-                            'productAttributeSets' => $productAttributeSets,
-                            'addAttributeToProductUrl' => $this->getModel()->id
-                                ? route('products.add-attribute-to-product', $this->getModel()->id)
-                                : null,
-                        ]),
-                        'header_actions' => $productAttributeSets->isNotEmpty()
-                            ? view('plugins/ecommerce::products.partials.product-attribute-actions')
-                            : null,
-                        'after_wrapper' => '</div>',
-                        'priority' => 3,
-                    ],
+                    ...($productAttributeSets->isNotEmpty() ? [
+                        'attributes' => [
+                            'title' => trans('plugins/ecommerce::products.attributes'),
+                            'content' => view('plugins/ecommerce::products.partials.add-product-attributes', [
+                                'product' => $this->getModel(),
+                                'productAttributeSets' => $productAttributeSets,
+                                'addAttributeToProductUrl' => $this->getModel()->id
+                                    ? route('products.add-attribute-to-product', $this->getModel()->id)
+                                    : null,
+                            ]),
+                            'header_actions' => view('plugins/ecommerce::products.partials.product-attribute-actions'),
+                            'after_wrapper' => '</div>',
+                            'priority' => 3,
+                        ],
+                    ] : []),
                 ]);
         } elseif ($productId) {
             $productVariationTable = app(ProductVariationTable::class)

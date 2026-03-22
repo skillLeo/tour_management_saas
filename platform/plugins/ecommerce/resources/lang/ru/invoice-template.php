@@ -2,8 +2,8 @@
 
 return [
     'name' => 'Шаблон счета',
-    'setting' => 'Настройки шаблона счета',
-    'setting_description' => 'Настройки для шаблона счета',
+    'setting' => 'Дизайн и макет шаблона',
+    'setting_description' => 'Настройка HTML-шаблона и CSS-стилей счёта',
     'setting_content' => 'Содержимое',
     'preview' => 'Предпросмотр',
     'preview_heading' => 'Предпросмотр шаблона счета',

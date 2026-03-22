@@ -9,6 +9,10 @@ trait HasPhoneFieldValidation
         $phone = $this->input('phone', '');
         $phoneDisplay = $this->input('phone_display', '');
 
+        if (! is_string($phone) || ! is_string($phoneDisplay)) {
+            return;
+        }
+
         if ($phoneDisplay) {
             if ($phone && str_starts_with($phone, '+')) {
                 $finalPhone = $phone;

@@ -24,14 +24,26 @@ use Throwable;
 
 class Location
 {
-    public function getStates(): array
+    protected const CACHE_TTL = 3600;
+
+    protected const CACHE_PREFIX = 'location_';
+
+    public function getStates(?int $countryId = null): array
     {
-        return State::query()
-            ->wherePublished()
-            ->oldest('order')
-            ->oldest('name')
-            ->pluck('name', 'id')
-            ->all();
+        $cacheKey = self::CACHE_PREFIX . 'states_' . ($countryId ?? 'all') . '_' . $this->getLocaleKey();
+
+        return Cache::remember($cacheKey, self::CACHE_TTL, function () use ($countryId) {
+            $query = State::query()
+                ->wherePublished()
+                ->oldest('order')
+                ->oldest('name');
+
+            if ($countryId) {
+                $query->where('country_id', $countryId);
+            }
+
+            return $query->pluck('name', 'id')->all();
+        });
     }
 
     public function getCitiesByState(int|string|null $stateId): array
@@ -40,13 +52,36 @@ class Location
             return [];
         }
 
-        return City::query()
-            ->wherePublished()
-            ->where('state_id', $stateId)
-            ->oldest('order')
-            ->oldest('name')
-            ->pluck('name', 'id')
-            ->all();
+        $cacheKey = self::CACHE_PREFIX . 'cities_state_' . $stateId . '_' . $this->getLocaleKey();
+
+        return Cache::remember($cacheKey, self::CACHE_TTL, function () use ($stateId) {
+            return City::query()
+                ->wherePublished()
+                ->where('state_id', $stateId)
+                ->oldest('order')
+                ->oldest('name')
+                ->pluck('name', 'id')
+                ->all();
+        });
+    }
+
+    public function getCitiesByCountry(int|string|null $countryId): array
+    {
+        if (! $countryId) {
+            return [];
+        }
+
+        $cacheKey = self::CACHE_PREFIX . 'cities_country_' . $countryId . '_' . $this->getLocaleKey();
+
+        return Cache::remember($cacheKey, self::CACHE_TTL, function () use ($countryId) {
+            return City::query()
+                ->wherePublished()
+                ->where('country_id', $countryId)
+                ->oldest('order')
+                ->oldest('name')
+                ->pluck('name', 'id')
+                ->all();
+        });
     }
 
     public function getCityById(int|string|null $cityId): City|Model|null
@@ -55,10 +90,14 @@ class Location
             return null;
         }
 
-        return City::query()
-            ->wherePublished()
-            ->where('id', $cityId)
-            ->first();
+        $cacheKey = self::CACHE_PREFIX . 'city_' . $cityId . '_' . $this->getLocaleKey();
+
+        return Cache::remember($cacheKey, self::CACHE_TTL, function () use ($cityId) {
+            return City::query()
+                ->wherePublished()
+                ->where('id', $cityId)
+                ->first();
+        });
     }
 
     public function getCityNameById(int|string|null $cityId): ?string
@@ -72,16 +111,80 @@ class Location
         return $city?->name;
     }
 
+    public function getStateById(int|string|null $stateId): State|Model|null
+    {
+        if (! $stateId) {
+            return null;
+        }
+
+        $cacheKey = self::CACHE_PREFIX . 'state_' . $stateId . '_' . $this->getLocaleKey();
+
+        return Cache::remember($cacheKey, self::CACHE_TTL, function () use ($stateId) {
+            return State::query()
+                ->wherePublished()
+                ->where('id', $stateId)
+                ->first();
+        });
+    }
+
     public function getStateNameById(int|string|null $stateId): ?string
     {
         if (! $stateId) {
             return null;
         }
 
-        return State::query()
-            ->wherePublished()
-            ->where('id', $stateId)
-            ->value('name');
+        $state = $this->getStateById($stateId);
+
+        return $state?->name;
+    }
+
+    public function getCountries(): array
+    {
+        $cacheKey = self::CACHE_PREFIX . 'countries_' . $this->getLocaleKey();
+
+        return Cache::remember($cacheKey, self::CACHE_TTL, function () {
+            return Country::query()
+                ->wherePublished()
+                ->oldest('order')
+                ->oldest('name')
+                ->pluck('name', 'id')
+                ->all();
+        });
+    }
+
+    public function clearCache(): void
+    {
+        $keys = [
+            'states_*',
+            'cities_*',
+            'city_*',
+            'state_*',
+            'countries_*',
+        ];
+
+        foreach ($keys as $pattern) {
+            Cache::forget(self::CACHE_PREFIX . $pattern);
+        }
+    }
+
+    public function clearCityCache(int|string $cityId): void
+    {
+        Cache::forget(self::CACHE_PREFIX . 'city_' . $cityId . '_' . $this->getLocaleKey());
+    }
+
+    public function clearStateCache(int|string $stateId): void
+    {
+        Cache::forget(self::CACHE_PREFIX . 'state_' . $stateId . '_' . $this->getLocaleKey());
+        Cache::forget(self::CACHE_PREFIX . 'cities_state_' . $stateId . '_' . $this->getLocaleKey());
+    }
+
+    protected function getLocaleKey(): string
+    {
+        if (is_plugin_active('language') && class_exists(Language::class)) {
+            return Language::getCurrentLocale() ?: 'default';
+        }
+
+        return 'default';
     }
 
     public function isSupported(string|object $model): bool

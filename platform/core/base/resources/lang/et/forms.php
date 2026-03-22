@@ -68,4 +68,6 @@ return [
     'enable_light_mode' => 'Luba hele režiim',
     'enable_dark_mode' => 'Luba tume režiim',
     'close' => 'Sulge',
+    'search_country' => 'Otsi riiki...',
+    'no_results' => 'Tulemusi ei leitud',
 ];

@@ -68,4 +68,6 @@ return [
     'enable_light_mode' => 'Világos mód engedélyezése',
     'enable_dark_mode' => 'Sötét mód engedélyezése',
     'close' => 'Bezárás',
+    'search_country' => 'Ország keresése...',
+    'no_results' => 'Nincs találat',
 ];

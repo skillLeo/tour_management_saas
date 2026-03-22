@@ -35,6 +35,101 @@ class SystemController extends BaseSystemController
         return $this->httpResponse();
     }
 
+    public function checkLicense(Core $core): BaseHttpResponse
+    {
+        try {
+            $cacheKey = 'license_check_time';
+
+            if (! $core->hasLicenseData()) {
+                if ($core->isSkippedLicenseReminder()) {
+                    return $this->httpResponse()->setData(['verified' => true]);
+                }
+
+                return $this->httpResponse()
+                    ->setError()
+                    ->setCode(401)
+                    ->setData([
+                        'verified' => false,
+                        'html' => view('core/base::system.license-invalid')->render(),
+                        'redirectUrl' => route('unlicensed', ['redirect_url' => request()->headers->get('referer')]),
+                    ]);
+            }
+
+            if ($core->isLicenseFullyVerified()) {
+                return $this->httpResponse()->setData(['verified' => true]);
+            }
+
+            $lastCheckTime = session($cacheKey);
+            if ($lastCheckTime) {
+                $threeDaysInSeconds = 3 * 24 * 60 * 60;
+                if (time() - $lastCheckTime < $threeDaysInSeconds) {
+                    return $this->httpResponse()->setData(['verified' => true]);
+                }
+            }
+
+            $verified = $core->verifyLicense(true, 15);
+
+            if ($verified) {
+                session([$cacheKey => time()]);
+
+                return $this->httpResponse()->setData(['verified' => true]);
+            }
+
+            if (! $core->hasLicenseData()) {
+                return $this->httpResponse()
+                    ->setError()
+                    ->setCode(401)
+                    ->setData([
+                        'verified' => false,
+                        'html' => view('core/base::system.license-invalid')->render(),
+                        'redirectUrl' => route('unlicensed', ['redirect_url' => request()->headers->get('referer')]),
+                    ]);
+            }
+
+            return $this->httpResponse()->setData(['verified' => true]);
+
+        } catch (ConnectionException) {
+            if ($core->hasLicenseData()) {
+                $core->skipLicenseReminder();
+                session([$cacheKey => time()]);
+
+                return $this->httpResponse()->setData(['verified' => true]);
+            }
+
+            if ($core->isSkippedLicenseReminder()) {
+                return $this->httpResponse()->setData(['verified' => true]);
+            }
+
+            return $this->httpResponse()
+                ->setError()
+                ->setCode(401)
+                ->setData([
+                    'verified' => false,
+                    'html' => view('core/base::system.license-invalid')->render(),
+                    'redirectUrl' => route('unlicensed', ['redirect_url' => request()->headers->get('referer')]),
+                ]);
+        } catch (Exception $e) {
+            report($e);
+
+            if ($core->hasLicenseData()) {
+                return $this->httpResponse()->setData(['verified' => true]);
+            }
+
+            if ($core->isSkippedLicenseReminder()) {
+                return $this->httpResponse()->setData(['verified' => true]);
+            }
+
+            return $this->httpResponse()
+                ->setError()
+                ->setCode(401)
+                ->setData([
+                    'verified' => false,
+                    'html' => view('core/base::system.license-invalid')->render(),
+                    'redirectUrl' => route('unlicensed', ['redirect_url' => request()->headers->get('referer')]),
+                ]);
+        }
+    }
+
     public function getMenuItemsCount(): BaseHttpResponse
     {
         $data = apply_filters(BASE_FILTER_MENU_ITEMS_COUNT, []);
@@ -96,16 +191,17 @@ class SystemController extends BaseSystemController
 
         $this->pageTitle(trans('core/base::system.updater'));
 
-        $activated = $core->verifyLicense(false, 15);
         $isOutdated = false;
 
         try {
+            $activated = $core->verifyLicense(false, 15);
             $latestUpdate = $core->getLatestVersion();
 
             if ($latestUpdate) {
                 $isOutdated = version_compare($core->version(), $latestUpdate->version, '<');
             }
         } catch (ConnectionException $exception) {
+            $activated = $core->hasLicenseData();
             $latestUpdate = null;
 
             BaseHelper::logError($exception);
@@ -118,6 +214,7 @@ class SystemController extends BaseSystemController
             'requiredMemoryLimit',
             'maximumExecutionTime',
             'requiredMaximumExecutionTime',
+            'activated',
             'latestUpdate',
             'isOutdated',
             'updateData'

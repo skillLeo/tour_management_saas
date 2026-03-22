@@ -10,6 +10,7 @@ use Botble\Ecommerce\Http\Controllers\Fronts\PublicUpdateTaxCheckoutController;
 use Botble\Ecommerce\Http\Controllers\Fronts\QuickShopController;
 use Botble\Ecommerce\Http\Controllers\Fronts\QuickViewController;
 use Botble\Ecommerce\Http\Controllers\ImportProductCategoryController;
+use Botble\Ecommerce\Http\Controllers\ImportProductLicenseCodeController;
 use Botble\Ecommerce\Http\Controllers\OrderExportController;
 use Botble\Theme\Events\ThemeRoutingBeforeEvent;
 use Botble\Theme\Facades\Theme;
@@ -222,6 +223,13 @@ AdminHelper::registerRoutes(function (): void {
                 Route::post('validate', [ImportProductCategoryController::class, 'validateData'])->name('validate');
                 Route::post('download-example', [ImportProductCategoryController::class, 'downloadExample'])->name('download-example');
             });
+
+            Route::group(['prefix' => 'product-license-codes', 'as' => 'product-license-codes.', 'permission' => 'product-license-codes.import'], function (): void {
+                Route::get('/', [ImportProductLicenseCodeController::class, 'index'])->name('index');
+                Route::post('/', [ImportProductLicenseCodeController::class, 'import'])->name('store');
+                Route::post('validate', [ImportProductLicenseCodeController::class, 'validateData'])->name('validate');
+                Route::post('download-example', [ImportProductLicenseCodeController::class, 'downloadExample'])->name('download-example');
+            });
         });
     });
 });
@@ -258,6 +266,16 @@ Theme::registerRoutes(function (): void {
                 ->middleware(RequiresJsonRequestMiddleware::class)
                 ->name('public.ajax.quick-shop')
                 ->wherePrimaryKey();
+
+            Route::get('ajax/up-sale-products/{product}', [
+                'uses' => 'PublicProductController@ajaxGetUpSaleProducts',
+                'as' => 'public.ajax.up-sale-products',
+            ])->wherePrimaryKey();
+
+            Route::get('ajax/cross-sale-products/{product}', [
+                'uses' => 'PublicProductController@ajaxGetCrossSaleProducts',
+                'as' => 'public.ajax.cross-sale-products',
+            ])->wherePrimaryKey();
 
             Route::post('ajax/checkout/update', [PublicUpdateCheckoutController::class, '__invoke'])
                 ->middleware(RequiresJsonRequestMiddleware::class)

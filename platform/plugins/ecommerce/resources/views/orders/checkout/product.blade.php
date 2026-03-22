@@ -54,11 +54,11 @@
         ])
 
         @if (!empty($cartItem->options['options']))
-            {!! render_product_options_html($cartItem->options['options'], $product->original_price) !!}
+            {!! render_product_options_html($cartItem->options['options'], $product->front_sale_price) !!}
         @endif
 
-        @if (EcommerceHelper::isTaxEnabled() && $cartItem->taxRate > 0)
-            <p class="mb-0">
+        @if (EcommerceHelper::isTaxEnabled() && EcommerceHelper::isDisplayItemTaxAtCheckout() && $cartItem->taxRate > 0 && $cartItem->taxTotal > 0 && ! $cartItem->options->get('price_includes_tax', false))
+            <p class="mb-0 ec-checkout-item-tax">
                 <small class="text-muted">
                     {{ __('Tax') }}: {{ format_price($cartItem->taxTotal) }}
                     @if (EcommerceHelper::isDisplayCheckoutTaxInformation() && $cartItem->options && $cartItem->options->taxClasses)
@@ -80,17 +80,11 @@
         $isCheckoutItemFree = $cartItem->price == 0;
     @endphp
     <div class="col-auto text-end">
-        <p class="mb-1">{{ $isCheckoutItemFree ? trans('plugins/ecommerce::ecommerce.free') : format_price($cartItem->price) }}</p>
-        @if (! $isCheckoutItemFree)
-            @if (EcommerceHelper::isTaxEnabled() && $cartItem->tax > 0)
-                <p class="mb-0">
-                    <small class="text-muted">{{ __('Total') }}: {{ format_price(($cartItem->price + $cartItem->tax) * $cartItem->qty) }}</small>
-                </p>
-            @else
-                <p class="mb-0">
-                    <small class="text-muted">{{ __('Total') }}: {{ format_price($cartItem->price * $cartItem->qty) }}</small>
-                </p>
-            @endif
+        <p class="mb-1 ec-checkout-item-price">{{ $isCheckoutItemFree ? trans('plugins/ecommerce::ecommerce.free') : format_price($cartItem->price) }}</p>
+        @if (! $isCheckoutItemFree && $cartItem->qty > 1)
+            <p class="mb-0 ec-checkout-item-total">
+                <small class="text-muted">{{ __('Total') }}: {{ format_price($cartItem->total) }}</small>
+            </p>
         @endif
     </div>
 </div>

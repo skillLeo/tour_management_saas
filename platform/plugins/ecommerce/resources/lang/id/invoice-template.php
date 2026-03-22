@@ -2,8 +2,8 @@
 
 return [
     'name' => 'Template Invoice',
-    'setting' => 'Pengaturan Template Invoice',
-    'setting_description' => 'Pengaturan untuk template Invoice',
+    'setting' => 'Desain & tata letak template',
+    'setting_description' => 'Kustomisasi template HTML dan gaya CSS faktur',
     'setting_content' => 'Konten',
     'preview' => 'Pratinjau',
     'preview_heading' => 'Pratinjau template Invoice',

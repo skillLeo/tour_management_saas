@@ -16,7 +16,9 @@ class ShortcodeField
 
         $current = Arr::get($attributes, $tabKey ? "{$tabKey}_quantity" : 'quantity') ?: 6;
 
-        if (str_contains($current, ',')) {
+        if (is_array($current)) {
+            $current = end($current);
+        } elseif (str_contains($current, ',')) {
             $current = Str::afterLast($current, ',');
         }
 

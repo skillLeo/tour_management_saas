@@ -1,0 +1,66 @@
+<?php
+
+return [
+    'name' => 'Pengeluaran',
+    'view' => 'Lihat Pengeluaran #:id',
+    'affiliate' => 'Afiliasi',
+    'amount' => 'Jumlah',
+    'status' => 'Status',
+    'payment_method' => 'Kaedah Pembayaran',
+    'payment_details' => 'Butiran Pembayaran',
+    'notes' => 'Nota',
+    'created_at' => 'Dicipta Pada',
+    'approve' => 'Luluskan',
+    'reject' => 'Tolak',
+    'approve_success' => 'Pengeluaran berjaya diluluskan',
+    'reject_success' => 'Pengeluaran berjaya ditolak',
+    'approve_withdrawal' => 'Luluskan Pengeluaran',
+    'reject_withdrawal' => 'Tolak Pengeluaran',
+    'approve_withdrawal_confirmation' => 'Adakah anda pasti mahu meluluskan pengeluaran #:id? Tindakan ini tidak boleh dibatalkan.',
+    'reject_withdrawal_confirmation' => 'Adakah anda pasti mahu menolak pengeluaran #:id? Tindakan ini tidak boleh dibatalkan.',
+    'statuses' => [
+        'pending' => 'Menunggu',
+        'processing' => 'Memproses',
+        'approved' => 'Diluluskan',
+        'rejected' => 'Ditolak',
+        'canceled' => 'Dibatalkan',
+    ],
+
+    // Customer-facing translations
+    'request' => 'Permintaan Pengeluaran',
+    'history' => 'Sejarah Pengeluaran',
+    'no_withdrawals' => 'Tiada pengeluaran dijumpai.',
+    'withdrawal_id' => 'ID Pengeluaran',
+    'date' => 'Tarikh',
+    'amount_required' => 'Jumlah pengeluaran diperlukan.',
+    'amount_numeric' => 'Jumlah pengeluaran mestilah nombor.',
+    'amount_min' => 'Jumlah pengeluaran mestilah sekurang-kurangnya 0.',
+    'payment_method_required' => 'Kaedah pembayaran diperlukan.',
+    'payment_details_required' => 'Butiran pembayaran diperlukan.',
+    'account_not_approved' => 'Akaun afiliasi anda belum diluluskan lagi.',
+    'minimum_amount' => 'Jumlah pengeluaran minimum ialah :amount.',
+    'insufficient_balance' => 'Anda tidak mempunyai baki yang mencukupi untuk pengeluaran ini.',
+    'request_submitted' => 'Permintaan pengeluaran anda telah berjaya dihantar.',
+    'submit_request' => 'Hantar Permintaan Pengeluaran',
+    'available_balance' => 'Baki Tersedia',
+    'enter_amount' => 'Masukkan Jumlah',
+    'select_payment_method' => 'Pilih Kaedah Pembayaran',
+    'payment_details_placeholder' => 'Masukkan butiran pembayaran anda (cth., emel PayPal, butiran akaun bank)',
+    'no_payment_methods_available' => 'Tiada kaedah pembayaran tersedia pada masa ini. Sila hubungi pentadbir.',
+
+    // Additional translations for PayoutPaymentMethodsEnum
+    'bank_transfer' => 'Pemindahan Bank',
+    'paypal' => 'PayPal',
+    'stripe' => 'Stripe',
+    'other' => 'Lain-lain',
+    'bank_information' => 'Maklumat bank',
+    'paypal_id' => 'ID PayPal',
+
+    // Payout payment methods
+    'payout_payment_methods' => [
+        'bank_transfer' => 'Pemindahan Bank',
+        'paypal' => 'PayPal',
+        'stripe' => 'Stripe',
+        'other' => 'Lain-lain',
+    ],
+];

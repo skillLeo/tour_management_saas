@@ -6,6 +6,7 @@ use Botble\Base\Enums\BaseStatusEnum;
 use Botble\Base\Facades\EmailHandler;
 use Botble\Base\Supports\EmailHandler as BaseEmailHandler;
 use Botble\Ecommerce\Enums\DiscountTypeOptionEnum;
+use Botble\Ecommerce\Facades\EcommerceHelper;
 use Botble\Ecommerce\Facades\OrderHelper;
 use Botble\Ecommerce\Models\Order as OrderModel;
 use Botble\Ecommerce\Models\ProductCategory;
@@ -52,6 +53,11 @@ class MarketplaceHelper
     public function getAssetVersion(): string
     {
         return '2.2.1';
+    }
+
+    public function isStoresPageEnabled(): bool
+    {
+        return (bool) $this->getSetting('enable_stores_page', true);
     }
 
     public function hideStorePhoneNumber(): bool
@@ -155,6 +161,11 @@ class MarketplaceHelper
         return (bool) $this->getSetting('enabled_messaging_system', true);
     }
 
+    public function allowVendorManageProductCurrency(): bool
+    {
+        return (bool) $this->getSetting('allow_vendor_manage_product_currency', false);
+    }
+
     public function getAllowedSocialLinks(): array
     {
         return [
@@ -236,6 +247,11 @@ class MarketplaceHelper
         ];
     }
 
+    public function lowStockThreshold(): int
+    {
+        return (int) $this->getSetting('low_stock_threshold', 5);
+    }
+
     public function isSingleVendorCheckout(): bool
     {
         return (bool) $this->getSetting('single_vendor_checkout', false);
@@ -260,6 +276,15 @@ class MarketplaceHelper
     public function isEnabledVendorCategoriesFilter(): bool
     {
         return (bool) $this->getSetting('enable_vendor_categories_filter', true);
+    }
+
+    public function isVendorDigitalProductsEnabled(): bool
+    {
+        if (! EcommerceHelper::isEnabledSupportDigitalProducts()) {
+            return false;
+        }
+
+        return (bool) $this->getSetting('allow_vendor_digital_products', true);
     }
 
     public function getCategoriesForVendor(string|int $storeId): SupportCollection

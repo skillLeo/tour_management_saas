@@ -19,6 +19,32 @@ use Illuminate\Http\JsonResponse;
 class OrderTrackingController extends BaseApiController
 {
     /**
+     * Get order tracking settings
+     *
+     * Returns the order tracking configuration including the tracking method (email or phone)
+     *
+     * @response 200 {
+     *     "error": false,
+     *     "data": {
+     *         "enabled": true,
+     *         "method": "email"
+     *     }
+     * }
+     *
+     * @return JsonResponse
+     */
+    public function settings(): JsonResponse
+    {
+        return $this
+            ->httpResponse()
+            ->setData([
+                'enabled' => EcommerceHelper::isOrderTrackingEnabled(),
+                'method' => EcommerceHelper::getOrderTrackingMethod(),
+            ])
+            ->toApiResponse();
+    }
+
+    /**
      * Track an order
      *
      * Track an order by order code and email/phone

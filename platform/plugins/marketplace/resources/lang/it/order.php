@@ -12,4 +12,16 @@ return [
     'return' => [
         'description' => 'Restituito dall\'ordine #:order',
     ],
+    'thank_you' => [
+        'count_orders' => ':count ordini',
+        'order' => 'Ordine',
+        'thank_you_name' => 'Grazie, :name!',
+        'order_confirmed' => 'Il tuo ordine è confermato',
+        'order_accepted' => 'Abbiamo accettato il tuo ordine e lo stiamo preparando.',
+        'customer' => 'Cliente',
+        'need_help' => 'Hai bisogno di aiuto?',
+        'contact_us' => 'Contattaci',
+        'view_order_history' => 'Visualizza cronologia ordini',
+        'order_total' => 'Totale ordine',
+    ],
 ];

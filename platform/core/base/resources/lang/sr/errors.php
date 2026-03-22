@@ -22,4 +22,6 @@ return [
     '503_temporarily_down' => 'Privremeno nedostupno zbog održavanja',
     '503_admin_instruction' => 'Ako ste administrator i ne možete pristupiti sajtu nakon omogućavanja režima održavanja, samo obrišite datoteku <strong>storage/framework/down</strong> da biste isključili režim održavanja.',
     'take_me_home' => 'Vrati me kući',
+    'bad_request' => 'Лош захтев',
+
 ];

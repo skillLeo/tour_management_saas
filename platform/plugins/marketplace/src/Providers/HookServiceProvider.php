@@ -11,11 +11,13 @@ use Botble\Base\Facades\BaseHelper;
 use Botble\Base\Facades\Html;
 use Botble\Base\Forms\FieldOptions\HtmlFieldOption;
 use Botble\Base\Forms\FieldOptions\OnOffFieldOption;
+use Botble\Base\Forms\FieldOptions\PhoneNumberFieldOption;
 use Botble\Base\Forms\FieldOptions\RadioFieldOption;
 use Botble\Base\Forms\FieldOptions\SelectFieldOption;
 use Botble\Base\Forms\FieldOptions\TextFieldOption;
 use Botble\Base\Forms\Fields\HtmlField;
 use Botble\Base\Forms\Fields\OnOffField;
+use Botble\Base\Forms\Fields\PhoneNumberField;
 use Botble\Base\Forms\Fields\RadioField;
 use Botble\Base\Forms\Fields\SelectField;
 use Botble\Base\Forms\Fields\TextField;
@@ -359,10 +361,11 @@ class HookServiceProvider extends ServiceProvider
                     ->addAfter(
                         'shop_url',
                         'shop_phone',
-                        'tel',
-                        TextFieldOption::make()
+                        PhoneNumberField::class,
+                        PhoneNumberFieldOption::make()
                             ->label(trans('plugins/marketplace::store.forms.phone'))
                             ->placeholder(trans('plugins/marketplace::store.ex_phone'))
+                            ->withCountryCodeSelection()
                     )
                     ->addAfter('shop_phone', 'closeVendorWrapper', HtmlField::class, ['html' => '</div>']);
             });
@@ -588,6 +591,7 @@ class HookServiceProvider extends ServiceProvider
                         'id' => 'logo_vendor_dashboard',
                         'type' => 'mediaImage',
                         'label' => trans('plugins/marketplace::marketplace.theme_options.logo_vendor_dashboard'),
+                        'shared' => true,
                         'attributes' => [
                             'name' => 'logo_vendor_dashboard',
                             'value' => null,

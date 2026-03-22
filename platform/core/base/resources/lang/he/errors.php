@@ -22,4 +22,6 @@ return [
     '503_temporarily_down' => 'מושבת זמנית לצורך תחזוקה',
     '503_admin_instruction' => 'אם אתה המנהל ואינך יכול לגשת לאתר לאחר הפעלת מצב התחזוקה, פשוט מחק את הקובץ <strong>storage/framework/down</strong> כדי לכבות את מצב התחזוקה.',
     'take_me_home' => 'קח אותי הביתה',
+    'bad_request' => 'בקשה שגויה',
+
 ];

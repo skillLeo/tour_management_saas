@@ -120,8 +120,14 @@ return [
             'success_header' => 'Sucesso',
         ],
         'download' => [
-            'error' => 'Nenhum arquivo selecionado ou não é possível baixar esses arquivos',
+            'error' => 'No files selected or cannot download these files',
         ],
+
+        'move' => [
+            'select_destination' => 'Por favor, selecione uma pasta de destino',
+            'same_location' => 'Os itens já estão nesta localização',
+        ],
+
         'actions_list' => [
             'basic' => [
                 'preview' => 'Visualização',
@@ -132,6 +138,7 @@ return [
                 'copy_indirect_link' => 'Copiar link indireto',
                 'rename' => 'Renomear',
                 'make_copy' => 'Faça uma cópia',
+                'move' => 'Mover',
                 'alt_text' => 'Texto alternativo',
                 'share' => 'Compartilhar',
             ],

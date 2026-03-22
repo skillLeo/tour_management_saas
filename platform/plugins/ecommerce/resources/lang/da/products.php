@@ -2,7 +2,7 @@
 
 return [
     'name' => 'Produkter',
-    'description' => 'Vis og opdater dine produktindstillinger',
+    'description' => 'Administrer fysiske og digitale produkter med lager, prissætning og varianter',
     'create' => 'Nyt produkt',
     'create_product_type' => [
         'physical' => 'Nyt fysisk produkt',
@@ -17,6 +17,8 @@ return [
         'categories' => 'Kategorier',
         'content' => 'Indhold',
         'price' => 'Pris',
+        'currency' => 'Valuta',
+        'currency_for_variations_hint' => 'Denne valuta vil blive anvendt på alle varianter af dette produkt.',
         'quantity' => 'Mængde',
         'brand' => 'Brand',
         'width' => 'Bredde',
@@ -121,8 +123,11 @@ return [
     'brand' => 'Brand',
     'cannot_delete' => 'Produktet kunne ikke slettes',
     'product_deleted' => 'Produkt slettet',
+    'product' => 'Produkt',
     'product_collections' => 'Produktsamlinger',
     'products' => 'Produkter',
+    'total_products_found' => ':total produkter fundet',
+    'total_product_found' => ':total produkt fundet',
     'menu' => 'Produkter',
     'control' => [
         'button_add_image' => 'Tilføj billede',
@@ -199,6 +204,7 @@ return [
         'external_link_download' => 'Eksternt downloadlink',
         'generate_license_code_after_purchasing_product' => 'Aktiver licenskode tildeling for dette produkt',
         'notify_attachment_updated' => 'Send en e-mail til kunde når vedhæftningen er opdateret',
+        'no_attachments' => 'Ingen vedhæftninger endnu. Klik på knapperne ovenfor for at tilføje filer.',
     ],
     'license_codes' => [
         'title' => 'Licenskoder',
@@ -249,6 +255,10 @@ return [
             'pick_from_list' => 'Vælg fra liste (Brug forudindtastede koder)',
             'description' => 'Vælg hvordan licenskoder skal tildeles til kunder når de køber dette produkt.',
         ],
+        'add_modal' => [
+            'placeholder' => 'f.eks. XXXX-XXXX-XXXX-XXXX',
+            'help' => 'Indtast en unik licenskode der vil blive tildelt en kunde ved køb.',
+        ],
         'generate_modal' => [
             'title' => 'Generer licenskoder',
             'quantity' => 'Mængde',
@@ -266,22 +276,69 @@ return [
             'cannot_add_codes_auto_generate' => 'Kan ikke manuelt tilføje licenskoder til produkter indstillet til autogenerer. Skift licenskode typen til "Vælg fra liste" først.',
             'cannot_generate_codes_auto_generate' => 'Kan ikke manuelt generere licenskoder for produkter indstillet til autogenerer. Skift licenskode typen til "Vælg fra liste" først.',
         ],
+        'bulk_delete' => [
+            'button' => 'Slet valgte',
+            'selected' => 'valgte',
+            'confirm' => 'Er du sikker på, at du vil slette de valgte licenskoder?',
+            'deleted_successfully' => ':count licenskode(r) slettet succesfuldt.',
+            'skipped_used_codes' => ':count brugt(e) kode(r) blev sprunget over.',
+            'no_deletable_codes' => 'Ingen tilgængelige licenskoder at slette fundet. Brugte koder kan ikke slettes.',
+        ],
+        'import' => [
+            'name' => 'Importer produkt licenskoder',
+            'description' => 'Importer licenskoder til digitale produkter fra CSV/Excel-fil.',
+            'button' => 'Importer',
+            'columns' => [
+                'product_id' => 'Produkt-ID eller SKU',
+                'license_code' => 'Licenskode',
+            ],
+        ],
         'copied' => 'Licenskode kopieret til udklipsholder!',
     ],
     'this_action_will_reload_page' => 'Denne handling vil genindlæse siden for at opdatere dataene!',
     'select' => 'Vælg',
+    'clear_filters' => 'Ryd filtre',
     'set_this_variant_as_default' => 'Indstil denne variant som standard',
     'download' => 'Download',
+    'external_link_downloads' => 'Eksterne links',
+    'download_available_when_completed' => 'Download links vil være tilgængelige når ordren er gennemført.',
     'cross_sell_price_type' => [
         'title' => 'Pristype',
         'fixed' => 'Fast',
         'percent' => 'Procent',
     ],
     'cross_sell_help' => [
-        'price' => 'Pris',
+        'price' => '* Prisfelt',
         'price_description' => 'Indtast beløbet du vil reducere fra originalprisen. Eksempel: Hvis originalprisen er 100 kr, indtast 20 for at reducere prisen til 80 kr.',
-        'type' => '* Type felt',
+        'type' => '* Typefelt',
         'type_description' => 'Vælg rabattypen: Fast (reducer et specifikt beløb) eller Procent (reducer med en procent).',
+    ],
+    'up_sell_price_type' => [
+        'title' => 'Pristype',
+        'fixed' => 'Fast',
+        'percent' => 'Procent',
+    ],
+    'up_sell_help' => [
+        'price' => '* Prisfelt',
+        'price_description' => 'Indtast beløbet du vil reducere fra originalprisen. Eksempel: Hvis originalprisen er 100 kr, indtast 20 for at reducere prisen til 80 kr.',
+        'type' => '* Typefelt',
+        'type_description' => 'Vælg rabattypen: Fast (reducer et specifikt beløb) eller Procent (reducer med en procent).',
+    ],
+    'up_sale' => [
+        'title' => 'Køb sammen og spar',
+        'description' => 'Få specialrabatter når du køber disse varer sammen',
+        'unlock_discount' => 'Tilføj :product til kurven for at låse op for pakkerabat',
+        'multiple_options' => 'Flere muligheder',
+        'multiple_options_available' => 'Flere muligheder tilgængelige',
+        'select' => 'Vælg',
+        'selected_items_total' => 'Valgte varer i alt:',
+        'add_selected_to_cart' => 'Tilføj valgte til kurv',
+        'bundle_discount_with' => 'Pakkerabat med :product',
+        'bundle_with' => 'Pakke med :product',
+    ],
+    'cross_sale' => [
+        'title' => 'Ofte købt sammen',
+        'description' => 'Kunder der så denne vare købte også',
     ],
     'apply_for_all_variations' => 'Anvend for alle varianter',
     'export' => [
@@ -413,6 +470,7 @@ return [
         'product_not_exists' => 'Dette produkt er udsolgt eller eksisterer ikke længere.',
         'not_enough_quantity' => 'Nogle produkter har ikke nok lager til at opdatere.',
         'empty_success' => 'Din kurv er tømt.',
+        'bundle_item_already_in_cart' => 'Denne pakkevare er allerede i din kurv. Kun 1 vare per pakkerabat er tilladt.',
     ],
     'wishlist' => [
         'added_success' => ':product er tilføjet til din ønskeliste.',

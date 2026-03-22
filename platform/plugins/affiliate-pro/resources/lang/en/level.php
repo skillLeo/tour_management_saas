@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'menu_name' => 'Member Levels',
+    'create' => 'Create Level',
+    'edit' => 'Edit Level :name',
+    'min_commission' => 'Minimum Commission',
+    'max_commission' => 'Maximum Commission',
+    'max_commission_help' => 'Leave empty for unlimited',
+    'unlimited' => 'Unlimited',
+    'commission_rate' => 'Commission Rate',
+    'commission_rate_help' => 'Multiplier for commission earning (e.g., 1.1 for 10% bonus)',
+    'benefits' => 'Benefits',
+    'benefits_help' => 'List benefits, one per line',
+    'benefits_placeholder' => 'Priority Support' . PHP_EOL . 'Higher Commission Rate',
+    'next_level' => 'Next Level: :name',
+    'commission_needed' => 'You need :amount more in commissions to reach :name',
+    'tier_rules_tooltip' => 'Earn commissions with every referral to unlock higher tiers and exclusive rewards. Tiers are based on your lifetime earned commissions.',
+    'top_tier_reached' => 'Top Tier Reached',
+    'top_tier_message' => 'You have reached the highest affiliate tier! Enjoy your exclusive benefits.',
+    'default_member' => 'Member',
+    'member_since' => 'Since',
+    'no_benefits' => 'Start earning commissions to unlock tier benefits!',
+    'current_commission' => ':amount earned',
+    'target_commission' => ':amount target',
+];

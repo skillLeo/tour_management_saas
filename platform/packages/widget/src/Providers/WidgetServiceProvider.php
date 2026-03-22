@@ -62,28 +62,30 @@ class WidgetServiceProvider extends ServiceProvider
                 register_widget(Text::class);
             });
 
-            DashboardMenu::default()->beforeRetrieving(function (): void {
-                DashboardMenu::make()
-                    ->registerItem(
-                        DashboardMenuItem::make()
-                            ->id('cms-core-widget')
-                            ->parentId('cms-core-appearance')
-                            ->priority(3)
-                            ->name('packages/widget::widget.name')
-                            ->icon('ti ti-layout')
-                            ->route('widgets.index')
-                            ->permissions('widgets.index')
-                    );
-            });
+            if (! $this->app['config']->get('core.base.general.disable_front_theme')) {
+                DashboardMenu::default()->beforeRetrieving(function (): void {
+                    DashboardMenu::make()
+                        ->registerItem(
+                            DashboardMenuItem::make()
+                                ->id('cms-core-widget')
+                                ->parentId('cms-core-appearance')
+                                ->priority(3)
+                                ->name('packages/widget::widget.name')
+                                ->icon('ti ti-layout')
+                                ->route('widgets.index')
+                                ->permissions('widgets.index')
+                        );
+                });
 
-            $this->app['events']->listen(RenderingAdminBar::class, function (): void {
-                AdminBar::registerLink(
-                    trans('packages/widget::widget.name'),
-                    route('widgets.index'),
-                    'appearance',
-                    'widgets.index'
-                );
-            });
+                $this->app['events']->listen(RenderingAdminBar::class, function (): void {
+                    AdminBar::registerLink(
+                        trans('packages/widget::widget.name'),
+                        route('widgets.index'),
+                        'appearance',
+                        'widgets.index'
+                    );
+                });
+            }
         });
 
         $this->app->register(HookServiceProvider::class);

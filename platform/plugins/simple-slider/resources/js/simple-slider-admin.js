@@ -46,7 +46,7 @@ class SimpleSliderAdminManagement {
 
             let items = []
             $.each(_self.closest('.card').find('tbody tr'), (index, sort) => {
-                items.push(parseInt($(sort).find('td:first-child').text()))
+                items.push($(sort).find('td:first-child input.checkboxes').val())
                 $(sort)
                     .find('.order-column')
                     .text(index + 1)

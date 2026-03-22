@@ -1,0 +1,53 @@
+<?php
+
+return [
+    'name' => 'Mga Komisyon',
+    'view' => 'Tingnan ang Komisyon #:id',
+    'affiliate' => 'Kaakibat',
+    'order' => 'Order',
+    'amount' => 'Halaga',
+    'description' => 'Deskripsyon',
+    'status' => 'Katayuan',
+    'created_at' => 'Ginawa Noong',
+    'approve' => 'Aprubahan',
+    'reject' => 'Tanggihan',
+    'approve_success' => 'Matagumpay na naaprubahan ang komisyon',
+    'reject_success' => 'Matagumpay na tinanggihan ang komisyon',
+    'approve_commission' => 'Aprubahan ang Komisyon',
+    'reject_commission' => 'Tanggihan ang Komisyon',
+    'approve_commission_confirmation' => 'Sigurado ka bang nais mong aprubahan ang komisyon #:id? Hindi na ito mababawi.',
+    'reject_commission_confirmation' => 'Sigurado ka bang nais mong tanggihan ang komisyon #:id? Hindi na ito mababawi.',
+    'statuses' => [
+        'pending' => 'Naghihintay',
+        'approved' => 'Naaprubahan',
+        'rejected' => 'Tinanggihan',
+    ],
+
+    // Customer-facing translations
+    'history' => 'Kasaysayan ng Komisyon',
+    'no_commissions' => 'Walang nahanap na mga komisyon.',
+    'no_commissions_description' => 'Hindi ka pa nakakuha ng kahit anong komisyon. Simulan ang pagpo-promote ng aming mga produkto para kumita ng iyong unang komisyon!',
+    'commission_id' => 'ID ng Komisyon',
+    'order_id' => 'ID ng Order',
+    'customer' => 'Kliyente',
+    'product' => 'Produkto',
+    'type' => 'Uri',
+    'date' => 'Petsa',
+
+    // New UI translations
+    'total_commissions' => ':count Kabuuang Komisyon',
+    'filter_by_status' => 'Salain Ayon sa Status',
+    'all_statuses' => 'Lahat ng Status',
+    'date_from' => 'Petsa Mula',
+    'date_to' => 'Petsa Hanggang',
+    'filter' => 'Salain',
+    'clear' => 'I-clear',
+    'approved_earnings' => 'Naaprubahang Kita',
+    'pending_earnings' => 'Naghihintay na Kita',
+    'successful_orders' => 'Matagumpay na Orders',
+    'approval_rate' => 'Antas ng Pag-apruba',
+    'commission_earned' => 'Nakuhang Komisyon',
+    'showing_results' => 'Nagpapakita ng :from hanggang :to ng :total resulta',
+    'start_promoting' => 'Simulan ang Pag-promote',
+    'back_to_dashboard' => 'Bumalik sa Dashboard',
+];

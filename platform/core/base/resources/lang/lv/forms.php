@@ -68,4 +68,6 @@ return [
     'enable_light_mode' => 'Iespējot gaišo režīmu',
     'enable_dark_mode' => 'Iespējot tumšo režīmu',
     'close' => 'Aizvērt',
+    'search_country' => 'Meklēt valsti...',
+    'no_results' => 'Nav atrasts neviens rezultāts',
 ];

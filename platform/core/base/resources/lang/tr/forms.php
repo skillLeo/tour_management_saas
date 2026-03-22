@@ -68,4 +68,6 @@ return [
     'enable_light_mode' => 'Aydınlık modu etkinleştir',
     'enable_dark_mode' => 'Karanlık modu etkinleştir',
     'close' => 'Kapat',
+    'search_country' => 'Ülke ara...',
+    'no_results' => 'Sonuç bulunamadı',
 ];

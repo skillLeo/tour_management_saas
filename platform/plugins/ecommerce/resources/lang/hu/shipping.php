@@ -192,6 +192,7 @@ return [
         'order_date' => 'Rendelés dátuma',
         'scan_qr_code' => 'Szkennelj QR kódot a szállítmány nyomon követéséhez',
         'total_amount' => 'Teljes összeg',
+        'amount_to_collect' => 'Beszedendő összeg',
         'cod_amount_to_collect' => 'Beszedendő utánvétes összeg',
     ],
     'customer_confirmed_delivery_at' => 'Vásárló megerősítette a kézbesítést',

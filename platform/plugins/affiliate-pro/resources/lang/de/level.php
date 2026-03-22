@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'menu_name' => 'Mitgliedsstufen',
+    'create' => 'Stufe Erstellen',
+    'edit' => 'Stufe :name Bearbeiten',
+    'min_commission' => 'Mindestprovision',
+    'max_commission' => 'Maximale Provision',
+    'max_commission_help' => 'Leer lassen für unbegrenzt',
+    'unlimited' => 'Unbegrenzt',
+    'commission_rate' => 'Provisionssatz',
+    'commission_rate_help' => 'Multiplikator für Provisionen (z.B. 1.1 für 10% Bonus)',
+    'benefits' => 'Vorteile',
+    'benefits_help' => 'Vorteile auflisten, einer pro Zeile',
+    'benefits_placeholder' => 'Prioritäts-Support' . PHP_EOL . 'Höherer Provisionssatz',
+    'next_level' => 'Nächste Stufe: :name',
+    'commission_needed' => 'Sie benötigen noch :amount an Provisionen um :name zu erreichen',
+    'tier_rules_tooltip' => 'Verdienen Sie Provisionen mit jeder Empfehlung, um höhere Stufen und exklusive Belohnungen freizuschalten. Die Stufen basieren auf Ihren insgesamt verdienten Provisionen.',
+    'top_tier_reached' => 'Höchste Stufe Erreicht',
+    'top_tier_message' => 'Sie haben die höchste Affiliate-Stufe erreicht! Genießen Sie Ihre exklusiven Vorteile.',
+    'default_member' => 'Mitglied',
+    'member_since' => 'Seit',
+    'no_benefits' => 'Beginnen Sie Provisionen zu verdienen, um Stufen-Vorteile freizuschalten!',
+    'current_commission' => ':amount verdient',
+    'target_commission' => 'Ziel :amount',
+];

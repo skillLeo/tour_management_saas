@@ -55,6 +55,12 @@ return [
     'selected_items_move_success' => 'Valitut kohteet siirretty onnistuneesti kohteeseen :name!',
     'selected_items_move_error' => 'Virhe valittujen kohteiden siirtämisessä kohteeseen :name',
     'destination' => 'Kohde',
+    'move' => 'Move',
+    'move_items' => 'Move items',
+    'move_here' => 'Move here',
+    'move_to_root' => 'Move to root folder',
+    'root' => 'Root',
+    'go_up' => 'Go up',
     'restore_error' => 'Virhe valittujen kohteiden palauttamisessa',
     'restore_success' => 'Valitut kohteet palautettu onnistuneesti!',
     'copy_success' => 'Valitut kohteet kopioitu onnistuneesti!',
@@ -133,7 +139,12 @@ return [
         ],
 
         'download' => [
-            'error' => 'Tiedostoja ei ole valittu tai näitä tiedostoja ei voi ladata',
+            'error' => 'No files selected or cannot download these files',
+        ],
+
+        'move' => [
+            'select_destination' => 'Please select a destination folder',
+            'same_location' => 'Items are already in this location',
         ],
 
         'actions_list' => [

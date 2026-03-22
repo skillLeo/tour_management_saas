@@ -68,4 +68,6 @@ return [
     'enable_light_mode' => 'Įjungti šviesų režimą',
     'enable_dark_mode' => 'Įjungti tamsų režimą',
     'close' => 'Uždaryti',
+    'search_country' => 'Ieškoti šalies...',
+    'no_results' => 'Rezultatų nerasta',
 ];

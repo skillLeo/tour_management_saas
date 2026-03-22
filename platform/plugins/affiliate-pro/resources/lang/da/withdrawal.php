@@ -1,0 +1,66 @@
+<?php
+
+return [
+    'name' => 'Hævninger',
+    'view' => 'Vis Hævning #:id',
+    'affiliate' => 'Partner',
+    'amount' => 'Beløb',
+    'status' => 'Status',
+    'payment_method' => 'Betalingsmetode',
+    'payment_details' => 'Betalingsdetaljer',
+    'notes' => 'Noter',
+    'created_at' => 'Oprettet Den',
+    'approve' => 'Godkend',
+    'reject' => 'Afvis',
+    'approve_success' => 'Hævning godkendt',
+    'reject_success' => 'Hævning afvist',
+    'approve_withdrawal' => 'Godkend Hævning',
+    'reject_withdrawal' => 'Afvis Hævning',
+    'approve_withdrawal_confirmation' => 'Er du sikker på, at du vil godkende hævning #:id? Denne handling kan ikke fortrydes.',
+    'reject_withdrawal_confirmation' => 'Er du sikker på, at du vil afvise hævning #:id? Denne handling kan ikke fortrydes.',
+    'statuses' => [
+        'pending' => 'Afventende',
+        'processing' => 'Behandles',
+        'approved' => 'Godkendt',
+        'rejected' => 'Afvist',
+        'canceled' => 'Annulleret',
+    ],
+
+    // Customer-facing translations
+    'request' => 'Hævningsanmodning',
+    'history' => 'Hævningshistorik',
+    'no_withdrawals' => 'Ingen hævninger fundet.',
+    'withdrawal_id' => 'Hævnings-ID',
+    'date' => 'Dato',
+    'amount_required' => 'Hævningsbeløbet er påkrævet.',
+    'amount_numeric' => 'Hævningsbeløbet skal være et tal.',
+    'amount_min' => 'Hævningsbeløbet skal være mindst 0.',
+    'payment_method_required' => 'Betalingsmetoden er påkrævet.',
+    'payment_details_required' => 'Betalingsdetaljerne er påkrævet.',
+    'account_not_approved' => 'Din affiliate-konto er ikke godkendt endnu.',
+    'minimum_amount' => 'Minimum hævningsbeløb er :amount.',
+    'insufficient_balance' => 'Du har ikke tilstrækkelig saldo til denne hævning.',
+    'request_submitted' => 'Din hævningsanmodning er blevet indsendt.',
+    'submit_request' => 'Indsend Hævningsanmodning',
+    'available_balance' => 'Tilgængelig Saldo',
+    'enter_amount' => 'Indtast Beløb',
+    'select_payment_method' => 'Vælg Betalingsmetode',
+    'payment_details_placeholder' => 'Indtast dine betalingsdetaljer (f.eks. PayPal-e-mail, bankkontooplysninger)',
+    'no_payment_methods_available' => 'Ingen betalingsmetoder er i øjeblikket tilgængelige. Kontakt administratoren.',
+
+    // Additional translations for PayoutPaymentMethodsEnum
+    'bank_transfer' => 'Bankoverførsel',
+    'paypal' => 'PayPal',
+    'stripe' => 'Stripe',
+    'other' => 'Andet',
+    'bank_information' => 'Bankinformation',
+    'paypal_id' => 'PayPal-ID',
+
+    // Payout payment methods
+    'payout_payment_methods' => [
+        'bank_transfer' => 'Bankoverførsel',
+        'paypal' => 'PayPal',
+        'stripe' => 'Stripe',
+        'other' => 'Andet',
+    ],
+];

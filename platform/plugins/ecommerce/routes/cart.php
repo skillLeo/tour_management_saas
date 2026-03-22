@@ -13,6 +13,7 @@ Theme::registerRoutes(function (): void {
         ->name('public.')
         ->group(function (): void {
             Route::get('/', 'index')->name('cart');
+            Route::get('add/{product}', 'addByUrl')->name('cart.add-by-url');
             Route::post('add-to-cart', 'store')->name('cart.add-to-cart');
             Route::post('update', 'update')->name('cart.update');
             Route::get('remove/{id}', 'destroy')->name('cart.remove');

@@ -107,6 +107,16 @@ class PaymentMethods
             ],
         ] + $this->methods;
 
+        foreach ($this->methods as $name => &$method) {
+            $sortOrder = setting('payment_' . $name . '_sort_order');
+
+            if ($sortOrder !== null) {
+                $method['priority'] = (int) $sortOrder;
+            }
+        }
+
+        unset($method);
+
         $externalExcludedMethods = apply_filters('payment_methods_excluded', []);
         $allExcludedMethods = array_merge($this->excludedMethods, (array) $externalExcludedMethods);
 
@@ -115,11 +125,6 @@ class PaymentMethods
         }
 
         $methods = collect($this->methods)->sortBy('priority');
-        $defaultMethod = $methods->pull(PaymentHelper::defaultPaymentMethod());
-
-        if ($defaultMethod) {
-            $methods = $methods->prepend($defaultMethod, PaymentHelper::defaultPaymentMethod());
-        }
 
         event(new RenderingPaymentMethods($methods->all()));
 

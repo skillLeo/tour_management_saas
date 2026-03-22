@@ -55,6 +55,12 @@ return [
     'selected_items_move_success' => 'Atlasītie vienumi veiksmīgi pārvietoti uz :name!',
     'selected_items_move_error' => 'Kļūda pārvietojot atlasītos vienumus uz :name',
     'destination' => 'Galamērķis',
+    'move' => 'Move',
+    'move_items' => 'Move items',
+    'move_here' => 'Move here',
+    'move_to_root' => 'Move to root folder',
+    'root' => 'Root',
+    'go_up' => 'Go up',
     'restore_error' => 'Kļūda atjaunojot atlasītos vienumus',
     'restore_success' => 'Atlasītie vienumi veiksmīgi atjaunoti!',
     'copy_success' => 'Atlasītie vienumi veiksmīgi nokopēti!',
@@ -133,7 +139,12 @@ return [
         ],
 
         'download' => [
-            'error' => 'Nav atlasīti faili vai nevar lejupielādēt šos failus',
+            'error' => 'No files selected or cannot download these files',
+        ],
+
+        'move' => [
+            'select_destination' => 'Please select a destination folder',
+            'same_location' => 'Items are already in this location',
         ],
 
         'actions_list' => [

@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'menu_name' => 'Medlemsnivåer',
+    'create' => 'Opprett nivå',
+    'edit' => 'Rediger nivå :name',
+    'min_commission' => 'Minimum provisjon',
+    'max_commission' => 'Maksimum provisjon',
+    'max_commission_help' => 'La stå tom for ubegrenset',
+    'unlimited' => 'Ubegrenset',
+    'commission_rate' => 'Provisjonssats',
+    'commission_rate_help' => 'Multiplikator for provisjon (f.eks. 1.1 for 10% bonus)',
+    'benefits' => 'Fordeler',
+    'benefits_help' => 'List fordeler, én per linje',
+    'benefits_placeholder' => 'Prioritert støtte' . PHP_EOL . 'Høyere provisjonssats',
+    'next_level' => 'Neste nivå: :name',
+    'commission_needed' => 'Du trenger :amount mer i provisjoner for å nå :name',
+    'tier_rules_tooltip' => 'Tjen provisjoner med hver henvisning for å låse opp høyere nivåer og eksklusive belønninger. Nivåer er basert på dine totale opptjente provisjoner.',
+    'top_tier_reached' => 'Høyeste nivå nådd',
+    'top_tier_message' => 'Du har nådd det høyeste affiliate-nivået! Nyt dine eksklusive fordeler.',
+    'default_member' => 'Medlem',
+    'member_since' => 'Siden',
+    'no_benefits' => 'Begynn å tjene provisjoner for å låse opp nivåfordeler!',
+    'current_commission' => ':amount opptjent',
+    'target_commission' => ':amount mål',
+];

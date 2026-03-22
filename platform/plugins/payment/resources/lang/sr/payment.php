@@ -88,6 +88,8 @@ return [
     'total' => 'Ukupno',
     'status' => 'Status',
     'default_payment_method' => 'Podrazumevani način plaćanja',
+    'sort_order_instruction' => 'Превуците и испустите за промену редоследа начина плаћања на страници наплате.',
+    'default_method_instruction' => 'Кликните на икону звездице за постављање подразумеваног начина плаћања.',
     'payment_logs' => 'Zapisi plaćanja',
     'request_data' => 'Podaci zahteva',
     'response_data' => 'Podaci odgovora',

@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'name' => '配送标签模板',
-    'setting' => '配送标签模板设置',
-    'setting_description' => '配送标签模板设置',
+    'name' => '运输标签',
+    'setting' => '标签设计与布局',
+    'setting_description' => '自定义运输标签HTML模板和CSS样式',
     'setting_content' => '内容',
     'preview' => '预览',
     'preview_heading' => '预览配送标签模板',

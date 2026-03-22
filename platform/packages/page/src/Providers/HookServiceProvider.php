@@ -63,6 +63,7 @@ class HookServiceProvider extends ServiceProvider
                             'id' => 'opt-text-subsection-page',
                             'subsection' => true,
                             'icon' => 'ti ti-book',
+                            'shared' => true,
                             'fields' => [
                                 [
                                     'id' => 'homepage_id',
@@ -101,7 +102,7 @@ class HookServiceProvider extends ServiceProvider
                             ],
                         ];
 
-                        return $html . Html::tag('script', json_encode($schema, JSON_UNESCAPED_UNICODE), ['type' => 'application/ld+json'])
+                        return $html . Html::tag('script', json_encode($schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), ['type' => 'application/ld+json'])
                                 ->toHtml();
                     }, 2);
                 }, 2, 2);
@@ -118,27 +119,29 @@ class HookServiceProvider extends ServiceProvider
             $this->injectVisualBuilderIframeScript();
         });
 
-        AdminAppearanceSettingForm::extend(function (AdminAppearanceSettingForm $form): void {
-            $form
-                ->addAfter('rich_editor', 'enable_page_visual_builder', OnOffCheckboxField::class, [
-                    'label' => trans('packages/page::pages.settings.enable_page_visual_builder'),
-                    'value' => setting('enable_page_visual_builder', true),
-                    'help_block' => [
-                        'text' => trans('packages/page::pages.settings.enable_page_visual_builder_helper'),
-                    ],
-                ]);
-        }, 120);
+        if (! config('core.base.general.disable_front_theme')) {
+            AdminAppearanceSettingForm::extend(function (AdminAppearanceSettingForm $form): void {
+                $form
+                    ->addAfter('rich_editor', 'enable_page_visual_builder', OnOffCheckboxField::class, [
+                        'label' => trans('packages/page::pages.settings.enable_page_visual_builder'),
+                        'value' => setting('enable_page_visual_builder', true),
+                        'help_block' => [
+                            'text' => trans('packages/page::pages.settings.enable_page_visual_builder_helper'),
+                        ],
+                    ]);
+            }, 120);
 
-        add_filter('core_request_rules', function ($rules, Request $request) {
-            if ($request instanceof AdminAppearanceRequest) {
-                $rules = [
-                    ...$rules,
-                    'enable_page_visual_builder' => new OnOffRule(),
-                ];
-            }
+            add_filter('core_request_rules', function ($rules, Request $request) {
+                if ($request instanceof AdminAppearanceRequest) {
+                    $rules = [
+                        ...$rules,
+                        'enable_page_visual_builder' => new OnOffRule(),
+                    ];
+                }
 
-            return $rules;
-        }, 120, 2);
+                return $rules;
+            }, 120, 2);
+        }
     }
 
     protected function registerVisualBuilderButton(): void
@@ -153,7 +156,7 @@ class HookServiceProvider extends ServiceProvider
                 return $buttons;
             }
 
-            if (! setting('enable_page_visual_builder', true)) {
+            if (! setting('enable_page_visual_builder', true) || config('core.base.general.disable_front_theme')) {
                 return $buttons;
             }
 
@@ -164,8 +167,14 @@ class HookServiceProvider extends ServiceProvider
 
             $buttons = (string) $buttons;
 
+            $visualBuilderUrl = route('pages.visual-builder', $page);
+
+            if ($refLang = request()->input('ref_lang')) {
+                $visualBuilderUrl .= '?' . http_build_query(['ref_lang' => $refLang]);
+            }
+
             $buttons .= view('packages/page::forms.partials.visual-builder-button', [
-                'url' => route('pages.visual-builder', $page),
+                'url' => $visualBuilderUrl,
                 'label' => trans('packages/page::pages.visual_builder_button'),
             ])->render();
 

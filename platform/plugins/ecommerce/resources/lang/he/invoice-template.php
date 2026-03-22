@@ -2,8 +2,8 @@
 
 return [
     'name' => 'תבנית חשבונית',
-    'setting' => 'הגדרות תבנית חשבונית',
-    'setting_description' => 'הגדרות עבור תבנית חשבונית',
+    'setting' => 'Template design & layout',
+    'setting_description' => 'Customize invoice HTML template and CSS styles',
     'setting_content' => 'תוכן',
     'preview' => 'תצוגה מקדימה',
     'preview_heading' => 'תצוגה מקדימה של תבנית חשבונית',

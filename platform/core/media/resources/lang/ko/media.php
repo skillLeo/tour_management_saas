@@ -55,6 +55,12 @@ return [
     'selected_items_move_success' => '선택한 항목을 :name(으)로 성공적으로 이동했습니다!',
     'selected_items_move_error' => '선택한 항목을 :name(으)로 이동하는 중 오류가 발생했습니다',
     'destination' => '대상',
+    'move' => '이동',
+    'move_items' => '항목 이동',
+    'move_here' => '여기로 이동',
+    'move_to_root' => '루트 폴더로 이동',
+    'root' => '루트',
+    'go_up' => '위로',
     'restore_error' => '선택한 항목을 복원하는 중 오류가 발생했습니다',
     'restore_success' => '선택한 항목을 성공적으로 복원했습니다!',
     'copy_success' => '선택한 항목을 성공적으로 복사했습니다!',
@@ -133,7 +139,12 @@ return [
         ],
 
         'download' => [
-            'error' => '선택한 파일이 없거나 이 파일들을 다운로드할 수 없습니다',
+            'error' => 'No files selected or cannot download these files',
+        ],
+
+        'move' => [
+            'select_destination' => '대상 폴더를 선택하세요',
+            'same_location' => '항목이 이미 이 위치에 있습니다',
         ],
 
         'actions_list' => [

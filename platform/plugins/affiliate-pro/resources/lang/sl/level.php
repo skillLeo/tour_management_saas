@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'menu_name' => 'Ravni članov',
+    'create' => 'Ustvari raven',
+    'edit' => 'Uredi raven :name',
+    'min_commission' => 'Minimalna provizija',
+    'max_commission' => 'Maksimalna provizija',
+    'max_commission_help' => 'Pustite prazno za neomejeno',
+    'unlimited' => 'Neomejeno',
+    'commission_rate' => 'Stopnja provizije',
+    'commission_rate_help' => 'Množitelj za provizije (npr. 1.1 za 10% bonusa)',
+    'benefits' => 'Ugodnosti',
+    'benefits_help' => 'Navedite ugodnosti, eno na vrstico',
+    'benefits_placeholder' => 'Prednostna podpora' . PHP_EOL . 'Višja stopnja provizije',
+    'next_level' => 'Naslednja raven: :name',
+    'commission_needed' => 'Potrebujete še :amount v provizijah za dosego :name',
+    'tier_rules_tooltip' => 'Zaslužite provizije z vsakim priporočilom, da odklenete višje ravni in ekskluzivne nagrade. Ravni temeljijo na vaših skupnih zasluženih provizijah.',
+    'top_tier_reached' => 'Dosežena najvišja raven',
+    'top_tier_message' => 'Dosegli ste najvišjo partnersko raven! Uživajte v svojih ekskluzivnih ugodnostih.',
+    'default_member' => 'Član',
+    'member_since' => 'Od',
+    'no_benefits' => 'Začnite služiti provizije, da odklenete ugodnosti ravni!',
+    'current_commission' => 'Zasluženo :amount',
+    'target_commission' => 'Cilj :amount',
+];

@@ -6,7 +6,9 @@ use Botble\ACL\Models\User;
 use Botble\Base\Casts\SafeContent;
 use Botble\Base\Enums\BaseStatusEnum;
 use Botble\Base\Models\BaseModel;
+use Botble\Page\Services\ShortcodeParserService;
 use Botble\Revision\RevisionableTrait;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Page extends BaseModel
@@ -50,5 +52,12 @@ class Page extends BaseModel
         static::creating(function (self $page): void {
             $page->user_id = $page->user_id ?: auth()->id();
         });
+    }
+
+    protected function content(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => ShortcodeParserService::removeVisualBuilderIds((string) $value),
+        );
     }
 }

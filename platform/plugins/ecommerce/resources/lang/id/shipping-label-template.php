@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'name' => 'Template Label Pengiriman',
-    'setting' => 'Pengaturan Template Label Pengiriman',
-    'setting_description' => 'Pengaturan untuk template Label Pengiriman',
+    'name' => 'Label pengiriman',
+    'setting' => 'Desain & tata letak label',
+    'setting_description' => 'Kustomisasi template HTML dan gaya CSS label pengiriman',
     'setting_content' => 'Konten',
     'preview' => 'Pratinjau',
     'preview_heading' => 'Pratinjau template Label Pengiriman',

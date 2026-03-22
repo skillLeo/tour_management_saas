@@ -192,6 +192,7 @@ return [
         'order_date' => 'Pasūtījuma datums',
         'scan_qr_code' => 'Skenējiet QR kodu, lai izsekotu sūtījumu',
         'total_amount' => 'Kopējā summa',
+        'amount_to_collect' => 'Iekasējamā summa',
         'cod_amount_to_collect' => 'Iekasējamā COD summa',
     ],
     'customer_confirmed_delivery_at' => 'Klients apstiprināja piegādi',

@@ -26,6 +26,8 @@ return [
     'categories' => '类别',
     'category' => '类别',
     'author' => '作者',
+    'author_helper' => 'Select an author from admin users.',
+    'select_author' => 'Select author',
     'export' => [
         'description' => '将帖子导出为CSV/Excel文件。',
         'total' => '总帖子',

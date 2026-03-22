@@ -26,6 +26,8 @@ return [
     'categories' => 'Категорії',
     'category' => 'Категорія',
     'author' => 'Автор',
+    'author_helper' => 'Select an author from admin users.',
+    'select_author' => 'Select author',
     'export' => [
         'description' => 'Експорт публікацій у файл CSV/Excel.',
         'total' => 'Всього дописів',

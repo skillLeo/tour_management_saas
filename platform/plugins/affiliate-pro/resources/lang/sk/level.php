@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'menu_name' => 'Úrovne členov',
+    'create' => 'Vytvoriť úroveň',
+    'edit' => 'Upraviť úroveň :name',
+    'min_commission' => 'Minimálna provízia',
+    'max_commission' => 'Maximálna provízia',
+    'max_commission_help' => 'Nechajte prázdne pre neobmedzenú',
+    'unlimited' => 'Neobmedzené',
+    'commission_rate' => 'Sadzba provízie',
+    'commission_rate_help' => 'Násobiteľ pre provízie (napr. 1.1 pre 10% bonus)',
+    'benefits' => 'Výhody',
+    'benefits_help' => 'Uveďte výhody, jednu na riadok',
+    'benefits_placeholder' => 'Prioritná podpora' . PHP_EOL . 'Vyššia sadzba provízie',
+    'next_level' => 'Ďalšia úroveň: :name',
+    'commission_needed' => 'Potrebujete ešte :amount v províziách na dosiahnutie :name',
+    'tier_rules_tooltip' => 'Zarábajte provízie s každým odporúčaním na odomknutie vyšších úrovní a exkluzívnych odmien. Úrovne sú založené na vašich celkových zarobených províziách.',
+    'top_tier_reached' => 'Dosiahnutá najvyššia úroveň',
+    'top_tier_message' => 'Dosiahli ste najvyššiu partnerskú úroveň! Užívajte si svoje exkluzívne výhody.',
+    'default_member' => 'Člen',
+    'member_since' => 'Od',
+    'no_benefits' => 'Začnite zarábať provízie na odomknutie výhod úrovne!',
+    'current_commission' => 'Zarobené :amount',
+    'target_commission' => 'Cieľ :amount',
+];

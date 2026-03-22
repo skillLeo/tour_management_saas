@@ -12,6 +12,7 @@ mix
     .js(`${source}/resources/js/admin-review.js`, `${dist}/js`)
     .js(`${source}/resources/js/front/order-return.js`, `${dist}/js`)
     .js(`${source}/resources/js/front-review.js`, `${dist}/js`)
+    .js(`${source}/resources/js/front-upsale-crosssale.js`, `${dist}/js`)
 
 if (mix.inProduction()) {
     mix
@@ -21,6 +22,7 @@ if (mix.inProduction()) {
         .copy(`${dist}/js/admin-review.js`, `${source}/public/js`)
         .copy(`${dist}/js/order-return.js`, `${source}/public/js`)
         .copy(`${dist}/js/front-review.js`, `${source}/public/js`)
+        .copy(`${dist}/js/front-upsale-crosssale.js`, `${source}/public/js`)
 }
 
 const scripts = [
@@ -54,6 +56,7 @@ const scripts = [
     'tax.js',
     'invoice.js',
     'front-ecommerce.js',
+    'product-license-codes.js',
 ];
 
 scripts.forEach(item => {
@@ -83,6 +86,7 @@ const styles = [
     'front-review.scss',
     'front-theme.scss',
     'front-theme-rtl.scss',
+    'front-upsale-crosssale.scss',
 ]
 
 styles.forEach(item => {

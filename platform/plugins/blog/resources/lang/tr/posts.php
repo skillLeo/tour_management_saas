@@ -26,6 +26,8 @@ return [
     'categories' => 'Kategoriler',
     'category' => 'Kategori',
     'author' => 'Yazar',
+    'author_helper' => 'Select an author from admin users.',
+    'select_author' => 'Select author',
     'export' => [
         'description' => 'Gönderileri CSV/Excel dosyasına aktarın.',
         'total' => 'Toplam Gönderiler',

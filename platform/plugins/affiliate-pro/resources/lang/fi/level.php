@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'menu_name' => 'Jäsentasot',
+    'create' => 'Luo taso',
+    'edit' => 'Muokkaa tasoa :name',
+    'min_commission' => 'Vähimmäisprovisio',
+    'max_commission' => 'Enimmäisprovisio',
+    'max_commission_help' => 'Jätä tyhjäksi rajoittamattomalle',
+    'unlimited' => 'Rajoittamaton',
+    'commission_rate' => 'Provisio-osuus',
+    'commission_rate_help' => 'Kerroin provisioille (esim. 1.1 10% bonukselle)',
+    'benefits' => 'Edut',
+    'benefits_help' => 'Listaa edut, yksi per rivi',
+    'benefits_placeholder' => 'Ensisijainen tuki' . PHP_EOL . 'Korkeampi provisio-osuus',
+    'next_level' => 'Seuraava taso: :name',
+    'commission_needed' => 'Tarvitset vielä :amount provisioita saavuttaaksesi tason :name',
+    'tier_rules_tooltip' => 'Ansaitse provisioita jokaisesta suosittelusta avataksesi korkeampia tasoja ja eksklusiivisia palkintoja. Tasot perustuvat elinkaaresi ansaittuihin provisioihin.',
+    'top_tier_reached' => 'Korkein taso saavutettu',
+    'top_tier_message' => 'Olet saavuttanut korkeimman affiliate-tason! Nauti eksklusiivisista eduistasi.',
+    'default_member' => 'Jäsen',
+    'member_since' => 'Alkaen',
+    'no_benefits' => 'Aloita provisioiden ansaitseminen avataksesi tason edut!',
+    'current_commission' => 'Ansaittu :amount',
+    'target_commission' => 'Tavoite :amount',
+];

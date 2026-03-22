@@ -1,0 +1,66 @@
+<?php
+
+return [
+    'name' => 'Išmokėjimai',
+    'view' => 'Peržiūrėti išmokėjimą #:id',
+    'affiliate' => 'Partneris',
+    'amount' => 'Suma',
+    'status' => 'Būsena',
+    'payment_method' => 'Mokėjimo būdas',
+    'payment_details' => 'Mokėjimo duomenys',
+    'notes' => 'Pastabos',
+    'created_at' => 'Sukurta',
+    'approve' => 'Patvirtinti',
+    'reject' => 'Atmesti',
+    'approve_success' => 'Išmokėjimas sėkmingai patvirtintas',
+    'reject_success' => 'Išmokėjimas sėkmingai atmestas',
+    'approve_withdrawal' => 'Patvirtinti išmokėjimą',
+    'reject_withdrawal' => 'Atmesti išmokėjimą',
+    'approve_withdrawal_confirmation' => 'Ar tikrai norite patvirtinti išmokėjimą #:id? Šio veiksmo negalima atšaukti.',
+    'reject_withdrawal_confirmation' => 'Ar tikrai norite atmesti išmokėjimą #:id? Šio veiksmo negalima atšaukti.',
+    'statuses' => [
+        'pending' => 'Laukiama',
+        'processing' => 'Apdorojama',
+        'approved' => 'Patvirtinta',
+        'rejected' => 'Atmesta',
+        'canceled' => 'Atšaukta',
+    ],
+
+    // Customer-facing translations
+    'request' => 'Išmokėjimo prašymas',
+    'history' => 'Išmokėjimų istorija',
+    'no_withdrawals' => 'Išmokėjimų nerasta.',
+    'withdrawal_id' => 'Išmokėjimo ID',
+    'date' => 'Data',
+    'amount_required' => 'Išmokėjimo suma būtina.',
+    'amount_numeric' => 'Išmokėjimo suma turi būti skaičius.',
+    'amount_min' => 'Išmokėjimo suma turi būti bent 0.',
+    'payment_method_required' => 'Mokėjimo būdas būtinas.',
+    'payment_details_required' => 'Mokėjimo duomenys būtini.',
+    'account_not_approved' => 'Jūsų partnerio paskyra dar nepatvirtinta.',
+    'minimum_amount' => 'Minimali išmokėjimo suma yra :amount.',
+    'insufficient_balance' => 'Neturite pakankamai lėšų šiam išmokėjimui.',
+    'request_submitted' => 'Jūsų išmokėjimo prašymas sėkmingai pateiktas.',
+    'submit_request' => 'Pateikti išmokėjimo prašymą',
+    'available_balance' => 'Turimos lėšos',
+    'enter_amount' => 'Įveskite sumą',
+    'select_payment_method' => 'Pasirinkite mokėjimo būdą',
+    'payment_details_placeholder' => 'Įveskite savo mokėjimo duomenis (pvz., PayPal el. paštas, banko sąskaitos duomenys)',
+    'no_payment_methods_available' => 'Šiuo metu mokėjimo būdų nėra. Susisiekite su administratoriumi.',
+
+    // Additional translations for PayoutPaymentMethodsEnum
+    'bank_transfer' => 'Banko pervedimas',
+    'paypal' => 'PayPal',
+    'stripe' => 'Stripe',
+    'other' => 'Kita',
+    'bank_information' => 'Banko informacija',
+    'paypal_id' => 'PayPal ID',
+
+    // Payout payment methods
+    'payout_payment_methods' => [
+        'bank_transfer' => 'Banko pervedimas',
+        'paypal' => 'PayPal',
+        'stripe' => 'Stripe',
+        'other' => 'Kita',
+    ],
+];

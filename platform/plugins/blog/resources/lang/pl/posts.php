@@ -25,6 +25,8 @@ return [
     'categories' => 'Kategorie',
     'category' => 'Kategoria',
     'author' => 'Autor',
+    'author_helper' => 'Select an author from admin users.',
+    'select_author' => 'Select author',
     'is_featured' => 'Czy wyróżniony?',
     'export' => [
         'description' => 'Eksportuj wpisy do pliku CSV/Excel.',

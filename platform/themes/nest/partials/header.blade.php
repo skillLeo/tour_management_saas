@@ -327,7 +327,7 @@
 
                             @foreach($categories as $category)
                                 <li>
-                                    <a href="{{ $category->url }}">
+                                    <a href="{{ route('public.single', $category->url) }}">
                                         @if ($categoryImage = $category->icon_image)
                                             <img src="{{ RvMedia::getImageUrl($categoryImage) }}" alt="{{ $category->name }}" width="30" height="30">
                                         @elseif ($categoryIcon = $category->icon)

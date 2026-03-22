@@ -68,4 +68,6 @@ return [
     'enable_light_mode' => 'Lichte modus inschakelen',
     'enable_dark_mode' => 'Donkere modus inschakelen',
     'close' => 'Sluiten',
+    'search_country' => 'Zoek land...',
+    'no_results' => 'Geen resultaten gevonden',
 ];

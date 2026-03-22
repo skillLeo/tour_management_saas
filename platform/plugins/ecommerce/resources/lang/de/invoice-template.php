@@ -2,8 +2,8 @@
 
 return [
     'name' => 'Rechnungsvorlage',
-    'setting' => 'Rechnungsvorlagen-Einstellungen',
-    'setting_description' => 'Einstellungen für Rechnungsvorlage',
+    'setting' => 'Vorlagen-Design & Layout',
+    'setting_description' => 'HTML-Vorlage und CSS-Stile der Rechnung anpassen',
     'setting_content' => 'Inhalt',
     'preview' => 'Vorschau',
     'preview_heading' => 'Vorschau der Rechnungsvorlage',

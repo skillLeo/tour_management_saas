@@ -2,8 +2,8 @@
 
 return [
     'name' => 'Szablon faktury',
-    'setting' => 'Ustawienia szablonu faktury',
-    'setting_description' => 'Ustawienia dla szablonu faktury',
+    'setting' => 'Design i układ szablonu',
+    'setting_description' => 'Dostosuj szablon HTML i style CSS faktury',
     'setting_content' => 'Zawartość',
     'preview' => 'Podgląd',
     'preview_heading' => 'Podgląd szablonu faktury',

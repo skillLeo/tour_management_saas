@@ -36,7 +36,7 @@ class ProductPrice
                 ? $this->product->front_sale_price_with_taxes
                 : $this->product->price_with_taxes;
         } else {
-            $price = $this->product->isOnSale() ? $this->product->front_sale_price : $this->product->price;
+            $price = $this->product->isOnSale() ? $this->product->front_sale_price : $this->product->getConvertedPrice();
         }
 
         return $this->applyFilters('price', 'value', (float) $price);

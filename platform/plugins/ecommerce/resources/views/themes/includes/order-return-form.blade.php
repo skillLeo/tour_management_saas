@@ -79,7 +79,7 @@
         </div>
 
         <div class="bb-customer-card-body">
-            {!! Form::open(['url' => route('customer.order_returns.send_request'), 'method' => 'POST']) !!}
+            {!! Form::open(['url' => route('customer.order_returns.send_request'), 'method' => 'POST', 'files' => true, 'id' => 'order-return-request-form']) !!}
             {!! Form::hidden('order_id', $order->id) !!}
 
             @if (!EcommerceHelper::allowPartialReturn())
@@ -95,6 +95,7 @@
                                 {!! Form::select('reason', array_filter(Botble\Ecommerce\Enums\OrderReturnReasonEnum::labels()), old('reason'), [
                                     'class' => 'order-return-reason-select form-select',
                                     'placeholder' => trans('plugins/ecommerce::ecommerce.choose_reason'),
+                                    'data-error-message' => trans('plugins/ecommerce::order.please_select_return_reason'),
                                 ]) !!}
                             </div>
                         </div>
@@ -276,6 +277,53 @@
                 </div>
             </div>
 
+            @if (EcommerceHelper::isReturnImageUploadEnabled())
+                <!-- Image Upload Section -->
+                <div class="return-images-section mt-4">
+                    <label class="form-label fw-semibold mb-3">
+                        <x-core::icon name="ti ti-photo" class="me-1" />
+                        {{ trans('plugins/ecommerce::order.upload_return_images') }}
+                        <small class="text-muted fw-normal">({{ trans('plugins/ecommerce::ecommerce.optional') }})</small>
+                    </label>
+
+                    <script type="text/x-custom-template" id="return-image-template">
+                        <span class="return-image-preview-item" data-id="__id__">
+                            <img src="{{ RvMedia::getDefaultImage() }}" alt="Preview">
+                            <span class="return-image-remove-btn">
+                                <x-core::icon name="ti ti-x" />
+                            </span>
+                        </span>
+                    </script>
+
+                    <div class="return-image-upload-wrapper">
+                        <div class="return-image-preview-list">
+                            <div class="return-image-upload-box">
+                                <div class="return-image-upload-content">
+                                    <x-core::icon name="ti ti-cloud-upload" />
+                                    <span class="return-image-upload-text">{{ trans('plugins/ecommerce::ecommerce.upload_photos') }}</span>
+                                    <span class="return-image-upload-hint">{{ trans('plugins/ecommerce::order.upload_return_images_limit', [
+                                        'total' => EcommerceHelper::returnMaxFileNumber(),
+                                        'max' => EcommerceHelper::returnMaxFileSize(),
+                                    ]) }}</span>
+                                </div>
+                                <input
+                                    class="return-image-file-input"
+                                    name="images[]"
+                                    data-max-files="{{ EcommerceHelper::returnMaxFileNumber() }}"
+                                    data-max-size="{{ EcommerceHelper::returnMaxFileSize(true) }}"
+                                    data-max-size-message="{{ trans('plugins/ecommerce::order.return_image_max_size_error') }}"
+                                    data-max-files-message="{{ trans('plugins/ecommerce::order.return_image_max_files_error') }}"
+                                    type="file"
+                                    accept="image/png,image/jpeg,image/jpg"
+                                    multiple="multiple"
+                                >
+                            </div>
+                        </div>
+                        <div class="return-image-error text-danger small"></div>
+                    </div>
+                </div>
+            @endif
+
             <!-- Submit Section -->
             <div class="bb-customer-card-footer">
                 @if ($order->canBeReturned())
@@ -301,3 +349,4 @@
         </div>
     </div>
 </div>
+

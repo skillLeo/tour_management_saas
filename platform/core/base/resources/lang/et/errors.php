@@ -22,4 +22,6 @@ return [
     '503_temporarily_down' => 'Ajutiselt hoolduse tõttu suletud',
     '503_admin_instruction' => 'Kui olete administraator ja ei pääse pärast hooldusrežiimi lubamist oma saidile, kustutage hooldusrežiimi väljalülitamiseks lihtsalt fail <strong>storage/framework/down</strong>.',
     'take_me_home' => 'Vii mind koju',
+    'bad_request' => 'Vigane päring',
+
 ];

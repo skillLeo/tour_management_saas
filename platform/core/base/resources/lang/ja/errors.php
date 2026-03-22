@@ -22,4 +22,6 @@ return [
     '503_temporarily_down' => 'メンテナンスのため一時的にダウン',
     '503_admin_instruction' => '管理者の方で、メンテナンスモードを有効にした後にサイトにアクセスできない場合は、<strong>storage/framework/down</strong> ファイルを削除するだけで、メンテナンスモードを無効にできます。',
     'take_me_home' => 'ホームに戻る',
+    'bad_request' => '不正なリクエスト',
+
 ];

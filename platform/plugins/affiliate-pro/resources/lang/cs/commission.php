@@ -1,0 +1,53 @@
+<?php
+
+return [
+    'name' => 'Provize',
+    'view' => 'Zobrazit Provizi #:id',
+    'affiliate' => 'Partner',
+    'order' => 'Objednávka',
+    'amount' => 'Částka',
+    'description' => 'Popis',
+    'status' => 'Stav',
+    'created_at' => 'Vytvořeno',
+    'approve' => 'Schválit',
+    'reject' => 'Zamítnout',
+    'approve_success' => 'Provize byla úspěšně schválena',
+    'reject_success' => 'Provize byla úspěšně zamítnuta',
+    'approve_commission' => 'Schválit Provizi',
+    'reject_commission' => 'Zamítnout Provizi',
+    'approve_commission_confirmation' => 'Opravdu chcete schválit provizi #:id? Tuto akci nelze vrátit zpět.',
+    'reject_commission_confirmation' => 'Opravdu chcete zamítnout provizi #:id? Tuto akci nelze vrátit zpět.',
+    'statuses' => [
+        'pending' => 'Čekající',
+        'approved' => 'Schváleno',
+        'rejected' => 'Zamítnuto',
+    ],
+
+    // Customer-facing translations
+    'history' => 'Historie Provizí',
+    'no_commissions' => 'Nenalezeny žádné provize.',
+    'no_commissions_description' => 'Ještě jste nevydělali žádné provize. Začněte propagovat naše produkty a získejte svou první provizi!',
+    'commission_id' => 'ID Provize',
+    'order_id' => 'ID Objednávky',
+    'customer' => 'Zákazník',
+    'product' => 'Produkt',
+    'type' => 'Typ',
+    'date' => 'Datum',
+
+    // New UI translations
+    'total_commissions' => ':count Celkový Počet Provizí',
+    'filter_by_status' => 'Filtrovat podle Stavu',
+    'all_statuses' => 'Všechny Stavy',
+    'date_from' => 'Datum Od',
+    'date_to' => 'Datum Do',
+    'filter' => 'Filtr',
+    'clear' => 'Vymazat',
+    'approved_earnings' => 'Schválené Výdělky',
+    'pending_earnings' => 'Čekající Výdělky',
+    'successful_orders' => 'Úspěšné Objednávky',
+    'approval_rate' => 'Míra Schválení',
+    'commission_earned' => 'Vydělána Provize',
+    'showing_results' => 'Zobrazení od :from do :to z :total výsledků',
+    'start_promoting' => 'Začít Propagovat',
+    'back_to_dashboard' => 'Zpět na Panel',
+];

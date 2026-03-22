@@ -1,0 +1,66 @@
+<?php
+
+return [
+    'name' => 'Výběry',
+    'view' => 'Zobrazit Výběr #:id',
+    'affiliate' => 'Partner',
+    'amount' => 'Částka',
+    'status' => 'Stav',
+    'payment_method' => 'Způsob Platby',
+    'payment_details' => 'Platební Údaje',
+    'notes' => 'Poznámky',
+    'created_at' => 'Vytvořeno',
+    'approve' => 'Schválit',
+    'reject' => 'Zamítnout',
+    'approve_success' => 'Výběr byl úspěšně schválen',
+    'reject_success' => 'Výběr byl úspěšně zamítnut',
+    'approve_withdrawal' => 'Schválit Výběr',
+    'reject_withdrawal' => 'Zamítnout Výběr',
+    'approve_withdrawal_confirmation' => 'Opravdu chcete schválit výběr #:id? Tuto akci nelze vrátit zpět.',
+    'reject_withdrawal_confirmation' => 'Opravdu chcete zamítnout výběr #:id? Tuto akci nelze vrátit zpět.',
+    'statuses' => [
+        'pending' => 'Čekající',
+        'processing' => 'Zpracování',
+        'approved' => 'Schváleno',
+        'rejected' => 'Zamítnuto',
+        'canceled' => 'Zrušeno',
+    ],
+
+    // Customer-facing translations
+    'request' => 'Žádost o Výběr',
+    'history' => 'Historie Výběrů',
+    'no_withdrawals' => 'Nenalezeny žádné výběry.',
+    'withdrawal_id' => 'ID Výběru',
+    'date' => 'Datum',
+    'amount_required' => 'Částka výběru je povinná.',
+    'amount_numeric' => 'Částka výběru musí být číslo.',
+    'amount_min' => 'Částka výběru musí být alespoň 0.',
+    'payment_method_required' => 'Způsob platby je povinný.',
+    'payment_details_required' => 'Platební údaje jsou povinné.',
+    'account_not_approved' => 'Váš partnerský účet ještě nebyl schválen.',
+    'minimum_amount' => 'Minimální částka výběru je :amount.',
+    'insufficient_balance' => 'Nemáte dostatek prostředků pro tento výběr.',
+    'request_submitted' => 'Vaše žádost o výběr byla úspěšně odeslána.',
+    'submit_request' => 'Odeslat Žádost o Výběr',
+    'available_balance' => 'Dostupný Zůstatek',
+    'enter_amount' => 'Zadejte Částku',
+    'select_payment_method' => 'Vyberte Způsob Platby',
+    'payment_details_placeholder' => 'Zadejte své platební údaje (např. PayPal e-mail, údaje o bankovním účtu)',
+    'no_payment_methods_available' => 'Momentálně nejsou k dispozici žádné způsoby platby. Kontaktujte prosím správce.',
+
+    // Additional translations for PayoutPaymentMethodsEnum
+    'bank_transfer' => 'Bankovní Převod',
+    'paypal' => 'PayPal',
+    'stripe' => 'Stripe',
+    'other' => 'Jiné',
+    'bank_information' => 'Bankovní informace',
+    'paypal_id' => 'PayPal ID',
+
+    // Payout payment methods
+    'payout_payment_methods' => [
+        'bank_transfer' => 'Bankovní Převod',
+        'paypal' => 'PayPal',
+        'stripe' => 'Stripe',
+        'other' => 'Jiné',
+    ],
+];

@@ -118,8 +118,14 @@ return [
             'success_header' => 'Muy bien!',
         ],
         'download' => [
-            'error' => 'No hay archivos seleccionados o no se pueden descargar estos archivos',
+            'error' => 'No files selected or cannot download these files',
         ],
+
+        'move' => [
+            'select_destination' => 'Por favor seleccione una carpeta de destino',
+            'same_location' => 'Los elementos ya están en esta ubicación',
+        ],
+
         'actions_list' => [
             'basic' => [
                 'preview' => 'Visualizar',

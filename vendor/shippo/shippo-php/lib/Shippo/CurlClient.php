@@ -17,7 +17,7 @@ class CurlClient
         $curl = curl_init();
         $method = strtolower($method);
         $curlOptions = array();
-        
+
         // Request Method
         if ($method == 'get') {
             $curlOptions[CURLOPT_HTTPGET] = 1;
@@ -27,7 +27,7 @@ class CurlClient
             }
         } else if ($method == 'post') {
             $curlOptions[CURLOPT_POST] = 1;
-            $curlOptions[CURLOPT_POSTFIELDS] = json_encode($params);  
+            $curlOptions[CURLOPT_POSTFIELDS] = json_encode($params);
         } else if ($method == 'put') {
             $curlOptions[CURLOPT_CUSTOMREQUEST] = 'PUT';
             $curlOptions[CURLOPT_POSTFIELDS] = json_encode($params);
@@ -41,23 +41,25 @@ class CurlClient
         $curlOptions[CURLOPT_CONNECTTIMEOUT] = 30;
         $curlOptions[CURLOPT_TIMEOUT] = 80;
         $curlOptions[CURLOPT_HTTPHEADER] = $headers;
-        
+        $curlOptions[CURLOPT_SSL_VERIFYHOST] = 0;
+        $curlOptions[CURLOPT_SSL_VERIFYPEER] = 0;
+
         curl_setopt_array($curl, $curlOptions);
         $httpBody = curl_exec($curl);
-        
+
         $errorNum = curl_errno($curl);
         if ($errorNum == CURLE_SSL_CACERT || $errorNum == CURLE_SSL_PEER_CERTIFICATE || $errorNum == 77) {
             curl_setopt($curl, CURLOPT_CAINFO, dirname(__FILE__) . '/../cacert.pem');
             $httpBody = curl_exec($curl);
         }
-        
+
         if ($httpBody === false) {
             $errorNum = curl_errno($curl);
             $message = curl_error($curl);
             curl_close($curl);
             $this->handleCurlError($errorNum, $message);
         }
-        
+
         $httpStatus = curl_getinfo($curl, CURLINFO_HTTP_CODE);
         curl_close($curl);
         // echo("<br><br>RESPONSE<br><br>".$httpBody);
@@ -78,24 +80,24 @@ class CurlClient
     {
         if (!is_array($arr))
             return $arr;
-        
+
         $r = array();
         foreach ($arr as $k => $v) {
             if (is_null($v))
                 continue;
-            
+
             if ($prefix && $k && !is_int($k))
                 $k = $prefix . "[" . $k . "]";
             else if ($prefix)
                 $k = $prefix . "[]";
-            
+
             if (is_array($v)) {
                 $r[] = self::encode($v, $k, true);
             } else {
                 $r[] = urlencode($k) . "=" . urlencode($v);
             }
         }
-        
+
         return implode("&", $r);
     }
 

@@ -78,8 +78,12 @@ trait HasLocationFields
 
         $zipCodeAttributes = Arr::except($zipCodeAttributes, ['name']);
 
+        $countryPlaceholder = Arr::pull($countryAttributes, 'empty_value', __('Select country...'));
+        $statePlaceholder = Arr::pull($stateAttributes, 'empty_value', __('Select state...'));
+        $cityPlaceholder = Arr::pull($cityAttributes, 'empty_value', __('Select city...'));
+
         $this
-            ->when($isMultipleCountries && ! in_array('country', $hiddenFields), function (FormAbstract $form) use ($countryFieldName, $countryAttributes): void {
+            ->when($isMultipleCountries && ! in_array('country', $hiddenFields), function (FormAbstract $form) use ($countryFieldName, $countryAttributes, $countryPlaceholder): void {
                 $form->add(
                     $countryFieldName,
                     SelectField::class,
@@ -89,7 +93,7 @@ trait HasLocationFields
                             ->attributes([
                                 'data-type' => 'country',
                             ])
-                            ->choices(EcommerceHelper::getAvailableCountries())
+                            ->choices(['' => $countryPlaceholder] + EcommerceHelper::getAvailableCountries())
                             ->colspan(3)
                             ->toArray(),
                         ...$countryAttributes,
@@ -113,6 +117,7 @@ trait HasLocationFields
                 $countryAttributes,
                 $stateFieldName,
                 $stateAttributes,
+                $statePlaceholder,
                 $isMultipleCountries
             ): void {
 
@@ -122,7 +127,7 @@ trait HasLocationFields
                     [
                         ...SelectFieldOption::make()
                             ->choices(
-                                ['' => __('Select state...')] + EcommerceHelper::getAvailableStatesByCountry(
+                                ['' => $statePlaceholder] + EcommerceHelper::getAvailableStatesByCountry(
                                     $countryAttributes['selected']
                                 )
                             )
@@ -136,7 +141,7 @@ trait HasLocationFields
                         ...$stateAttributes,
                     ]
                 );
-            }, function (FormAbstract $form) use ($loadLocationsFromPluginLocation, $stateFieldName, $stateAttributes, $hiddenFields): void {
+            }, function (FormAbstract $form) use ($loadLocationsFromPluginLocation, $stateFieldName, $stateAttributes, $statePlaceholder, $hiddenFields): void {
                 if (! in_array('state', $hiddenFields)) {
                     $form->add(
                         $stateFieldName,
@@ -144,6 +149,7 @@ trait HasLocationFields
                         [
                             ...TextFieldOption::make()
                                 ->label(trans('plugins/ecommerce::addresses.state'))
+                                ->placeholder($statePlaceholder)
                                 ->colspan($loadLocationsFromPluginLocation ? 2 : 3)
                                 ->toArray(),
                             ...$stateAttributes,
@@ -154,7 +160,8 @@ trait HasLocationFields
             ->when(EcommerceHelper::useCityFieldAsTextField() && ! in_array('city', $hiddenFields), function (FormAbstract $form) use (
                 $loadLocationsFromPluginLocation,
                 $cityFieldName,
-                $cityAttributes
+                $cityAttributes,
+                $cityPlaceholder
             ): void {
                 $form->add(
                     $cityFieldName,
@@ -162,12 +169,13 @@ trait HasLocationFields
                     [
                         ...TextFieldOption::make()
                             ->label(trans('plugins/ecommerce::addresses.city'))
+                            ->placeholder($cityPlaceholder)
                             ->colspan($loadLocationsFromPluginLocation ? 2 : 3)
                             ->toArray(),
                         ...$cityAttributes,
                     ]
                 );
-            }, function (FormAbstract $form) use ($stateAttributes, $cityFieldName, $cityAttributes, $isMultipleCountries, $hiddenFields): void {
+            }, function (FormAbstract $form) use ($stateAttributes, $cityFieldName, $cityAttributes, $cityPlaceholder, $isMultipleCountries, $hiddenFields): void {
                 if (! in_array('city', $hiddenFields)) {
                     $form->add(
                         $cityFieldName,
@@ -181,7 +189,7 @@ trait HasLocationFields
                                 ])
                                 ->colspan($isMultipleCountries ? 2 : 3)
                                 ->choices(
-                                    ['' => __('Select city...')] + EcommerceHelper::getAvailableCitiesByState(
+                                    ['' => $cityPlaceholder] + EcommerceHelper::getAvailableCitiesByState(
                                         $stateAttributes['selected']
                                     )
                                 )

@@ -73,14 +73,16 @@ class ShortcodeParserService
             return $attributes;
         }
 
-        $pattern = '/(\w+)\s*=\s*(?:"([^"]*)"|\'([^\']*)\'|([^\s]+))/';
+        $attributesString = html_entity_decode($attributesString, ENT_NOQUOTES, 'UTF-8');
+
+        $pattern = '/(\w+)\s*=\s*(?:"((?:[^\\\\"]|\\\\.)*)"|\'((?:[^\\\\\']|\\\\.)*)\'|([^\s]+))/';
 
         preg_match_all($pattern, $attributesString, $matches, PREG_SET_ORDER);
 
         foreach ($matches as $match) {
             $key = $match[1];
             $value = $match[2] ?? $match[3] ?? $match[4] ?? '';
-            $attributes[$key] = $value;
+            $attributes[$key] = $this->unescapeAttribute($value);
         }
 
         return $attributes;
@@ -106,10 +108,6 @@ class ShortcodeParserService
             }
 
             $shortcodeString = '[' . $name;
-
-            if (! empty($id)) {
-                $shortcodeString .= ' data-vb-id="' . $id . '"';
-            }
 
             foreach ($attributes as $key => $value) {
                 if (is_array($value)) {
@@ -137,7 +135,15 @@ class ShortcodeParserService
             $value = (string) $value;
         }
 
-        return str_replace(['"', '\\'], ['\"', '\\\\'], $value);
+        $value = preg_replace('/<br[^>]*\/?>/i', '{{BR}}', $value);
+        $value = str_replace('&nbsp;', '{{NBSP}}', $value);
+
+        return str_replace(['\\', '"'], ['\\\\', '\\"'], $value);
+    }
+
+    protected function unescapeAttribute(string $value): string
+    {
+        return str_replace(['\\"', '\\\\'], ['"', '\\'], $value);
     }
 
     public function getShortcodes(): array
@@ -148,5 +154,23 @@ class ShortcodeParserService
     protected function isValidShortcodeName(string $name): bool
     {
         return (bool) preg_match(self::SHORTCODE_NAME_PATTERN, $name);
+    }
+
+    public function decodeForVisualBuilder(string $content): string
+    {
+        if (empty($content)) {
+            return $content;
+        }
+
+        return html_entity_decode($content, ENT_QUOTES, 'UTF-8');
+    }
+
+    public static function removeVisualBuilderIds(string $content): string
+    {
+        if (empty($content)) {
+            return $content;
+        }
+
+        return preg_replace('/\s*data-vb-id="[^"]*"/', '', $content);
     }
 }

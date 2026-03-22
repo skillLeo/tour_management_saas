@@ -168,25 +168,4 @@ class NestController extends PublicController
         return $response->setData($data);
     }
 
-    public function ajaxGetCrossSaleProducts(int|string $id, Request $request, BaseHttpResponse $response)
-    {
-        $product = Product::find($id);
-
-        if (! $product) {
-            return $response->setError()->setMessage(__('Product not found'));
-        }
-
-        $crossSaleProducts = get_cross_sale_products($product, $request->integer('limit'));
-
-        if ($crossSaleProducts->isEmpty()) {
-            return $response->setData('');
-        }
-
-        $data = view(
-            Theme::getThemeNamespace() . '::views.ecommerce.includes.product-items-loop',
-            ['products' => $crossSaleProducts, 'perRow' => 4]
-        )->render();
-
-        return $response->setData($data);
-    }
 }

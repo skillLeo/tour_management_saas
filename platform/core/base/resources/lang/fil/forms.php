@@ -68,4 +68,6 @@ return [
     'enable_light_mode' => 'I-enable ang light mode',
     'enable_dark_mode' => 'I-enable ang dark mode',
     'close' => 'Isara',
+    'search_country' => 'Maghanap ng bansa...',
+    'no_results' => 'Walang nakitang resulta',
 ];

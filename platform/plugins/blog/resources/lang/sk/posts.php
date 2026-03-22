@@ -26,6 +26,8 @@ return [
     'categories' => 'Kategórie',
     'category' => 'Kategória',
     'author' => 'Autor',
+    'author_helper' => 'Select an author from admin users.',
+    'select_author' => 'Select author',
     'is_featured' => 'Je vyzdvihnutý?',
     'export' => [
         'description' => 'Exportovať príspevky do CSV/Excel súboru.',

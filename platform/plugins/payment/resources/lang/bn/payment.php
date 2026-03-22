@@ -88,6 +88,8 @@ return [
     'total' => 'মোট',
     'status' => 'অবস্থা',
     'default_payment_method' => 'ডিফল্ট পেমেন্ট পদ্ধতি',
+    'sort_order_instruction' => 'চেকআউট পৃষ্ঠায় পেমেন্ট পদ্ধতির ক্রম পরিবর্তন করতে টেনে আনুন এবং ড্রপ করুন।',
+    'default_method_instruction' => 'ডিফল্ট পেমেন্ট পদ্ধতি সেট করতে তারকা আইকনে ক্লিক করুন।',
     'payment_logs' => 'পেমেন্ট লগ',
     'request_data' => 'অনুরোধ ডেটা',
     'response_data' => 'প্রতিক্রিয়া ডেটা',

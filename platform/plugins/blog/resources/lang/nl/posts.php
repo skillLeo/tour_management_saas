@@ -26,6 +26,8 @@ return [
     'categories' => 'Categorieën',
     'category' => 'Categorie',
     'author' => 'Auteur',
+    'author_helper' => 'Select an author from admin users.',
+    'select_author' => 'Select author',
     'is_featured' => 'Is uitgelicht?',
     'export' => [
         'description' => 'Exporteer berichten naar CSV/Excel-bestand.',

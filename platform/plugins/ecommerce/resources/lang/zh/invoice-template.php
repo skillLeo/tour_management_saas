@@ -2,8 +2,8 @@
 
 return [
     'name' => '发票模板',
-    'setting' => '发票模板设置',
-    'setting_description' => '发票模板设置',
+    'setting' => '模板设计与布局',
+    'setting_description' => '自定义发票HTML模板和CSS样式',
     'setting_content' => '内容',
     'preview' => '预览',
     'preview_heading' => '预览发票模板',

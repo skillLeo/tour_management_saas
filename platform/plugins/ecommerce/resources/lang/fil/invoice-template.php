@@ -2,8 +2,8 @@
 
 return [
     'name' => 'Template ng Invoice',
-    'setting' => 'Mga Setting ng Template ng Invoice',
-    'setting_description' => 'Mga setting para sa template ng Invoice',
+    'setting' => 'Template design & layout',
+    'setting_description' => 'Customize invoice HTML template and CSS styles',
     'setting_content' => 'Nilalaman',
     'preview' => 'Preview',
     'preview_heading' => 'I-preview ang template ng Invoice',

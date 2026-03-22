@@ -117,8 +117,14 @@ return [
             'success_header' => 'نجاح',
         ],
         'download' => [
-            'error' => 'لم يتم تحديد أي ملفات أو لا يمكن تنزيل هذه الملفات',
+            'error' => 'No files selected or cannot download these files',
         ],
+
+        'move' => [
+            'select_destination' => 'يرجى اختيار مجلد الوجهة',
+            'same_location' => 'العناصر موجودة بالفعل في هذا الموقع',
+        ],
+
         'actions_list' => [
             'basic' => [
                 'preview' => 'معاينة',

@@ -87,6 +87,8 @@ return [
     'total' => '合計',
     'status' => '状態',
     'default_payment_method' => 'デフォルトの支払い方法',
+    'sort_order_instruction' => 'チェックアウトページで支払い方法を並べ替えるにはドラッグ＆ドロップしてください。',
+    'default_method_instruction' => '星アイコンをクリックしてデフォルトの支払い方法を設定してください。',
     'available_countries' => '利用可能な国',
     'available_countries_help' => 'この支払い方法が利用できる国を選択してください。',
     'all_countries_checkbox' => '全て',

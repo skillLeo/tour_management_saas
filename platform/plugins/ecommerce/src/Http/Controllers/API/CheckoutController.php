@@ -40,7 +40,14 @@ class CheckoutController extends BaseApiController
     {
         Cart::instance('cart')->destroy();
 
-        Cart::instance('cart')->restore($id);
+        $user = $request->user();
+        $customerId = $user instanceof Customer ? $user->getKey() : null;
+
+        if ($customerId) {
+            Cart::instance('cart')->restoreForCustomer($customerId);
+        } else {
+            Cart::instance('cart')->restore($id);
+        }
 
         // Get the cart content to check for coupon code
         $content = Cart::instance('cart')->content();
@@ -57,8 +64,6 @@ class CheckoutController extends BaseApiController
 
         $token = md5(Str::random(40));
         session(['tracked_start_checkout' => $token]);
-
-        $user = $request->user();
 
         if ($user instanceof Customer) {
             Auth::guard('customer')->login($user);
@@ -81,7 +86,11 @@ class CheckoutController extends BaseApiController
             }
         }
 
-        Cart::instance('cart')->updateOrStore($id);
+        if ($customerId) {
+            Cart::instance('cart')->storeForCustomerQuietly($customerId);
+        } else {
+            Cart::instance('cart')->updateOrStore($id);
+        }
 
         return redirect()->to(route('public.checkout.information', $token));
     }

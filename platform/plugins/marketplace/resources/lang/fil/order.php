@@ -12,4 +12,16 @@ return [
     'return' => [
         'description' => 'Ibinalik mula sa order #:order',
     ],
+    'thank_you' => [
+        'count_orders' => ':count mga order',
+        'order' => 'Order',
+        'thank_you_name' => 'Salamat, :name!',
+        'order_confirmed' => 'Nakumpirma na ang iyong order',
+        'order_accepted' => 'Tinanggap namin ang iyong order at inihahanda na namin ito.',
+        'customer' => 'Customer',
+        'need_help' => 'Kailangan ng tulong?',
+        'contact_us' => 'Makipag-ugnayan sa amin',
+        'view_order_history' => 'Tingnan ang kasaysayan ng order',
+        'order_total' => 'Kabuuang order',
+    ],
 ];

@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'name' => 'Fragtetiketskabelon',
-    'setting' => 'Fragtetiketskabelon indstillinger',
-    'setting_description' => 'Indstillinger for fragtetiketskabelon',
+    'name' => 'Shipping Labels',
+    'setting' => 'Label design & layout',
+    'setting_description' => 'Customize shipping label HTML template and CSS styles',
     'setting_content' => 'Indhold',
     'preview' => 'Forhåndsvisning',
     'preview_heading' => 'Forhåndsvisning af fragtetiketskabelon',

@@ -22,4 +22,6 @@ return [
     '503_temporarily_down' => 'Začasno nedostopno zaradi vzdrževanja',
     '503_admin_instruction' => 'Če ste skrbnik in ne morete dostopati do svoje strani po vključitvi načina vzdrževanja, preprosto izbrišite datoteko <strong>storage/framework/down</strong>, da izklopite način vzdrževanja.',
     'take_me_home' => 'Nazaj domov',
+    'bad_request' => 'Napačna zahteva',
+
 ];

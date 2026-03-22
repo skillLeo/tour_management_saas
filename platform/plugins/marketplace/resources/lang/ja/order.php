@@ -12,4 +12,16 @@ return [
     'return' => [
         'description' => '注文 #:order から返品されました',
     ],
+    'thank_you' => [
+        'count_orders' => ':count件の注文',
+        'order' => '注文',
+        'thank_you_name' => 'ありがとうございます、:name様！',
+        'order_confirmed' => 'ご注文が確認されました',
+        'order_accepted' => 'ご注文を受け付けました。準備中です。',
+        'customer' => '顧客',
+        'need_help' => 'お困りですか？',
+        'contact_us' => 'お問い合わせ',
+        'view_order_history' => '注文履歴を見る',
+        'order_total' => '注文合計',
+    ],
 ];

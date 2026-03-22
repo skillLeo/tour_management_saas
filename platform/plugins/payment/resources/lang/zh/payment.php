@@ -87,6 +87,8 @@ return [
     'total' => '总计',
     'status' => '状态',
     'default_payment_method' => '默认支付方式',
+    'sort_order_instruction' => '拖放以重新排列结账页面上的付款方式。',
+    'default_method_instruction' => '点击星形图标将付款方式设为默认。',
     'available_countries' => '可用国家',
     'available_countries_help' => '选择此支付方式可用的国家。',
     'all_countries_checkbox' => '所有',

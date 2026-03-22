@@ -39,11 +39,45 @@ const PreviewIframe = {
         this.$preview.addClass('loaded')
 
         setTimeout(() => {
+            this.syncShortcodeIds()
             this.injectEditIcons()
             this.enableInlineEditing()
             this.enableSorting()
             this.attachLazyLoadListener()
         }, 1000)
+    },
+
+    syncShortcodeIds() {
+        if (!this.iframe || !this.iframe.contentDocument) return
+
+        const iframeDoc = this.iframe.contentDocument
+        const stateShortcodes = VisualBuilderState.getAllShortcodes()
+
+        if (!stateShortcodes.length) return
+
+        const allElements = iframeDoc.querySelectorAll('[data-shortcode-id]:not(.vb-shortcode-toolbar)')
+
+        if (!allElements.length) return
+
+        const uniqueElements = []
+        const seenIds = new Set()
+        allElements.forEach((el) => {
+            const id = el.getAttribute('data-shortcode-id')
+            if (!seenIds.has(id)) {
+                seenIds.add(id)
+                uniqueElements.push(el)
+            }
+        })
+
+        const count = Math.min(uniqueElements.length, stateShortcodes.length)
+        for (let i = 0; i < count; i++) {
+            const stateId = stateShortcodes[i].id
+            const currentId = uniqueElements[i].getAttribute('data-shortcode-id')
+
+            if (stateId !== currentId) {
+                uniqueElements[i].setAttribute('data-shortcode-id', stateId)
+            }
+        }
     },
 
     attachLazyLoadListener() {
@@ -480,14 +514,26 @@ const PreviewIframe = {
             })
         }
 
+        // Use ref_lang for translated content preview
+        let refLang = config.refLang || null
+        if (!refLang) {
+            const urlParams = new URLSearchParams(window.location.search)
+            refLang = urlParams.get('ref_lang')
+        }
+
+        const requestData = {
+            _token: config.csrfToken,
+            name: shortcode.name,
+            attributes: refinedAttributes
+        }
+        if (refLang) {
+            requestData.ref_lang = refLang
+        }
+
         $.ajax({
             url: '/ajax/render-ui-blocks',
             method: 'POST',
-            data: {
-                _token: config.csrfToken,
-                name: shortcode.name,
-                attributes: refinedAttributes
-            },
+            data: requestData,
             success: (response) => {
                 if (response && response.data) {
                     this.replaceShortcodeContent(shortcodeId, response.data)

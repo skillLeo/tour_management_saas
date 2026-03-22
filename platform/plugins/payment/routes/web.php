@@ -35,6 +35,12 @@ AdminHelper::registerRoutes(function (): void {
                 'uses' => 'PaymentController@updateMethodStatus',
                 'middleware' => 'preventDemo',
             ]);
+
+            Route::post('sort-order', [
+                'as' => 'payments.methods.sort-order',
+                'uses' => 'PaymentController@updateSortOrder',
+                'middleware' => 'preventDemo',
+            ]);
         });
 
         Route::group(['prefix' => 'payments/transactions', 'as' => 'payment.'], function (): void {

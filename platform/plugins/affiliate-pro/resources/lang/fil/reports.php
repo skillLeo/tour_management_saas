@@ -1,0 +1,73 @@
+<?php
+
+return [
+    'name' => 'Mga Ulat',
+    'commission_this_month' => 'Komisyon ngayong buwan',
+    'pending_commissions' => 'Naghihintay na mga komisyon',
+    'approved_commissions' => 'Naaprubahang mga komisyon',
+    'pending_withdrawals' => 'Naghihintay na pag-withdraw',
+    'approved_withdrawals' => 'Naaprubahang pag-withdraw',
+    'active_affiliates' => 'Mga aktibong kaakibat',
+    'affiliate_stats' => 'Mga estadistika ng kaakibat',
+    'top_affiliates' => 'Nangungunang mga kaakibat',
+    'recent_commissions' => 'Mga kamakailang komisyon',
+    'recent_withdrawals' => 'Mga kamakailang pag-withdraw',
+    'commission_chart' => 'Tsart ng Komisyon',
+    'withdrawal_chart' => 'Tsart ng Pag-withdraw',
+
+    // Enhanced reports
+    'geographic_data' => 'Datos na Heograpiko',
+    'top_countries' => 'Nangungunang Bansa',
+    'top_cities' => 'Nangungunang Lungsod',
+    'short_link_performance' => 'Performance ng Maikling Link',
+    'top_performing_links' => 'Nangungunang mga Link',
+    'link' => 'Link',
+    'clicks' => 'Mga Pag-click',
+    'conversions' => 'Mga Conversion',
+    'commission_trends' => 'Mga Trend ng Komisyon',
+    'commission_amount' => 'Halaga ng Komisyon',
+    'loading' => 'Nilo-load...',
+    'no_data' => 'Walang available na data',
+    'no_commission_data' => 'Walang available na datos ng komisyon para sa napiling panahon',
+    'no_geographic_data' => 'Walang available na geographic data para sa napiling panahon',
+    'no_city_data' => 'Walang available na city data para sa napiling bansa',
+    'chart_error' => 'Error sa pag-render ng chart. Pakisubukan na i-refresh ang page.',
+
+    // Performance metrics widget
+    'performance_metrics' => 'Mga Sukatan ng Performance',
+    'total_clicks' => 'Kabuuang Mga Pag-click',
+    'earnings' => 'Kita',
+    'avg_commission' => 'Kar. Komisyon',
+    'avg_conversion_rate' => 'Kar. Antas ng Conversion',
+    'vs_previous' => 'kumpara sa nakaraan',
+    'no_change' => 'Walang pagbabago',
+    'performance_over_time' => 'Performance Sa Paglipas ng Panahon',
+    'clicks_conversions' => 'Mga Pag-click at Conversion',
+
+    // Conversion rate widget
+    'conversion_rate_analysis' => 'Pagsusuri ng Antas ng Conversion',
+    'overall_conversion_rate' => 'Pangkalahatang Antas ng Conversion',
+    'conversion_breakdown' => 'Pagbabahagi ng Conversion',
+    'source' => 'Pinagmulan',
+    'rate' => 'Antas',
+    'conversion_rate_percentage' => 'Antas ng Conversion (%)',
+    'optimization_opportunity' => 'Pagkakataon para sa Pag-optimize',
+    'conversion_rate_below_average' => 'Mas mababa sa karaniwan ang iyong antas ng conversion. Isaalang-alang ang mga tips na ito:',
+    'target_relevant_audiences' => 'Mag-target ng mas angkop na audience',
+    'improve_promotional_content' => 'Pahusayin ang iyong pang-promosyong nilalaman',
+    'focus_higher_conversion_products' => 'Magtuon sa mga produktong may mas mataas na conversion rate',
+    'great_performance' => 'Napakahusay na Performance!',
+    'excellent_conversion_rate' => 'Napakahusay ng iyong antas ng conversion. Ipagpatuloy ang magandang gawa!',
+    'good_performance' => 'Magandang Performance',
+    'average_conversion_rate' => 'Ang iyong antas ng conversion ay nasa karaniwang saklaw. May puwang pa para sa pagpapabuti.',
+
+    // Date ranges
+    'ranges' => [
+        'today' => 'Ngayon',
+        'this_week' => 'Ngayong linggo',
+        'last_7_days' => 'Huling 7 araw',
+        'last_30_days' => 'Huling 30 araw',
+        'this_month' => 'Ngayong buwan',
+        'this_year' => 'Ngayong taon',
+    ],
+];

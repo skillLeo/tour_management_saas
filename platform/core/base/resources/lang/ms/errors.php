@@ -22,4 +22,6 @@ return [
     '503_temporarily_down' => 'Ditutup sementara untuk penyelenggaraan',
     '503_admin_instruction' => 'Jika anda pentadbir dan tidak dapat mengakses laman anda selepas mengaktifkan mod penyelenggaraan, hanya perlu memadam fail <strong>storage/framework/down</strong> untuk mematikan mod penyelenggaraan.',
     'take_me_home' => 'Bawa saya pulang',
+    'bad_request' => 'Permintaan Tidak Sah',
+
 ];

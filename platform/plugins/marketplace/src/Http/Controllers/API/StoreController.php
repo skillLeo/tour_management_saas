@@ -29,7 +29,7 @@ class StoreController extends BaseApiController
      * @queryParam per_page int Items per page (default: 12). No-example
      * @queryParam page int Page number. No-example
      */
-    public function index(Request $request): JsonResponse
+    public function index(Request $request)
     {
         $search = BaseHelper::stringify(BaseHelper::clean($request->input('q')));
 
@@ -71,7 +71,7 @@ class StoreController extends BaseApiController
      * @urlParam slug string required Store slug. Example: my-store
      * @queryParam per_page int Products per page (default: 12). No-example
      */
-    public function show(string $slug, Request $request, GetProductService $productService): JsonResponse
+    public function show(string $slug, Request $request, GetProductService $productService)
     {
         $slugRecord = SlugHelper::getSlug($slug, SlugHelper::getPrefix(Store::class));
 

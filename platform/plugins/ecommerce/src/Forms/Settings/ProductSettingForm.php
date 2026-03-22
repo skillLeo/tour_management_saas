@@ -72,6 +72,14 @@ class ProductSettingForm extends SettingForm
                     ->value(EcommerceHelper::isEnabledCrossSaleProducts())
             )
             ->add(
+                'is_enabled_up_sale_products',
+                OnOffCheckboxField::class,
+                OnOffFieldOption::make()
+                    ->label(trans('plugins/ecommerce::setting.product.form.is_enabled_up_sale_products'))
+                    ->helperText(trans('plugins/ecommerce::setting.product.form.is_enabled_up_sale_products_helper'))
+                    ->value(EcommerceHelper::isEnabledUpSaleProducts())
+            )
+            ->add(
                 'is_enabled_related_products',
                 OnOffCheckboxField::class,
                 OnOffFieldOption::make()
@@ -151,6 +159,14 @@ class ProductSettingForm extends SettingForm
                     ->label(trans('plugins/ecommerce::setting.product.form.delete_product_images_when_deleting'))
                     ->helperText(trans('plugins/ecommerce::setting.product.form.delete_product_images_when_deleting_helper'))
                     ->value(get_ecommerce_setting('delete_product_images_when_deleting', true))
+            )
+            ->add(
+                'enable_product_currency_selection',
+                OnOffCheckboxField::class,
+                OnOffFieldOption::make()
+                    ->label(trans('plugins/ecommerce::setting.product.form.enable_product_currency_selection'))
+                    ->helperText(trans('plugins/ecommerce::setting.product.form.enable_product_currency_selection_helper'))
+                    ->value(EcommerceHelper::isEnabledProductCurrencySelection())
             );
     }
 }

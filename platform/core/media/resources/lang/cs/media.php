@@ -55,6 +55,12 @@ return [
     'selected_items_move_success' => 'Vybrané položky byly úspěšně přesunuty do :name!',
     'selected_items_move_error' => 'Chyba při přesunu vybraných položek do :name',
     'destination' => 'Cíl',
+    'move' => 'Move',
+    'move_items' => 'Move items',
+    'move_here' => 'Move here',
+    'move_to_root' => 'Move to root folder',
+    'root' => 'Root',
+    'go_up' => 'Go up',
     'restore_error' => 'Chyba při obnovení vybraných položek',
     'restore_success' => 'Vybrané položky byly úspěšně obnoveny!',
     'copy_success' => 'Vybrané položky byly úspěšně zkopírovány!',
@@ -133,7 +139,12 @@ return [
         ],
 
         'download' => [
-            'error' => 'Nejsou vybrány žádné soubory nebo tyto soubory nelze stáhnout',
+            'error' => 'No files selected or cannot download these files',
+        ],
+
+        'move' => [
+            'select_destination' => 'Please select a destination folder',
+            'same_location' => 'Items are already in this location',
         ],
 
         'actions_list' => [

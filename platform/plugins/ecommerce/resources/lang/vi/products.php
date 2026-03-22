@@ -202,6 +202,7 @@ return [
         'external_link_download' => 'Liên kết tải xuống bên ngoài',
         'generate_license_code_after_purchasing_product' => 'Kích hoạt gán mã giấy phép cho sản phẩm này',
         'notify_attachment_updated' => 'Gửi email cho khách hàng khi tệp đính kèm được cập nhật',
+        'no_attachments' => 'Chưa có tệp đính kèm. Nhấn các nút ở trên để thêm tệp.',
     ],
     'license_codes' => [
         'title' => 'Mã giấy phép',
@@ -403,6 +404,29 @@ return [
     'download_product_with_external_links' => 'Tải xuống sản phẩm ":name" với liên kết ngoài',
     'number_product_available_singular' => ':number sản phẩm có sẵn',
     'number_products_available_plural' => ':number sản phẩm có sẵn',
+    'up_sell_help' => [
+        'price' => '* Trường giá',
+        'price_description' => 'Nhập số tiền bạn muốn giảm từ giá gốc. Ví dụ: Nếu giá gốc là 100đ, nhập 20 để giảm giá xuống 80đ.',
+        'type' => '* Trường loại',
+        'type_description' => 'Chọn loại giảm giá: Cố định (giảm một số tiền cụ thể) hoặc Phần trăm (giảm theo tỷ lệ phần trăm).',
+    ],
+    'up_sale' => [
+        'title' => 'Mua Cùng & Tiết Kiệm',
+        'description' => 'Nhận ưu đãi đặc biệt khi mua các sản phẩm này cùng nhau',
+        'unlock_discount' => 'Thêm :product vào giỏ hàng để mở khóa giảm giá combo',
+        'multiple_options' => 'Nhiều lựa chọn',
+        'multiple_options_available' => 'Có nhiều lựa chọn',
+        'select' => 'Chọn',
+        'select_options_hint' => 'Chọn tùy chọn để thêm',
+        'selected_items_total' => 'Tổng sản phẩm đã chọn:',
+        'add_selected_to_cart' => 'Thêm Vào Giỏ Hàng',
+        'bundle_discount_with' => 'Giảm giá combo với :product',
+        'bundle_with' => 'Combo với :product',
+    ],
+    'cross_sale' => [
+        'title' => 'Thường Được Mua Cùng',
+        'description' => 'Khách hàng xem sản phẩm này cũng đã mua',
+    ],
     'cart' => [
         'added_to_cart_success' => ':product đã được thêm vào giỏ hàng.',
         'removed_from_cart_success' => ':product đã được xóa khỏi giỏ hàng.',

@@ -2,8 +2,8 @@
 
 return [
     'name' => 'इनवॉइस टेम्प्लेट',
-    'setting' => 'इनवॉइस टेम्प्लेट सेटिंग्स',
-    'setting_description' => 'इनवॉइस टेम्प्लेट के लिए सेटिंग्स',
+    'setting' => 'Template design & layout',
+    'setting_description' => 'Customize invoice HTML template and CSS styles',
     'setting_content' => 'सामग्री',
     'preview' => 'पूर्वावलोकन',
     'preview_heading' => 'इनवॉइस टेम्प्लेट का पूर्वावलोकन',

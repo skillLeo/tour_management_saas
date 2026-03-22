@@ -22,4 +22,6 @@ return [
     '503_temporarily_down' => 'Laikinai neveikia dėl priežiūros',
     '503_admin_instruction' => 'Jei esate administratorius ir po priežiūros režimo įjungimo negalite pasiekti savo svetainės, tiesiog ištrinkite failą <strong>storage/framework/down</strong>, kad jį išjungtumėte.',
     'take_me_home' => 'Grįžti į pradžią',
+    'bad_request' => 'Bloga užklausa',
+
 ];

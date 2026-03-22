@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'menu_name' => 'Poziomy Członków',
+    'create' => 'Utwórz Poziom',
+    'edit' => 'Edytuj Poziom :name',
+    'min_commission' => 'Minimalna Prowizja',
+    'max_commission' => 'Maksymalna Prowizja',
+    'max_commission_help' => 'Pozostaw puste dla nieograniczonego',
+    'unlimited' => 'Nieograniczony',
+    'commission_rate' => 'Stawka Prowizji',
+    'commission_rate_help' => 'Mnożnik dla prowizji (np. 1.1 dla 10% bonusu)',
+    'benefits' => 'Korzyści',
+    'benefits_help' => 'Wymień korzyści, jedna na linię',
+    'benefits_placeholder' => 'Priorytetowe Wsparcie' . PHP_EOL . 'Wyższa Stawka Prowizji',
+    'next_level' => 'Następny Poziom: :name',
+    'commission_needed' => 'Potrzebujesz jeszcze :amount prowizji, aby osiągnąć :name',
+    'tier_rules_tooltip' => 'Zarabiaj prowizje z każdego polecenia, aby odblokować wyższe poziomy i ekskluzywne nagrody. Poziomy są oparte na całkowitej zarobionej prowizji.',
+    'top_tier_reached' => 'Osiągnięto Najwyższy Poziom',
+    'top_tier_message' => 'Osiągnąłeś najwyższy poziom partnerski! Ciesz się ekskluzywnymi korzyściami.',
+    'default_member' => 'Członek',
+    'member_since' => 'Od',
+    'no_benefits' => 'Zacznij zarabiać prowizje, aby odblokować korzyści poziomu!',
+    'current_commission' => 'Zarobiono :amount',
+    'target_commission' => 'Cel :amount',
+];

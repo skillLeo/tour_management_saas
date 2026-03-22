@@ -3,6 +3,7 @@
 use Botble\Base\Facades\Html;
 use Botble\Ecommerce\Facades\EcommerceHelper;
 use Botble\Ecommerce\Models\Product;
+use Botble\LanguageAdvanced\Supports\LanguageAdvancedManager;
 use Botble\Theme\Facades\Theme;
 use Illuminate\Support\Facades\Log;
 
@@ -13,7 +14,18 @@ if (! function_exists('render_product_options')) {
             return '';
         }
 
-        $product->loadMissing(['options', 'options.values']);
+        $with = ['options', 'options.values'];
+
+        if (
+            is_plugin_active('language') &&
+            is_plugin_active('language-advanced') &&
+            class_exists(LanguageAdvancedManager::class) &&
+            ! LanguageAdvancedManager::isDefaultLocale()
+        ) {
+            $with = array_merge($with, ['options.translations', 'options.values.translations']);
+        }
+
+        $product->loadMissing($with);
 
         if (! $product->options) {
             return '';

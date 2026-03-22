@@ -68,4 +68,6 @@ return [
     'enable_light_mode' => 'Zapnúť svetlý režim',
     'enable_dark_mode' => 'Zapnúť tmavý režim',
     'close' => 'Zavrieť',
+    'search_country' => 'Hľadať krajinu...',
+    'no_results' => 'Nenašli sa žiadne výsledky',
 ];

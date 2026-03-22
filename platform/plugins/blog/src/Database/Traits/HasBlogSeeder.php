@@ -17,6 +17,173 @@ trait HasBlogSeeder
 {
     protected Collection $userIds;
 
+    protected function truncateBlogTranslations(): void
+    {
+        DB::table('categories_translations')->truncate();
+        DB::table('tags_translations')->truncate();
+        DB::table('posts_translations')->truncate();
+    }
+
+    /**
+     * Create blog categories with translations.
+     *
+     * @param array $categories Array with 'name', optional 'translations' key
+     */
+    protected function createBlogCategoriesWithTranslations(array $categories, bool $truncate = true): void
+    {
+        if ($truncate) {
+            Category::query()->truncate();
+        }
+
+        foreach ($categories as $index => $item) {
+            $translations = $item['translations'] ?? [];
+            unset($item['translations']);
+
+            $item['description'] ??= 'Explore our collection of articles and insights in this category.';
+            $item['is_featured'] ??= ! isset($item['parent_id']) && $index != 0;
+            $item['parent_id'] ??= 0;
+
+            $category = $this->createBlogCategory(Arr::except($item, 'children'));
+
+            foreach ($translations as $locale => $translation) {
+                DB::table('categories_translations')->insert([
+                    'lang_code' => $locale,
+                    'categories_id' => $category->getKey(),
+                    'name' => $translation['name'],
+                    'description' => $translation['description'] ?? null,
+                ]);
+            }
+
+            if (Arr::has($item, 'children')) {
+                foreach (Arr::get($item, 'children', []) as $child) {
+                    $child['parent_id'] = $category->getKey();
+
+                    $childTranslations = $child['translations'] ?? [];
+                    unset($child['translations']);
+
+                    $childCategory = $this->createBlogCategory($child);
+
+                    foreach ($childTranslations as $locale => $translation) {
+                        DB::table('categories_translations')->insert([
+                            'lang_code' => $locale,
+                            'categories_id' => $childCategory->getKey(),
+                            'name' => $translation['name'],
+                            'description' => $translation['description'] ?? null,
+                        ]);
+                    }
+                }
+            }
+
+            $this->createMetadata($category, $item);
+        }
+    }
+
+    /**
+     * Create blog tags with translations.
+     *
+     * @param array $tags Array with 'name', optional 'translations' key
+     */
+    protected function createBlogTagsWithTranslations(array $tags, bool $truncate = true): void
+    {
+        if ($truncate) {
+            Tag::query()->truncate();
+        }
+
+        $userIds = $this->getUserIds();
+
+        foreach ($tags as $item) {
+            $translations = $item['translations'] ?? [];
+            unset($item['translations']);
+
+            $item['author_id'] ??= $userIds->random();
+            $item['author_type'] ??= User::class;
+
+            $tag = Tag::query()->create(Arr::except($item, ['metadata']));
+
+            SlugHelper::createSlug($tag);
+
+            foreach ($translations as $locale => $translation) {
+                DB::table('tags_translations')->insert([
+                    'lang_code' => $locale,
+                    'tags_id' => $tag->getKey(),
+                    'name' => $translation['name'],
+                    'description' => $translation['description'] ?? null,
+                ]);
+            }
+
+            $this->createMetadata($tag, $item);
+        }
+    }
+
+    /**
+     * Create blog posts with translations.
+     *
+     * @param array $data Array with post data, optional 'translations' key
+     */
+    protected function createBlogPostsWithTranslations(array $data, bool $truncate = true): array
+    {
+        if ($truncate) {
+            Post::query()->truncate();
+            DB::table('post_categories')->truncate();
+            DB::table('post_tags')->truncate();
+        }
+
+        $categoryIds = Category::query()->pluck('id');
+        $tagIds = Tag::query()->pluck('id');
+        $userIds = $this->getUserIds();
+
+        $posts = [];
+
+        foreach ($data as $index => $item) {
+            $translations = $item['translations'] ?? [];
+            unset($item['translations']);
+
+            $item['views'] ??= rand(100, 2500);
+            $item['description'] ??= 'Discover the latest insights, trends, and expert analysis in this comprehensive article.';
+            $item['is_featured'] ??= $index < 5;
+
+            if (! empty($item['content'])) {
+                $item['content'] = $this->removeBaseUrlFromString((string) $item['content']);
+            } else {
+                $item['content'] = 'This article provides an in-depth exploration of the topic.';
+            }
+
+            $item['author_id'] ??= $userIds->random();
+            $item['author_type'] ??= User::class;
+
+            $post = Post::query()->create(Arr::except($item, ['metadata']));
+
+            $post->categories()->sync(array_unique([
+                $categoryIds->random(),
+                $categoryIds->random(),
+            ]));
+
+            $post->tags()->sync(array_unique([
+                $tagIds->random(),
+                $tagIds->random(),
+                $tagIds->random(),
+            ]));
+
+            SlugHelper::createSlug($post);
+
+            foreach ($translations as $locale => $translation) {
+                DB::table('posts_translations')->insert([
+                    'lang_code' => $locale,
+                    'posts_id' => $post->getKey(),
+                    'name' => $translation['name'],
+                    'description' => $translation['description'] ?? null,
+                    'content' => $translation['content'] ?? null,
+                ]);
+            }
+
+            $this->createMetadata($post, $item);
+
+            $posts[] = $post;
+        }
+
+        return $posts;
+    }
+
     protected function getUserIds(): Collection
     {
         if (! isset($this->userIds)) {

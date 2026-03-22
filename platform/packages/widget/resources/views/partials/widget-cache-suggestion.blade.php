@@ -17,7 +17,7 @@
                 {{ trans('packages/widget::widget.cache_suggestion.description') }}
                 {{ trans('packages/widget::widget.cache_suggestion.benefits') }}
             </p>
-            <div class="mt-2">
+            <div class="mt-2 d-flex flex-wrap gap-2">
                 <a
                     href="{{ route('settings.cache') }}#widget-cache-settings"
                     class="btn btn-info btn-sm"
@@ -30,7 +30,7 @@
                 </a>
                 <button
                     type="button"
-                    class="btn btn-outline-secondary btn-sm ms-2 dismiss-widget-suggestion"
+                    class="btn btn-outline-secondary btn-sm dismiss-widget-suggestion"
                 >
                     <x-core::icon
                         name="ti ti-eye-off"

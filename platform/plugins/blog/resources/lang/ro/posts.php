@@ -26,6 +26,8 @@ return [
     'categories' => 'Categorii',
     'category' => 'Categorie',
     'author' => 'Autor',
+    'author_helper' => 'Select an author from admin users.',
+    'select_author' => 'Select author',
     'is_featured' => 'Este recomandată?',
     'export' => [
         'description' => 'Exportă postările în fișier CSV/Excel.',

@@ -2,8 +2,8 @@
 
 return [
     'name' => '請求書テンプレート',
-    'setting' => '請求書テンプレート設定',
-    'setting_description' => '請求書テンプレートの設定',
+    'setting' => 'テンプレートのデザインとレイアウト',
+    'setting_description' => '請求書のHTMLテンプレートとCSSスタイルをカスタマイズ',
     'setting_content' => 'コンテンツ',
     'preview' => 'プレビュー',
     'preview_heading' => '請求書テンプレートのプレビュー',

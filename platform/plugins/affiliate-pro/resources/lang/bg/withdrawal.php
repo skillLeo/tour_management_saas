@@ -1,0 +1,66 @@
+<?php
+
+return [
+    'name' => 'Тегления',
+    'view' => 'Преглед на теглене #:id',
+    'affiliate' => 'Партньор',
+    'amount' => 'Сума',
+    'status' => 'Статус',
+    'payment_method' => 'Метод на плащане',
+    'payment_details' => 'Детайли за плащане',
+    'notes' => 'Бележки',
+    'created_at' => 'Създадено на',
+    'approve' => 'Одобри',
+    'reject' => 'Отхвърли',
+    'approve_success' => 'Теглението е одобрено успешно',
+    'reject_success' => 'Теглението е отхвърлено успешно',
+    'approve_withdrawal' => 'Одобряване на теглене',
+    'reject_withdrawal' => 'Отхвърляне на теглене',
+    'approve_withdrawal_confirmation' => 'Сигурни ли сте, че искате да одобрите теглене #:id? Това действие не може да бъде отменено.',
+    'reject_withdrawal_confirmation' => 'Сигурни ли сте, че искате да отхвърлите теглене #:id? Това действие не може да бъде отменено.',
+    'statuses' => [
+        'pending' => 'Чакащо',
+        'processing' => 'В обработка',
+        'approved' => 'Одобрено',
+        'rejected' => 'Отхвърлено',
+        'canceled' => 'Отменено',
+    ],
+
+    // Customer-facing translations
+    'request' => 'Заявка за теглене',
+    'history' => 'История на тегленията',
+    'no_withdrawals' => 'Няма намерени тегления.',
+    'withdrawal_id' => 'ID на теглене',
+    'date' => 'Дата',
+    'amount_required' => 'Сумата за теглене е задължителна.',
+    'amount_numeric' => 'Сумата за теглене трябва да бъде число.',
+    'amount_min' => 'Сумата за теглене трябва да бъде поне 0.',
+    'payment_method_required' => 'Методът на плащане е задължителен.',
+    'payment_details_required' => 'Детайлите за плащане са задължителни.',
+    'account_not_approved' => 'Вашият партньорски акаунт все още не е одобрен.',
+    'minimum_amount' => 'Минималната сума за теглене е :amount.',
+    'insufficient_balance' => 'Нямате достатъчно баланс за това теглене.',
+    'request_submitted' => 'Вашата заявка за теглене е подадена успешно.',
+    'submit_request' => 'Подаване на заявка за теглене',
+    'available_balance' => 'Наличен баланс',
+    'enter_amount' => 'Въведете сума',
+    'select_payment_method' => 'Изберете метод на плащане',
+    'payment_details_placeholder' => 'Въведете вашите детайли за плащане (напр. имейл в PayPal, детайли за банкова сметка)',
+    'no_payment_methods_available' => 'В момента няма налични методи на плащане. Моля, свържете се с администратора.',
+
+    // Additional translations for PayoutPaymentMethodsEnum
+    'bank_transfer' => 'Банков превод',
+    'paypal' => 'PayPal',
+    'stripe' => 'Stripe',
+    'other' => 'Друго',
+    'bank_information' => 'Банкова информация',
+    'paypal_id' => 'PayPal ID',
+
+    // Payout payment methods
+    'payout_payment_methods' => [
+        'bank_transfer' => 'Банков превод',
+        'paypal' => 'PayPal',
+        'stripe' => 'Stripe',
+        'other' => 'Друго',
+    ],
+];

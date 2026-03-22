@@ -1,0 +1,73 @@
+<?php
+
+return [
+    'name' => 'דוחות',
+    'commission_this_month' => 'עמלה החודש',
+    'pending_commissions' => 'עמלות ממתינות',
+    'approved_commissions' => 'עמלות מאושרות',
+    'pending_withdrawals' => 'משיכות ממתינות',
+    'approved_withdrawals' => 'משיכות מאושרות',
+    'active_affiliates' => 'שותפים פעילים',
+    'affiliate_stats' => 'סטטיסטיקות שותפים',
+    'top_affiliates' => 'שותפים מובילים',
+    'recent_commissions' => 'עמלות אחרונות',
+    'recent_withdrawals' => 'משיכות אחרונות',
+    'commission_chart' => 'תרשים עמלות',
+    'withdrawal_chart' => 'תרשים משיכות',
+
+    // Enhanced reports
+    'geographic_data' => 'נתונים גיאוגרפיים',
+    'top_countries' => 'מדינות מובילות',
+    'top_cities' => 'ערים מובילות',
+    'short_link_performance' => 'ביצועי קישורים קצרים',
+    'top_performing_links' => 'קישורים מובילים',
+    'link' => 'קישור',
+    'clicks' => 'לחיצות',
+    'conversions' => 'המרות',
+    'commission_trends' => 'מגמות עמלות',
+    'commission_amount' => 'סכום עמלה',
+    'loading' => 'טוען...',
+    'no_data' => 'אין נתונים זמינים',
+    'no_commission_data' => 'אין נתוני עמלות זמינים לתקופה שנבחרה',
+    'no_geographic_data' => 'אין נתונים גיאוגרפיים זמינים לתקופה שנבחרה',
+    'no_city_data' => 'אין נתוני ערים זמינים למדינה שנבחרה',
+    'chart_error' => 'שגיאה בעיבוד התרשים. אנא נסה לרענן את הדף.',
+
+    // Performance metrics widget
+    'performance_metrics' => 'מדדי ביצועים',
+    'total_clicks' => 'סה"כ לחיצות',
+    'earnings' => 'רווחים',
+    'avg_commission' => 'עמלה ממוצעת',
+    'avg_conversion_rate' => 'שיעור המרה ממוצע',
+    'vs_previous' => 'לעומת קודם',
+    'no_change' => 'אין שינוי',
+    'performance_over_time' => 'ביצועים לאורך זמן',
+    'clicks_conversions' => 'לחיצות והמרות',
+
+    // Conversion rate widget
+    'conversion_rate_analysis' => 'ניתוח שיעור המרה',
+    'overall_conversion_rate' => 'שיעור המרה כולל',
+    'conversion_breakdown' => 'פירוט המרות',
+    'source' => 'מקור',
+    'rate' => 'שיעור',
+    'conversion_rate_percentage' => 'שיעור המרה (%)',
+    'optimization_opportunity' => 'הזדמנות לאופטימיזציה',
+    'conversion_rate_below_average' => 'שיעור ההמרה שלך נמוך מהממוצע. שקול את הטיפים הבאים:',
+    'target_relevant_audiences' => 'מקד לקהלים רלוונטיים יותר',
+    'improve_promotional_content' => 'שפר את תוכן הקידום שלך',
+    'focus_higher_conversion_products' => 'התמקד במוצרים עם שיעורי המרה גבוהים יותר',
+    'great_performance' => 'ביצועים מעולים!',
+    'excellent_conversion_rate' => 'שיעור ההמרה שלך מעולה. המשך בעבודה הטובה!',
+    'good_performance' => 'ביצועים טובים',
+    'average_conversion_rate' => 'שיעור ההמרה שלך בטווח הממוצע. יש מקום לשיפור.',
+
+    // Date ranges
+    'ranges' => [
+        'today' => 'היום',
+        'this_week' => 'השבוע',
+        'last_7_days' => '7 ימים אחרונים',
+        'last_30_days' => '30 ימים אחרונים',
+        'this_month' => 'החודש',
+        'this_year' => 'השנה',
+    ],
+];

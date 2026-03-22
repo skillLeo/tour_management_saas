@@ -88,6 +88,8 @@ return [
     'total' => 'Skupaj',
     'status' => 'Status',
     'default_payment_method' => 'Privzeti način plačila',
+    'sort_order_instruction' => 'Povlecite in spustite za preureditev načinov plačila na strani blagajne.',
+    'default_method_instruction' => 'Kliknite na ikono zvezdice za nastavitev privzetega načina plačila.',
     'payment_logs' => 'Dnevniki plačil',
     'request_data' => 'Podatki zahteve',
     'response_data' => 'Podatki odgovora',

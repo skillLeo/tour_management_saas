@@ -88,6 +88,8 @@ return [
     'total' => '합계',
     'status' => '상태',
     'default_payment_method' => '기본 결제 방법',
+    'sort_order_instruction' => '결제 페이지에서 결제 방법을 재정렬하려면 드래그 앤 드롭하세요.',
+    'default_method_instruction' => '별 아이콘을 클릭하여 기본 결제 방법을 설정하세요.',
     'payment_logs' => '결제 로그',
     'request_data' => '요청 데이터',
     'response_data' => '응답 데이터',

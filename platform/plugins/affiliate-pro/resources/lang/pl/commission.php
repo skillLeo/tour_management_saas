@@ -1,0 +1,53 @@
+<?php
+
+return [
+    'name' => 'Prowizje',
+    'view' => 'Zobacz Prowizję #:id',
+    'affiliate' => 'Partner',
+    'order' => 'Zamówienie',
+    'amount' => 'Kwota',
+    'description' => 'Opis',
+    'status' => 'Status',
+    'created_at' => 'Utworzono',
+    'approve' => 'Zatwierdź',
+    'reject' => 'Odrzuć',
+    'approve_success' => 'Prowizja została pomyślnie zatwierdzona',
+    'reject_success' => 'Prowizja została pomyślnie odrzucona',
+    'approve_commission' => 'Zatwierdź Prowizję',
+    'reject_commission' => 'Odrzuć Prowizję',
+    'approve_commission_confirmation' => 'Czy na pewno chcesz zatwierdzić prowizję #:id? Tej czynności nie można cofnąć.',
+    'reject_commission_confirmation' => 'Czy na pewno chcesz odrzucić prowizję #:id? Tej czynności nie można cofnąć.',
+    'statuses' => [
+        'pending' => 'Oczekujące',
+        'approved' => 'Zatwierdzone',
+        'rejected' => 'Odrzucone',
+    ],
+
+    // Customer-facing translations
+    'history' => 'Historia Prowizji',
+    'no_commissions' => 'Nie znaleziono prowizji.',
+    'no_commissions_description' => 'Nie zarobiłeś jeszcze żadnych prowizji. Zacznij promować nasze produkty, aby zarobić swoją pierwszą prowizję!',
+    'commission_id' => 'ID Prowizji',
+    'order_id' => 'ID Zamówienia',
+    'customer' => 'Klient',
+    'product' => 'Produkt',
+    'type' => 'Typ',
+    'date' => 'Data',
+
+    // New UI translations
+    'total_commissions' => ':count Łączna Liczba Prowizji',
+    'filter_by_status' => 'Filtruj według Statusu',
+    'all_statuses' => 'Wszystkie Statusy',
+    'date_from' => 'Data Od',
+    'date_to' => 'Data Do',
+    'filter' => 'Filtruj',
+    'clear' => 'Wyczyść',
+    'approved_earnings' => 'Zatwierdzone Zarobki',
+    'pending_earnings' => 'Oczekujące Zarobki',
+    'successful_orders' => 'Pomyślne Zamówienia',
+    'approval_rate' => 'Współczynnik Zatwierdzania',
+    'commission_earned' => 'Zarobiona Prowizja',
+    'showing_results' => 'Wyświetlanie od :from do :to z :total wyników',
+    'start_promoting' => 'Zacznij Promować',
+    'back_to_dashboard' => 'Powrót do Panelu',
+];

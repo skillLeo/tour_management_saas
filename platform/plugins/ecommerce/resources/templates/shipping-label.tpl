@@ -225,13 +225,13 @@
                     <tr>
                         <td colspan="3">
                             <span>{{ 'plugins/ecommerce::shipping.shipping_label.total_amount'|trans }}:</span>
-                            <h3>{{ shipment.total_collectable_amount }}</h3>
-                            {% if shipment.is_cod %}
-                            <div style="margin-top: 4px;">
-                                <span>{{ 'plugins/ecommerce::shipping.shipping_label.cod_amount_to_collect'|trans }}:</span>
-                                <h2 style="margin: 1px 0 0 0; font-size: 16px; font-weight: bold;">{{ shipment.cod_amount }}</h2>
-                            </div>
-                            {% endif %}
+                            <h3>{{ shipment.order.amount }}</h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <span>{{ 'plugins/ecommerce::shipping.shipping_label.amount_to_collect'|trans }}:</span>
+                            <h2 style="margin: 1px 0 0 0; font-size: 16px; font-weight: bold;">{{ shipment.total_collectable_amount }}</h2>
                         </td>
                     </tr>
                 </table>

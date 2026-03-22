@@ -1,0 +1,53 @@
+<?php
+
+return [
+    'name' => 'Komisiniai',
+    'view' => 'Peržiūrėti komisinį #:id',
+    'affiliate' => 'Partneris',
+    'order' => 'Užsakymas',
+    'amount' => 'Suma',
+    'description' => 'Aprašymas',
+    'status' => 'Būsena',
+    'created_at' => 'Sukurta',
+    'approve' => 'Patvirtinti',
+    'reject' => 'Atmesti',
+    'approve_success' => 'Komisinis sėkmingai patvirtintas',
+    'reject_success' => 'Komisinis sėkmingai atmestas',
+    'approve_commission' => 'Patvirtinti komisinį',
+    'reject_commission' => 'Atmesti komisinį',
+    'approve_commission_confirmation' => 'Ar tikrai norite patvirtinti komisinį #:id? Šio veiksmo negalima atšaukti.',
+    'reject_commission_confirmation' => 'Ar tikrai norite atmesti komisinį #:id? Šio veiksmo negalima atšaukti.',
+    'statuses' => [
+        'pending' => 'Laukiama',
+        'approved' => 'Patvirtinta',
+        'rejected' => 'Atmesta',
+    ],
+
+    // Customer-facing translations
+    'history' => 'Komisiniu istorija',
+    'no_commissions' => 'Komisinių nerasta.',
+    'no_commissions_description' => 'Dar neuždirbo jokių komisinių. Pradėkite reklamuoti mūsų produktus ir uždirbkite pirmąjį komisinį!',
+    'commission_id' => 'Komisinio ID',
+    'order_id' => 'Užsakymo ID',
+    'customer' => 'Klientas',
+    'product' => 'Produktas',
+    'type' => 'Tipas',
+    'date' => 'Data',
+
+    // New UI translations
+    'total_commissions' => ':count Viso komisinių',
+    'filter_by_status' => 'Filtruoti pagal būseną',
+    'all_statuses' => 'Visos būsenos',
+    'date_from' => 'Data nuo',
+    'date_to' => 'Data iki',
+    'filter' => 'Filtruoti',
+    'clear' => 'Valyti',
+    'approved_earnings' => 'Patvirtinti uždarbiai',
+    'pending_earnings' => 'Laukiantys uždarbiai',
+    'successful_orders' => 'Sėkmingi užsakymai',
+    'approval_rate' => 'Patvirtinimo lygis',
+    'commission_earned' => 'Uždirbtas komisinis',
+    'showing_results' => 'Rodoma nuo :from iki :to iš :total rezultatų',
+    'start_promoting' => 'Pradėti reklamuoti',
+    'back_to_dashboard' => 'Atgal į valdymo skydelį',
+];

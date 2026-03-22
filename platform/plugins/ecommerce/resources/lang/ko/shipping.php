@@ -192,6 +192,7 @@ return [
         'order_date' => '주문 날짜',
         'scan_qr_code' => 'QR 코드를 스캔하여 배송을 추적하세요',
         'total_amount' => '총액',
+        'amount_to_collect' => '수금할 금액',
         'cod_amount_to_collect' => '수금할 착불 금액',
     ],
     'customer_confirmed_delivery_at' => '고객이 배송을 확인한 시간',

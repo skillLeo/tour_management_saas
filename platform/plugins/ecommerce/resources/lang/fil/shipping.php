@@ -192,6 +192,7 @@ return [
         'order_date' => 'Petsa ng order',
         'scan_qr_code' => 'I-scan ang QR code upang subaybayan ang iyong shipment',
         'total_amount' => 'Kabuuang Halaga',
+        'amount_to_collect' => 'Halagang Kokolektahin',
         'cod_amount_to_collect' => 'Halagang COD na Kokolektahin',
     ],
     'customer_confirmed_delivery_at' => 'Kinumpirma ng customer ang paghahatid noong',

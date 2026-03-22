@@ -68,4 +68,6 @@ return [
     'enable_light_mode' => 'Aktifkan mode terang',
     'enable_dark_mode' => 'Aktifkan mode gelap',
     'close' => 'Tutup',
+    'search_country' => 'Cari negara...',
+    'no_results' => 'Tidak ada hasil ditemukan',
 ];

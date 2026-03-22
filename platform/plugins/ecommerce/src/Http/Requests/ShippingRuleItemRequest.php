@@ -2,7 +2,6 @@
 
 namespace Botble\Ecommerce\Http\Requests;
 
-use Botble\Base\Facades\BaseHelper;
 use Botble\Ecommerce\Enums\ShippingRuleTypeEnum;
 use Botble\Ecommerce\Facades\EcommerceHelper;
 use Botble\Ecommerce\Models\ShippingRule;
@@ -21,9 +20,36 @@ class ShippingRuleItemRequest extends Request
             ->exists();
     }
 
+    protected function isBasedOnZipCodeRule(): bool
+    {
+        return ShippingRule::query()
+            ->where('id', $this->input('shipping_rule_id'))
+            ->whereIn('type', [
+                ShippingRuleTypeEnum::BASED_ON_ZIPCODE,
+                ShippingRuleTypeEnum::BASED_ON_ZIPCODE_AND_WEIGHT,
+            ])
+            ->exists();
+    }
+
+    protected function prepareForValidation(): void
+    {
+        if ($this->filled('zip_code_from')) {
+            $this->merge([
+                'zip_code_from' => preg_replace('/\D/', '', $this->input('zip_code_from')),
+            ]);
+        }
+
+        if ($this->filled('zip_code_to')) {
+            $this->merge([
+                'zip_code_to' => preg_replace('/\D/', '', $this->input('zip_code_to')),
+            ]);
+        }
+    }
+
     public function rules(): array
     {
         return [
+            'name' => ['nullable', 'string', 'max:120'],
             'shipping_rule_id' => [
                 'required',
                 Rule::exists(ShippingRule::class, 'id')->where(function ($query) {
@@ -54,18 +80,14 @@ class ShippingRuleItemRequest extends Request
                     : [Rule::exists('cities', 'id')]
                 ),
             ]),
-            'zip_code' => [
+            'zip_code' => ['nullable', 'string', 'max:20'],
+            'zip_code_from' => [
                 'nullable',
-                ...BaseHelper::getZipcodeValidationRule(true),
-                Rule::requiredIf(function () {
-                    return ShippingRule::query()
-                        ->where([
-                            'id' => $this->input('shipping_rule_id'),
-                            'type' => ShippingRuleTypeEnum::BASED_ON_ZIPCODE,
-                        ])
-                        ->exists();
-                }),
+                'string',
+                'max:20',
+                Rule::requiredIf(fn () => $this->isBasedOnZipCodeRule()),
             ],
+            'zip_code_to' => ['nullable', 'string', 'max:20'],
             'adjustment_price' => ['nullable', 'numeric', 'min:-100000000000', 'max:100000000000'],
             'is_enabled' => Rule::in(['0', '1']),
         ];

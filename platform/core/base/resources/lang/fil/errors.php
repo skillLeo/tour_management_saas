@@ -22,4 +22,6 @@ return [
     '503_temporarily_down' => 'Pansamantalang hindi available para sa maintenance',
     '503_admin_instruction' => 'Kung ikaw ang administrador at hindi mo ma-access ang iyong site pagkatapos paganahin ang maintenance mode, burahin lamang ang file na <strong>storage/framework/down</strong> upang i-off ang maintenance mode.',
     'take_me_home' => 'Iuwi ako sa home',
+    'bad_request' => 'Di-wastong Kahilingan',
+
 ];

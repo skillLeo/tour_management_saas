@@ -46,14 +46,14 @@ return [
         // this event should call to assign some assets,
         // breadcrumb template.
         'beforeRenderTheme' => function (Theme $theme): void {
-            $version = get_cms_version() . '.5';
+            $version = get_cms_version();
 
             $theme->asset()->usePath()->add('normalize-css', 'css/vendors/normalize.css');
 
             if (BaseHelper::isRtlEnabled()) {
-                $theme->asset()->usePath()->add('bootstrap-css', 'plugins/bootstrap/css/bootstrap.rtl.min.css');
+                $theme->asset()->usePath()->add('bootstrap-css', 'plugins/bootstrap/css/bootstrap.rtl.min.css', [], [], '5.3.3');
             } else {
-                $theme->asset()->usePath()->add('bootstrap-css', 'plugins/bootstrap/css/bootstrap.min.css');
+                $theme->asset()->usePath()->add('bootstrap-css', 'plugins/bootstrap/css/bootstrap.min.css', [], [], '5.3.3');
             }
 
             $theme->asset()->usePath()->add('uicons-css', 'css/vendors/uicons-regular-straight.css');
@@ -69,8 +69,8 @@ return [
                 $theme->asset()->usePath()->add('rtl', 'css/rtl.css', [], [], $version);
             }
 
-            $theme->asset()->container('footer')->usePath()->add('jquery', 'js/vendor/jquery-3.6.0.min.js');
-            $theme->asset()->container('footer')->usePath()->add('bootstrap-js', 'plugins/bootstrap/js/bootstrap.bundle.min.js');
+            $theme->asset()->container('footer')->usePath()->add('jquery', 'js/vendor/jquery-3.7.1.min.js', [], [], '3.7.1');
+            $theme->asset()->container('footer')->usePath()->add('bootstrap-js', 'plugins/bootstrap/js/bootstrap.bundle.min.js', [], [], '5.3.3');
             $theme->asset()->container('footer')->usePath()->add('slick-js', 'js/plugins/slick.js');
             $theme->asset()->container('footer')->usePath()
                 ->add('jquery.syotimer-js', 'js/plugins/jquery.syotimer.min.js');

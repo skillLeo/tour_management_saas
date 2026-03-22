@@ -2,8 +2,8 @@
 
 return [
     'name' => 'Modèle de facture',
-    'setting' => 'Paramètres du modèle de facture',
-    'setting_description' => 'Paramètres pour le modèle de facture',
+    'setting' => 'Design et mise en page du modèle',
+    'setting_description' => 'Personnaliser le modèle HTML et les styles CSS de la facture',
     'setting_content' => 'Contenu',
     'preview' => 'Aperçu',
     'preview_heading' => 'Aperçu du modèle de facture',

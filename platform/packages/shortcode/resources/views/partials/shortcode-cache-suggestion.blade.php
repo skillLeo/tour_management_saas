@@ -17,7 +17,7 @@
                 {{ trans('packages/shortcode::shortcode.cache_suggestion.description') }}
                 {{ trans('packages/shortcode::shortcode.cache_suggestion.benefits') }}
             </p>
-            <div class="mt-2">
+            <div class="mt-2 d-flex flex-wrap gap-2">
                 <a
                     href="{{ route('settings.cache') }}#shortcode-cache-settings"
                     class="btn btn-info btn-sm"
@@ -30,7 +30,7 @@
                 </a>
                 <button
                     type="button"
-                    class="btn btn-outline-secondary btn-sm ms-2 dismiss-shortcode-suggestion"
+                    class="btn btn-outline-secondary btn-sm dismiss-shortcode-suggestion"
                 >
                     <x-core::icon
                         name="ti ti-eye-off"

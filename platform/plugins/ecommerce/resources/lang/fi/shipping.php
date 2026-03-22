@@ -192,6 +192,7 @@ return [
         'order_date' => 'Tilauspäivä',
         'scan_qr_code' => 'Skannaa QR-koodi seurataksesi lähetystäsi',
         'total_amount' => 'Kokonaissumma',
+        'amount_to_collect' => 'Kerättävä määrä',
         'cod_amount_to_collect' => 'Kerättävä postiennakkomäärä',
     ],
     'customer_confirmed_delivery_at' => 'Asiakas vahvisti toimituksen hetkellä',

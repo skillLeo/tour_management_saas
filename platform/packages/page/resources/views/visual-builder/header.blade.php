@@ -1,3 +1,10 @@
+@php
+    $refLang = request()->input('ref_lang');
+    $currentLanguage = null;
+    if ($refLang && defined('LANGUAGE_MODULE_SCREEN_NAME') && function_exists('Language')) {
+        $currentLanguage = Language::getCurrentAdminLanguage();
+    }
+@endphp
 <header
     class="navbar navbar-expand-md d-print-none vb-header"
     id="vb-header"
@@ -6,6 +13,14 @@
         <div class="navbar-brand d-flex align-items-center gap-2">
             <x-core::icon name="ti ti-layout-dashboard" />
             <span class="fw-bold">{{ $page->name }}</span>
+            @if ($currentLanguage)
+                <span class="badge bg-info-lt d-flex align-items-center gap-1">
+                    @if (!empty($currentLanguage['lang_flag']))
+                        <span class="flag-icon flag-icon-{{ $currentLanguage['lang_flag'] }}"></span>
+                    @endif
+                    {{ $currentLanguage['lang_name'] ?? $refLang }}
+                </span>
+            @endif
             <span
                 class="badge bg-warning-lt d-none"
                 id="vb-unsaved-indicator"
@@ -102,6 +117,8 @@
                 </div>
             </div>
 
+            {!! apply_filters('page_visual_builder_header_actions', '', $page) !!}
+
             <div class="nav-item">
                 <div class="btn-list">
                     <x-core::button
@@ -115,7 +132,7 @@
 
                     <x-core::button
                         tag="a"
-                        :href="route('pages.edit', $page)"
+                        :href="route('pages.edit', $page) . ($refLang ? '?' . http_build_query(['ref_lang' => $refLang]) : '')"
                         id="vb-close-btn"
                         color="secondary"
                         icon="ti ti-x"

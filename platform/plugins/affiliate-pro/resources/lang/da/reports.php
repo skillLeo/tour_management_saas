@@ -1,0 +1,73 @@
+<?php
+
+return [
+    'name' => 'Rapporter',
+    'commission_this_month' => 'Provision denne måned',
+    'pending_commissions' => 'Afventende provisioner',
+    'approved_commissions' => 'Godkendte provisioner',
+    'pending_withdrawals' => 'Afventende hævninger',
+    'approved_withdrawals' => 'Godkendte hævninger',
+    'active_affiliates' => 'Aktive partnere',
+    'affiliate_stats' => 'Partnerstatistik',
+    'top_affiliates' => 'Top partnere',
+    'recent_commissions' => 'Seneste Provisioner',
+    'recent_withdrawals' => 'Seneste Hævninger',
+    'commission_chart' => 'Provisionsdiagram',
+    'withdrawal_chart' => 'Hævningsdiagram',
+
+    // Enhanced reports
+    'geographic_data' => 'Geografiske Data',
+    'top_countries' => 'Toplande',
+    'top_cities' => 'Topbyer',
+    'short_link_performance' => 'Kort Link-præstation',
+    'top_performing_links' => 'Bedst Præsterende Links',
+    'link' => 'Link',
+    'clicks' => 'Klik',
+    'conversions' => 'Konverteringer',
+    'commission_trends' => 'Provisionstendenser',
+    'commission_amount' => 'Provisionsbeløb',
+    'loading' => 'Indlæser...',
+    'no_data' => 'Ingen data tilgængelige',
+    'no_commission_data' => 'Ingen provisionsdata tilgængelige for den valgte periode',
+    'no_geographic_data' => 'Ingen geografiske data tilgængelige for den valgte periode',
+    'no_city_data' => 'Ingen bydata tilgængelige for det valgte land',
+    'chart_error' => 'Fejl ved rendering af diagram. Prøv at opdatere siden.',
+
+    // Performance metrics widget
+    'performance_metrics' => 'Præstationsmålinger',
+    'total_clicks' => 'Totale Klik',
+    'earnings' => 'Indtægter',
+    'avg_commission' => 'Gennemsn. Provision',
+    'avg_conversion_rate' => 'Gennemsn. Konverteringsrate',
+    'vs_previous' => 'sammenlignet med forrige',
+    'no_change' => 'Ingen ændring',
+    'performance_over_time' => 'Præstation Over Tid',
+    'clicks_conversions' => 'Klik & Konverteringer',
+
+    // Conversion rate widget
+    'conversion_rate_analysis' => 'Konverteringsrateanalyse',
+    'overall_conversion_rate' => 'Samlet Konverteringsrate',
+    'conversion_breakdown' => 'Konverteringsfordeling',
+    'source' => 'Kilde',
+    'rate' => 'Sats',
+    'conversion_rate_percentage' => 'Konverteringsrate (%)',
+    'optimization_opportunity' => 'Optimeringsmulighed',
+    'conversion_rate_below_average' => 'Din konverteringsrate er under gennemsnittet. Overvej disse tips:',
+    'target_relevant_audiences' => 'Henvis til mere relevante målgrupper',
+    'improve_promotional_content' => 'Forbedr dit markedsføringsindhold',
+    'focus_higher_conversion_products' => 'Fokuser på produkter med højere konverteringsrate',
+    'great_performance' => 'Fremragende Præstation!',
+    'excellent_conversion_rate' => 'Din konverteringsrate er fremragende. Bliv ved med det gode arbejde!',
+    'good_performance' => 'God Præstation',
+    'average_conversion_rate' => 'Din konverteringsrate ligger inden for det gennemsnitlige interval. Der er plads til forbedring.',
+
+    // Date ranges (copied from ecommerce for consistency)
+    'ranges' => [
+        'today' => 'I dag',
+        'this_week' => 'Denne uge',
+        'last_7_days' => 'Seneste 7 dage',
+        'last_30_days' => 'Seneste 30 dage',
+        'this_month' => 'Denne måned',
+        'this_year' => 'Dette år',
+    ],
+];

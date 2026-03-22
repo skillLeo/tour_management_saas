@@ -49,6 +49,8 @@ class Store extends BaseModel
         'certificate_file',
         'government_id_file',
         'tax_id',
+        'tax_country',
+        'tax_state',
         'is_verified',
         'verified_at',
         'verified_by',

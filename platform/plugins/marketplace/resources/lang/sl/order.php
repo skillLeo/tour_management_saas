@@ -12,4 +12,16 @@ return [
     'return' => [
         'description' => 'Vrnjeno iz naročila #:order',
     ],
+    'thank_you' => [
+        'count_orders' => ':count naročil',
+        'order' => 'Naročilo',
+        'thank_you_name' => 'Hvala, :name!',
+        'order_confirmed' => 'Vaše naročilo je potrjeno',
+        'order_accepted' => 'Sprejeli smo vaše naročilo in ga pripravljamo.',
+        'customer' => 'Stranka',
+        'need_help' => 'Potrebujete pomoč?',
+        'contact_us' => 'Kontaktirajte nas',
+        'view_order_history' => 'Ogled zgodovine naročil',
+        'order_total' => 'Skupaj naročilo',
+    ],
 ];

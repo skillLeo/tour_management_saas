@@ -12,4 +12,16 @@ return [
     'return' => [
         'description' => 'Zurückgegeben aus Bestellung #:order',
     ],
+    'thank_you' => [
+        'count_orders' => ':count Bestellungen',
+        'order' => 'Bestellung',
+        'thank_you_name' => 'Danke, :name!',
+        'order_confirmed' => 'Ihre Bestellung ist bestätigt',
+        'order_accepted' => 'Wir haben Ihre Bestellung angenommen und bereiten sie vor.',
+        'customer' => 'Kunde',
+        'need_help' => 'Brauchen Sie Hilfe?',
+        'contact_us' => 'Kontaktieren Sie uns',
+        'view_order_history' => 'Bestellverlauf anzeigen',
+        'order_total' => 'Bestellsumme',
+    ],
 ];

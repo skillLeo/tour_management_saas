@@ -1,0 +1,73 @@
+<?php
+
+return [
+    'name' => 'Αναφορές',
+    'commission_this_month' => 'Προμήθεια αυτού του μήνα',
+    'pending_commissions' => 'Εκκρεμείς προμήθειες',
+    'approved_commissions' => 'Εγκεκριμένες προμήθειες',
+    'pending_withdrawals' => 'Εκκρεμείς αναλήψεις',
+    'approved_withdrawals' => 'Εγκεκριμένες αναλήψεις',
+    'active_affiliates' => 'Ενεργοί συνεργάτες',
+    'affiliate_stats' => 'Στατιστικά Συνεργατών',
+    'top_affiliates' => 'Κορυφαίοι Συνεργάτες',
+    'recent_commissions' => 'Πρόσφατες Προμήθειες',
+    'recent_withdrawals' => 'Πρόσφατες Αναλήψεις',
+    'commission_chart' => 'Γράφημα Προμηθειών',
+    'withdrawal_chart' => 'Γράφημα Αναλήψεων',
+
+    // Enhanced reports
+    'geographic_data' => 'Γεωγραφικά Δεδομένα',
+    'top_countries' => 'Κορυφαίες Χώρες',
+    'top_cities' => 'Κορυφαίες Πόλεις',
+    'short_link_performance' => 'Απόδοση Σύντομων Συνδέσμων',
+    'top_performing_links' => 'Κορυφαίοι Σύνδεσμοι σε Απόδοση',
+    'link' => 'Σύνδεσμος',
+    'clicks' => 'Κλικ',
+    'conversions' => 'Μετατροπές',
+    'commission_trends' => 'Τάσεις Προμηθειών',
+    'commission_amount' => 'Ποσό Προμήθειας',
+    'loading' => 'Φόρτωση...',
+    'no_data' => 'Δεν υπάρχουν διαθέσιμα δεδομένα',
+    'no_commission_data' => 'Δεν υπάρχουν διαθέσιμα δεδομένα προμηθειών για την επιλεγμένη περίοδο',
+    'no_geographic_data' => 'Δεν υπάρχουν διαθέσιμα γεωγραφικά δεδομένα για την επιλεγμένη περίοδο',
+    'no_city_data' => 'Δεν υπάρχουν διαθέσιμα δεδομένα πόλεων για την επιλεγμένη χώρα',
+    'chart_error' => 'Σφάλμα απόδοσης γραφήματος. Παρακαλώ δοκιμάστε να ανανεώσετε τη σελίδα.',
+
+    // Performance metrics widget
+    'performance_metrics' => 'Μετρήσεις Απόδοσης',
+    'total_clicks' => 'Συνολικά Κλικ',
+    'earnings' => 'Κέρδη',
+    'avg_commission' => 'Μέση Προμήθεια',
+    'avg_conversion_rate' => 'Μέσο Ποσοστό Μετατροπής',
+    'vs_previous' => 'έναντι προηγούμενης',
+    'no_change' => 'Χωρίς αλλαγή',
+    'performance_over_time' => 'Απόδοση με την Πάροδο του Χρόνου',
+    'clicks_conversions' => 'Κλικ & Μετατροπές',
+
+    // Conversion rate widget
+    'conversion_rate_analysis' => 'Ανάλυση Ποσοστού Μετατροπής',
+    'overall_conversion_rate' => 'Συνολικό Ποσοστό Μετατροπής',
+    'conversion_breakdown' => 'Ανάλυση Μετατροπών',
+    'source' => 'Πηγή',
+    'rate' => 'Ποσοστό',
+    'conversion_rate_percentage' => 'Ποσοστό Μετατροπής (%)',
+    'optimization_opportunity' => 'Ευκαιρία Βελτιστοποίησης',
+    'conversion_rate_below_average' => 'Το ποσοστό μετατροπής σας είναι κάτω από το μέσο όρο. Λάβετε υπόψη αυτές τις συμβουλές:',
+    'target_relevant_audiences' => 'Στοχεύστε πιο σχετικό κοινό',
+    'improve_promotional_content' => 'Βελτιώστε το διαφημιστικό σας περιεχόμενο',
+    'focus_higher_conversion_products' => 'Εστιάστε σε προϊόντα με υψηλότερα ποσοστά μετατροπής',
+    'great_performance' => 'Εξαιρετική Απόδοση!',
+    'excellent_conversion_rate' => 'Το ποσοστό μετατροπής σας είναι εξαιρετικό. Συνεχίστε την καλή δουλειά!',
+    'good_performance' => 'Καλή Απόδοση',
+    'average_conversion_rate' => 'Το ποσοστό μετατροπής σας είναι εντός του μέσου όρου. Υπάρχει περιθώριο βελτίωσης.',
+
+    // Date ranges (copied from ecommerce for consistency)
+    'ranges' => [
+        'today' => 'Σήμερα',
+        'this_week' => 'Αυτή την εβδομάδα',
+        'last_7_days' => 'Τελευταίες 7 ημέρες',
+        'last_30_days' => 'Τελευταίες 30 ημέρες',
+        'this_month' => 'Αυτόν τον μήνα',
+        'this_year' => 'Φέτος',
+    ],
+];

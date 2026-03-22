@@ -1,0 +1,53 @@
+<?php
+
+return [
+    'name' => 'Commissioni',
+    'view' => 'Visualizza commissione #:id',
+    'affiliate' => 'Affiliato',
+    'order' => 'Ordine',
+    'amount' => 'Importo',
+    'description' => 'Descrizione',
+    'status' => 'Stato',
+    'created_at' => 'Creato il',
+    'approve' => 'Approva',
+    'reject' => 'Rifiuta',
+    'approve_success' => 'Commissione approvata con successo',
+    'reject_success' => 'Commissione rifiutata con successo',
+    'approve_commission' => 'Approva commissione',
+    'reject_commission' => 'Rifiuta commissione',
+    'approve_commission_confirmation' => 'Sei sicuro di voler approvare la commissione #:id? Questa azione non può essere annullata.',
+    'reject_commission_confirmation' => 'Sei sicuro di voler rifiutare la commissione #:id? Questa azione non può essere annullata.',
+    'statuses' => [
+        'pending' => 'In sospeso',
+        'approved' => 'Approvata',
+        'rejected' => 'Rifiutata',
+    ],
+
+    // Customer-facing translations
+    'history' => 'Cronologia commissioni',
+    'no_commissions' => 'Nessuna commissione trovata.',
+    'no_commissions_description' => 'Non hai ancora guadagnato commissioni. Inizia a promuovere i nostri prodotti per guadagnare la tua prima commissione!',
+    'commission_id' => 'ID commissione',
+    'order_id' => 'ID ordine',
+    'customer' => 'Cliente',
+    'product' => 'Prodotto',
+    'type' => 'Tipo',
+    'date' => 'Data',
+
+    // New UI translations
+    'total_commissions' => ':count commissioni totali',
+    'filter_by_status' => 'Filtra per stato',
+    'all_statuses' => 'Tutti gli stati',
+    'date_from' => 'Data da',
+    'date_to' => 'Data a',
+    'filter' => 'Filtra',
+    'clear' => 'Cancella',
+    'approved_earnings' => 'Guadagni approvati',
+    'pending_earnings' => 'Guadagni in sospeso',
+    'successful_orders' => 'Ordini riusciti',
+    'approval_rate' => 'Tasso di approvazione',
+    'commission_earned' => 'Commissione guadagnata',
+    'showing_results' => 'Mostra da :from a :to di :total risultati',
+    'start_promoting' => 'Inizia a promuovere',
+    'back_to_dashboard' => 'Torna alla dashboard',
+];

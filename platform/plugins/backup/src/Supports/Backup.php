@@ -228,7 +228,42 @@ class Backup
 
         BaseHelper::maximumExecutionTimeAndMemoryLimit();
 
-        if (! $this->zipper->compress($source, $file)) {
+        $zip = new \ZipArchive();
+        if ($zip->open($file, \ZipArchive::CREATE | \ZipArchive::OVERWRITE) === true) {
+            $backupPathStr = str_replace('\\', '/', $this->getBackupPath());
+            $directoryIterator = new \RecursiveDirectoryIterator($source, \RecursiveDirectoryIterator::SKIP_DOTS);
+            $files = new \RecursiveIteratorIterator(
+                $directoryIterator,
+                \RecursiveIteratorIterator::SELF_FIRST,
+                \RecursiveIteratorIterator::CATCH_GET_CHILD
+            );
+            
+            foreach ($files as $name => $item) {
+                $realPathStr = str_replace('\\', '/', $item->getRealPath() ?: $name);
+                if (str_starts_with($realPathStr, $backupPathStr)) {
+                    continue;
+                }
+                
+                if (!$item->isReadable()) {
+                    continue;
+                }
+
+                $sourceClean = str_replace('\\', '/', rtrim($source, '/\\'));
+                $nameClean = str_replace('\\', '/', $name);
+                $relativePath = substr($nameClean, strlen($sourceClean) + 1);
+                
+                if ($item->isDir()) {
+                    $zip->addEmptyDir($relativePath);
+                } elseif ($item->isFile()) {
+                    $zip->addFile($item->getRealPath(), $relativePath);
+                }
+            }
+            $success = $zip->close();
+        } else {
+            $success = false;
+        }
+
+        if (! $success) {
             $this->deleteFolderBackup($this->folder);
         }
 

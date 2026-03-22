@@ -2,8 +2,8 @@
 
 return [
     'name' => 'Fakturaskabelon',
-    'setting' => 'Fakturaskabelon indstillinger',
-    'setting_description' => 'Indstillinger for fakturaskabelon',
+    'setting' => 'Template design & layout',
+    'setting_description' => 'Customize invoice HTML template and CSS styles',
     'setting_content' => 'Indhold',
     'preview' => 'Forhåndsvisning',
     'preview_heading' => 'Forhåndsvisning af fakturaskabelon',

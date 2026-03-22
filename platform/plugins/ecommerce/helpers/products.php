@@ -296,12 +296,12 @@ if (! function_exists('the_product_price')) {
             'close_wrap_sale' => '</ins>',
         ], $htmlWrap);
 
-        if ($product->front_sale_price !== $product->price) {
-            return $htmlWrapParams['open_wrap_price'] . format_price($product->price) . $htmlWrapParams['close_wrap_price'] .
+        if ($product->front_sale_price !== $product->display_price) {
+            return $htmlWrapParams['open_wrap_price'] . format_price($product->display_price) . $htmlWrapParams['close_wrap_price'] .
                 $htmlWrapParams['open_wrap_sale'] . format_price($product->front_sale_price) . $htmlWrapParams['close_wrap_sale'];
         }
 
-        return $htmlWrapParams['open_wrap_sale'] . $product->price . $htmlWrapParams['close_wrap_sale'];
+        return $htmlWrapParams['open_wrap_sale'] . format_price($product->display_price) . $htmlWrapParams['close_wrap_sale'];
     }
 }
 
@@ -372,6 +372,7 @@ if (! function_exists('get_cross_sale_products')) {
              */
             return $product
                 ->crossSales()
+                ->where('ec_products.is_variation', 0)
                 ->limit((int) $limit)
                 ->with($with)
                 ->wherePublished()
@@ -391,6 +392,7 @@ if (! function_exists('get_up_sale_products')) {
          */
         return $product
             ->upSales()
+            ->where('ec_products.is_variation', 0)
             ->limit($limit)
             ->with($with)
             ->wherePublished()

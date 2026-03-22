@@ -2,8 +2,8 @@
 
 return [
     'name' => 'Arve mall',
-    'setting' => 'Arve malli seaded',
-    'setting_description' => 'Arve malli seaded',
+    'setting' => 'Template design & layout',
+    'setting_description' => 'Customize invoice HTML template and CSS styles',
     'setting_content' => 'Sisu',
     'preview' => 'Eelvaade',
     'preview_heading' => 'Arve malli eelvaade',

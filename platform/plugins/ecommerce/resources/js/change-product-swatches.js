@@ -243,28 +243,38 @@ class ChangeProductSwatches {
                 })
             }
 
-            const url = new URL(window.location)
-
             if (id) {
                 _self.updateSelectingAttributes(slugAttributes, $('#' + id))
             }
 
-            $.each(slugAttributes, (name, value) => {
-                url.searchParams.set(name, value)
-            })
+            // Skip URL updates if data-update-url="false" is set on the container
+            const shouldUpdateUrl = $productAttributes.data('update-url') !== false
 
-            if (updateUrl && url != window.location.href) {
-                window.history.pushState(
-                    { formData: { attributes: res.data.attributes }, data: res, product_attributes_id: id, slugAttributes },
-                    message,
-                    url
-                )
-            } else {
-                window.history.replaceState(
-                    { formData: { attributes: res.data.attributes }, data: res, product_attributes_id: id, slugAttributes },
-                    message,
-                    url
-                )
+            if (shouldUpdateUrl) {
+                const url = new URL(window.location)
+
+                $.each(slugAttributes, (name, value) => {
+                    url.searchParams.set(name, value)
+                })
+
+                if (updateUrl && url != window.location.href) {
+                    window.history.pushState(
+                        { formData: { attributes: res.data.attributes }, data: res, product_attributes_id: id, slugAttributes },
+                        message,
+                        url
+                    )
+                } else {
+                    window.history.replaceState(
+                        { formData: { attributes: res.data.attributes }, data: res, product_attributes_id: id, slugAttributes },
+                        message,
+                        url
+                    )
+                }
+
+                const $clipboardBtn = $('[data-bb-toggle="social-sharing-clipboard"]')
+                if ($clipboardBtn.length) {
+                    $clipboardBtn.attr('data-clipboard-text', url.href)
+                }
             }
         }
     }

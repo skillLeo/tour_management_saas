@@ -55,6 +55,12 @@ return [
     'selected_items_move_success' => 'নির্বাচিত আইটেমগুলি :name এ সফলভাবে সরানো হয়েছে!',
     'selected_items_move_error' => 'নির্বাচিত আইটেমগুলি :name এ সরাতে ত্রুটি',
     'destination' => 'গন্তব্য',
+    'move' => 'Move',
+    'move_items' => 'Move items',
+    'move_here' => 'Move here',
+    'move_to_root' => 'Move to root folder',
+    'root' => 'Root',
+    'go_up' => 'Go up',
     'restore_error' => 'নির্বাচিত আইটেম পুনরুদ্ধার করতে ত্রুটি',
     'restore_success' => 'নির্বাচিত আইটেমগুলি সফলভাবে পুনরুদ্ধার করা হয়েছে!',
     'copy_success' => 'নির্বাচিত আইটেমগুলি সফলভাবে কপি করা হয়েছে!',
@@ -133,7 +139,12 @@ return [
         ],
 
         'download' => [
-            'error' => 'কোনো ফাইল নির্বাচন করা হয়নি বা এই ফাইলগুলি ডাউনলোড করা যাচ্ছে না',
+            'error' => 'No files selected or cannot download these files',
+        ],
+
+        'move' => [
+            'select_destination' => 'Please select a destination folder',
+            'same_location' => 'Items are already in this location',
         ],
 
         'actions_list' => [

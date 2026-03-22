@@ -22,4 +22,6 @@ return [
     '503_temporarily_down' => 'Tạm thời ngừng hoạt động để bảo trì',
     '503_admin_instruction' => 'Nếu bạn là quản trị viên và không thể truy cập trang web của mình sau khi bật chế độ bảo trì, chỉ cần xóa tệp <strong>storage/framework/down</strong> để tắt chế độ bảo trì.',
     'take_me_home' => 'Quay về trang chủ',
+    'bad_request' => 'Yêu cầu không hợp lệ',
+
 ];

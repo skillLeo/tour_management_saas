@@ -20,6 +20,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Support\Collection as IlluminateCollection;
 use Illuminate\Support\Facades\DB;
 
@@ -35,6 +36,7 @@ class Order extends BaseModel
         'shipping_method',
         'shipping_option',
         'shipping_amount',
+        'shipping_tax_amount',
         'payment_fee',
         'description',
         'coupon_code',
@@ -60,15 +62,20 @@ class Order extends BaseModel
     protected static function booted(): void
     {
         self::deleted(function (Order $order): void {
-            $order->loadMissing([
+            $relations = [
                 'products',
                 'shipment',
                 'histories',
                 'address',
                 'invoice',
-                'payment',
                 'orderMetadata',
-            ]);
+            ];
+
+            if (is_plugin_active('payment')) {
+                $relations[] = 'payment';
+            }
+
+            $order->loadMissing($relations);
 
             $order->restockProductQuantities();
 
@@ -172,12 +179,16 @@ class Order extends BaseModel
 
     public function payment(): BelongsTo
     {
+        if (! is_plugin_active('payment')) {
+            return $this->belongsTo(self::class, 'payment_id')->whereRaw('1 = 0')->withDefault();
+        }
+
         return $this->belongsTo(Payment::class, 'payment_id')->withDefault();
     }
 
-    public function invoice(): HasOne
+    public function invoice(): MorphOne
     {
-        return $this->hasOne(Invoice::class, 'reference_id')->withDefault();
+        return $this->morphOne(Invoice::class, 'reference')->withDefault();
     }
 
     public function taxInformation(): HasOne
@@ -276,7 +287,7 @@ class Order extends BaseModel
 
     public function getDiscountAmountFormatAttribute(): string
     {
-        return format_price($this->shipping_amount);
+        return format_price($this->discount_amount);
     }
 
     public function isInvoiceAvailable(): bool
@@ -375,6 +386,14 @@ class Order extends BaseModel
 
     public static function countRevenueByDateRange(CarbonInterface $startDate, CarbonInterface $endDate): float
     {
+        if (! is_plugin_active('payment')) {
+            return (float) self::query()
+                ->whereDate('created_at', '>=', $startDate)
+                ->whereDate('created_at', '<=', $endDate)
+                ->where('is_finished', true)
+                ->sum('amount');
+        }
+
         return self::query()
             ->leftJoin('payments', 'payments.id', '=', 'ec_orders.payment_id')
             ->where(function ($q) use ($startDate, $endDate): void {
@@ -396,6 +415,19 @@ class Order extends BaseModel
         CarbonInterface $endDate,
         $select = []
     ): Collection {
+        if (! is_plugin_active('payment')) {
+            return self::query()
+                ->whereDate('created_at', '>=', $startDate)
+                ->whereDate('created_at', '<=', $endDate)
+                ->where('is_finished', true)
+                ->groupBy(DB::raw('DATE(created_at)'))
+                ->select([
+                    DB::raw('DATE(created_at) AS date'),
+                    DB::raw('SUM(amount) as revenue'),
+                ])
+                ->get();
+        }
+
         if (empty($select)) {
             $select = [
                 DB::raw('DATE(COALESCE(payments.created_at, ec_orders.created_at)) AS date'),

@@ -4,14 +4,17 @@ namespace Botble\Ecommerce\Services;
 
 use Botble\Base\Enums\BaseStatusEnum;
 use Botble\Ecommerce\Facades\Cart;
+use Botble\Ecommerce\Facades\EcommerceHelper;
 use Botble\Ecommerce\Services\Products\ProductCrossSalePriceService;
+use Botble\Ecommerce\Services\Products\ProductUpSalePriceService;
+use Illuminate\Support\Arr;
 
 class HandleApplyProductCrossSaleService
 {
     public function __construct(
-        protected ProductCrossSalePriceService $productCrossSalePriceService
+        protected ProductCrossSalePriceService $productCrossSalePriceService,
+        protected ProductUpSalePriceService $productUpSalePriceService
     ) {
-
     }
 
     public function handle(): void
@@ -57,10 +60,20 @@ class HandleApplyProductCrossSaleService
 
         $this->productCrossSalePriceService->applyProducts($crossSaleProducts);
 
+        // Disable auto-loading of up-sale context to prevent up-sale pricing from being
+        // incorrectly applied to products without cartItem attached. This ensures only
+        // cross-sale pricing is applied here, not up-sale pricing which depends on
+        // individual cart item's upsale_reference_product.
+        $this->productUpSalePriceService->disableAutoLoad();
+
         $productPrices = [];
 
-        foreach ($products as $product) {
-            $productPrices[$product->getKey()] = $product->front_sale_price;
+        try {
+            foreach ($products as $product) {
+                $productPrices[$product->getKey()] = $product->front_sale_price;
+            }
+        } finally {
+            $this->productUpSalePriceService->enableAutoLoad();
         }
 
         foreach ($cart->content() as $rowId => $cartItem) {
@@ -68,9 +81,24 @@ class HandleApplyProductCrossSaleService
                 continue;
             }
 
-            $newPrice = $productPrices[$cartItem->id];
+            if (apply_filters('ecommerce_skip_cart_item_price_update', false, $cartItem)) {
+                continue;
+            }
 
-            if ($cartItem->price == $newPrice) {
+            $newPrice = $productPrices[$cartItem->id];
+            $options = $cartItem->options->toArray();
+
+            $newPriceWithOptions = $newPrice;
+            if (
+                EcommerceHelper::isEnabledProductOptions() &&
+                ($productOptions = Arr::get($options, 'options', [])) &&
+                is_array($productOptions)
+            ) {
+                $priceResult = $cart->getPriceByOptions($newPrice, $productOptions);
+                $newPriceWithOptions = $priceResult['price'];
+            }
+
+            if ($cartItem->price == $newPriceWithOptions) {
                 continue;
             }
 
@@ -81,7 +109,7 @@ class HandleApplyProductCrossSaleService
                 $cartItem->name,
                 $cartItem->qty,
                 $newPrice,
-                $cartItem->options->toArray()
+                $options
             );
         }
     }

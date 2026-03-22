@@ -85,6 +85,8 @@ return [
     'total' => 'Totaal',
     'status' => 'Status',
     'default_payment_method' => 'Default payment method',
+    'sort_order_instruction' => 'Sleep en laat los om betaalmethoden te herordenen op de afrekenpagina.',
+    'default_method_instruction' => 'Klik op het stericoon om een betaalmethode als standaard in te stellen.',
     'turn_off_success' => 'Turn off payment method successfully!',
     'saved_payment_settings_success' => 'Saved payment settings successfully!',
     'payment_name' => 'Naam',

@@ -1,0 +1,66 @@
+<?php
+
+return [
+    'name' => '出金',
+    'view' => '出金#:idを表示',
+    'affiliate' => 'アフィリエイト',
+    'amount' => '金額',
+    'status' => 'ステータス',
+    'payment_method' => '支払い方法',
+    'payment_details' => '支払い詳細',
+    'notes' => 'メモ',
+    'created_at' => '作成日',
+    'approve' => '承認',
+    'reject' => '却下',
+    'approve_success' => '出金が正常に承認されました',
+    'reject_success' => '出金が正常に却下されました',
+    'approve_withdrawal' => '出金を承認',
+    'reject_withdrawal' => '出金を却下',
+    'approve_withdrawal_confirmation' => '出金#:idを承認してもよろしいですか？この操作は元に戻せません。',
+    'reject_withdrawal_confirmation' => '出金#:idを却下してもよろしいですか？この操作は元に戻せません。',
+    'statuses' => [
+        'pending' => '保留中',
+        'processing' => '処理中',
+        'approved' => '承認済み',
+        'rejected' => '却下済み',
+        'canceled' => 'キャンセル済み',
+    ],
+
+    // Customer-facing translations
+    'request' => '出金リクエスト',
+    'history' => '出金履歴',
+    'no_withdrawals' => '出金が見つかりませんでした。',
+    'withdrawal_id' => '出金ID',
+    'date' => '日付',
+    'amount_required' => '出金額は必須です。',
+    'amount_numeric' => '出金額は数値でなければなりません。',
+    'amount_min' => '出金額は0以上でなければなりません。',
+    'payment_method_required' => '支払い方法は必須です。',
+    'payment_details_required' => '支払い詳細は必須です。',
+    'account_not_approved' => 'アフィリエイトアカウントがまだ承認されていません。',
+    'minimum_amount' => '最小出金額は:amountです。',
+    'insufficient_balance' => 'この出金に十分な残高がありません。',
+    'request_submitted' => '出金リクエストが正常に送信されました。',
+    'submit_request' => '出金リクエストを送信',
+    'available_balance' => '利用可能残高',
+    'enter_amount' => '金額を入力',
+    'select_payment_method' => '支払い方法を選択',
+    'payment_details_placeholder' => '支払い詳細を入力（例: PayPalメール、銀行口座の詳細）',
+    'no_payment_methods_available' => '現在利用可能な支払い方法がありません。管理者にお問い合わせください。',
+
+    // Additional translations for PayoutPaymentMethodsEnum
+    'bank_transfer' => '銀行振込',
+    'paypal' => 'PayPal',
+    'stripe' => 'Stripe',
+    'other' => 'その他',
+    'bank_information' => '銀行情報',
+    'paypal_id' => 'PayPal ID',
+
+    // Payout payment methods
+    'payout_payment_methods' => [
+        'bank_transfer' => '銀行振込',
+        'paypal' => 'PayPal',
+        'stripe' => 'Stripe',
+        'other' => 'その他',
+    ],
+];

@@ -2,8 +2,8 @@
 
 return [
     'name' => '송장 템플릿',
-    'setting' => '송장 템플릿 설정',
-    'setting_description' => '송장 템플릿 설정',
+    'setting' => '템플릿 디자인 및 레이아웃',
+    'setting_description' => '청구서 HTML 템플릿 및 CSS 스타일 사용자 지정',
     'setting_content' => '내용',
     'preview' => '미리보기',
     'preview_heading' => '송장 템플릿 미리보기',

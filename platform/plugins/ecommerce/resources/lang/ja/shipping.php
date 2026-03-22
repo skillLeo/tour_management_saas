@@ -192,6 +192,7 @@ return [
         'order_date' => '注文日',
         'scan_qr_code' => 'QRコードをスキャンして出荷を追跡',
         'total_amount' => '合計金額',
+        'amount_to_collect' => '回収額',
         'cod_amount_to_collect' => '代金引換回収額',
     ],
     'customer_confirmed_delivery_at' => '顧客が配送確認した日時',

@@ -89,6 +89,8 @@ return [
     'total' => 'Montant total',
     'status' => 'Statut',
     'default_payment_method' => 'Mode de paiement par défaut',
+    'sort_order_instruction' => 'Glissez-déposez pour réorganiser les méthodes de paiement sur la page de paiement.',
+    'default_method_instruction' => 'Cliquez sur l\'icône étoile pour définir une méthode de paiement par défaut.',
     'payment_logs' => 'Journaux de paiement',
     'request_data' => 'Données de la requête',
     'response_data' => 'Données de réponse',

@@ -55,6 +55,12 @@ return [
     'selected_items_move_success' => 'Pasirinkti elementai sėkmingai perkelti į :name!',
     'selected_items_move_error' => 'Klaida perkeliant pasirinktus elementus į :name',
     'destination' => 'Paskirties vieta',
+    'move' => 'Move',
+    'move_items' => 'Move items',
+    'move_here' => 'Move here',
+    'move_to_root' => 'Move to root folder',
+    'root' => 'Root',
+    'go_up' => 'Go up',
     'restore_error' => 'Klaida atkuriant pasirinktus elementus',
     'restore_success' => 'Pasirinkti elementai sėkmingai atkurti!',
     'copy_success' => 'Pasirinkti elementai sėkmingai nukopijuoti!',
@@ -133,7 +139,12 @@ return [
         ],
 
         'download' => [
-            'error' => 'Nepasirinkti failai arba nepavyksta atsisiųsti šių failų',
+            'error' => 'No files selected or cannot download these files',
+        ],
+
+        'move' => [
+            'select_destination' => 'Please select a destination folder',
+            'same_location' => 'Items are already in this location',
         ],
 
         'actions_list' => [

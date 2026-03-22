@@ -2,8 +2,8 @@
 
 return [
     'name' => 'Modelo de Fatura',
-    'setting' => 'Configurações do Modelo de Fatura',
-    'setting_description' => 'Configurações para o modelo de fatura',
+    'setting' => 'Template design & layout',
+    'setting_description' => 'Customize invoice HTML template and CSS styles',
     'setting_content' => 'Conteúdo',
     'preview' => 'Visualizar',
     'preview_heading' => 'Visualizar modelo de fatura',

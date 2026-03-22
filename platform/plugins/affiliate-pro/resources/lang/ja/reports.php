@@ -1,0 +1,73 @@
+<?php
+
+return [
+    'name' => 'レポート',
+    'commission_this_month' => '今月のコミッション',
+    'pending_commissions' => '保留中のコミッション',
+    'approved_commissions' => '承認済みコミッション',
+    'pending_withdrawals' => '保留中の出金',
+    'approved_withdrawals' => '承認済み出金',
+    'active_affiliates' => 'アクティブなアフィリエイト',
+    'affiliate_stats' => 'アフィリエイト統計',
+    'top_affiliates' => 'トップアフィリエイト',
+    'recent_commissions' => '最近のコミッション',
+    'recent_withdrawals' => '最近の出金',
+    'commission_chart' => 'コミッションチャート',
+    'withdrawal_chart' => '出金チャート',
+
+    // Enhanced reports
+    'geographic_data' => '地理データ',
+    'top_countries' => 'トップ国',
+    'top_cities' => 'トップ都市',
+    'short_link_performance' => '短縮リンクパフォーマンス',
+    'top_performing_links' => 'トップパフォーマンスリンク',
+    'link' => 'リンク',
+    'clicks' => 'クリック数',
+    'conversions' => 'コンバージョン数',
+    'commission_trends' => 'コミッショントレンド',
+    'commission_amount' => 'コミッション額',
+    'loading' => '読み込み中...',
+    'no_data' => 'データがありません',
+    'no_commission_data' => '選択された期間のコミッションデータがありません',
+    'no_geographic_data' => '選択された期間の地理データがありません',
+    'no_city_data' => '選択された国の都市データがありません',
+    'chart_error' => 'チャートのレンダリングエラー。ページを更新してください。',
+
+    // Performance metrics widget
+    'performance_metrics' => 'パフォーマンス指標',
+    'total_clicks' => '総クリック数',
+    'earnings' => '収益',
+    'avg_commission' => '平均コミッション',
+    'avg_conversion_rate' => '平均コンバージョン率',
+    'vs_previous' => '前回比',
+    'no_change' => '変化なし',
+    'performance_over_time' => '時系列パフォーマンス',
+    'clicks_conversions' => 'クリック数とコンバージョン数',
+
+    // Conversion rate widget
+    'conversion_rate_analysis' => 'コンバージョン率分析',
+    'overall_conversion_rate' => '全体のコンバージョン率',
+    'conversion_breakdown' => 'コンバージョン内訳',
+    'source' => 'ソース',
+    'rate' => '率',
+    'conversion_rate_percentage' => 'コンバージョン率 (%)',
+    'optimization_opportunity' => '最適化の機会',
+    'conversion_rate_below_average' => 'コンバージョン率が平均を下回っています。これらのヒントを検討してください:',
+    'target_relevant_audiences' => 'より関連性の高いオーディエンスをターゲットに',
+    'improve_promotional_content' => 'プロモーションコンテンツを改善',
+    'focus_higher_conversion_products' => 'コンバージョン率の高い製品に注力',
+    'great_performance' => '素晴らしいパフォーマンス！',
+    'excellent_conversion_rate' => 'コンバージョン率が優れています。このまま頑張りましょう！',
+    'good_performance' => '良好なパフォーマンス',
+    'average_conversion_rate' => 'コンバージョン率は平均範囲内です。改善の余地があります。',
+
+    // Date ranges (copied from ecommerce for consistency)
+    'ranges' => [
+        'today' => '今日',
+        'this_week' => '今週',
+        'last_7_days' => '過去7日間',
+        'last_30_days' => '過去30日間',
+        'this_month' => '今月',
+        'this_year' => '今年',
+    ],
+];

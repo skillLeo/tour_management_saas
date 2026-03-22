@@ -3,6 +3,7 @@
 namespace Botble\SimpleSlider\Http\Controllers\API;
 
 use Botble\Api\Http\Controllers\BaseApiController;
+use Botble\Base\Enums\BaseStatusEnum;
 use Botble\Base\Http\Responses\BaseHttpResponse;
 use Botble\Media\Facades\RvMedia;
 use Botble\SimpleSlider\Models\SimpleSlider;
@@ -43,7 +44,7 @@ class SimpleSliderController extends BaseApiController
         $query = SimpleSlider::query()
             ->wherePublished()
             ->with(['sliderItems' => function ($query): void {
-                $query->orderBy('order');
+                $query->where('status', BaseStatusEnum::PUBLISHED)->orderBy('order');
             }]);
 
         // Filter by keys if provided (either from GET or POST)

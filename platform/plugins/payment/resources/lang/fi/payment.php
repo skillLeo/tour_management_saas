@@ -88,6 +88,8 @@ return [
     'total' => 'Yhteensä',
     'status' => 'Tila',
     'default_payment_method' => 'Oletusmaksutapa',
+    'sort_order_instruction' => 'Vedä ja pudota järjestääksesi maksutavat uudelleen kassasivulla.',
+    'default_method_instruction' => 'Napsauta tähtikuvaketta asettaaksesi maksutavan oletukseksi.',
     'payment_logs' => 'Maksulokit',
     'request_data' => 'Pyyntötiedot',
     'response_data' => 'Vastaustiedot',

@@ -1,0 +1,53 @@
+<?php
+
+return [
+    'name' => 'コミッション',
+    'view' => 'コミッション#:idを表示',
+    'affiliate' => 'アフィリエイト',
+    'order' => '注文',
+    'amount' => '金額',
+    'description' => '説明',
+    'status' => 'ステータス',
+    'created_at' => '作成日',
+    'approve' => '承認',
+    'reject' => '却下',
+    'approve_success' => 'コミッションが正常に承認されました',
+    'reject_success' => 'コミッションが正常に却下されました',
+    'approve_commission' => 'コミッションを承認',
+    'reject_commission' => 'コミッションを却下',
+    'approve_commission_confirmation' => 'コミッション#:idを承認してもよろしいですか？この操作は元に戻せません。',
+    'reject_commission_confirmation' => 'コミッション#:idを却下してもよろしいですか？この操作は元に戻せません。',
+    'statuses' => [
+        'pending' => '保留中',
+        'approved' => '承認済み',
+        'rejected' => '却下済み',
+    ],
+
+    // Customer-facing translations
+    'history' => 'コミッション履歴',
+    'no_commissions' => 'コミッションが見つかりませんでした。',
+    'no_commissions_description' => 'まだコミッションを獲得していません。製品を宣伝して最初のコミッションを獲得しましょう！',
+    'commission_id' => 'コミッションID',
+    'order_id' => '注文ID',
+    'customer' => '顧客',
+    'product' => '製品',
+    'type' => 'タイプ',
+    'date' => '日付',
+
+    // New UI translations
+    'total_commissions' => '総コミッション数 :count件',
+    'filter_by_status' => 'ステータスでフィルター',
+    'all_statuses' => 'すべてのステータス',
+    'date_from' => '開始日',
+    'date_to' => '終了日',
+    'filter' => 'フィルター',
+    'clear' => 'クリア',
+    'approved_earnings' => '承認済み収益',
+    'pending_earnings' => '保留中の収益',
+    'successful_orders' => '成功した注文',
+    'approval_rate' => '承認率',
+    'commission_earned' => '獲得コミッション',
+    'showing_results' => ':total件中 :fromから:toまでを表示',
+    'start_promoting' => 'プロモーションを開始',
+    'back_to_dashboard' => 'ダッシュボードに戻る',
+];

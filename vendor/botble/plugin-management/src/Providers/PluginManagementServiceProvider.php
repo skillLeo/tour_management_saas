@@ -65,6 +65,16 @@ class PluginManagementServiceProvider extends ServiceProvider
                                         ->name('packages/plugin-management::plugin.installed_plugins')
                                         ->icon('ti ti-square-check')
                                         ->route('plugins.index')
+                                )
+                                ->registerItem(
+                                    DashboardMenuItem::make()
+                                        ->id('cms-core-plugins-marketplace')
+                                        ->priority(2)
+                                        ->parentId('cms-core-plugins')
+                                        ->name('packages/plugin-management::plugin.add_new_plugin')
+                                        ->icon('ti ti-square-rounded-plus')
+                                        ->route('plugins.new')
+                                        ->permissions('plugins.marketplace')
                                 );
                         }, function (): void {
                             DashboardMenu::make()

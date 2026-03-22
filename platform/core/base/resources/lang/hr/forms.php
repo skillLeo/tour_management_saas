@@ -68,4 +68,6 @@ return [
     'enable_light_mode' => 'Omogući svijetli način rada',
     'enable_dark_mode' => 'Omogući tamni način rada',
     'close' => 'Zatvori',
+    'search_country' => 'Traži državu...',
+    'no_results' => 'Nema pronađenih rezultata',
 ];

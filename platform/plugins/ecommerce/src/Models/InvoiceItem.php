@@ -6,6 +6,7 @@ use Botble\Base\Casts\SafeContent;
 use Botble\Base\Models\BaseModel;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Arr;
 
@@ -49,6 +50,11 @@ class InvoiceItem extends BaseModel
     public function reference(): MorphTo
     {
         return $this->morphTo();
+    }
+
+    public function taxComponents(): HasMany
+    {
+        return $this->hasMany(InvoiceItemTaxComponent::class);
     }
 
     protected function amountFormat(): Attribute

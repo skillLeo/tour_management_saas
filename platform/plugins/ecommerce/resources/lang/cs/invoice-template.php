@@ -2,8 +2,8 @@
 
 return [
     'name' => 'Šablona faktury',
-    'setting' => 'Nastavení šablony faktury',
-    'setting_description' => 'Nastavení pro šablonu faktury',
+    'setting' => 'Template design & layout',
+    'setting_description' => 'Customize invoice HTML template and CSS styles',
     'setting_content' => 'Obsah',
     'preview' => 'Náhled',
     'preview_heading' => 'Náhled šablony faktury',

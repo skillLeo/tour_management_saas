@@ -26,6 +26,8 @@ return [
     'categories' => 'Kategori',
     'category' => 'Kategori',
     'author' => 'Penulis',
+    'author_helper' => 'Select an author from admin users.',
+    'select_author' => 'Select author',
     'is_featured' => 'Ditampilkan?',
     'export' => [
         'description' => 'Eksport catatan ke fail CSV/Excel.',

@@ -1,0 +1,53 @@
+<?php
+
+return [
+    'name' => 'कमीशन',
+    'view' => 'कमीशन देखें #:id',
+    'affiliate' => 'सहयोगी',
+    'order' => 'ऑर्डर',
+    'amount' => 'राशि',
+    'description' => 'विवरण',
+    'status' => 'स्थिति',
+    'created_at' => 'बनाया गया',
+    'approve' => 'स्वीकृत करें',
+    'reject' => 'अस्वीकार करें',
+    'approve_success' => 'कमीशन सफलतापूर्वक स्वीकृत',
+    'reject_success' => 'कमीशन सफलतापूर्वक अस्वीकृत',
+    'approve_commission' => 'कमीशन स्वीकृत करें',
+    'reject_commission' => 'कमीशन अस्वीकार करें',
+    'approve_commission_confirmation' => 'क्या आप वाकई कमीशन #:id को स्वीकृत करना चाहते हैं? यह कार्रवाई पूर्ववत नहीं की जा सकती।',
+    'reject_commission_confirmation' => 'क्या आप वाकई कमीशन #:id को अस्वीकार करना चाहते हैं? यह कार्रवाई पूर्ववत नहीं की जा सकती।',
+    'statuses' => [
+        'pending' => 'लंबित',
+        'approved' => 'स्वीकृत',
+        'rejected' => 'अस्वीकृत',
+    ],
+
+    // Customer-facing translations
+    'history' => 'कमीशन इतिहास',
+    'no_commissions' => 'कोई कमीशन नहीं मिला।',
+    'no_commissions_description' => 'आपने अभी तक कोई कमीशन नहीं कमाया है। अपना पहला कमीशन कमाने के लिए हमारे उत्पादों को बढ़ावा देना शुरू करें!',
+    'commission_id' => 'कमीशन ID',
+    'order_id' => 'ऑर्डर ID',
+    'customer' => 'ग्राहक',
+    'product' => 'उत्पाद',
+    'type' => 'प्रकार',
+    'date' => 'तारीख',
+
+    // New UI translations
+    'total_commissions' => ':count कुल कमीशन',
+    'filter_by_status' => 'स्थिति के अनुसार फ़िल्टर करें',
+    'all_statuses' => 'सभी स्थितियां',
+    'date_from' => 'तारीख से',
+    'date_to' => 'तारीख तक',
+    'filter' => 'फ़िल्टर',
+    'clear' => 'साफ़ करें',
+    'approved_earnings' => 'स्वीकृत आय',
+    'pending_earnings' => 'लंबित आय',
+    'successful_orders' => 'सफल ऑर्डर',
+    'approval_rate' => 'स्वीकृति दर',
+    'commission_earned' => 'अर्जित कमीशन',
+    'showing_results' => ':total में से :from से :to परिणाम दिखा रहे हैं',
+    'start_promoting' => 'प्रचार शुरू करें',
+    'back_to_dashboard' => 'डैशबोर्ड पर वापस जाएं',
+];

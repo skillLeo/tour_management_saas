@@ -89,6 +89,8 @@ return [
     'total' => 'Total',
     'status' => 'Status',
     'default_payment_method' => 'Default payment method',
+    'sort_order_instruction' => 'Drag and drop to reorder payment methods on the checkout page.',
+    'default_method_instruction' => 'Click the star icon to set a payment method as default.',
     'payment_logs' => 'Payment Logs',
     'request_data' => 'Request Data',
     'response_data' => 'Response Data',

@@ -68,4 +68,6 @@ return [
     'enable_dark_mode' => 'ダークモードを有効にする',
     'close' => '閉じる',
     'search_input_placeholder' => '検索...',
+    'search_country' => '国を検索...',
+    'no_results' => '結果が見つかりません',
 ];

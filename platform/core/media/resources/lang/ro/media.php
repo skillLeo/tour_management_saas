@@ -55,6 +55,12 @@ return [
     'selected_items_move_success' => 'Elementele selectate au fost mutate în :name cu succes!',
     'selected_items_move_error' => 'Eroare la mutarea elementelor selectate în :name',
     'destination' => 'Destinație',
+    'move' => 'Move',
+    'move_items' => 'Move items',
+    'move_here' => 'Move here',
+    'move_to_root' => 'Move to root folder',
+    'root' => 'Root',
+    'go_up' => 'Go up',
     'restore_error' => 'Eroare la restaurarea elementelor selectate',
     'restore_success' => 'Elementele selectate au fost restaurate cu succes!',
     'copy_success' => 'Elementele selectate au fost copiate cu succes!',
@@ -133,7 +139,12 @@ return [
         ],
 
         'download' => [
-            'error' => 'Nu sunt selectate fișiere sau nu se pot descărca aceste fișiere',
+            'error' => 'No files selected or cannot download these files',
+        ],
+
+        'move' => [
+            'select_destination' => 'Please select a destination folder',
+            'same_location' => 'Items are already in this location',
         ],
 
         'actions_list' => [

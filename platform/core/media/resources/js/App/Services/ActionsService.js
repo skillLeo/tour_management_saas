@@ -173,6 +173,9 @@ export class ActionsService {
             case 'alt_text':
                 $('#modal_alt_text_items').modal('show').find('form.form-alt-text').data('action', type)
                 break
+            case 'move':
+                $('#modal_move_items').modal('show')
+                break
             case 'crop':
                 $('#modal_crop_image').modal('show').find('form.rv-form').data('action', type)
                 break
@@ -365,7 +368,7 @@ export class ActionsService {
 
             if (!Helpers.hasPermission('folders.edit')) {
                 actionsList.file = Helpers.arrayReject(actionsList.file, (item) => {
-                    return Helpers.inArray(['rename'], item.action)
+                    return Helpers.inArray(['rename', 'move'], item.action)
                 })
 
                 actionsList.user = Helpers.arrayReject(actionsList.user, (item) => {
@@ -427,7 +430,7 @@ export class ActionsService {
 
             if (!Helpers.hasPermission('files.edit')) {
                 actionsList.file = Helpers.arrayReject(actionsList.file, (item) => {
-                    return Helpers.inArray(['rename'], item.action)
+                    return Helpers.inArray(['rename', 'move'], item.action)
                 })
             }
 

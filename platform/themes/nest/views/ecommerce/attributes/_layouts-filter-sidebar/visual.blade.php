@@ -6,8 +6,8 @@
             <ul class="list-filter">
                 @foreach($attributes as $attribute)
                     <li data-slug="{{ $attribute->slug }}"
-                        data-toggle="tooltip"
-                        data-placement="top"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
                         title="{{ $attribute->title }}"
                         class="mx-1">
                         <div class="custom-checkbox">

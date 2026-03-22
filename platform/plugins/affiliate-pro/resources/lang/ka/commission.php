@@ -1,0 +1,53 @@
+<?php
+
+return [
+    'name' => 'კომისიები',
+    'view' => 'კომისიის ნახვა #:id',
+    'affiliate' => 'პარტნიორი',
+    'order' => 'შეკვეთა',
+    'amount' => 'თანხა',
+    'description' => 'აღწერა',
+    'status' => 'სტატუსი',
+    'created_at' => 'შექმნის თარიღი',
+    'approve' => 'დამტკიცება',
+    'reject' => 'უარყოფა',
+    'approve_success' => 'კომისია წარმატებით დამტკიცდა',
+    'reject_success' => 'კომისია წარმატებით უარყოფილია',
+    'approve_commission' => 'კომისიის დამტკიცება',
+    'reject_commission' => 'კომისიის უარყოფა',
+    'approve_commission_confirmation' => 'დარწმუნებული ხართ, რომ გსურთ კომისიის დამტკიცება #:id? ეს ქმედება შეუქცევადია.',
+    'reject_commission_confirmation' => 'დარწმუნებული ხართ, რომ გსურთ კომისიის უარყოფა #:id? ეს ქმედება შეუქცევადია.',
+    'statuses' => [
+        'pending' => 'მოლოდინში',
+        'approved' => 'დამტკიცებული',
+        'rejected' => 'უარყოფილი',
+    ],
+
+    // Customer-facing translations
+    'history' => 'კომისიების ისტორია',
+    'no_commissions' => 'კომისიები არ მოიძებნა.',
+    'no_commissions_description' => 'თქვენ ჯერ არ გაქვთ მიღებული კომისიები. დაიწყეთ ჩვენი პროდუქტების პოპულარიზაცია პირველი კომისიის მისაღებად!',
+    'commission_id' => 'კომისიის ID',
+    'order_id' => 'შეკვეთის ID',
+    'customer' => 'კლიენტი',
+    'product' => 'პროდუქტი',
+    'type' => 'ტიპი',
+    'date' => 'თარიღი',
+
+    // New UI translations
+    'total_commissions' => ':count სულ კომისიები',
+    'filter_by_status' => 'ფილტრი სტატუსით',
+    'all_statuses' => 'ყველა სტატუსი',
+    'date_from' => 'თარიღიდან',
+    'date_to' => 'თარიღამდე',
+    'filter' => 'ფილტრი',
+    'clear' => 'გასუფთავება',
+    'approved_earnings' => 'დამტკიცებული შემოსავალი',
+    'pending_earnings' => 'მოლოდინში შემოსავალი',
+    'successful_orders' => 'წარმატებული შეკვეთები',
+    'approval_rate' => 'დამტკიცების მაჩვენებელი',
+    'commission_earned' => 'მიღებული კომისია',
+    'showing_results' => 'ნაჩვენებია :from-დან :to-მდე :total-დან',
+    'start_promoting' => 'პოპულარიზაციის დაწყება',
+    'back_to_dashboard' => 'დაბრუნება დაფაზე',
+];

@@ -43,4 +43,11 @@ abstract class PluginOperationAbstract
     {
         // Run when a plugin is updated
     }
+
+    public static function getLicenseSettingKey(): ?string
+    {
+        // Return the setting key for this plugin's license/purchase code
+        // Example: return 'plugin_name_purchase_code';
+        return null;
+    }
 }

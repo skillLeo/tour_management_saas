@@ -13,6 +13,9 @@ class ReturnSettingRequest extends Request
             'is_enabled_order_return' => $onOffRule = new OnOffRule(),
             'can_custom_return_product_quantity' => $onOffRule,
             'returnable_days' => ['nullable', 'integer', 'min:1'],
+            'allow_customer_upload_image_in_return' => $onOffRule,
+            'return_max_file_size' => ['nullable', 'integer', 'min:1', 'max:1024'],
+            'return_max_file_number' => ['nullable', 'integer', 'min:1', 'max:10'],
         ];
     }
 }

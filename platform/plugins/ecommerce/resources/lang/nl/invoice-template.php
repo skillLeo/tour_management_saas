@@ -2,8 +2,8 @@
 
 return [
     'name' => 'Factuur Sjabloon',
-    'setting' => 'Factuur Sjabloon Instellingen',
-    'setting_description' => 'Instellingen voor Factuur sjabloon',
+    'setting' => 'Sjabloon ontwerp & layout',
+    'setting_description' => 'Pas HTML-sjabloon en CSS-stijlen van factuur aan',
     'setting_content' => 'Inhoud',
     'preview' => 'Voorvertoning',
     'preview_heading' => 'Voorvertoning Factuur sjabloon',

@@ -2,7 +2,7 @@
 
 return [
     'name' => 'Produkter',
-    'description' => 'Visa och uppdatera dina produktinställningar',
+    'description' => 'Hantera fysiska och digitala produkter med lager, prissättning och varianter',
     'create' => 'Ny produkt',
     'create_product_type' => [
         'physical' => 'Ny fysisk produkt',
@@ -17,6 +17,8 @@ return [
         'categories' => 'Kategorier',
         'content' => 'Innehåll',
         'price' => 'Pris',
+        'currency' => 'Valuta',
+        'currency_for_variations_hint' => 'Denna valuta kommer att tillämpas på alla varianter av denna produkt.',
         'quantity' => 'Kvantitet',
         'brand' => 'Varumärke',
         'width' => 'Bredd',
@@ -121,8 +123,11 @@ return [
     'brand' => 'Varumärke',
     'cannot_delete' => 'Produkten kunde inte tas bort',
     'product_deleted' => 'Produkt borttagen',
+    'product' => 'Produkt',
     'product_collections' => 'Produktsamlingar',
     'products' => 'Produkter',
+    'total_products_found' => ':total produkter hittades',
+    'total_product_found' => ':total produkt hittades',
     'menu' => 'Produkter',
     'control' => [
         'button_add_image' => 'Lägg till bild',
@@ -199,6 +204,7 @@ return [
         'external_link_download' => 'Extern nedladdningslänk',
         'generate_license_code_after_purchasing_product' => 'Aktivera licenskodstilldelning för denna produkt',
         'notify_attachment_updated' => 'Skicka ett e-postmeddelande till kunden när bilagan uppdateras',
+        'no_attachments' => 'Inga bilagor ännu. Klicka på knapparna ovan för att lägga till filer.',
     ],
     'license_codes' => [
         'title' => 'Licenskoder',
@@ -249,6 +255,10 @@ return [
             'pick_from_list' => 'Välj från lista (Använd förinmatade koder)',
             'description' => 'Välj hur licenskoder ska tilldelas kunder när de köper denna produkt.',
         ],
+        'add_modal' => [
+            'placeholder' => 't.ex. XXXX-XXXX-XXXX-XXXX',
+            'help' => 'Ange en unik licenskod som kommer att tilldelas en kund vid köp.',
+        ],
         'generate_modal' => [
             'title' => 'Generera licenskoder',
             'quantity' => 'Kvantitet',
@@ -266,22 +276,69 @@ return [
             'cannot_add_codes_auto_generate' => 'Kan inte manuellt lägga till licenskoder till produkter som är inställda att auto-generera. Ändra licenskodtypen till "Välj från lista" först.',
             'cannot_generate_codes_auto_generate' => 'Kan inte manuellt generera licenskoder för produkter som är inställda att auto-generera. Ändra licenskodtypen till "Välj från lista" först.',
         ],
+        'bulk_delete' => [
+            'button' => 'Ta bort valda',
+            'selected' => 'valda',
+            'confirm' => 'Är du säker på att du vill ta bort de valda licenskoderna?',
+            'deleted_successfully' => ':count licenskod(er) togs bort framgångsrikt.',
+            'skipped_used_codes' => ':count använda kod(er) hoppades över.',
+            'no_deletable_codes' => 'Inga tillgängliga licenskoder att ta bort hittades. Använda koder kan inte tas bort.',
+        ],
+        'import' => [
+            'name' => 'Importera produktlicenskoder',
+            'description' => 'Importera licenskoder för digitala produkter från CSV/Excel-fil.',
+            'button' => 'Importera',
+            'columns' => [
+                'product_id' => 'Produkt-ID eller SKU',
+                'license_code' => 'Licenskod',
+            ],
+        ],
         'copied' => 'Licenskod kopierad till urklipp!',
     ],
     'this_action_will_reload_page' => 'Denna åtgärd kommer att ladda om sidan för att uppdatera datan!',
     'select' => 'Välj',
+    'clear_filters' => 'Rensa filter',
     'set_this_variant_as_default' => 'Sätt denna variant som standard',
     'download' => 'Ladda ner',
+    'external_link_downloads' => 'Externa länkar',
+    'download_available_when_completed' => 'Nedladdningslänkar blir tillgängliga när beställningen är slutförd.',
     'cross_sell_price_type' => [
         'title' => 'Pristyp',
         'fixed' => 'Fast',
         'percent' => 'Procent',
     ],
     'cross_sell_help' => [
-        'price' => 'Pris',
+        'price' => '* Prisfält',
         'price_description' => 'Ange det belopp du vill minska från det ursprungliga priset. Exempel: Om det ursprungliga priset är 100 kr, ange 20 för att minska priset till 80 kr.',
         'type' => '* Typfält',
         'type_description' => 'Välj rabatttyp: Fast (minska ett specifikt belopp) eller Procent (minska med en procentsats).',
+    ],
+    'up_sell_price_type' => [
+        'title' => 'Pristyp',
+        'fixed' => 'Fast',
+        'percent' => 'Procent',
+    ],
+    'up_sell_help' => [
+        'price' => '* Prisfält',
+        'price_description' => 'Ange det belopp du vill minska från det ursprungliga priset. Exempel: Om det ursprungliga priset är 100 kr, ange 20 för att minska priset till 80 kr.',
+        'type' => '* Typfält',
+        'type_description' => 'Välj rabatttyp: Fast (minska ett specifikt belopp) eller Procent (minska med en procentsats).',
+    ],
+    'up_sale' => [
+        'title' => 'Köp tillsammans och spara',
+        'description' => 'Få specialrabatter när du köper dessa produkter tillsammans',
+        'unlock_discount' => 'Lägg till :product i kundvagnen för att låsa upp paketrabatt',
+        'multiple_options' => 'Flera alternativ',
+        'multiple_options_available' => 'Flera alternativ tillgängliga',
+        'select' => 'Välj',
+        'selected_items_total' => 'Totalt för valda artiklar:',
+        'add_selected_to_cart' => 'Lägg till valda i kundvagnen',
+        'bundle_discount_with' => 'Paketrabatt med :product',
+        'bundle_with' => 'Paket med :product',
+    ],
+    'cross_sale' => [
+        'title' => 'Ofta köpta tillsammans',
+        'description' => 'Kunder som tittade på denna artikel köpte också',
     ],
     'apply_for_all_variations' => 'Tillämpa för alla variationer',
     'export' => [
@@ -413,6 +470,7 @@ return [
         'product_not_exists' => 'Denna produkt är slut i lager eller finns inte längre.',
         'not_enough_quantity' => 'Vissa produkter har inte tillräckligt med lager för uppdatering.',
         'empty_success' => 'Din kundvagn har tömts.',
+        'bundle_item_already_in_cart' => 'Denna paketartikel finns redan i din kundvagn. Endast 1 artikel per paketrabatt är tillåten.',
     ],
     'wishlist' => [
         'added_success' => ':product har lagts till i din önskelista.',

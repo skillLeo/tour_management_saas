@@ -2,7 +2,7 @@
 
 return [
     'name' => 'Produk',
-    'description' => 'Lihat dan kemaskini tetapan produk anda',
+    'description' => 'Urus produk fizikal dan digital dengan inventori, harga, dan variasi',
     'create' => 'Produk baharu',
     'create_product_type' => [
         'physical' => 'Produk fizikal baharu',
@@ -17,6 +17,8 @@ return [
         'categories' => 'Kategori',
         'content' => 'Kandungan',
         'price' => 'Harga',
+        'currency' => 'Mata Wang',
+        'currency_for_variations_hint' => 'Mata wang ini akan digunakan untuk semua variasi produk ini.',
         'quantity' => 'Kuantiti',
         'brand' => 'Jenama',
         'width' => 'Lebar',
@@ -121,8 +123,11 @@ return [
     'brand' => 'Jenama',
     'cannot_delete' => 'Produk tidak dapat dipadam',
     'product_deleted' => 'Produk dipadam',
+    'product' => 'Produk',
     'product_collections' => 'Koleksi produk',
     'products' => 'Produk',
+    'total_products_found' => ':total produk ditemui',
+    'total_product_found' => ':total produk ditemui',
     'menu' => 'Produk',
     'control' => [
         'button_add_image' => 'Tambah imej',
@@ -199,6 +204,7 @@ return [
         'external_link_download' => 'Pautan muat turun luaran',
         'generate_license_code_after_purchasing_product' => 'Aktifkan penugasan kod lesen untuk produk ini',
         'notify_attachment_updated' => 'Hantar e-mel kepada pelanggan apabila lampiran dikemaskini',
+        'no_attachments' => 'Tiada lampiran lagi. Klik butang di atas untuk menambah fail.',
     ],
     'license_codes' => [
         'title' => 'Kod Lesen',
@@ -249,6 +255,10 @@ return [
             'pick_from_list' => 'Pilih dari Senarai (Gunakan kod yang telah dimasukkan)',
             'description' => 'Pilih bagaimana kod lesen harus ditugaskan kepada pelanggan apabila mereka membeli produk ini.',
         ],
+        'add_modal' => [
+            'placeholder' => 'cth., XXXX-XXXX-XXXX-XXXX',
+            'help' => 'Masukkan kod lesen unik yang akan ditugaskan kepada pelanggan selepas pembelian.',
+        ],
         'generate_modal' => [
             'title' => 'Jana Kod Lesen',
             'quantity' => 'Kuantiti',
@@ -266,22 +276,69 @@ return [
             'cannot_add_codes_auto_generate' => 'Tidak boleh menambah kod lesen secara manual ke produk yang ditetapkan untuk jana automatik. Tukar jenis kod lesen kepada "Pilih dari Senarai" terlebih dahulu.',
             'cannot_generate_codes_auto_generate' => 'Tidak boleh menjana kod lesen secara manual untuk produk yang ditetapkan untuk jana automatik. Tukar jenis kod lesen kepada "Pilih dari Senarai" terlebih dahulu.',
         ],
+        'bulk_delete' => [
+            'button' => 'Padam Yang Dipilih',
+            'selected' => 'dipilih',
+            'confirm' => 'Adakah anda pasti mahu memadam kod lesen yang dipilih?',
+            'deleted_successfully' => 'Berjaya memadam :count kod lesen.',
+            'skipped_used_codes' => ':count kod yang digunakan telah dilangkau.',
+            'no_deletable_codes' => 'Tiada kod lesen yang tersedia ditemui untuk dipadam. Kod yang digunakan tidak boleh dipadam.',
+        ],
+        'import' => [
+            'name' => 'Import Kod Lesen Produk',
+            'description' => 'Import kod lesen untuk produk digital dari fail CSV/Excel.',
+            'button' => 'Import',
+            'columns' => [
+                'product_id' => 'ID Produk atau SKU',
+                'license_code' => 'Kod Lesen',
+            ],
+        ],
         'copied' => 'Kod lesen disalin ke papan keratan!',
     ],
     'this_action_will_reload_page' => 'Tindakan ini akan memuatkan semula halaman untuk mengemaskini data!',
     'select' => 'Pilih',
+    'clear_filters' => 'Kosongkan penapis',
     'set_this_variant_as_default' => 'Tetapkan varian ini sebagai piawai',
     'download' => 'Muat turun',
+    'external_link_downloads' => 'Pautan luaran',
+    'download_available_when_completed' => 'Pautan muat turun akan tersedia apabila pesanan selesai.',
     'cross_sell_price_type' => [
         'title' => 'Jenis harga',
         'fixed' => 'Tetap',
         'percent' => 'Peratus',
     ],
     'cross_sell_help' => [
-        'price' => 'Harga',
+        'price' => '* Medan harga',
         'price_description' => 'Masukkan jumlah yang anda mahu kurangkan dari harga asal. Contoh: Jika harga asal ialah $100, masukkan 20 untuk kurangkan harga kepada $80.',
         'type' => '* Medan jenis',
         'type_description' => 'Pilih jenis diskaun: Tetap (kurangkan jumlah tertentu) atau Peratus (kurangkan mengikut peratusan).',
+    ],
+    'up_sell_price_type' => [
+        'title' => 'Jenis harga',
+        'fixed' => 'Tetap',
+        'percent' => 'Peratus',
+    ],
+    'up_sell_help' => [
+        'price' => '* Medan harga',
+        'price_description' => 'Masukkan jumlah yang anda mahu kurangkan dari harga asal. Contoh: Jika harga asal ialah $100, masukkan 20 untuk kurangkan harga kepada $80.',
+        'type' => '* Medan jenis',
+        'type_description' => 'Pilih jenis diskaun: Tetap (kurangkan jumlah tertentu) atau Peratus (kurangkan mengikut peratusan).',
+    ],
+    'up_sale' => [
+        'title' => 'Beli Bersama & Jimat',
+        'description' => 'Dapatkan diskaun istimewa apabila membeli item ini bersama',
+        'unlock_discount' => 'Tambah :product ke troli untuk membuka diskaun pakej',
+        'multiple_options' => 'Pelbagai pilihan',
+        'multiple_options_available' => 'Pelbagai pilihan tersedia',
+        'select' => 'Pilih',
+        'selected_items_total' => 'Jumlah item dipilih:',
+        'add_selected_to_cart' => 'Tambah Yang Dipilih ke Troli',
+        'bundle_discount_with' => 'Diskaun pakej dengan :product',
+        'bundle_with' => 'Pakej dengan :product',
+    ],
+    'cross_sale' => [
+        'title' => 'Sering Dibeli Bersama',
+        'description' => 'Pelanggan yang melihat item ini juga membeli',
     ],
     'apply_for_all_variations' => 'Gunakan untuk semua variasi',
     'export' => [
@@ -413,6 +470,7 @@ return [
         'product_not_exists' => 'Produk ini tiada stok atau tidak lagi wujud.',
         'not_enough_quantity' => 'Sesetengah produk tidak mempunyai stok yang mencukupi untuk dikemaskini.',
         'empty_success' => 'Troli anda telah dikosongkan.',
+        'bundle_item_already_in_cart' => 'Item pakej ini sudah ada dalam troli anda. Hanya 1 item dibenarkan bagi setiap diskaun pakej.',
     ],
     'wishlist' => [
         'added_success' => ':product telah ditambah ke senarai hajat anda.',

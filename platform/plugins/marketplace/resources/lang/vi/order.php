@@ -12,4 +12,16 @@ return [
     'return' => [
         'description' => 'Hoàn hàng từ đơn hàng #:order',
     ],
+    'thank_you' => [
+        'count_orders' => ':count đơn hàng',
+        'order' => 'Đơn hàng',
+        'thank_you_name' => 'Cảm ơn, :name!',
+        'order_confirmed' => 'Đơn hàng của bạn đã được xác nhận',
+        'order_accepted' => 'Chúng tôi đã nhận đơn hàng của bạn và đang chuẩn bị.',
+        'customer' => 'Khách hàng',
+        'need_help' => 'Cần hỗ trợ?',
+        'contact_us' => 'Liên hệ chúng tôi',
+        'view_order_history' => 'Xem lịch sử đơn hàng',
+        'order_total' => 'Tổng đơn hàng',
+    ],
 ];

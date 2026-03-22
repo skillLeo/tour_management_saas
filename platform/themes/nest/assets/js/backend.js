@@ -170,6 +170,73 @@
                             }
                         })
                     }
+
+                    const data = response.data
+
+                    let imageHtml = ''
+                    let thumbHtml = ''
+
+                    const siteConfig = window.siteConfig || {}
+
+                    if (!data.image_with_sizes.origin.length) {
+                        data.image_with_sizes.origin.push(siteConfig.img_placeholder)
+                    } else {
+                        data.image_with_sizes.origin.forEach(function(item) {
+                            imageHtml += `
+                    <a href='${item}'>
+                        <img src='${item}' alt='${data.name}'>
+                    </a>
+                `
+                        })
+                    }
+
+                    if (!data.image_with_sizes.thumb.length) {
+                        data.image_with_sizes.thumb.push(siteConfig.img_placeholder)
+                    } else {
+                        data.image_with_sizes.thumb.forEach(function(item) {
+                            thumbHtml += `
+                    <div>
+                        <img src='${item}' alt='${data.name}'>
+                    </div>
+                `
+                        })
+                    }
+
+                    const $galleryImages = $product.find('.bb-product-gallery')
+                    const $existingGalleryImages = $galleryImages.find('.bb-product-gallery-images')
+                    const $existingThumbnails = $galleryImages.find('.bb-product-gallery-thumbnails')
+
+                    const existingVideoElements = $existingGalleryImages.find('.bb-product-video').clone()
+                    const existingVideoThumbnails = $existingThumbnails.find('.video-thumbnail').clone()
+
+                    let finalImageHtml = imageHtml
+                    let finalThumbHtml = thumbHtml
+
+                    if (existingVideoElements.length > 0) {
+                        existingVideoElements.each(function() {
+                            finalImageHtml += $(this)[0].outerHTML
+                        })
+                    }
+
+                    if (existingVideoThumbnails.length > 0) {
+                        existingVideoThumbnails.each(function() {
+                            finalThumbHtml += `<div>${$(this)[0].outerHTML}</div>`
+                        })
+                    }
+
+                    $galleryImages.find('.bb-product-gallery-thumbnails').slick('unslick').html(finalThumbHtml)
+
+                    const $quickViewGalleryImages = $(document).find('.bb-quick-view-gallery-images')
+
+                    if ($quickViewGalleryImages.length) {
+                        $quickViewGalleryImages.slick('unslick').html(finalImageHtml)
+                    }
+
+                    $galleryImages.find('.bb-product-gallery-images').slick('unslick').html(finalImageHtml)
+
+                    if (typeof EcommerceApp !== 'undefined') {
+                        EcommerceApp.initProductGallery()
+                    }
                 }
             }
         }
@@ -385,6 +452,15 @@
                         }
 
                         $('.mini-cart-icon span').text(response.data.count)
+
+                        // Dispatch cart.added event for up-sale/cross-sale refresh
+                        document.dispatchEvent(new CustomEvent('ecommerce.cart.added', {
+                            detail: {
+                                data: response.data,
+                                element: _self[0],
+                                message: response.message
+                            }
+                        }))
                     }
                 },
                 error: (response) => {

@@ -1,0 +1,73 @@
+<?php
+
+return [
+    'name' => 'Raportit',
+    'commission_this_month' => 'Provisio tässä kuussa',
+    'pending_commissions' => 'Odottavat provisiot',
+    'approved_commissions' => 'Hyväksytyt provisiot',
+    'pending_withdrawals' => 'Odottavat nostot',
+    'approved_withdrawals' => 'Hyväksytyt nostot',
+    'active_affiliates' => 'Aktiiviset affiliatet',
+    'affiliate_stats' => 'Affiliate-tilastot',
+    'top_affiliates' => 'Parhaat Affiliatet',
+    'recent_commissions' => 'Viimeisimmät Provisiot',
+    'recent_withdrawals' => 'Viimeisimmät Nostot',
+    'commission_chart' => 'Provisiokaavio',
+    'withdrawal_chart' => 'Nostokaavio',
+
+    // Enhanced reports
+    'geographic_data' => 'Maantieteelliset Tiedot',
+    'top_countries' => 'Suosituimmat Maat',
+    'top_cities' => 'Suosituimmat Kaupungit',
+    'short_link_performance' => 'Lyhyiden Linkkien Suorituskyky',
+    'top_performing_links' => 'Parhaiten Suoriutuvat Linkit',
+    'link' => 'Linkki',
+    'clicks' => 'Klikkaukset',
+    'conversions' => 'Konversiot',
+    'commission_trends' => 'Provisiotrendit',
+    'commission_amount' => 'Provisiosumma',
+    'loading' => 'Ladataan...',
+    'no_data' => 'Tietoja ei saatavilla',
+    'no_commission_data' => 'Provisiotietoja ei ole saatavilla valitulle ajanjaksolle',
+    'no_geographic_data' => 'Maantieteellisiä tietoja ei ole saatavilla valitulle ajanjaksolle',
+    'no_city_data' => 'Kaupunkitietoja ei ole saatavilla valitulle maalle',
+    'chart_error' => 'Virhe kaavion renderöinnissä. Yritä päivittää sivu.',
+
+    // Performance metrics widget
+    'performance_metrics' => 'Suorituskykymittarit',
+    'total_clicks' => 'Klikkauksia Yhteensä',
+    'earnings' => 'Ansiot',
+    'avg_commission' => 'Keskim. Provisio',
+    'avg_conversion_rate' => 'Keskim. Konversioprosentti',
+    'vs_previous' => 'verrattuna edelliseen',
+    'no_change' => 'Ei muutosta',
+    'performance_over_time' => 'Suorituskyky Ajan Myötä',
+    'clicks_conversions' => 'Klikkaukset & Konversiot',
+
+    // Conversion rate widget
+    'conversion_rate_analysis' => 'Konversioprosentti-analyysi',
+    'overall_conversion_rate' => 'Kokonaiskonversioprosentti',
+    'conversion_breakdown' => 'Konversioerittely',
+    'source' => 'Lähde',
+    'rate' => 'Prosentti',
+    'conversion_rate_percentage' => 'Konversioprosentti (%)',
+    'optimization_opportunity' => 'Optimointimahdollisuus',
+    'conversion_rate_below_average' => 'Konversioprosenttisi on keskimääräistä alhaisempi. Harkitse näitä vinkkejä:',
+    'target_relevant_audiences' => 'Kohdistu relevantimpiin yleisöihin',
+    'improve_promotional_content' => 'Paranna markkinointisisältöäsi',
+    'focus_higher_conversion_products' => 'Keskity tuotteisiin, joilla on korkeampi konversioprosentti',
+    'great_performance' => 'Erinomainen Suorituskyky!',
+    'excellent_conversion_rate' => 'Konversioprosenttisi on erinomainen. Jatka hyvää työtä!',
+    'good_performance' => 'Hyvä Suorituskyky',
+    'average_conversion_rate' => 'Konversioprosenttisi on keskimääräisellä alueella. Parannettavaa on.',
+
+    // Date ranges (copied from ecommerce for consistency)
+    'ranges' => [
+        'today' => 'Tänään',
+        'this_week' => 'Tällä viikolla',
+        'last_7_days' => 'Viimeiset 7 päivää',
+        'last_30_days' => 'Viimeiset 30 päivää',
+        'this_month' => 'Tässä kuussa',
+        'this_year' => 'Tänä vuonna',
+    ],
+];

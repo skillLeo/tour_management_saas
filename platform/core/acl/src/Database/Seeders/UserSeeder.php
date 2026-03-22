@@ -19,7 +19,7 @@ class UserSeeder extends BaseSeeder
         User::query()->truncate();
         Role::query()->truncate();
         DB::table('role_users')->truncate();
-        DB::table('activations')->truncate();
+        DB::table('activations')->truncate(); 
 
         $data = [
             'first_name' => 'System',

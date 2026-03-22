@@ -136,9 +136,6 @@
                     <li class="list-group-item">
                         {{ trans('core/base::system.timezone') }}: {{ $systemEnv['timezone'] }}
                     </li>
-					<li class="list-group-item">
-                        This version: <a href="https://babia.to" target="_blank">{{ get_nulled_by() }}</a>
-                    </li>
                     <li class="list-group-item">
                         {{ trans('core/base::system.server_ip') }}: <span class="me-1">{{ $serverIp }}</span>
                         <x-core::copy :copyableState="$serverIp" />

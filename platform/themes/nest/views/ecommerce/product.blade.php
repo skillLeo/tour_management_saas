@@ -16,6 +16,12 @@
 
     Theme::asset()->usePath()->add('jquery-ui-css', 'css/plugins/jquery-ui.css');
     Theme::asset()->container('footer')->usePath()->add('jquery-ui-js', 'js/plugins/jquery-ui.js');
+
+    // Up-sale and Cross-sale assets
+    if (EcommerceHelper::isEnabledUpSaleProducts() || EcommerceHelper::isEnabledCrossSaleProducts()) {
+        Theme::asset()->add('front-upsale-crosssale-css', 'vendor/core/plugins/ecommerce/css/front-upsale-crosssale.css');
+        Theme::asset()->container('footer')->add('front-upsale-crosssale-js', 'vendor/core/plugins/ecommerce/js/front-upsale-crosssale.js', ['jquery']);
+    }
 @endphp
 
 <div class="product-detail accordion-detail">
@@ -23,7 +29,7 @@
         <div class="col-md-6 col-sm-12 col-xs-12 mb-md-0 mb-sm-5">
             <div class="detail-gallery">
                 <span class="zoom-icon"><i class="fi-rs-search"></i></span>
-                @include(EcommerceHelper::viewPath('includes.product-gallery'))
+                @include(EcommerceHelper::viewPath('includes.product-gallery'), ['productImageSize' => 'medium'])
             </div>
             {!! Theme::partial('social-share', ['url' => $product->url, 'description' => strip_tags(SeoHelper::getDescription())]) !!}
             <a class="mail-to-friend font-sm color-grey" href="mailto:someone@example.com?subject={{ __('Buy :name', ['name' => $product->name]) }}&body={{ __('Buy this one: :link', ['link' => $product->url]) }}"><i class="fi-rs-envelope"></i> {{ __('Email to a Friend') }}</a>
@@ -146,6 +152,14 @@
             </div>
         </div>
     </div>
+    @if (EcommerceHelper::isEnabledUpSaleProducts())
+        @include(EcommerceHelper::viewPath('includes.up-sale-products'), ['parentProduct' => $product])
+    @endif
+
+    @if (EcommerceHelper::isEnabledCrossSaleProducts())
+        @include(EcommerceHelper::viewPath('includes.cross-sale-products'), ['parentProduct' => $product])
+    @endif
+
     <div class="product-info">
         <div class="tab-style3">
             <ul class="nav nav-tabs text-uppercase">
@@ -246,13 +260,13 @@
                                 <div class="card">
                                     <div class="card-header" id="heading-faq-{{ $loop->index }}">
                                         <h2 class="mb-0">
-                                            <button class="btn btn-link btn-block text-left @if (!$loop->first) collapsed @endif" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-faq-{{ $loop->index }}" aria-expanded="true" aria-controls="collapse-faq-{{ $loop->index }}">
+                                            <button class="btn btn-link w-100 text-start @if (!$loop->first) collapsed @endif" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-faq-{{ $loop->index }}" aria-expanded="true" aria-controls="collapse-faq-{{ $loop->index }}">
                                                 {!! BaseHelper::clean($faq[0]['value']) !!}
                                             </button>
                                         </h2>
                                     </div>
 
-                                    <div id="collapse-faq-{{ $loop->index }}" class="collapse @if ($loop->first) show @endif" aria-labelledby="heading-faq-{{ $loop->index }}" data-parent="#faq-accordion">
+                                    <div id="collapse-faq-{{ $loop->index }}" class="collapse @if ($loop->first) show @endif" aria-labelledby="heading-faq-{{ $loop->index }}" data-bs-parent="#faq-accordion">
                                         <div class="card-body">
                                             {!! BaseHelper::clean($faq[1]['value']) !!}
                                         </div>
@@ -268,16 +282,6 @@
                         @include('plugins/ecommerce::themes.includes.reviews')
                     </div>
                 @endif
-            </div>
-        </div>
-    </div>
-    <div id="cross-sale-products-container" class="mt-60" style="display: none;">
-        <h3 class="section-title style-1 mb-30">{{ __('You may also like') }}</h3>
-        <div id="cross-sale-products-content" data-ajax-url="{{ route('public.ajax.cross-sale-products', $product->id) }}">
-            <div class="text-center">
-                <div class="spinner-border" role="status">
-                    <span class="sr-only">{{ __('Loading...') }}</span>
-                </div>
             </div>
         </div>
     </div>

@@ -68,4 +68,6 @@ return [
     'enable_light_mode' => 'เปิดใช้งานโหมดสว่าง',
     'enable_dark_mode' => 'เปิดใช้งานโหมดมืด',
     'close' => 'ปิด',
+    'search_country' => 'ค้นหาประเทศ...',
+    'no_results' => 'ไม่พบผลลัพธ์',
 ];

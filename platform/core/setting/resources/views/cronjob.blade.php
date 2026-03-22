@@ -67,7 +67,7 @@
                     <input
                         type="text"
                         id="command"
-                        class="form-control font-monospace bg-light"
+                        class="form-control font-monospace"
                         value="{{ $command }}"
                         readonly
                     >

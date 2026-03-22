@@ -26,6 +26,8 @@ return [
     'categories' => 'Kategorijas',
     'category' => 'Kategorija',
     'author' => 'Autors',
+    'author_helper' => 'Select an author from admin users.',
+    'select_author' => 'Select author',
     'is_featured' => 'Vai izcelt?',
     'export' => [
         'description' => 'Eksportēt ierakstus uz CSV/Excel failu.',

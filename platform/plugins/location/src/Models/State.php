@@ -8,6 +8,7 @@ use Botble\Base\Models\BaseModel;
 use Botble\Base\Models\Concerns\HasSlug;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Cache;
 
 class State extends BaseModel
 {
@@ -43,6 +44,17 @@ class State extends BaseModel
         static::saving(function (self $model): void {
             $model->slug = self::createSlug($model->slug ?: $model->name, $model->getKey());
         });
+
+        $clearCache = function (self $model): void {
+            Cache::forget('location_state_' . $model->getKey() . '_default');
+            Cache::forget('location_states_all_default');
+            if ($model->country_id) {
+                Cache::forget('location_states_' . $model->country_id . '_default');
+            }
+        };
+
+        static::saved($clearCache);
+        static::deleted($clearCache);
     }
 
     public function country(): BelongsTo

@@ -2,8 +2,8 @@
 
 return [
     'name' => 'Mẫu hóa đơn',
-    'setting' => 'Cài đặt mẫu hóa đơn',
-    'setting_description' => 'Cài đặt cho mẫu hóa đơn',
+    'setting' => 'Thiết kế & bố cục mẫu',
+    'setting_description' => 'Tùy chỉnh mẫu HTML và CSS của hóa đơn',
     'setting_content' => 'Nội dung',
     'preview' => 'Xem trước',
     'preview_heading' => 'Xem trước mẫu hóa đơn',

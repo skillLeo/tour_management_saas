@@ -12,5 +12,7 @@ class PluginFilterStatus extends Enum
 
     public const NOT_ACTIVATED = 'not-activated';
 
+    public const UPDATES_AVAILABLE = 'updates-available';
+
     protected static $langPath = 'packages/plugin-management::plugin.enums.plugin_filter_status';
 }

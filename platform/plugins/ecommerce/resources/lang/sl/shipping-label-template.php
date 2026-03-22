@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'name' => 'Predloga nalepke za pošiljanje',
-    'setting' => 'Nastavitve predloge nalepke za pošiljanje',
-    'setting_description' => 'Nastavitve za predlogo nalepke za pošiljanje',
+    'name' => 'Shipping Labels',
+    'setting' => 'Label design & layout',
+    'setting_description' => 'Customize shipping label HTML template and CSS styles',
     'setting_content' => 'Vsebina',
     'preview' => 'Predogled',
     'preview_heading' => 'Predogled predloge nalepke za pošiljanje',

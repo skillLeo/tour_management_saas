@@ -1,0 +1,53 @@
+<?php
+
+return [
+    'name' => 'Komisen',
+    'view' => 'Lihat Komisen #:id',
+    'affiliate' => 'Afiliasi',
+    'order' => 'Pesanan',
+    'amount' => 'Jumlah',
+    'description' => 'Penerangan',
+    'status' => 'Status',
+    'created_at' => 'Dicipta Pada',
+    'approve' => 'Luluskan',
+    'reject' => 'Tolak',
+    'approve_success' => 'Komisen berjaya diluluskan',
+    'reject_success' => 'Komisen berjaya ditolak',
+    'approve_commission' => 'Luluskan Komisen',
+    'reject_commission' => 'Tolak Komisen',
+    'approve_commission_confirmation' => 'Adakah anda pasti mahu meluluskan komisen #:id? Tindakan ini tidak boleh dibatalkan.',
+    'reject_commission_confirmation' => 'Adakah anda pasti mahu menolak komisen #:id? Tindakan ini tidak boleh dibatalkan.',
+    'statuses' => [
+        'pending' => 'Menunggu',
+        'approved' => 'Diluluskan',
+        'rejected' => 'Ditolak',
+    ],
+
+    // Customer-facing translations
+    'history' => 'Sejarah Komisen',
+    'no_commissions' => 'Tiada komisen dijumpai.',
+    'no_commissions_description' => 'Anda belum memperoleh sebarang komisen lagi. Mulakan promosi produk kami untuk mendapatkan komisen pertama anda!',
+    'commission_id' => 'ID Komisen',
+    'order_id' => 'ID Pesanan',
+    'customer' => 'Pelanggan',
+    'product' => 'Produk',
+    'type' => 'Jenis',
+    'date' => 'Tarikh',
+
+    // New UI translations
+    'total_commissions' => ':count Jumlah Komisen',
+    'filter_by_status' => 'Tapis Mengikut Status',
+    'all_statuses' => 'Semua Status',
+    'date_from' => 'Tarikh Dari',
+    'date_to' => 'Tarikh Hingga',
+    'filter' => 'Tapis',
+    'clear' => 'Kosongkan',
+    'approved_earnings' => 'Pendapatan Diluluskan',
+    'pending_earnings' => 'Pendapatan Menunggu',
+    'successful_orders' => 'Pesanan Berjaya',
+    'approval_rate' => 'Kadar Kelulusan',
+    'commission_earned' => 'Komisen Diperoleh',
+    'showing_results' => 'Menunjukkan :from hingga :to daripada :total hasil',
+    'start_promoting' => 'Mulakan Promosi',
+    'back_to_dashboard' => 'Kembali ke Papan Pemuka',
+];

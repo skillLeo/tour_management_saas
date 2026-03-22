@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'menu_name' => '会员等级',
+    'create' => '创建等级',
+    'edit' => '编辑等级 :name',
+    'min_commission' => '最低佣金',
+    'max_commission' => '最高佣金',
+    'max_commission_help' => '留空表示无限制',
+    'unlimited' => '无限制',
+    'commission_rate' => '佣金比例',
+    'commission_rate_help' => '佣金乘数（例如：1.1表示10%奖励）',
+    'benefits' => '权益',
+    'benefits_help' => '列出权益，每行一个',
+    'benefits_placeholder' => '优先支持' . PHP_EOL . '更高佣金比例',
+    'next_level' => '下一等级: :name',
+    'commission_needed' => '您还需要 :amount 佣金才能达到 :name',
+    'tier_rules_tooltip' => '通过每次推荐赚取佣金，解锁更高等级和专属奖励。等级基于您的累计佣金。',
+    'top_tier_reached' => '已达最高等级',
+    'top_tier_message' => '您已达到最高联盟等级！享受您的专属权益。',
+    'default_member' => '会员',
+    'member_since' => '加入于',
+    'no_benefits' => '开始赚取佣金以解锁等级权益！',
+    'current_commission' => '已赚取 :amount',
+    'target_commission' => '目标 :amount',
+];

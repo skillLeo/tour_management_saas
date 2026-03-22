@@ -1,0 +1,53 @@
+<?php
+
+return [
+    'name' => 'Provisjoner',
+    'view' => 'Vis Provisjon #:id',
+    'affiliate' => 'Affiliate',
+    'order' => 'Ordre',
+    'amount' => 'Beløp',
+    'description' => 'Beskrivelse',
+    'status' => 'Status',
+    'created_at' => 'Opprettet Den',
+    'approve' => 'Godkjenn',
+    'reject' => 'Avvis',
+    'approve_success' => 'Provisjon godkjent',
+    'reject_success' => 'Provisjon avvist',
+    'approve_commission' => 'Godkjenn Provisjon',
+    'reject_commission' => 'Avvis Provisjon',
+    'approve_commission_confirmation' => 'Er du sikker på at du vil godkjenne provisjon #:id? Denne handlingen kan ikke angres.',
+    'reject_commission_confirmation' => 'Er du sikker på at du vil avvise provisjon #:id? Denne handlingen kan ikke angres.',
+    'statuses' => [
+        'pending' => 'Ventende',
+        'approved' => 'Godkjent',
+        'rejected' => 'Avvist',
+    ],
+
+    // Customer-facing translations
+    'history' => 'Provisjonshistorikk',
+    'no_commissions' => 'Ingen provisjoner funnet.',
+    'no_commissions_description' => 'Du har ikke opptjent noen provisjoner ennå. Begynn å markedsføre våre produkter for å tjene din første provisjon!',
+    'commission_id' => 'Provisjons-ID',
+    'order_id' => 'Ordre-ID',
+    'customer' => 'Kunde',
+    'product' => 'Produkt',
+    'type' => 'Type',
+    'date' => 'Dato',
+
+    // New UI translations
+    'total_commissions' => ':count Totale Provisjoner',
+    'filter_by_status' => 'Filtrer etter Status',
+    'all_statuses' => 'Alle Statuser',
+    'date_from' => 'Dato Fra',
+    'date_to' => 'Dato Til',
+    'filter' => 'Filtrer',
+    'clear' => 'Tøm',
+    'approved_earnings' => 'Godkjent Inntjening',
+    'pending_earnings' => 'Ventende Inntjening',
+    'successful_orders' => 'Vellykkede Ordrer',
+    'approval_rate' => 'Godkjenningsrate',
+    'commission_earned' => 'Provisjon Opptjent',
+    'showing_results' => 'Viser :from til :to av :total resultater',
+    'start_promoting' => 'Begynn å Markedsføre',
+    'back_to_dashboard' => 'Tilbake til Dashbord',
+];

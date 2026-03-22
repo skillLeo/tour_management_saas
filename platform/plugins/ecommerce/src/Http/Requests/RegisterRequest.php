@@ -23,20 +23,22 @@ class RegisterRequest extends Request
     public function rules(): array
     {
         $rules = [
-            'name' => ['required', 'max:120', 'min:2'],
+            'name' => ['required', 'string', 'max:120', 'min:2'],
             'email' => [
                 'nullable',
+                'string',
                 Rule::requiredIf(! EcommerceHelper::isLoginUsingPhone()),
                 new EmailRule(),
                 Rule::unique((new Customer())->getTable()),
             ],
             'phone' => [
                 'nullable',
+                'string',
                 Rule::requiredIf(EcommerceHelper::isLoginUsingPhone() || get_ecommerce_setting('make_customer_phone_number_required', false)),
                 ...explode('|', BaseHelper::getPhoneValidationRule()),
                 UniquePhoneRule::make(Customer::class),
             ],
-            'password' => ['required', 'min:6', 'confirmed'],
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
             'agree_terms_and_policy' => ['sometimes', 'accepted:1'],
         ];
 

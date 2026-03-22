@@ -32,9 +32,11 @@ Route::group([
     Route::get('download/{token}/{order_id}', [DownloadController::class, 'downloadFile'])->name('api.ecommerce.download.download-file');
     Route::get('orders/download-proof/{token}/{order_id}', [OrderController::class, 'downloadProofFile'])->name('api.ecommerce.orders.download-proof-file');
     Route::get('products', [ProductController::class, 'index']);
+    Route::get('products/search', [ProductController::class, 'search']);
     Route::get('products/{slug}', [ProductController::class, 'show']);
     Route::get('products/{slug}/related', [ProductController::class, 'relatedProducts']);
     Route::get('products/{slug}/cross-sale', [ProductController::class, 'getCrossSaleProducts']);
+    Route::get('products/{slug}/up-sale', [ProductController::class, 'getUpSaleProducts']);
     Route::get('products/{slug}/reviews', [ProductController::class, 'reviews']);
     Route::get('products/{slug}/faqs', [ProductController::class, 'faqs']);
     Route::get('products/{slug}/specifications', [ProductController::class, 'specifications']);
@@ -85,12 +87,13 @@ Route::group([
     });
 
     Route::group(['middleware' => ['api.optional.auth']], function (): void {
+        Route::get('cart/{id?}', [CartController::class, 'index'])->whereUuid('id');
         Route::post('cart', [CartController::class, 'store']);
         Route::post('cart/{id}', [CartController::class, 'store'])->whereUuid('id');
-        Route::put('cart/{id}', [CartController::class, 'update'])->whereUuid('id');
-        Route::delete('cart/{id}', [CartController::class, 'destroy'])->whereUuid('id');
-        Route::get('cart/{id}', [CartController::class, 'index'])->whereUuid('id');
+        Route::put('cart/{id?}', [CartController::class, 'update'])->whereUuid('id');
+        Route::delete('cart/{id?}', [CartController::class, 'destroy'])->whereUuid('id');
         Route::post('cart/refresh', [CartController::class, 'refresh']);
+        Route::post('cart/sync', [CartController::class, 'sync']);
     });
 
     Route::get('coupons', [CouponController::class, 'index']);
@@ -109,7 +112,9 @@ Route::group([
         Route::get('checkout/cart/{id}', [CheckoutController::class, 'process']);
     });
 
+    Route::get('orders/tracking/settings', [OrderTrackingController::class, 'settings']);
     Route::post('orders/tracking', OrderTrackingController::class);
+    Route::get('orders/token/{token}', [OrderController::class, 'showByToken']);
 
     Route::post('wishlist', [WishlistController::class, 'store']);
     Route::post('wishlist/{id}', [WishlistController::class, 'store'])->whereUuid('id');

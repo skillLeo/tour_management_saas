@@ -2,8 +2,8 @@
 
 namespace Botble\Ecommerce\Http\Resources\API;
 
-use Botble\Base\Facades\BaseHelper;
 use Botble\Ecommerce\Models\ProductCategory;
+use Botble\Icon\Facades\Icon;
 use Botble\Media\Facades\RvMedia;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -17,7 +17,7 @@ class ProductCategoryDetailResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'icon' => $this->icon ? BaseHelper::renderIcon($this->icon) : null,
+            'icon' => $this->icon && Icon::has($this->icon) ? Icon::render($this->icon) : null,
             'description' => $this->description,
             'icon_image' => $this->icon_image ? RvMedia::getImageUrl($this->icon_image) : null,
             'is_featured' => $this->is_featured,

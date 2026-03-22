@@ -1,0 +1,73 @@
+<?php
+
+return [
+    'name' => 'Rapporter',
+    'commission_this_month' => 'Provision denna månad',
+    'pending_commissions' => 'Väntande provisioner',
+    'approved_commissions' => 'Godkända provisioner',
+    'pending_withdrawals' => 'Väntande uttag',
+    'approved_withdrawals' => 'Godkända uttag',
+    'active_affiliates' => 'Aktiva affiliates',
+    'affiliate_stats' => 'Affiliate-statistik',
+    'top_affiliates' => 'Topp Affiliates',
+    'recent_commissions' => 'Senaste Provisioner',
+    'recent_withdrawals' => 'Senaste Uttag',
+    'commission_chart' => 'Provisionsdiagram',
+    'withdrawal_chart' => 'Uttagsdiagram',
+
+    // Enhanced reports
+    'geographic_data' => 'Geografisk Data',
+    'top_countries' => 'Toppländer',
+    'top_cities' => 'Toppstäder',
+    'short_link_performance' => 'Kortlänksprestanda',
+    'top_performing_links' => 'Topppresterande Länkar',
+    'link' => 'Länk',
+    'clicks' => 'Klick',
+    'conversions' => 'Konverteringar',
+    'commission_trends' => 'Provisionstrender',
+    'commission_amount' => 'Provisionsbelopp',
+    'loading' => 'Laddar...',
+    'no_data' => 'Ingen data tillgänglig',
+    'no_commission_data' => 'Ingen provisionsdata tillgänglig för den valda perioden',
+    'no_geographic_data' => 'Ingen geografisk data tillgänglig för den valda perioden',
+    'no_city_data' => 'Ingen stadsdata tillgänglig för det valda landet',
+    'chart_error' => 'Fel vid rendering av diagram. Försök uppdatera sidan.',
+
+    // Performance metrics widget
+    'performance_metrics' => 'Prestationsmått',
+    'total_clicks' => 'Totalt Klick',
+    'earnings' => 'Intäkter',
+    'avg_commission' => 'Genomsn. Provision',
+    'avg_conversion_rate' => 'Genomsn. Konverteringsgrad',
+    'vs_previous' => 'jämfört med föregående',
+    'no_change' => 'Ingen förändring',
+    'performance_over_time' => 'Prestation Över Tid',
+    'clicks_conversions' => 'Klick & Konverteringar',
+
+    // Conversion rate widget
+    'conversion_rate_analysis' => 'Konverteringsgradsanalys',
+    'overall_conversion_rate' => 'Övergripande Konverteringsgrad',
+    'conversion_breakdown' => 'Konverteringsfördelning',
+    'source' => 'Källa',
+    'rate' => 'Grad',
+    'conversion_rate_percentage' => 'Konverteringsgrad (%)',
+    'optimization_opportunity' => 'Optimeringsmöjlighet',
+    'conversion_rate_below_average' => 'Din konverteringsgrad är under genomsnittet. Överväg dessa tips:',
+    'target_relevant_audiences' => 'Rikta dig mot mer relevanta målgrupper',
+    'improve_promotional_content' => 'Förbättra ditt marknadsföringsinnehåll',
+    'focus_higher_conversion_products' => 'Fokusera på produkter med högre konverteringsgrad',
+    'great_performance' => 'Utmärkt Prestation!',
+    'excellent_conversion_rate' => 'Din konverteringsgrad är utmärkt. Fortsätt det goda arbetet!',
+    'good_performance' => 'Bra Prestation',
+    'average_conversion_rate' => 'Din konverteringsgrad ligger inom genomsnittligt intervall. Det finns utrymme för förbättring.',
+
+    // Date ranges (copied from ecommerce for consistency)
+    'ranges' => [
+        'today' => 'Idag',
+        'this_week' => 'Denna vecka',
+        'last_7_days' => 'Senaste 7 dagarna',
+        'last_30_days' => 'Senaste 30 dagarna',
+        'this_month' => 'Denna månad',
+        'this_year' => 'Detta år',
+    ],
+];

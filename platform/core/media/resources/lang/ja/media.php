@@ -120,8 +120,14 @@ return [
             'success_header' => '成功',
         ],
         'download' => [
-            'error' => 'ファイルが選択されていないか、これらのファイルをダウンロードできません',
+            'error' => 'No files selected or cannot download these files',
         ],
+
+        'move' => [
+            'select_destination' => '移動先のフォルダを選択してください',
+            'same_location' => 'アイテムはすでにこの場所にあります',
+        ],
+
         'actions_list' => [
             'basic' => [
                 'preview' => 'プレビュー',
@@ -132,6 +138,7 @@ return [
                 'copy_indirect_link' => '間接リンクをコピーする',
                 'rename' => '名前の変更',
                 'make_copy' => 'コピーを作成する',
+                'move' => '移動',
                 'alt_text' => '代替テキスト',
                 'share' => '共有',
             ],

@@ -619,6 +619,10 @@ trait ProductActionsTrait
                 $with[] = 'crossSales';
             }
 
+            if (EcommerceHelper::isEnabledUpSaleProducts()) {
+                $with[] = 'upSales';
+            }
+
             if (EcommerceHelper::isEnabledRelatedProducts()) {
                 $with[] = 'products';
             }

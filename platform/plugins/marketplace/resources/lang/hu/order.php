@@ -12,4 +12,16 @@ return [
     'return' => [
         'description' => 'Visszaküldve a(z) #:order rendelésből',
     ],
+    'thank_you' => [
+        'count_orders' => ':count rendelés',
+        'order' => 'Rendelés',
+        'thank_you_name' => 'Köszönjük, :name!',
+        'order_confirmed' => 'Rendelése visszaigazolva',
+        'order_accepted' => 'Elfogadtuk rendelését és előkészítjük.',
+        'customer' => 'Ügyfél',
+        'need_help' => 'Segítségre van szüksége?',
+        'contact_us' => 'Kapcsolat',
+        'view_order_history' => 'Rendelési előzmények megtekintése',
+        'order_total' => 'Rendelés összesen',
+    ],
 ];

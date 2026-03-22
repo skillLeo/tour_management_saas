@@ -36,4 +36,9 @@ class SimpleSlider extends BaseModel
     {
         return $this->hasMany(SimpleSliderItem::class)->oldest('simple_slider_items.order');
     }
+
+    public function publishedSliderItems(): HasMany
+    {
+        return $this->sliderItems()->where('simple_slider_items.status', BaseStatusEnum::PUBLISHED);
+    }
 }

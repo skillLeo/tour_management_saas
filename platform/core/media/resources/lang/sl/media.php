@@ -55,6 +55,12 @@ return [
     'selected_items_move_success' => 'Izbrani elementi so bili uspešno premaknjeni v :name!',
     'selected_items_move_error' => 'Napaka pri premikanju izbranih elementov v :name',
     'destination' => 'Cilj',
+    'move' => 'Move',
+    'move_items' => 'Move items',
+    'move_here' => 'Move here',
+    'move_to_root' => 'Move to root folder',
+    'root' => 'Root',
+    'go_up' => 'Go up',
     'restore_error' => 'Napaka pri obnavljanju izbranih elementov',
     'restore_success' => 'Izbrani elementi so bili uspešno obnovljeni!',
     'copy_success' => 'Izbrani elementi so bili uspešno kopirani!',
@@ -133,7 +139,12 @@ return [
         ],
 
         'download' => [
-            'error' => 'Nobena datoteka ni izbrana ali teh datotek ni mogoče prenesti',
+            'error' => 'No files selected or cannot download these files',
+        ],
+
+        'move' => [
+            'select_destination' => 'Please select a destination folder',
+            'same_location' => 'Items are already in this location',
         ],
 
         'actions_list' => [

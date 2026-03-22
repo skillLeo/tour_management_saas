@@ -22,4 +22,6 @@ return [
     '503_temporarily_down' => 'Īslaicīgi nav pieejams apkopes dēļ',
     '503_admin_instruction' => 'Ja esat administrators un pēc apkopes režīma aktivizēšanas nevarat piekļūt savai vietnei, vienkārši izdzēsiet failu <strong>storage/framework/down</strong>, lai izslēgtu apkopes režīmu.',
     'take_me_home' => 'Atgriezties sākumlapā',
+    'bad_request' => 'Nederīgs pieprasījums',
+
 ];

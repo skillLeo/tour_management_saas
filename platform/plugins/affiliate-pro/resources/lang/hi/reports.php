@@ -1,0 +1,73 @@
+<?php
+
+return [
+    'name' => 'रिपोर्ट',
+    'commission_this_month' => 'इस महीने का कमीशन',
+    'pending_commissions' => 'लंबित कमीशन',
+    'approved_commissions' => 'स्वीकृत कमीशन',
+    'pending_withdrawals' => 'लंबित निकासी',
+    'approved_withdrawals' => 'स्वीकृत निकासी',
+    'active_affiliates' => 'सक्रिय सहयोगी',
+    'affiliate_stats' => 'सहयोगी आंकड़े',
+    'top_affiliates' => 'शीर्ष सहयोगी',
+    'recent_commissions' => 'हाल के कमीशन',
+    'recent_withdrawals' => 'हाल की निकासी',
+    'commission_chart' => 'कमीशन चार्ट',
+    'withdrawal_chart' => 'निकासी चार्ट',
+
+    // Enhanced reports
+    'geographic_data' => 'भौगोलिक डेटा',
+    'top_countries' => 'शीर्ष देश',
+    'top_cities' => 'शीर्ष शहर',
+    'short_link_performance' => 'शॉर्ट लिंक प्रदर्शन',
+    'top_performing_links' => 'शीर्ष प्रदर्शन करने वाले लिंक',
+    'link' => 'लिंक',
+    'clicks' => 'क्लिक',
+    'conversions' => 'रूपांतरण',
+    'commission_trends' => 'कमीशन रुझान',
+    'commission_amount' => 'कमीशन राशि',
+    'loading' => 'लोड हो रहा है...',
+    'no_data' => 'कोई डेटा उपलब्ध नहीं',
+    'no_commission_data' => 'चयनित अवधि के लिए कोई कमीशन डेटा उपलब्ध नहीं है',
+    'no_geographic_data' => 'चयनित अवधि के लिए कोई भौगोलिक डेटा उपलब्ध नहीं है',
+    'no_city_data' => 'चयनित देश के लिए कोई शहर डेटा उपलब्ध नहीं है',
+    'chart_error' => 'चार्ट रेंडर करने में त्रुटि। कृपया पृष्ठ को रीफ़्रेश करने का प्रयास करें।',
+
+    // Performance metrics widget
+    'performance_metrics' => 'प्रदर्शन मैट्रिक्स',
+    'total_clicks' => 'कुल क्लिक',
+    'earnings' => 'आय',
+    'avg_commission' => 'औसत कमीशन',
+    'avg_conversion_rate' => 'औसत रूपांतरण दर',
+    'vs_previous' => 'पिछले से तुलना',
+    'no_change' => 'कोई परिवर्तन नहीं',
+    'performance_over_time' => 'समय के साथ प्रदर्शन',
+    'clicks_conversions' => 'क्लिक और रूपांतरण',
+
+    // Conversion rate widget
+    'conversion_rate_analysis' => 'रूपांतरण दर विश्लेषण',
+    'overall_conversion_rate' => 'कुल रूपांतरण दर',
+    'conversion_breakdown' => 'रूपांतरण विवरण',
+    'source' => 'स्रोत',
+    'rate' => 'दर',
+    'conversion_rate_percentage' => 'रूपांतरण दर (%)',
+    'optimization_opportunity' => 'अनुकूलन अवसर',
+    'conversion_rate_below_average' => 'आपकी रूपांतरण दर औसत से कम है। इन सुझावों पर विचार करें:',
+    'target_relevant_audiences' => 'अधिक प्रासंगिक दर्शकों को लक्षित करें',
+    'improve_promotional_content' => 'अपनी प्रचार सामग्री में सुधार करें',
+    'focus_higher_conversion_products' => 'उच्च रूपांतरण दर वाले उत्पादों पर ध्यान दें',
+    'great_performance' => 'शानदार प्रदर्शन!',
+    'excellent_conversion_rate' => 'आपकी रूपांतरण दर उत्कृष्ट है। अच्छा काम जारी रखें!',
+    'good_performance' => 'अच्छा प्रदर्शन',
+    'average_conversion_rate' => 'आपकी रूपांतरण दर औसत सीमा में है। सुधार की गुंजाइश है।',
+
+    // Date ranges
+    'ranges' => [
+        'today' => 'आज',
+        'this_week' => 'इस सप्ताह',
+        'last_7_days' => 'पिछले 7 दिन',
+        'last_30_days' => 'पिछले 30 दिन',
+        'this_month' => 'इस महीने',
+        'this_year' => 'इस वर्ष',
+    ],
+];

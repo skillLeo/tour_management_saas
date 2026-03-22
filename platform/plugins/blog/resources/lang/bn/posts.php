@@ -26,6 +26,8 @@ return [
     'categories' => 'বিভাগ',
     'category' => 'বিভাগ',
     'author' => 'লেখক',
+    'author_helper' => 'Select an author from admin users.',
+    'select_author' => 'Select author',
     'is_featured' => 'ফিচারড?',
     'export' => [
         'description' => 'CSV/Excel ফাইলে পোস্ট রপ্তানি করুন।',

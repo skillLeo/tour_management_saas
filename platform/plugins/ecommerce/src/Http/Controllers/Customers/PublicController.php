@@ -437,6 +437,28 @@ class PublicController extends BaseController
                 ->setMessage(trans('plugins/ecommerce::order.return_error'));
         }
 
+        $orderReturnData = [];
+
+        $uploadedImages = [];
+        if (EcommerceHelper::isReturnImageUploadEnabled() && $request->hasFile('images')) {
+            $images = (array) $request->file('images', []);
+            foreach ($images as $image) {
+                $result = RvMedia::handleUpload($image, 0, 'returns');
+                if ($result['error']) {
+                    return $this
+                        ->httpResponse()
+                        ->setError()
+                        ->withInput()
+                        ->setMessage($result['message']);
+                }
+                $uploadedImages[] = $result['data']['url'];
+            }
+        }
+
+        if ($uploadedImages) {
+            $orderReturnData['images'] = $uploadedImages;
+        }
+
         if ($reason = $request->input('reason')) {
             $orderReturnData['reason'] = $reason;
         }
@@ -637,7 +659,7 @@ class PublicController extends BaseController
             return $this
                 ->httpResponse()
                 ->setError()
-                ->setMessage(__('Cannot found files'));
+                ->setMessage(trans('plugins/ecommerce::order.digital_product_downloads.no_files_found'));
         }
 
         $externalProductFiles = $productFiles->filter(fn ($productFile) => $productFile->is_external_link);
@@ -667,7 +689,8 @@ class PublicController extends BaseController
 
             return $this
                 ->httpResponse()
-                ->setError()->setMessage(__('Cannot download files'));
+                ->setError()
+                ->setMessage(trans('plugins/ecommerce::order.digital_product_downloads.no_external_links'));
         }
 
         $internalProductFiles = $productFiles->filter(fn ($productFile) => ! $productFile->is_external_link);
@@ -675,7 +698,7 @@ class PublicController extends BaseController
             return $this
                 ->httpResponse()
                 ->setError()
-                ->setMessage(__('Cannot download files'));
+                ->setMessage(trans('plugins/ecommerce::order.digital_product_downloads.no_downloadable_files'));
         }
 
         $zipName = Str::slug($orderProduct->product_name) . Str::random(5) . '-' . Carbon::now()->format(
@@ -733,7 +756,7 @@ class PublicController extends BaseController
         return $this
             ->httpResponse()
             ->setError()
-            ->setMessage(__('Cannot download files'));
+            ->setMessage(trans('plugins/ecommerce::order.digital_product_downloads.files_not_available'));
     }
 
     public function getProductReviews(ProductInterface $productRepository)

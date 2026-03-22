@@ -16,6 +16,7 @@ abstract class SettingStore
     protected array $guard = [
         'activated_plugins',
         'theme',
+        'licensed_to',
         'media_random_hash',
         'admin_appearance_custom_css',
         'admin_appearance_custom_header_js',

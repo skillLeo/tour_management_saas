@@ -117,8 +117,14 @@ return [
             'success_header' => 'Thành công',
         ],
         'download' => [
-            'error' => 'Bạn chưa chọn tập tin nào hoặc tập tin này không cho phép tải về',
+            'error' => 'No files selected or cannot download these files',
         ],
+
+        'move' => [
+            'select_destination' => 'Vui lòng chọn thư mục đích',
+            'same_location' => 'Các mục đã ở vị trí này',
+        ],
+
         'actions_list' => [
             'basic' => [
                 'preview' => 'Xem trước',

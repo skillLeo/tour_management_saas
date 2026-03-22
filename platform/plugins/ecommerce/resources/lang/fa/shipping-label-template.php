@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'name' => 'قالب برچسب ارسال',
-    'setting' => 'تنظیمات قالب برچسب ارسال',
-    'setting_description' => 'تنظیمات برای قالب برچسب ارسال',
+    'name' => 'Shipping Labels',
+    'setting' => 'Label design & layout',
+    'setting_description' => 'Customize shipping label HTML template and CSS styles',
     'setting_content' => 'محتوا',
     'preview' => 'پیش‌نمایش',
     'preview_heading' => 'پیش‌نمایش قالب برچسب ارسال',

@@ -88,6 +88,8 @@ return [
     'total' => 'Celkem',
     'status' => 'Stav',
     'default_payment_method' => 'Výchozí platební metoda',
+    'sort_order_instruction' => 'Přetáhněte pro změnu pořadí platebních metod na stránce pokladny.',
+    'default_method_instruction' => 'Klikněte na ikonu hvězdičky pro nastavení výchozí platební metody.',
     'payment_logs' => 'Protokoly plateb',
     'request_data' => 'Data požadavku',
     'response_data' => 'Data odpovědi',

@@ -22,4 +22,6 @@ return [
     '503_temporarily_down' => 'Tijdelijk offline voor onderhoud',
     '503_admin_instruction' => 'Als u de beheerder bent en geen toegang heeft tot uw site na het inschakelen van de onderhoudsmodus, hoeft u alleen het bestand <strong>storage/framework/down</strong> te verwijderen om de onderhoudsmodus uit te schakelen.',
     'take_me_home' => 'Breng me naar huis',
+    'bad_request' => 'Ongeldige aanvraag',
+
 ];

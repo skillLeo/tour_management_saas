@@ -22,4 +22,6 @@ return [
     '503_temporarily_down' => '일시적으로 유지보수 중입니다',
     '503_admin_instruction' => '관리자인데 유지 관리 모드를 활성화한 후 사이트에 접속할 수 없다면, 유지 관리 모드를 끄려면 <strong>storage/framework/down</strong> 파일을 삭제하기만 하면 됩니다.',
     'take_me_home' => '홈으로 이동',
+    'bad_request' => '잘못된 요청',
+
 ];

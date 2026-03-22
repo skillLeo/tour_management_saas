@@ -88,6 +88,8 @@ return [
     'total' => 'Suma',
     'status' => 'Status',
     'default_payment_method' => 'Domyślna metoda płatności',
+    'sort_order_instruction' => 'Przeciągnij i upuść, aby zmienić kolejność metod płatności na stronie kasy.',
+    'default_method_instruction' => 'Kliknij ikonę gwiazdki, aby ustawić domyślną metodę płatności.',
     'payment_logs' => 'Dzienniki płatności',
     'request_data' => 'Dane żądania',
     'response_data' => 'Dane odpowiedzi',

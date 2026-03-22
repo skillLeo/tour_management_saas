@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'menu_name' => 'Mga Antas ng Miyembro',
+    'create' => 'Lumikha ng Antas',
+    'edit' => 'I-edit ang Antas :name',
+    'min_commission' => 'Minimum na Komisyon',
+    'max_commission' => 'Maximum na Komisyon',
+    'max_commission_help' => 'Iwanang walang laman para sa walang limitasyon',
+    'unlimited' => 'Walang limitasyon',
+    'commission_rate' => 'Rate ng Komisyon',
+    'commission_rate_help' => 'Multiplier para sa komisyon (hal. 1.1 para sa 10% bonus)',
+    'benefits' => 'Mga Benepisyo',
+    'benefits_help' => 'Ilista ang mga benepisyo, isa bawat linya',
+    'benefits_placeholder' => 'Priority na Suporta' . PHP_EOL . 'Mas Mataas na Rate ng Komisyon',
+    'next_level' => 'Susunod na Antas: :name',
+    'commission_needed' => 'Kailangan mo pa ng :amount sa komisyon para maabot ang :name',
+    'tier_rules_tooltip' => 'Kumita ng komisyon sa bawat referral para ma-unlock ang mas mataas na antas at eksklusibong mga gantimpala. Ang mga antas ay batay sa iyong kabuuang kinita na komisyon.',
+    'top_tier_reached' => 'Naabot ang Pinakamataas na Antas',
+    'top_tier_message' => 'Naabot mo na ang pinakamataas na antas ng affiliate! Mag-enjoy sa iyong eksklusibong mga benepisyo.',
+    'default_member' => 'Miyembro',
+    'member_since' => 'Mula noong',
+    'no_benefits' => 'Magsimulang kumita ng komisyon para ma-unlock ang mga benepisyo ng antas!',
+    'current_commission' => ':amount kinita',
+    'target_commission' => ':amount target',
+];

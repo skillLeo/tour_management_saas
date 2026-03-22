@@ -21,6 +21,8 @@ class ImportProductController extends ImportController
          */
         $importer = parent::prepareImporter($request);
 
-        return $importer->setImportType($request->input('type'));
+        return $importer
+            ->setImportType($request->input('type'))
+            ->setUpdateExisting($request->boolean('update_existing_products'));
     }
 }

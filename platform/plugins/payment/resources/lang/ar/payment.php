@@ -89,6 +89,8 @@ return [
     'total' => 'الإجمالي',
     'status' => 'الحالة',
     'default_payment_method' => 'طريقة الدفع الافتراضية',
+    'sort_order_instruction' => 'اسحب وأفلت لإعادة ترتيب طرق الدفع في صفحة الدفع.',
+    'default_method_instruction' => 'انقر على أيقونة النجمة لتعيين طريقة دفع افتراضية.',
     'payment_logs' => 'سجلات الدفع',
     'request_data' => 'بيانات الطلب',
     'response_data' => 'بيانات الاستجابة',

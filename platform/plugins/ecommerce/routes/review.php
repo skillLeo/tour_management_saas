@@ -102,6 +102,16 @@ Theme::registerRoutes(function (): void {
                 'as' => 'public.product.review',
                 'middleware' => 'customer',
             ]);
+
+            Route::post('review/{review}/reply', [
+                'as' => 'public.reviews.reply',
+                'uses' => 'ReviewController@storeReply',
+            ]);
+
+            Route::delete('review/{review}/reply', [
+                'as' => 'public.reviews.reply.destroy',
+                'uses' => 'ReviewController@destroyReply',
+            ]);
         });
 
         Route::get('ajax/reviews/{id}', [

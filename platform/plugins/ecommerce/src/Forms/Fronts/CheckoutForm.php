@@ -53,8 +53,17 @@ class CheckoutForm extends FormFront
                         $isMobile = false;
                     }
 
+                    $isMobile = apply_filters('ecommerce_checkout_is_mobile', $isMobile);
+
                     $cartItemHtml = HtmlFieldOption::make()->content(view('plugins/ecommerce::orders.partials.amount', $model));
-                    $discountFormHtml = HtmlFieldOption::make()->content(view(EcommerceHelper::viewPath('discounts.partials.form'), ['discounts' => $model['discounts'], 'isMobile' => $isMobile]));
+
+                    $discountFormContent = view(EcommerceHelper::viewPath('discounts.partials.form'), ['discounts' => $model['discounts'], 'isMobile' => $isMobile])->render();
+                    $discountFormContent = apply_filters('ecommerce_checkout_discount_form_html', $discountFormContent, [
+                        'discounts' => $model['discounts'],
+                        'isMobile' => $isMobile,
+                        'model' => $model,
+                    ]);
+                    $discountFormHtml = HtmlFieldOption::make()->content($discountFormContent);
 
                     $form
                         ->when(! $isMobile, function (CheckoutForm $form) use ($model, $discountFormHtml, $cartItemHtml): void {
@@ -139,6 +148,30 @@ class CheckoutForm extends FormFront
                                                 HtmlFieldOption::make()->content(apply_filters('ecommerce_checkout_form_after_shipping_address_form', null, $model['products']))
                                             );
                                     })
+                                    ->when(
+                                        ! $model['isShowAddressForm'] && ! auth('customer')->check() && EcommerceHelper::isEnabledSupportDigitalProducts() && EcommerceHelper::countDigitalProducts($model['products']) > 0,
+                                        function (CheckoutForm $form) use ($model): void {
+                                            $form
+                                                ->addWrapper(
+                                                    'customer_information_wrapper',
+                                                    '<div class="mb-4">',
+                                                    '</div>',
+                                                    function (CheckoutForm $form) use ($model): void {
+                                                        $form
+                                                            ->add(
+                                                                'customer_information_title',
+                                                                HtmlField::class,
+                                                                HtmlFieldOption::make()->content('<h5 class="checkout-customer-information-title">' . __('Customer information') . '</h5>')
+                                                            )
+                                                            ->add(
+                                                                'customer_info_form',
+                                                                HtmlField::class,
+                                                                HtmlFieldOption::make()->content(view('plugins/ecommerce::orders.partials.customer-info-form', $model))
+                                                            );
+                                                    },
+                                                );
+                                        }
+                                    )
                                     ->when(EcommerceHelper::isBillingAddressEnabled(), function (CheckoutForm $form) use ($model): void {
                                         $form
                                             ->addWrapper(
@@ -231,6 +264,16 @@ class CheckoutForm extends FormFront
                                                 )
                                             );
                                     })
+                                    ->when(
+                                        EcommerceHelper::isEnabledSupportDigitalProducts() && EcommerceHelper::countDigitalProducts($model['products']) > 0,
+                                        function (CheckoutForm $form) use ($model): void {
+                                            $form->add(
+                                                'digital_product_notice',
+                                                HtmlField::class,
+                                                HtmlFieldOption::make()->content(view('plugins/ecommerce::orders.partials.digital-product-checkout-notice', $model)->render())
+                                            );
+                                        }
+                                    )
                                     ->add(
                                         'filters_ecommerce_checkout_form_before_payment_form',
                                         HtmlField::class,
@@ -405,7 +448,7 @@ class CheckoutForm extends FormFront
 
     protected function filterPaymentMethods(array $model): array
     {
-        if ($this->cartContainsOnlyDigitalProducts($model['products'])) {
+        if (is_plugin_active('payment') && $this->cartContainsOnlyDigitalProducts($model['products'])) {
             PaymentMethods::excludeMethod(PaymentMethodEnum::COD);
         }
 

@@ -1,0 +1,66 @@
+<?php
+
+return [
+    'name' => 'Retiros',
+    'view' => 'Ver Retiro #:id',
+    'affiliate' => 'Afiliado',
+    'amount' => 'Cantidad',
+    'status' => 'Estado',
+    'payment_method' => 'Método de Pago',
+    'payment_details' => 'Detalles de Pago',
+    'notes' => 'Notas',
+    'created_at' => 'Creado el',
+    'approve' => 'Aprobar',
+    'reject' => 'Rechazar',
+    'approve_success' => 'Retiro aprobado con éxito',
+    'reject_success' => 'Retiro rechazado con éxito',
+    'approve_withdrawal' => 'Aprobar Retiro',
+    'reject_withdrawal' => 'Rechazar Retiro',
+    'approve_withdrawal_confirmation' => '¿Estás seguro de que deseas aprobar el retiro #:id? Esta acción no se puede deshacer.',
+    'reject_withdrawal_confirmation' => '¿Estás seguro de que deseas rechazar el retiro #:id? Esta acción no se puede deshacer.',
+    'statuses' => [
+        'pending' => 'Pendiente',
+        'processing' => 'Procesando',
+        'approved' => 'Aprobado',
+        'rejected' => 'Rechazado',
+        'canceled' => 'Cancelado',
+    ],
+
+    // Customer-facing translations
+    'request' => 'Solicitud de Retiro',
+    'history' => 'Historial de Retiros',
+    'no_withdrawals' => 'No se encontraron retiros.',
+    'withdrawal_id' => 'ID de Retiro',
+    'date' => 'Fecha',
+    'amount_required' => 'Se requiere la cantidad de retiro.',
+    'amount_numeric' => 'La cantidad de retiro debe ser un número.',
+    'amount_min' => 'La cantidad de retiro debe ser al menos 0.',
+    'payment_method_required' => 'Se requiere el método de pago.',
+    'payment_details_required' => 'Se requieren los detalles de pago.',
+    'account_not_approved' => 'Su cuenta de afiliado aún no está aprobada.',
+    'minimum_amount' => 'La cantidad mínima de retiro es :amount.',
+    'insufficient_balance' => 'No tiene saldo suficiente para este retiro.',
+    'request_submitted' => 'Su solicitud de retiro ha sido enviada exitosamente.',
+    'submit_request' => 'Enviar Solicitud de Retiro',
+    'available_balance' => 'Saldo Disponible',
+    'enter_amount' => 'Ingresar Cantidad',
+    'select_payment_method' => 'Seleccionar Método de Pago',
+    'payment_details_placeholder' => 'Ingrese sus detalles de pago (ej: correo de PayPal, detalles de cuenta bancaria)',
+    'no_payment_methods_available' => 'No hay métodos de pago disponibles actualmente. Por favor, contacte al administrador.',
+
+    // Additional translations for PayoutPaymentMethodsEnum
+    'bank_transfer' => 'Transferencia Bancaria',
+    'paypal' => 'PayPal',
+    'stripe' => 'Stripe',
+    'other' => 'Otro',
+    'bank_information' => 'Información bancaria',
+    'paypal_id' => 'ID de PayPal',
+
+    // Payout payment methods
+    'payout_payment_methods' => [
+        'bank_transfer' => 'Transferencia Bancaria',
+        'paypal' => 'PayPal',
+        'stripe' => 'Stripe',
+        'other' => 'Otro',
+    ],
+];

@@ -92,6 +92,44 @@ Route::group(['namespace' => 'Botble\Setting\Http\Controllers'], function (): vo
                 ]);
             });
 
+            Route::prefix('license')->name('license.')->group(function (): void {
+                /**
+                 * @deprecated
+                 */
+                Route::get('verify/old', [
+                    'as' => 'verify',
+                    'uses' => 'GeneralSettingController@getVerifyLicense',
+                    'permission' => false,
+                ]);
+
+                Route::get('verify', [
+                    'as' => 'verify.index',
+                    'uses' => 'GeneralSettingController@getVerifyLicense',
+                    'permission' => false,
+                ]);
+
+                Route::post('activate', [
+                    'as' => 'activate',
+                    'uses' => 'GeneralSettingController@activateLicense',
+                    'middleware' => 'preventDemo',
+                    'permission' => 'core.manage.license',
+                ]);
+
+                Route::post('deactivate', [
+                    'as' => 'deactivate',
+                    'uses' => 'GeneralSettingController@deactivateLicense',
+                    'middleware' => 'preventDemo',
+                    'permission' => 'core.manage.license',
+                ]);
+
+                Route::post('reset', [
+                    'as' => 'reset',
+                    'uses' => 'GeneralSettingController@resetLicense',
+                    'middleware' => 'preventDemo',
+                    'permission' => 'core.manage.license',
+                ]);
+            });
+
             Route::group(['prefix' => 'email', 'permission' => 'settings.email'], function (): void {
                 Route::get('/', [
                     'as' => 'email',

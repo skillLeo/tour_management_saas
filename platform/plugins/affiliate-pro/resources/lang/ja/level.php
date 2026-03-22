@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'menu_name' => '会員レベル',
+    'create' => 'レベルを作成',
+    'edit' => 'レベル :name を編集',
+    'min_commission' => '最低コミッション',
+    'max_commission' => '最大コミッション',
+    'max_commission_help' => '無制限の場合は空白のまま',
+    'unlimited' => '無制限',
+    'commission_rate' => 'コミッション率',
+    'commission_rate_help' => 'コミッションの乗数（例：1.1で10%ボーナス）',
+    'benefits' => '特典',
+    'benefits_help' => '特典を1行に1つずつ記載',
+    'benefits_placeholder' => '優先サポート' . PHP_EOL . '高いコミッション率',
+    'next_level' => '次のレベル: :name',
+    'commission_needed' => ':name に到達するにはあと :amount のコミッションが必要です',
+    'tier_rules_tooltip' => '紹介ごとにコミッションを獲得して、上位ティアと限定特典をアンロックしましょう。ティアは累計獲得コミッションに基づいています。',
+    'top_tier_reached' => '最高ティア達成',
+    'top_tier_message' => '最高のアフィリエイトティアに到達しました！限定特典をお楽しみください。',
+    'default_member' => 'メンバー',
+    'member_since' => '登録日',
+    'no_benefits' => 'コミッションを獲得してティア特典をアンロックしましょう！',
+    'current_commission' => ':amount 獲得',
+    'target_commission' => '目標 :amount',
+];

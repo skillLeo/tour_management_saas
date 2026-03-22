@@ -9,6 +9,7 @@ use Botble\Base\Supports\ServiceProvider;
 use Botble\Language\Facades\Language;
 use Botble\Language\Models\Language as LanguageModel;
 use Botble\LanguageAdvanced\Supports\LanguageAdvancedManager;
+use Botble\Page\Models\Page;
 use Botble\Table\CollectionDataTable;
 use Botble\Table\EloquentDataTable;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
@@ -17,6 +18,7 @@ use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Throwable;
 
@@ -25,6 +27,19 @@ class HookServiceProvider extends ServiceProvider
     public function boot(): void
     {
         LanguageAdvancedManager::registerImportersAndExporters();
+
+        if (LanguageAdvancedManager::isSupported(Page::class)) {
+            LanguageAdvancedManager::registerTranslationImportExport(
+                Page::class,
+                fn () => trans('plugins/language-advanced::language-advanced.page_translations'),
+                [
+                    'import' => 'page-translations.import',
+                    'export' => 'page-translations.export',
+                ]
+            );
+        }
+
+        $this->setLocaleFromRefLang();
 
         if (! $this->app->runningInConsole()) {
             add_action(BASE_ACTION_META_BOXES, [$this, 'addLanguageBox'], 1134, 2);
@@ -39,6 +54,10 @@ class HookServiceProvider extends ServiceProvider
             add_filter('setting_permalink_meta_boxes', [$this, 'addPermalinkMetaBox'], 1134, 2);
 
             add_filter(BASE_FILTER_BEFORE_RENDER_FORM, [$this, 'changeFormDataBeforeRendering'], 1134);
+            add_filter('page_visual_builder_content', [$this, 'getVisualBuilderContent'], 1134, 3);
+            add_filter('page_visual_builder_save_content', [$this, 'saveVisualBuilderContent'], 1134, 4);
+            add_filter('page_visual_builder_after_header', [$this, 'addVisualBuilderLanguageNotification'], 1134, 2);
+            add_filter('page_visual_builder_header_actions', [$this, 'addVisualBuilderLanguageSwitcher'], 1134, 2);
         }
 
         add_filter('stored_meta_box_key', [$this, 'storeMetaBoxKey'], 1134, 2);
@@ -400,5 +419,127 @@ class HookServiceProvider extends ServiceProvider
         $route = 'slug.settings';
 
         return $data . view('plugins/language::partials.admin-list-language-chooser', compact('route', 'params', 'languages'))->render();
+    }
+
+    public function addVisualBuilderLanguageNotification(string $html, Model $page): string
+    {
+        $refLang = Language::getRefLang();
+
+        if (! $refLang || $refLang === Language::getDefaultLocaleCode()) {
+            return $html;
+        }
+
+        $language = LanguageModel::query()->where('lang_code', $refLang)->value('lang_name');
+
+        if (! $language) {
+            return $html;
+        }
+
+        return $html . view('plugins/language::partials.notification', compact('language'))->render();
+    }
+
+    public function addVisualBuilderLanguageSwitcher(string $html, Model $page): string
+    {
+        $languages = Language::getActiveLanguage(['lang_code', 'lang_flag', 'lang_name']);
+
+        if ($languages->count() < 2) {
+            return $html;
+        }
+
+        $currentLangCode = Language::getRefLang() ?: Language::getDefaultLocaleCode();
+        $currentLanguage = $languages->firstWhere('lang_code', $currentLangCode);
+
+        return $html . view(
+            'plugins/language-advanced::visual-builder-language-switcher',
+            compact('languages', 'currentLanguage', 'page')
+        )->render();
+    }
+
+    public function getVisualBuilderContent(string $content, Model $page, Request $request): string
+    {
+        if (! LanguageAdvancedManager::isSupported($page)) {
+            return $content;
+        }
+
+        $refLang = Language::getRefLang();
+
+        if (! $refLang || $refLang === Language::getDefaultLocaleCode()) {
+            return $content;
+        }
+
+        $table = $page->getTable() . '_translations';
+
+        $translation = DB::table($table)
+            ->where('lang_code', $refLang)
+            ->where($page->getTable() . '_id', $page->getKey())
+            ->value('content');
+
+        return $translation ?? $content;
+    }
+
+    public function saveVisualBuilderContent(bool $saved, Model $page, string $content, Request $request): bool
+    {
+        $refLang = $request->input('ref_lang');
+
+        if (! $refLang) {
+            return false;
+        }
+
+        $defaultLocale = Language::getDefaultLocaleCode();
+
+        if ($refLang === $defaultLocale) {
+            return false;
+        }
+
+        $table = $page->getTable() . '_translations';
+
+        DB::table($table)->updateOrInsert(
+            [
+                'lang_code' => $refLang,
+                $page->getTable() . '_id' => $page->getKey(),
+            ],
+            [
+                'content' => $content,
+            ]
+        );
+
+        return true;
+    }
+
+    protected function setLocaleFromRefLang(): void
+    {
+        if (! is_plugin_active('language')) {
+            return;
+        }
+
+        $request = request();
+        $refLang = $request->input('ref_lang');
+
+        if (! $refLang) {
+            return;
+        }
+
+        $locale = Language::getLocaleByLocaleCode($refLang);
+
+        if (! $locale) {
+            return;
+        }
+
+        $path = $request->path();
+        $isShortcodeAjax = str_contains($path, 'ajax/render-ui-blocks');
+        $isVisualBuilderPreview = (bool) preg_match('#/pages/[^/]+/preview$#', $path);
+
+        if (! $isShortcodeAjax && ! $isVisualBuilderPreview) {
+            return;
+        }
+
+        app()->setLocale($locale);
+        Language::setCurrentLocaleCode($refLang);
+        LanguageAdvancedManager::clearLocaleCache();
+
+        if ($isVisualBuilderPreview) {
+            Language::setLocale($locale);
+            Language::setCurrentLocale($locale);
+        }
     }
 }

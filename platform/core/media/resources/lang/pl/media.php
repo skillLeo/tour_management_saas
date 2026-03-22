@@ -55,6 +55,12 @@ return [
     'selected_items_move_success' => 'Wybrane elementy zostały przeniesione do :name pomyślnie!',
     'selected_items_move_error' => 'Błąd podczas przenoszenia wybranych elementów do :name',
     'destination' => 'Miejsce docelowe',
+    'move' => 'Przenieś',
+    'move_items' => 'Przenieś elementy',
+    'move_here' => 'Przenieś tutaj',
+    'move_to_root' => 'Przenieś do folderu głównego',
+    'root' => 'Katalog główny',
+    'go_up' => 'W górę',
     'restore_error' => 'Błąd podczas przywracania wybranych elementów',
     'restore_success' => 'Wybrane elementy zostały przywrócone pomyślnie!',
     'copy_success' => 'Wybrane elementy zostały skopiowane pomyślnie!',
@@ -133,7 +139,12 @@ return [
         ],
 
         'download' => [
-            'error' => 'Nie wybrano plików lub nie można pobrać tych plików',
+            'error' => 'No files selected or cannot download these files',
+        ],
+
+        'move' => [
+            'select_destination' => 'Proszę wybrać folder docelowy',
+            'same_location' => 'Elementy są już w tej lokalizacji',
         ],
 
         'actions_list' => [

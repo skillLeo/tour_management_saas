@@ -196,6 +196,7 @@ return [
         'order_date' => 'Ngày đặt hàng',
         'scan_qr_code' => 'Quét mã QR để theo dõi lô hàng của bạn',
         'total_amount' => 'Tổng số tiền',
+        'amount_to_collect' => 'Số tiền cần thu',
         'cod_amount_to_collect' => 'Số tiền COD cần thu',
     ],
     'customer_confirmed_delivery_at' => 'Khách hàng xác nhận giao hàng tại',

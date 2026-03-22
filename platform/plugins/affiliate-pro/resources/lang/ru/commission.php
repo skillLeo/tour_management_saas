@@ -1,0 +1,53 @@
+<?php
+
+return [
+    'name' => 'Комиссии',
+    'view' => 'Просмотр комиссии #:id',
+    'affiliate' => 'Партнёр',
+    'order' => 'Заказ',
+    'amount' => 'Сумма',
+    'description' => 'Описание',
+    'status' => 'Статус',
+    'created_at' => 'Создано',
+    'approve' => 'Одобрить',
+    'reject' => 'Отклонить',
+    'approve_success' => 'Комиссия успешно одобрена',
+    'reject_success' => 'Комиссия успешно отклонена',
+    'approve_commission' => 'Одобрить комиссию',
+    'reject_commission' => 'Отклонить комиссию',
+    'approve_commission_confirmation' => 'Вы уверены, что хотите одобрить комиссию #:id? Это действие нельзя отменить.',
+    'reject_commission_confirmation' => 'Вы уверены, что хотите отклонить комиссию #:id? Это действие нельзя отменить.',
+    'statuses' => [
+        'pending' => 'Ожидает',
+        'approved' => 'Одобрена',
+        'rejected' => 'Отклонена',
+    ],
+
+    // Customer-facing translations
+    'history' => 'История комиссий',
+    'no_commissions' => 'Комиссии не найдены.',
+    'no_commissions_description' => 'Вы ещё не заработали ни одной комиссии. Начните продвигать наши товары, чтобы заработать первую комиссию!',
+    'commission_id' => 'ID комиссии',
+    'order_id' => 'ID заказа',
+    'customer' => 'Клиент',
+    'product' => 'Товар',
+    'type' => 'Тип',
+    'date' => 'Дата',
+
+    // New UI translations
+    'total_commissions' => 'Всего комиссий: :count',
+    'filter_by_status' => 'Фильтр по статусу',
+    'all_statuses' => 'Все статусы',
+    'date_from' => 'Дата с',
+    'date_to' => 'Дата по',
+    'filter' => 'Фильтр',
+    'clear' => 'Очистить',
+    'approved_earnings' => 'Одобренные заработки',
+    'pending_earnings' => 'Ожидающие заработки',
+    'successful_orders' => 'Успешные заказы',
+    'approval_rate' => 'Процент одобрения',
+    'commission_earned' => 'Комиссия заработана',
+    'showing_results' => 'Показаны результаты с :from по :to из :total',
+    'start_promoting' => 'Начать продвижение',
+    'back_to_dashboard' => 'Вернуться к панели',
+];

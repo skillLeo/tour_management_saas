@@ -55,6 +55,12 @@ return [
     'selected_items_move_success' => 'Избраните елементи са преместени в :name успешно!',
     'selected_items_move_error' => 'Грешка при преместване на избраните елементи в :name',
     'destination' => 'Местоназначение',
+    'move' => 'Move',
+    'move_items' => 'Move items',
+    'move_here' => 'Move here',
+    'move_to_root' => 'Move to root folder',
+    'root' => 'Root',
+    'go_up' => 'Go up',
     'restore_error' => 'Грешка при възстановяване на избраните елементи',
     'restore_success' => 'Избраните елементи са възстановени успешно!',
     'copy_success' => 'Избраните елементи са копирани успешно!',
@@ -133,7 +139,12 @@ return [
         ],
 
         'download' => [
-            'error' => 'Няма избрани файлове или не могат да се изтеглят тези файлове',
+            'error' => 'No files selected or cannot download these files',
+        ],
+
+        'move' => [
+            'select_destination' => 'Please select a destination folder',
+            'same_location' => 'Items are already in this location',
         ],
 
         'actions_list' => [

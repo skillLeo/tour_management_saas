@@ -2,8 +2,8 @@
 
 return [
     'name' => 'Шаблон за фактура',
-    'setting' => 'Настройки на шаблона за фактура',
-    'setting_description' => 'Настройки за шаблона на фактурата',
+    'setting' => 'Template design & layout',
+    'setting_description' => 'Customize invoice HTML template and CSS styles',
     'setting_content' => 'Съдържание',
     'preview' => 'Преглед',
     'preview_heading' => 'Преглед на шаблона за фактура',

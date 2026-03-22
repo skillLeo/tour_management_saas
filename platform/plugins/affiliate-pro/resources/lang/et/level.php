@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'menu_name' => 'Liikmete tasemed',
+    'create' => 'Loo tase',
+    'edit' => 'Muuda taset :name',
+    'min_commission' => 'Minimaalne vahendustasu',
+    'max_commission' => 'Maksimaalne vahendustasu',
+    'max_commission_help' => 'Jätke tühjaks piiramata',
+    'unlimited' => 'Piiramatu',
+    'commission_rate' => 'Vahendustasu määr',
+    'commission_rate_help' => 'Kordaja vahendustasude jaoks (nt 1.1 10% boonuse eest)',
+    'benefits' => 'Hüved',
+    'benefits_help' => 'Loetlege hüved, üks rea kohta',
+    'benefits_placeholder' => 'Prioriteetne tugi' . PHP_EOL . 'Kõrgem vahendustasu määr',
+    'next_level' => 'Järgmine tase: :name',
+    'commission_needed' => 'Vajate veel :amount vahendustasusid, et jõuda tasemele :name',
+    'tier_rules_tooltip' => 'Teenige vahendustasusid iga soovitusega, et avada kõrgemad tasemed ja eksklusiivsed auhinnad. Tasemed põhinevad teie eluaegselt teenitud vahendustasudel.',
+    'top_tier_reached' => 'Kõrgeim tase saavutatud',
+    'top_tier_message' => 'Olete jõudnud kõrgeimale partneri tasemele! Nautige oma eksklusiivseid hüvesid.',
+    'default_member' => 'Liige',
+    'member_since' => 'Alates',
+    'no_benefits' => 'Alustage vahendustasude teenimist, et avada taseme hüved!',
+    'current_commission' => 'Teenitud :amount',
+    'target_commission' => 'Sihtmärk :amount',
+];

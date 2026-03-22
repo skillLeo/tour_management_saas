@@ -1,5 +1,12 @@
 {!! apply_filters('ecommerce_product_variation_form_start', null, $product) !!}
 
+@php
+    $currencies = \Botble\Ecommerce\Models\Currency::query()->oldest('order')->get();
+    $defaultCurrency = get_application_currency();
+    $productCurrencyCode = old('currency_code', $product?->currency_code ?? $originalProduct?->currency_code ?? $defaultCurrency->title);
+    $selectedCurrency = $currencies->firstWhere('title', $productCurrencyCode) ?? $defaultCurrency;
+@endphp
+
 <div class="row price-group">
     <input
         class="detect-schedule d-none"
@@ -8,7 +15,7 @@
         value="{{ old('sale_type', $product ? $product->sale_type : 0) }}"
     >
 
-    <div class="col-md-4">
+    <div class="col-md-6">
         <x-core::form.text-input
             :label="trans('plugins/ecommerce::products.sku')"
             name="sku"
@@ -24,30 +31,64 @@
         @endif
     </div>
 
-    <div class="col-md-4">
+    @php
+        $showCurrencySelector = empty($isVariation) && (empty($product) || !$product->is_variation);
+        if ($showCurrencySelector) {
+            if (is_in_admin()) {
+                $showCurrencySelector = EcommerceHelper::isEnabledProductCurrencySelection();
+            } else {
+                $showCurrencySelector = EcommerceHelper::isEnabledProductCurrencySelection()
+                    && \Botble\Marketplace\Facades\MarketplaceHelper::allowVendorManageProductCurrency();
+            }
+        }
+    @endphp
+    @if ($showCurrencySelector)
+        <div class="col-md-6">
+            <x-core::form.label for="currency_code">
+                {{ trans('plugins/ecommerce::products.form.currency') }}
+            </x-core::form.label>
+            <select
+                name="currency_code"
+                id="currency_code"
+                class="form-select product-currency-selector"
+            >
+                @foreach($currencies as $currency)
+                    <option
+                        value="{{ $currency->title }}"
+                        data-symbol="{{ $currency->symbol }}"
+                        @selected($productCurrencyCode === $currency->title)
+                    >
+                        {{ $currency->title }} ({{ $currency->symbol }})
+                    </option>
+                @endforeach
+            </select>
+        </div>
+    @endif
+
+    <div class="col-md-6">
         <x-core::form.text-input
             :label="trans('plugins/ecommerce::products.form.price')"
             name="price"
             :data-thousands-separator="EcommerceHelper::getThousandSeparatorForInputMask()"
             :data-decimal-separator="EcommerceHelper::getDecimalSeparatorForInputMask()"
-            :value="old('price', $product ? $product->price : $originalProduct->price ?? 0)"
+            :value="old('price', $product ? $product->getRawPrice() : ($originalProduct ? $originalProduct->getRawPrice() : 0))"
             step="any"
             class="input-mask-number"
             :group-flat="true"
         >
             <x-slot:prepend>
-                <span class="input-group-text">{{ get_application_currency()->symbol }}</span>
+                <span class="input-group-text currency-symbol">{{ $selectedCurrency->symbol }}</span>
             </x-slot:prepend>
         </x-core::form.text-input>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-6">
         <x-core::form.text-input
             :label="trans('plugins/ecommerce::products.form.price_sale')"
             class="input-mask-number"
             name="sale_price"
             :data-thousands-separator="EcommerceHelper::getThousandSeparatorForInputMask()"
             :data-decimal-separator="EcommerceHelper::getDecimalSeparatorForInputMask()"
-            :value="old('sale_price', $product ? $product->sale_price : $originalProduct->sale_price ?? null)"
+            :value="old('sale_price', $product ? $product->getRawSalePrice() : ($originalProduct ? $originalProduct->getRawSalePrice() : null))"
             :group-flat="true"
             :data-sale-percent-text="trans('plugins/ecommerce::products.form.price_sale_percent_helper')"
         >
@@ -56,7 +97,7 @@
             </x-slot:helper-text>
 
             <x-slot:prepend>
-                <span class="input-group-text">{{ get_application_currency()->symbol }}</span>
+                <span class="input-group-text currency-symbol">{{ $selectedCurrency->symbol }}</span>
             </x-slot:prepend>
             <x-slot:labelDescription>
                 <a
@@ -111,7 +152,7 @@
         <x-core::form.text-input
             :label="trans('plugins/ecommerce::products.form.cost_per_item')"
             name="cost_per_item"
-            :value="old('cost_per_item', $product ? $product->cost_per_item : $originalProduct->cost_per_item ?? 0)"
+            :value="old('cost_per_item', $product ? $product->getRawCostPerItem() : ($originalProduct ? $originalProduct->getRawCostPerItem() : 0))"
             :placeholder="trans('plugins/ecommerce::products.form.cost_per_item_placeholder')"
             step="any"
             class="input-mask-number"
@@ -119,7 +160,7 @@
             :helper-text="trans('plugins/ecommerce::products.form.cost_per_item_helper')"
         >
             <x-slot:prepend>
-                <span class="input-group-text">{{ get_application_currency()->symbol }}</span>
+                <span class="input-group-text currency-symbol">{{ $selectedCurrency->symbol }}</span>
             </x-slot:prepend>
         </x-core::form.text-input>
     </div>
@@ -430,7 +471,7 @@
             </x-core::table.header>
 
             <x-core::table.body>
-                @if($product)
+                @if($product && $product->productFiles->isNotEmpty())
                     @foreach ($product->productFiles as $file)
                         <x-core::table.body.row>
                             <x-core::table.body.cell>
@@ -461,6 +502,12 @@
                             <x-core::table.body.cell />
                         </x-core::table.body.row>
                     @endforeach
+                @else
+                    <x-core::table.body.row class="digital-attachments-empty-row">
+                        <x-core::table.body.cell colspan="5" class="text-center text-secondary">
+                            {{ trans('plugins/ecommerce::products.digital_attachments.no_attachments') }}
+                        </x-core::table.body.cell>
+                    </x-core::table.body.row>
                 @endif
             </x-core::table.body>
         </x-core::table>

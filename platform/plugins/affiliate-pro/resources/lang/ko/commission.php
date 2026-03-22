@@ -1,0 +1,53 @@
+<?php
+
+return [
+    'name' => '커미션',
+    'view' => '커미션 #:id 보기',
+    'affiliate' => '제휴',
+    'order' => '주문',
+    'amount' => '금액',
+    'description' => '설명',
+    'status' => '상태',
+    'created_at' => '생성일',
+    'approve' => '승인',
+    'reject' => '거부',
+    'approve_success' => '커미션이 성공적으로 승인되었습니다',
+    'reject_success' => '커미션이 성공적으로 거부되었습니다',
+    'approve_commission' => '커미션 승인',
+    'reject_commission' => '커미션 거부',
+    'approve_commission_confirmation' => '커미션 #:id를 승인하시겠습니까? 이 작업은 취소할 수 없습니다.',
+    'reject_commission_confirmation' => '커미션 #:id를 거부하시겠습니까? 이 작업은 취소할 수 없습니다.',
+    'statuses' => [
+        'pending' => '대기 중',
+        'approved' => '승인됨',
+        'rejected' => '거부됨',
+    ],
+
+    // Customer-facing translations
+    'history' => '커미션 기록',
+    'no_commissions' => '커미션을 찾을 수 없습니다.',
+    'no_commissions_description' => '아직 커미션을 받지 못했습니다. 제품을 홍보하여 첫 커미션을 받으세요!',
+    'commission_id' => '커미션 ID',
+    'order_id' => '주문 ID',
+    'customer' => '고객',
+    'product' => '제품',
+    'type' => '유형',
+    'date' => '날짜',
+
+    // New UI translations
+    'total_commissions' => '총 :count개의 커미션',
+    'filter_by_status' => '상태별 필터',
+    'all_statuses' => '모든 상태',
+    'date_from' => '시작일',
+    'date_to' => '종료일',
+    'filter' => '필터',
+    'clear' => '지우기',
+    'approved_earnings' => '승인된 수익',
+    'pending_earnings' => '대기 중인 수익',
+    'successful_orders' => '성공한 주문',
+    'approval_rate' => '승인율',
+    'commission_earned' => '획득 커미션',
+    'showing_results' => ':total개 중 :from부터 :to까지 표시',
+    'start_promoting' => '홍보 시작',
+    'back_to_dashboard' => '대시보드로 돌아가기',
+];

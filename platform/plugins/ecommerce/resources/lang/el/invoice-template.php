@@ -2,8 +2,8 @@
 
 return [
     'name' => 'Πρότυπο Τιμολογίου',
-    'setting' => 'Ρυθμίσεις Προτύπου Τιμολογίου',
-    'setting_description' => 'Ρυθμίσεις για το πρότυπο τιμολογίου',
+    'setting' => 'Template design & layout',
+    'setting_description' => 'Customize invoice HTML template and CSS styles',
     'setting_content' => 'Περιεχόμενο',
     'preview' => 'Προεπισκόπηση',
     'preview_heading' => 'Προεπισκόπηση προτύπου τιμολογίου',

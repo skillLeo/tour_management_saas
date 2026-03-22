@@ -196,6 +196,7 @@ return [
         'order_date' => 'Date de commande',
         'scan_qr_code' => 'Scanner le code QR pour suivre votre expédition',
         'total_amount' => 'Montant total',
+        'amount_to_collect' => 'Montant à collecter',
         'cod_amount_to_collect' => 'Montant COD à collecter',
     ],
     'customer_confirmed_delivery_at' => 'Client a confirmé la livraison à',

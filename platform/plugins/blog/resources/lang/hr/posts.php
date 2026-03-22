@@ -26,6 +26,8 @@ return [
     'categories' => 'Kategorije',
     'category' => 'Kategorija',
     'author' => 'Autor',
+    'author_helper' => 'Select an author from admin users.',
+    'select_author' => 'Select author',
     'is_featured' => 'Je istaknuto?',
     'export' => [
         'description' => 'Izvezi objave u CSV/Excel datoteku.',

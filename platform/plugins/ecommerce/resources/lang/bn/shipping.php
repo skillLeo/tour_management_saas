@@ -192,6 +192,7 @@ return [
         'order_date' => 'অর্ডার তারিখ',
         'scan_qr_code' => 'আপনার শিপমেন্ট ট্র্যাক করতে QR কোড স্ক্যান করুন',
         'total_amount' => 'মোট পরিমাণ',
+        'amount_to_collect' => 'সংগ্রহ করার পরিমাণ',
         'cod_amount_to_collect' => 'সংগ্রহ করার জন্য COD পরিমাণ',
     ],
     'customer_confirmed_delivery_at' => 'গ্রাহক ডেলিভারি নিশ্চিত করেছেন',

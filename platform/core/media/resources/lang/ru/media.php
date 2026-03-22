@@ -117,8 +117,14 @@ return [
             'success_header' => 'Успешно!',
         ],
         'download' => [
-            'error' => 'Файлы не выбраны или не смог загрузить эти файлы',
+            'error' => 'No files selected or cannot download these files',
         ],
+
+        'move' => [
+            'select_destination' => 'Пожалуйста, выберите папку назначения',
+            'same_location' => 'Элементы уже находятся в этом расположении',
+        ],
+
         'actions_list' => [
             'basic' => [
                 'preview' => 'Предварительный просмотр',

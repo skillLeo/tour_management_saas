@@ -88,6 +88,8 @@ return [
     'total' => 'Kabuuan',
     'status' => 'Katayuan',
     'default_payment_method' => 'Default na paraan ng pagbabayad',
+    'sort_order_instruction' => 'I-drag at i-drop upang muling ayusin ang mga paraan ng pagbabayad sa checkout page.',
+    'default_method_instruction' => 'I-click ang icon ng bituin upang itakda ang isang paraan ng pagbabayad bilang default.',
     'payment_logs' => 'Mga Log ng Pagbabayad',
     'request_data' => 'Data ng Kahilingan',
     'response_data' => 'Data ng Tugon',

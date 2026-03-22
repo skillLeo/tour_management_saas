@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'name' => 'Mẫu nhãn vận chuyển',
-    'setting' => 'Cài đặt mẫu nhãn vận chuyển',
-    'setting_description' => 'Cài đặt cho mẫu nhãn vận chuyển',
+    'name' => 'Nhãn vận chuyển',
+    'setting' => 'Thiết kế & bố cục nhãn',
+    'setting_description' => 'Tùy chỉnh mẫu HTML và CSS của nhãn vận chuyển',
     'setting_content' => 'Nội dung',
     'preview' => 'Xem trước',
     'preview_heading' => 'Xem trước mẫu nhãn vận chuyển',

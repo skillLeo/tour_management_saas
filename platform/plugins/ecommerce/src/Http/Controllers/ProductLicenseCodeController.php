@@ -193,7 +193,7 @@ class ProductLicenseCodeController extends BaseController
         $request->validate([
             'quantity' => ['required', 'integer', 'min:1', 'max:100'],
             'format' => ['required', 'string', 'in:uuid,alphanumeric,numeric,custom'],
-            'pattern' => ['required_if:format,custom', 'string', 'max:50'],
+            'pattern' => ['nullable', 'required_if:format,custom', 'string', 'max:50'],
         ]);
 
         $quantity = $request->input('quantity');
@@ -256,6 +256,49 @@ class ProductLicenseCodeController extends BaseController
             $message .= ' ' . trans('plugins/ecommerce::products.license_codes.generation_incomplete', [
                 'requested' => $quantity,
                 'generated' => $actualGenerated,
+            ]);
+        }
+
+        return $this
+            ->httpResponse()
+            ->setMessage($message);
+    }
+
+    public function bulkDelete(Product $product, Request $request): BaseHttpResponse
+    {
+        $this->validateProductLicenseCodeAccess($product);
+
+        $request->validate([
+            'ids' => ['required', 'array', 'min:1'],
+            'ids.*' => ['required'],
+        ]);
+
+        $ids = $request->input('ids');
+
+        $licenseCodes = $product->licenseCodes()
+            ->whereIn('id', $ids)
+            ->where('status', ProductLicenseCodeStatusEnum::AVAILABLE)
+            ->get();
+
+        if ($licenseCodes->isEmpty()) {
+            return $this
+                ->httpResponse()
+                ->setError()
+                ->setMessage(trans('plugins/ecommerce::products.license_codes.bulk_delete.no_deletable_codes'));
+        }
+
+        $deletedCount = $licenseCodes->count();
+        $skippedCount = count($ids) - $deletedCount;
+
+        ProductLicenseCode::query()->whereIn('id', $licenseCodes->pluck('id'))->delete();
+
+        $message = trans('plugins/ecommerce::products.license_codes.bulk_delete.deleted_successfully', [
+            'count' => $deletedCount,
+        ]);
+
+        if ($skippedCount > 0) {
+            $message .= ' ' . trans('plugins/ecommerce::products.license_codes.bulk_delete.skipped_used_codes', [
+                'count' => $skippedCount,
             ]);
         }
 

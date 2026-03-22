@@ -26,6 +26,8 @@ return [
     'categories' => 'Categorías',
     'category' => 'Categoría',
     'author' => 'Autor',
+    'author_helper' => 'Select an author from admin users.',
+    'select_author' => 'Select author',
     'export' => [
         'description' => 'Exportar publicaciones a un archivo CSV/Excel.',
         'total' => 'Publicaciones totales',

@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'menu_name' => 'Üye Seviyeleri',
+    'create' => 'Seviye Oluştur',
+    'edit' => 'Seviye :name Düzenle',
+    'min_commission' => 'Minimum Komisyon',
+    'max_commission' => 'Maksimum Komisyon',
+    'max_commission_help' => 'Sınırsız için boş bırakın',
+    'unlimited' => 'Sınırsız',
+    'commission_rate' => 'Komisyon Oranı',
+    'commission_rate_help' => 'Komisyon çarpanı (örn: %10 bonus için 1.1)',
+    'benefits' => 'Avantajlar',
+    'benefits_help' => 'Avantajları listeleyin, her satıra bir tane',
+    'benefits_placeholder' => 'Öncelikli Destek' . PHP_EOL . 'Daha Yüksek Komisyon Oranı',
+    'next_level' => 'Sonraki Seviye: :name',
+    'commission_needed' => ':name seviyesine ulaşmak için :amount daha komisyon kazanmalısınız',
+    'tier_rules_tooltip' => 'Her yönlendirme ile komisyon kazanarak daha yüksek seviyeleri ve özel ödülleri açın. Seviyeler toplam kazanılan komisyonlarınıza göre belirlenir.',
+    'top_tier_reached' => 'En Yüksek Seviyeye Ulaşıldı',
+    'top_tier_message' => 'En yüksek ortaklık seviyesine ulaştınız! Özel avantajlarınızın keyfini çıkarın.',
+    'default_member' => 'Üye',
+    'member_since' => 'Tarihinden beri',
+    'no_benefits' => 'Seviye avantajlarını açmak için komisyon kazanmaya başlayın!',
+    'current_commission' => ':amount kazanıldı',
+    'target_commission' => 'Hedef :amount',
+];

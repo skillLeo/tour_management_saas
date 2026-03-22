@@ -1,0 +1,66 @@
+<?php
+
+return [
+    'name' => 'Penarikan',
+    'view' => 'Lihat Penarikan #:id',
+    'affiliate' => 'Afiliasi',
+    'amount' => 'Jumlah',
+    'status' => 'Status',
+    'payment_method' => 'Metode Pembayaran',
+    'payment_details' => 'Detail Pembayaran',
+    'notes' => 'Catatan',
+    'created_at' => 'Dibuat Pada',
+    'approve' => 'Setujui',
+    'reject' => 'Tolak',
+    'approve_success' => 'Penarikan berhasil disetujui',
+    'reject_success' => 'Penarikan berhasil ditolak',
+    'approve_withdrawal' => 'Setujui Penarikan',
+    'reject_withdrawal' => 'Tolak Penarikan',
+    'approve_withdrawal_confirmation' => 'Apakah Anda yakin ingin menyetujui penarikan #:id? Tindakan ini tidak dapat dibatalkan.',
+    'reject_withdrawal_confirmation' => 'Apakah Anda yakin ingin menolak penarikan #:id? Tindakan ini tidak dapat dibatalkan.',
+
+    // Customer-facing translations
+    'request' => 'Permintaan Penarikan',
+    'history' => 'Riwayat Penarikan',
+    'no_withdrawals' => 'Tidak ada penarikan yang ditemukan.',
+    'withdrawal_id' => 'ID Penarikan',
+    'date' => 'Tanggal',
+    'amount_required' => 'Jumlah penarikan diperlukan.',
+    'amount_numeric' => 'Jumlah penarikan harus berupa angka.',
+    'amount_min' => 'Jumlah penarikan minimal harus 0.',
+    'payment_method_required' => 'Metode pembayaran diperlukan.',
+    'payment_details_required' => 'Detail pembayaran diperlukan.',
+    'account_not_approved' => 'Akun afiliasi Anda belum disetujui.',
+    'minimum_amount' => 'Jumlah penarikan minimum adalah :amount.',
+    'insufficient_balance' => 'Anda tidak memiliki saldo yang cukup untuk penarikan ini.',
+    'request_submitted' => 'Permintaan penarikan Anda telah berhasil dikirim.',
+    'submit_request' => 'Kirim Permintaan Penarikan',
+    'available_balance' => 'Saldo Tersedia',
+    'enter_amount' => 'Masukkan Jumlah',
+    'select_payment_method' => 'Pilih Metode Pembayaran',
+    'payment_details_placeholder' => 'Masukkan detail pembayaran Anda (mis., email PayPal, detail rekening bank)',
+    'no_payment_methods_available' => 'Tidak ada metode pembayaran yang tersedia saat ini. Silakan hubungi administrator.',
+    'statuses' => [
+        'pending' => 'Tertunda',
+        'processing' => 'Diproses',
+        'approved' => 'Disetujui',
+        'rejected' => 'Ditolak',
+        'canceled' => 'Dibatalkan',
+    ],
+
+    // Additional translations for PayoutPaymentMethodsEnum
+    'bank_transfer' => 'Transfer Bank',
+    'paypal' => 'PayPal',
+    'stripe' => 'Stripe',
+    'other' => 'Lainnya',
+    'bank_information' => 'Informasi bank',
+    'paypal_id' => 'ID PayPal',
+
+    // Payout payment methods
+    'payout_payment_methods' => [
+        'bank_transfer' => 'Transfer Bank',
+        'paypal' => 'PayPal',
+        'stripe' => 'Stripe',
+        'other' => 'Lainnya',
+    ],
+];

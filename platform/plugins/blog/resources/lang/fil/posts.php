@@ -25,6 +25,8 @@ return [
     'categories' => 'Mga Kategorya',
     'category' => 'Kategorya',
     'author' => 'May-akda',
+    'author_helper' => 'Select an author from admin users.',
+    'select_author' => 'Select author',
     'is_featured' => 'Naka-feature ba?',
     'export' => [
         'description' => 'Mag-export ng mga post sa CSV/Excel file.',

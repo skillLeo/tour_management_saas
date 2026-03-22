@@ -88,6 +88,8 @@ return [
     'total' => 'I alt',
     'status' => 'Status',
     'default_payment_method' => 'Standard betalingsmetode',
+    'sort_order_instruction' => 'Træk og slip for at omarrangere betalingsmetoder på betalingssiden.',
+    'default_method_instruction' => 'Klik på stjerneikonet for at indstille en betalingsmetode som standard.',
     'payment_logs' => 'Betalingslogs',
     'request_data' => 'Anmodningsdata',
     'response_data' => 'Svardata',

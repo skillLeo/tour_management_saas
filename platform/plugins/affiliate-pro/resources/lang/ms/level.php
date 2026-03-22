@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'menu_name' => 'Tahap Ahli',
+    'create' => 'Cipta Tahap',
+    'edit' => 'Edit Tahap :name',
+    'min_commission' => 'Komisen Minimum',
+    'max_commission' => 'Komisen Maksimum',
+    'max_commission_help' => 'Biarkan kosong untuk tanpa had',
+    'unlimited' => 'Tanpa had',
+    'commission_rate' => 'Kadar Komisen',
+    'commission_rate_help' => 'Pengganda untuk komisen (cth. 1.1 untuk bonus 10%)',
+    'benefits' => 'Faedah',
+    'benefits_help' => 'Senaraikan faedah, satu setiap baris',
+    'benefits_placeholder' => 'Sokongan Keutamaan' . PHP_EOL . 'Kadar Komisen Lebih Tinggi',
+    'next_level' => 'Tahap Seterusnya: :name',
+    'commission_needed' => 'Anda memerlukan :amount lagi dalam komisen untuk mencapai :name',
+    'tier_rules_tooltip' => 'Dapatkan komisen dengan setiap rujukan untuk membuka tahap yang lebih tinggi dan ganjaran eksklusif. Tahap adalah berdasarkan jumlah komisen yang anda perolehi.',
+    'top_tier_reached' => 'Tahap Tertinggi Dicapai',
+    'top_tier_message' => 'Anda telah mencapai tahap affiliate tertinggi! Nikmati faedah eksklusif anda.',
+    'default_member' => 'Ahli',
+    'member_since' => 'Sejak',
+    'no_benefits' => 'Mula dapatkan komisen untuk membuka faedah tahap!',
+    'current_commission' => ':amount diperolehi',
+    'target_commission' => ':amount sasaran',
+];

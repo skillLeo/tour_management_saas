@@ -1,0 +1,53 @@
+<?php
+
+return [
+    'name' => 'Προμήθειες',
+    'view' => 'Προβολή Προμήθειας #:id',
+    'affiliate' => 'Συνεργάτης',
+    'order' => 'Παραγγελία',
+    'amount' => 'Ποσό',
+    'description' => 'Περιγραφή',
+    'status' => 'Κατάσταση',
+    'created_at' => 'Δημιουργήθηκε Στις',
+    'approve' => 'Έγκριση',
+    'reject' => 'Απόρριψη',
+    'approve_success' => 'Η προμήθεια εγκρίθηκε επιτυχώς',
+    'reject_success' => 'Η προμήθεια απορρίφθηκε επιτυχώς',
+    'approve_commission' => 'Έγκριση Προμήθειας',
+    'reject_commission' => 'Απόρριψη Προμήθειας',
+    'approve_commission_confirmation' => 'Είστε βέβαιοι ότι θέλετε να εγκρίνετε την προμήθεια #:id; Αυτή η ενέργεια δεν μπορεί να αναιρεθεί.',
+    'reject_commission_confirmation' => 'Είστε βέβαιοι ότι θέλετε να απορρίψετε την προμήθεια #:id; Αυτή η ενέργεια δεν μπορεί να αναιρεθεί.',
+    'statuses' => [
+        'pending' => 'Εκκρεμεί',
+        'approved' => 'Εγκρίθηκε',
+        'rejected' => 'Απορρίφθηκε',
+    ],
+
+    // Customer-facing translations
+    'history' => 'Ιστορικό Προμηθειών',
+    'no_commissions' => 'Δεν βρέθηκαν προμήθειες.',
+    'no_commissions_description' => 'Δεν έχετε κερδίσει ακόμα προμήθειες. Ξεκινήστε να προωθείτε τα προϊόντα μας για να κερδίσετε την πρώτη σας προμήθεια!',
+    'commission_id' => 'Κωδικός Προμήθειας',
+    'order_id' => 'Κωδικός Παραγγελίας',
+    'customer' => 'Πελάτης',
+    'product' => 'Προϊόν',
+    'type' => 'Τύπος',
+    'date' => 'Ημερομηνία',
+
+    // New UI translations
+    'total_commissions' => ':count Συνολικές Προμήθειες',
+    'filter_by_status' => 'Φιλτράρισμα ανά Κατάσταση',
+    'all_statuses' => 'Όλες οι Καταστάσεις',
+    'date_from' => 'Ημερομηνία Από',
+    'date_to' => 'Ημερομηνία Έως',
+    'filter' => 'Φίλτρο',
+    'clear' => 'Καθαρισμός',
+    'approved_earnings' => 'Εγκεκριμένα Κέρδη',
+    'pending_earnings' => 'Εκκρεμή Κέρδη',
+    'successful_orders' => 'Επιτυχημένες Παραγγελίες',
+    'approval_rate' => 'Ποσοστό Έγκρισης',
+    'commission_earned' => 'Προμήθεια που Κερδίστηκε',
+    'showing_results' => 'Εμφάνιση :from έως :to από :total αποτελέσματα',
+    'start_promoting' => 'Έναρξη Προώθησης',
+    'back_to_dashboard' => 'Επιστροφή στον Πίνακα',
+];

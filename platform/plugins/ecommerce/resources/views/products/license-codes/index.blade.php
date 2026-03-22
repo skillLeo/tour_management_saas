@@ -1,6 +1,18 @@
 @extends(BaseHelper::getAdminMasterLayoutTemplate())
 
 @section('content')
+    <div
+        class="license-codes-container"
+        data-routes="{{ json_encode([
+            'store' => route('products.license-codes.store', $product->id),
+            'update' => route('products.license-codes.update', [$product->id, '__ID__']),
+            'destroy' => route('products.license-codes.destroy', [$product->id, '__ID__']),
+            'bulkGenerate' => route('products.license-codes.bulk-generate', $product->id),
+            'bulkDelete' => route('products.license-codes.bulk-delete', $product->id),
+        ]) }}"
+        data-confirm-delete="{{ trans('core/base::tables.confirm_delete') }}"
+        data-confirm-bulk-delete="{{ trans('plugins/ecommerce::products.license_codes.bulk_delete.confirm') }}"
+    >
     <div class="row">
         <div class="col-md-12">
             <x-core::card>
@@ -12,18 +24,33 @@
                         @endif
                     </x-core::card.title>
                     <div class="card-actions">
-                        <a href="{{ route('products.edit', $product->id) }}" class="btn btn-secondary">
+                        <a href="{{ route('products.edit', $product->id) }}" class="btn btn-ghost-secondary">
                             <x-core::icon name="ti ti-arrow-left" />
                             {{ trans('plugins/ecommerce::products.license_codes.back') }}
                         </a>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-license-code-modal">
-                            <x-core::icon name="ti ti-plus" />
-                            {{ trans('plugins/ecommerce::products.license_codes.add') }}
-                        </button>
-                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#bulk-generate-modal">
-                            <x-core::icon name="ti ti-refresh" />
-                            {{ trans('plugins/ecommerce::products.license_codes.generate') }}
-                        </button>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-license-code-modal">
+                                <x-core::icon name="ti ti-plus" />
+                                {{ trans('plugins/ecommerce::products.license_codes.add') }}
+                            </button>
+                            <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="visually-hidden">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li>
+                                    <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#bulk-generate-modal">
+                                        <x-core::icon name="ti ti-wand" />
+                                        {{ trans('plugins/ecommerce::products.license_codes.generate') }}
+                                    </button>
+                                </li>
+                                <li>
+                                    <a href="{{ route('tools.data-synchronize.import.product-license-codes.index') }}" class="dropdown-item">
+                                        <x-core::icon name="ti ti-upload" />
+                                        {{ trans('plugins/ecommerce::products.license_codes.import.button') }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </x-core::card.header>
 
@@ -41,8 +68,23 @@
                     @endif
 
                     @if($licenseCodes->count() > 0)
+                        <div class="mb-3 bulk-actions-wrapper" style="display: none;">
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="text-muted">
+                                    <span class="selected-count fw-bold">0</span> {{ trans('plugins/ecommerce::products.license_codes.bulk_delete.selected') }}
+                                </span>
+                                <button type="button" class="btn btn-sm btn-outline-danger btn-bulk-delete">
+                                    <x-core::icon name="ti ti-trash" />
+                                    {{ trans('plugins/ecommerce::products.license_codes.bulk_delete.button') }}
+                                </button>
+                            </div>
+                        </div>
+
                         <x-core::table>
                             <x-core::table.header>
+                                <x-core::table.header.cell class="text-center" style="width: 40px;">
+                                    <input type="checkbox" class="form-check-input select-all-checkbox" />
+                                </x-core::table.header.cell>
                                 <x-core::table.header.cell>
                                     {{ trans('plugins/ecommerce::products.license_codes.code') }}
                                 </x-core::table.header.cell>
@@ -63,6 +105,11 @@
                             <x-core::table.body>
                                 @foreach($licenseCodes as $licenseCode)
                                     <x-core::table.body.row>
+                                        <x-core::table.body.cell class="text-center">
+                                            @if($licenseCode->isAvailable())
+                                                <input type="checkbox" class="form-check-input license-code-checkbox" data-id="{{ $licenseCode->id }}" />
+                                            @endif
+                                        </x-core::table.body.cell>
                                         <x-core::table.body.cell>
                                             <code>{{ $licenseCode->license_code }}</code>
                                         </x-core::table.body.cell>
@@ -133,122 +180,9 @@
     </div>
 
     @include('plugins/ecommerce::products.license-codes.modals')
+    </div>
 @endsection
 
 @push('footer')
-    <script>
-        $(document).ready(function() {
-            // Add license code
-            $('#add-license-code-form').on('submit', function(e) {
-                e.preventDefault();
-
-                $.ajax({
-                    url: '{{ route('products.license-codes.store', $product->id) }}',
-                    method: 'POST',
-                    data: $(this).serialize(),
-                    success: function(response) {
-                        if (response.error) {
-                            Botble.showError(response.message);
-                        } else {
-                            Botble.showSuccess(response.message);
-                            location.reload();
-                        }
-                    },
-                    error: function(xhr) {
-                        Botble.handleError(xhr);
-                    }
-                });
-            });
-
-            // Edit license code
-            $(document).on('click', '.edit-license-code-btn', function() {
-                const id = $(this).data('license-code-id');
-                const code = $(this).data('license-code');
-
-                $('#edit-license-code-id').val(id);
-                $('#edit-license-code').val(code);
-                $('#edit-license-code-modal').modal('show');
-            });
-
-            $('#edit-license-code-form').on('submit', function(e) {
-                e.preventDefault();
-
-                const id = $('#edit-license-code-id').val();
-
-                $.ajax({
-                    url: '{{ route('products.license-codes.update', [$product->id, '__ID__']) }}'.replace('__ID__', id),
-                    method: 'PUT',
-                    data: $(this).serialize(),
-                    success: function(response) {
-                        if (response.error) {
-                            Botble.showError(response.message);
-                        } else {
-                            Botble.showSuccess(response.message);
-                            location.reload();
-                        }
-                    },
-                    error: function(xhr) {
-                        Botble.handleError(xhr);
-                    }
-                });
-            });
-
-            // Delete license code
-            $(document).on('click', '.delete-license-code-btn', function() {
-                const id = $(this).data('license-code-id');
-
-                if (confirm('{{ trans('core/base::tables.confirm_delete') }}')) {
-                    $.ajax({
-                        url: '{{ route('products.license-codes.destroy', [$product->id, '__ID__']) }}'.replace('__ID__', id),
-                        method: 'DELETE',
-                        data: {
-                            _token: '{{ csrf_token() }}'
-                        },
-                        success: function(response) {
-                            if (response.error) {
-                                Botble.showError(response.message);
-                            } else {
-                                Botble.showSuccess(response.message);
-                                location.reload();
-                            }
-                        },
-                        error: function(xhr) {
-                            Botble.handleError(xhr);
-                        }
-                    });
-                }
-            });
-
-            // Bulk generate
-            $('#bulk-generate-form').on('submit', function(e) {
-                e.preventDefault();
-
-                $.ajax({
-                    url: '{{ route('products.license-codes.bulk-generate', $product->id) }}',
-                    method: 'POST',
-                    data: $(this).serialize(),
-                    success: function(response) {
-                        if (response.error) {
-                            Botble.showError(response.message);
-                        } else {
-                            Botble.showSuccess(response.message);
-                            location.reload();
-                        }
-                    },
-                    error: function(xhr) {
-                        Botble.handleError(xhr);
-                    }
-                });
-            });
-
-            // Handle format change
-            $('#license-code-format').on('change', function() {
-                if ($(this).val() === 'custom') {
-                    $('#custom-pattern-group').show();
-                } else {
-                    $('#custom-pattern-group').hide();
-                }
-            });
-        });
-    </script>
+    {{ Html::script('vendor/core/plugins/ecommerce/js/product-license-codes.js') }}
 @endpush

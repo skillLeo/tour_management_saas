@@ -55,6 +55,12 @@ return [
     'selected_items_move_success' => 'Elementi selezionati spostati in :name con successo!',
     'selected_items_move_error' => 'Errore durante lo spostamento degli elementi selezionati in :name',
     'destination' => 'Destinazione',
+    'move' => 'Sposta',
+    'move_items' => 'Sposta elementi',
+    'move_here' => 'Sposta qui',
+    'move_to_root' => 'Sposta nella cartella principale',
+    'root' => 'Principale',
+    'go_up' => 'Su',
     'restore_error' => 'Errore durante il ripristino degli elementi selezionati',
     'restore_success' => 'Elementi selezionati ripristinati con successo!',
     'copy_success' => 'Elementi selezionati copiati con successo!',
@@ -133,7 +139,12 @@ return [
         ],
 
         'download' => [
-            'error' => 'Nessun file selezionato o impossibile scaricare questi file',
+            'error' => 'No files selected or cannot download these files',
+        ],
+
+        'move' => [
+            'select_destination' => 'Seleziona una cartella di destinazione',
+            'same_location' => 'Gli elementi sono già in questa posizione',
         ],
 
         'actions_list' => [

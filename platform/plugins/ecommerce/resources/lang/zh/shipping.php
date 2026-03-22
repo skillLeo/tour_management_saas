@@ -192,6 +192,7 @@ return [
         'order_date' => '订单日期',
         'scan_qr_code' => '扫描QR码跟踪您的货运',
         'total_amount' => '总金额',
+        'amount_to_collect' => '需收取的金额',
         'cod_amount_to_collect' => '需收取的货到付款金额',
     ],
     'customer_confirmed_delivery_at' => '客户确认配送时间',

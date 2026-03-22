@@ -1,0 +1,66 @@
+<?php
+
+return [
+    'name' => 'Выводы',
+    'view' => 'Просмотр вывода #:id',
+    'affiliate' => 'Партнёр',
+    'amount' => 'Сумма',
+    'status' => 'Статус',
+    'payment_method' => 'Способ оплаты',
+    'payment_details' => 'Платёжные реквизиты',
+    'notes' => 'Примечания',
+    'created_at' => 'Создано',
+    'approve' => 'Одобрить',
+    'reject' => 'Отклонить',
+    'approve_success' => 'Вывод успешно одобрен',
+    'reject_success' => 'Вывод успешно отклонён',
+    'approve_withdrawal' => 'Одобрить вывод',
+    'reject_withdrawal' => 'Отклонить вывод',
+    'approve_withdrawal_confirmation' => 'Вы уверены, что хотите одобрить вывод #:id? Это действие нельзя отменить.',
+    'reject_withdrawal_confirmation' => 'Вы уверены, что хотите отклонить вывод #:id? Это действие нельзя отменить.',
+    'statuses' => [
+        'pending' => 'Ожидает',
+        'processing' => 'Обрабатывается',
+        'approved' => 'Одобрен',
+        'rejected' => 'Отклонён',
+        'canceled' => 'Отменён',
+    ],
+
+    // Customer-facing translations
+    'request' => 'Запрос на вывод',
+    'history' => 'История выводов',
+    'no_withdrawals' => 'Выводы не найдены.',
+    'withdrawal_id' => 'ID вывода',
+    'date' => 'Дата',
+    'amount_required' => 'Сумма вывода обязательна.',
+    'amount_numeric' => 'Сумма вывода должна быть числом.',
+    'amount_min' => 'Сумма вывода должна быть не менее 0.',
+    'payment_method_required' => 'Способ оплаты обязателен.',
+    'payment_details_required' => 'Платёжные реквизиты обязательны.',
+    'account_not_approved' => 'Ваш партнёрский аккаунт ещё не одобрен.',
+    'minimum_amount' => 'Минимальная сумма вывода составляет :amount.',
+    'insufficient_balance' => 'У вас недостаточно средств для этого вывода.',
+    'request_submitted' => 'Ваш запрос на вывод успешно отправлен.',
+    'submit_request' => 'Отправить запрос на вывод',
+    'available_balance' => 'Доступный баланс',
+    'enter_amount' => 'Введите сумму',
+    'select_payment_method' => 'Выберите способ оплаты',
+    'payment_details_placeholder' => 'Введите свои платёжные реквизиты (например, email PayPal, банковские реквизиты)',
+    'no_payment_methods_available' => 'В настоящее время нет доступных способов оплаты. Пожалуйста, свяжитесь с администратором.',
+
+    // Additional translations for PayoutPaymentMethodsEnum
+    'bank_transfer' => 'Банковский перевод',
+    'paypal' => 'PayPal',
+    'stripe' => 'Stripe',
+    'other' => 'Другое',
+    'bank_information' => 'Банковская информация',
+    'paypal_id' => 'ID PayPal',
+
+    // Payout payment methods
+    'payout_payment_methods' => [
+        'bank_transfer' => 'Банковский перевод',
+        'paypal' => 'PayPal',
+        'stripe' => 'Stripe',
+        'other' => 'Другое',
+    ],
+];

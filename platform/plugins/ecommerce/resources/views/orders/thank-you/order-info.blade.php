@@ -1,80 +1,92 @@
-<div class="pt-3 pt-md-3 mb-3 mb-md-5 order-item-info">
-    <div class="align-items-center">
-        <h6 class="d-inline-block">{{ __('Order number') }}: {{ $order->code }}</h6>
-    </div>
+@php
+    $orderProducts = apply_filters('ecommerce_thank_you_order_products', $order->products, $order);
+@endphp
 
-    <div class="checkout-success-products">
-        <div id="{{ 'cart-item-' . $order->id }}">
-            @foreach ($order->products as $orderProduct)
-                <div class="row cart-item">
-                    <div class="col-lg-3 col-md-3">
-                        <div class="checkout-product-img-wrapper d-inline-block">
-                            <img
-                                class="item-thumb img-thumbnail img-rounded mb-2 mb-md-0"
-                                src="{{ RvMedia::getImageUrl($orderProduct->product_image, 'thumb', false, RvMedia::getDefaultImage()) }}"
-                                alt="{{ $orderProduct->product_name }}"
-                            >
-                            <span class="checkout-quantity">{{ $orderProduct->qty }}</span>
-                        </div>
-                    </div>
-                    <div class="col-lg-5 col-md-5">
-                        <p class="mb-2 mb-md-0">{!! BaseHelper::clean($orderProduct->product_name) !!}</p>
-                        <p class="mb-2 mb-md-0">
-                            <small>{{ Arr::get($orderProduct->options, 'attributes', '') }}</small>
-                        </p>
-                        @if (!empty($orderProduct->product_options) && is_array($orderProduct->product_options))
-                            {!! render_product_options_html($orderProduct->product_options, $orderProduct->price) !!}
-                        @endif
-
-                        @include(EcommerceHelper::viewPath('includes.cart-item-options-extras'), [
-                            'options' => $orderProduct->options,
-                        ])
-
-                        @if (EcommerceHelper::isTaxEnabled() && $orderProduct->tax_amount > 0 && count($order->products) > 1)
-                            <p class="mb-0">
-                                <small class="text-muted">
-                                    {{ __('Tax') }}: {{ format_price($orderProduct->tax_amount) }}
-                                    @if (EcommerceHelper::isDisplayCheckoutTaxInformation() && !empty($orderProduct->options['taxClasses']))
-                                        (
-                                        @foreach ($orderProduct->options['taxClasses'] as $taxName => $taxRate)
-                                            {{ $taxName }} {{ $taxRate }}%@if (!$loop->last), @endif
-                                        @endforeach
-                                        )
-                                    @elseif (EcommerceHelper::isDisplayCheckoutTaxInformation() && !empty($orderProduct->options['taxRate']) && $orderProduct->options['taxRate'] > 0)
-                                        ({{ $orderProduct->options['taxRate'] }}%)
-                                    @endif
-                                </small>
-                            </p>
-                        @endif
-                    </div>
-                    @php($isOrderProductFree = $orderProduct->price == 0)
-                    <div class="col-lg-4 col-md-4 col-4 float-md-end text-md-end">
-                        <p class="mb-1">{{ $isOrderProductFree ? trans('plugins/ecommerce::ecommerce.free') : format_price($orderProduct->price) }}</p>
-                        @if (count($order->products) > 1 && ! $isOrderProductFree)
-                            @if (EcommerceHelper::isTaxEnabled() && $orderProduct->tax_amount > 0)
-                                <p class="mb-0">
-                                    <small class="text-muted">{{ __('Total') }}: {{ format_price(($orderProduct->price + ($orderProduct->tax_amount / $orderProduct->qty)) * $orderProduct->qty) }}</small>
-                                </p>
-                            @else
-                                <p class="mb-0">
-                                    <small class="text-muted">{{ __('Total') }}: {{ format_price($orderProduct->price * $orderProduct->qty) }}</small>
-                                </p>
-                            @endif
-                        @endif
-                    </div>
-                </div>
-            @endforeach
-
-            @if ($order->description)
-                <div class="mt-3">
-                    <h6 class="mb-1">{{ __('Order note') }}</h6>
-                    <p class="mb-0">{{ $order->description }}</p>
-                </div>
-            @endif
-
-            @if (!empty($isShowTotalInfo))
-                @include('plugins/ecommerce::orders.thank-you.total-info', compact('order'))
-            @endif
-        </div>
-    </div>
+<div class="order-summary-header">
+    <h3 class="order-summary-title">{{ trans('plugins/ecommerce::order.order_summary') }}</h3>
+    <span class="order-number-badge">{{ $order->code }}</span>
 </div>
+
+<div class="order-products-list">
+    @foreach ($orderProducts as $orderProduct)
+        <div class="order-product-item">
+            <div class="product-image-wrapper">
+                <img
+                    class="product-image"
+                    src="{{ RvMedia::getImageUrl($orderProduct->product_image, 'thumb', false, RvMedia::getDefaultImage()) }}"
+                    alt="{{ $orderProduct->product_name }}"
+                >
+                <span class="product-quantity-badge">{{ $orderProduct->qty }}</span>
+            </div>
+            <div class="product-details">
+                <p class="product-name">{!! BaseHelper::clean($orderProduct->product_name) !!}</p>
+                @if ($sku = Arr::get($orderProduct->options, 'sku', $orderProduct->product?->sku))
+                    <p class="product-sku">{{ trans('plugins/ecommerce::products.sku') }}: {{ $sku }}</p>
+                @endif
+                @if ($attributes = Arr::get($orderProduct->options, 'attributes', ''))
+                    <p class="product-variant">{{ $attributes }}</p>
+                @endif
+
+                @if (!empty($orderProduct->product_options) && is_array($orderProduct->product_options))
+                    <div class="product-options">
+                        {!! render_product_options_html($orderProduct->product_options, $orderProduct->product?->front_sale_price ?? $orderProduct->price) !!}
+                    </div>
+                @endif
+
+                @include(EcommerceHelper::viewPath('includes.cart-item-options-extras'), [
+                    'options' => $orderProduct->options,
+                ])
+
+                @php
+                    $bundleReference = Arr::get($orderProduct->options, 'extras.upsale_reference_product');
+                    $bundleReferenceProduct = $bundleReference ? \Botble\Ecommerce\Models\Product::query()->where('slug', $bundleReference)->first() : null;
+                @endphp
+                @if ($bundleReference)
+                    @include('plugins/ecommerce::themes.includes.cart-bundle-badge', [
+                        'reference' => $bundleReference,
+                        'referenceProduct' => $bundleReferenceProduct,
+                    ])
+                @endif
+
+                {!! apply_filters('ecommerce_thank_you_order_product_item', null, $orderProduct, $order) !!}
+            </div>
+            <div class="product-price-col">
+                @php($isOrderProductFree = $orderProduct->price == 0)
+                <p class="product-price">{{ $isOrderProductFree ? trans('plugins/ecommerce::ecommerce.free') : format_price($orderProduct->price * $orderProduct->qty) }}</p>
+
+                @if (EcommerceHelper::isTaxEnabled() && $orderProduct->tax_amount > 0 && count($order->products) > 1)
+                    <p class="product-tax">
+                        {{ trans('plugins/ecommerce::order.tax') }}: {{ format_price($orderProduct->tax_amount) }}
+                        @if (EcommerceHelper::isDisplayCheckoutTaxInformation() && !empty($orderProduct->options['taxClasses']))
+                            <span class="tax-detail">
+                            (
+                            @foreach ($orderProduct->options['taxClasses'] as $taxName => $taxRate)
+                                {{ $taxName }} {{ $taxRate }}%@if (!$loop->last), @endif
+                            @endforeach
+                            )
+                            </span>
+                        @elseif (EcommerceHelper::isDisplayCheckoutTaxInformation() && !empty($orderProduct->options['taxRate']) && $orderProduct->options['taxRate'] > 0)
+                            <span class="tax-detail">({{ $orderProduct->options['taxRate'] }}%)</span>
+                        @endif
+                    </p>
+                @endif
+            </div>
+        </div>
+    @endforeach
+</div>
+
+{!! apply_filters('ecommerce_thank_you_after_order_products', null, $order) !!}
+
+@if ($order->description)
+    <div class="order-note">
+        <h4 class="order-note-title">
+            <x-core::icon name="ti ti-note" class="note-icon" />
+            {{ trans('plugins/ecommerce::order.order_note') }}
+        </h4>
+        <p class="order-note-text">{{ $order->description }}</p>
+    </div>
+@endif
+
+@if (!empty($isShowTotalInfo))
+    @include('plugins/ecommerce::orders.thank-you.total-info', compact('order'))
+@endif

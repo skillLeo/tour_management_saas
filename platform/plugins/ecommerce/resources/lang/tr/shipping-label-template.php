@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'name' => 'Kargo Etiketi Şablonu',
-    'setting' => 'Kargo Etiketi Şablonu Ayarları',
-    'setting_description' => 'Kargo Etiketi şablonu ayarları',
+    'name' => 'Kargo etiketleri',
+    'setting' => 'Etiket tasarımı ve düzeni',
+    'setting_description' => 'Kargo etiketi HTML şablonunu ve CSS stillerini özelleştirin',
     'setting_content' => 'İçerik',
     'preview' => 'Önizleme',
     'preview_heading' => 'Kargo Etiketi şablonu önizlemesi',

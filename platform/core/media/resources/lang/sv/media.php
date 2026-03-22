@@ -55,6 +55,12 @@ return [
     'selected_items_move_success' => 'Valda objekt har flyttats till :name framgångsrikt!',
     'selected_items_move_error' => 'Fel vid flytt av valda objekt till :name',
     'destination' => 'Destination',
+    'move' => 'Move',
+    'move_items' => 'Move items',
+    'move_here' => 'Move here',
+    'move_to_root' => 'Move to root folder',
+    'root' => 'Root',
+    'go_up' => 'Go up',
     'restore_error' => 'Fel vid återställning av valda objekt',
     'restore_success' => 'Valda objekt har återställts framgångsrikt!',
     'copy_success' => 'Valda objekt har kopierats framgångsrikt!',
@@ -133,7 +139,12 @@ return [
         ],
 
         'download' => [
-            'error' => 'Inga filer valda eller kan inte ladda ner dessa filer',
+            'error' => 'No files selected or cannot download these files',
+        ],
+
+        'move' => [
+            'select_destination' => 'Please select a destination folder',
+            'same_location' => 'Items are already in this location',
         ],
 
         'actions_list' => [

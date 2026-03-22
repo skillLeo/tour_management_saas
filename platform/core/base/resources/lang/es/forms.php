@@ -68,4 +68,6 @@ return [
     'enable_dark_mode' => 'Habilitar modo oscuro',
     'close' => 'Cerrar',
     'search_input_placeholder' => 'Search...',
+    'search_country' => 'Buscar país...',
+    'no_results' => 'No se encontraron resultados',
 ];

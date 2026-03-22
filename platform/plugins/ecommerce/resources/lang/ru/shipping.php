@@ -192,6 +192,7 @@ return [
         'order_date' => 'Дата заказа',
         'scan_qr_code' => 'Отсканируйте QR-код для отслеживания вашей отправки',
         'total_amount' => 'Общая сумма',
+        'amount_to_collect' => 'Сумма к получению',
         'cod_amount_to_collect' => 'Сумма наложенного платежа к получению',
     ],
     'customer_confirmed_delivery_at' => 'Клиент подтвердил доставку в',

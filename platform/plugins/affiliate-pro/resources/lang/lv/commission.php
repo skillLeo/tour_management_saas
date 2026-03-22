@@ -1,0 +1,53 @@
+<?php
+
+return [
+    'name' => 'Komisijas',
+    'view' => 'Skatīt komisiju #:id',
+    'affiliate' => 'Partneris',
+    'order' => 'Pasūtījums',
+    'amount' => 'Summa',
+    'description' => 'Apraksts',
+    'status' => 'Statuss',
+    'created_at' => 'Izveidots',
+    'approve' => 'Apstiprināt',
+    'reject' => 'Noraidīt',
+    'approve_success' => 'Komisija veiksmīgi apstiprināta',
+    'reject_success' => 'Komisija veiksmīgi noraidīta',
+    'approve_commission' => 'Apstiprināt komisiju',
+    'reject_commission' => 'Noraidīt komisiju',
+    'approve_commission_confirmation' => 'Vai tiešām vēlaties apstiprināt komisiju #:id? Šo darbību nevar atsaukt.',
+    'reject_commission_confirmation' => 'Vai tiešām vēlaties noraidīt komisiju #:id? Šo darbību nevar atsaukt.',
+    'statuses' => [
+        'pending' => 'Gaida',
+        'approved' => 'Apstiprināts',
+        'rejected' => 'Noraidīts',
+    ],
+
+    // Customer-facing translations
+    'history' => 'Komisiju vēsture',
+    'no_commissions' => 'Nav atrastu komisiju.',
+    'no_commissions_description' => 'Jūs vēl neesat nopelnījis komisijas. Sāciet reklamēt mūsu produktus, lai nopelnītu savu pirmo komisiju!',
+    'commission_id' => 'Komisijas ID',
+    'order_id' => 'Pasūtījuma ID',
+    'customer' => 'Klients',
+    'product' => 'Produkts',
+    'type' => 'Tips',
+    'date' => 'Datums',
+
+    // New UI translations
+    'total_commissions' => ':count Kopējās komisijas',
+    'filter_by_status' => 'Filtrēt pēc statusa',
+    'all_statuses' => 'Visi statusi',
+    'date_from' => 'Datums no',
+    'date_to' => 'Datums līdz',
+    'filter' => 'Filtrēt',
+    'clear' => 'Notīrīt',
+    'approved_earnings' => 'Apstiprinātie ienākumi',
+    'pending_earnings' => 'Gaidošie ienākumi',
+    'successful_orders' => 'Veiksmīgie pasūtījumi',
+    'approval_rate' => 'Apstiprināšanas līmenis',
+    'commission_earned' => 'Nopelnītā komisija',
+    'showing_results' => 'Rāda no :from līdz :to no :total rezultātiem',
+    'start_promoting' => 'Sākt reklamēšanu',
+    'back_to_dashboard' => 'Atpakaļ uz informācijas paneli',
+];

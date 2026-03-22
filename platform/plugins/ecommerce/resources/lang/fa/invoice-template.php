@@ -2,8 +2,8 @@
 
 return [
     'name' => 'قالب فاکتور',
-    'setting' => 'تنظیمات قالب فاکتور',
-    'setting_description' => 'تنظیمات برای قالب فاکتور',
+    'setting' => 'Template design & layout',
+    'setting_description' => 'Customize invoice HTML template and CSS styles',
     'setting_content' => 'محتوا',
     'preview' => 'پیش‌نمایش',
     'preview_heading' => 'پیش‌نمایش قالب فاکتور',

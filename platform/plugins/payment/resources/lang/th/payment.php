@@ -88,6 +88,8 @@ return [
     'total' => 'ทั้งหมด',
     'status' => 'สถานะ',
     'default_payment_method' => 'วิธีการชำระเงินเริ่มต้น',
+    'sort_order_instruction' => 'ลากและวางเพื่อจัดเรียงวิธีการชำระเงินใหม่ในหน้าชำระเงิน',
+    'default_method_instruction' => 'คลิกไอคอนดาวเพื่อตั้งวิธีการชำระเงินเริ่มต้น',
     'payment_logs' => 'บันทึกการชำระเงิน',
     'request_data' => 'ข้อมูลคำขอ',
     'response_data' => 'ข้อมูลการตอบกลับ',

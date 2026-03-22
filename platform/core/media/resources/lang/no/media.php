@@ -55,6 +55,12 @@ return [
     'selected_items_move_success' => 'Valgte elementer flyttet til :name!',
     'selected_items_move_error' => 'Feil ved flytting av valgte elementer til :name',
     'destination' => 'Destinasjon',
+    'move' => 'Move',
+    'move_items' => 'Move items',
+    'move_here' => 'Move here',
+    'move_to_root' => 'Move to root folder',
+    'root' => 'Root',
+    'go_up' => 'Go up',
     'restore_error' => 'Feil ved gjenoppretting av valgte elementer',
     'restore_success' => 'Valgte elementer gjenopprettet!',
     'copy_success' => 'Valgte elementer kopiert!',
@@ -133,7 +139,12 @@ return [
         ],
 
         'download' => [
-            'error' => 'Ingen filer valgt eller kan ikke laste ned disse filene',
+            'error' => 'No files selected or cannot download these files',
+        ],
+
+        'move' => [
+            'select_destination' => 'Please select a destination folder',
+            'same_location' => 'Items are already in this location',
         ],
 
         'actions_list' => [

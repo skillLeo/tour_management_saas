@@ -17,6 +17,10 @@ class ThemeManagementServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
+        if (config('core.base.general.disable_front_theme')) {
+            return;
+        }
+
         if (Theme::hasInheritTheme()) {
             $this->loadJsonTranslationsFromTheme(
                 Theme::getInheritTheme()
@@ -30,6 +34,10 @@ class ThemeManagementServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        if (config('core.base.general.disable_front_theme')) {
+            return;
+        }
+
         if (Theme::hasInheritTheme()) {
             $this->registerAutoloadPathFromTheme(
                 Theme::getInheritTheme()

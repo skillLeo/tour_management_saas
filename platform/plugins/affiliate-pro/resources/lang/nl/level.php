@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'menu_name' => 'Lidniveaus',
+    'create' => 'Niveau Aanmaken',
+    'edit' => 'Niveau :name Bewerken',
+    'min_commission' => 'Minimum Commissie',
+    'max_commission' => 'Maximum Commissie',
+    'max_commission_help' => 'Leeg laten voor onbeperkt',
+    'unlimited' => 'Onbeperkt',
+    'commission_rate' => 'Commissietarief',
+    'commission_rate_help' => 'Vermenigvuldiger voor commissies (bijv. 1.1 voor 10% bonus)',
+    'benefits' => 'Voordelen',
+    'benefits_help' => 'Lijst voordelen, één per regel',
+    'benefits_placeholder' => 'Prioriteitsondersteuning' . PHP_EOL . 'Hoger Commissietarief',
+    'next_level' => 'Volgend Niveau: :name',
+    'commission_needed' => 'Je hebt nog :amount aan commissies nodig om :name te bereiken',
+    'tier_rules_tooltip' => 'Verdien commissies met elke doorverwijzing om hogere niveaus en exclusieve beloningen te ontgrendelen. Niveaus zijn gebaseerd op je totaal verdiende commissies.',
+    'top_tier_reached' => 'Hoogste Niveau Bereikt',
+    'top_tier_message' => 'Je hebt het hoogste affiliate niveau bereikt! Geniet van je exclusieve voordelen.',
+    'default_member' => 'Lid',
+    'member_since' => 'Sinds',
+    'no_benefits' => 'Begin commissies te verdienen om niveauvoordelen te ontgrendelen!',
+    'current_commission' => ':amount verdiend',
+    'target_commission' => 'Doel :amount',
+];

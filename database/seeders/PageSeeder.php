@@ -13,7 +13,6 @@ class PageSeeder extends BaseSeeder
 {
     public function run(): void
     {
-        $faker = $this->fake();
 
         $themeAds = Html::tag(
             'div',
@@ -68,6 +67,10 @@ class PageSeeder extends BaseSeeder
             'div',
             '[testimonials title="What our Clients say" subtitle="Customers Review" testimonial_ids="1,2,3,4"][/testimonials]'
         );
+        $recentlyViewedProducts = Html::tag(
+            'div',
+            '[recently-viewed-products title="Your Recently Viewed"][/recently-viewed-products]'
+        );
 
         $pages = [
             [
@@ -80,7 +83,8 @@ class PageSeeder extends BaseSeeder
                     $bestFlashSale .
                     $flashSale .
                     $topProductsGroup .
-                    $testimonials,
+                    $testimonials .
+                    $recentlyViewedProducts,
                 'template' => 'homepage',
             ],
             [
@@ -93,7 +97,8 @@ class PageSeeder extends BaseSeeder
                     $flashSale .
                     $topProductsGroup .
                     $productCategories .
-                    $testimonials,
+                    $testimonials .
+                    $recentlyViewedProducts,
                 'template' => 'homepage',
             ],
             [
@@ -104,7 +109,8 @@ class PageSeeder extends BaseSeeder
                     $flashSale .
                     $themeAds .
                     $productCategories .
-                    $topProductsGroup,
+                    $topProductsGroup .
+                    $recentlyViewedProducts,
                 'template' => 'homepage',
             ],
             [
@@ -118,7 +124,8 @@ class PageSeeder extends BaseSeeder
                     $flashSale .
                     $themeAds .
                     $productCategories .
-                    $topProductsGroup,
+                    $topProductsGroup .
+                    $recentlyViewedProducts,
                 'template' => 'homepage',
             ],
             [
@@ -135,8 +142,10 @@ class PageSeeder extends BaseSeeder
             [
                 'name' => 'About us',
                 'content' =>
-                    Html::tag('p', $faker->realText(500)) . Html::tag('p', $faker->realText(500)) .
-                    Html::tag('p', $faker->realText(500)) . Html::tag('p', $faker->realText(500)),
+                    Html::tag('p', 'Welcome to our store! We are a leading e-commerce platform dedicated to providing high-quality products at competitive prices. Our mission is to make shopping easy, convenient, and enjoyable for everyone. With a wide selection of products across various categories, we strive to meet all your needs under one roof.') .
+                    Html::tag('p', 'Founded with a passion for excellence, we have grown from a small startup to a trusted online marketplace serving customers worldwide. Our team works tirelessly to source the best products, ensure quality standards, and deliver exceptional customer service that keeps our customers coming back.') .
+                    Html::tag('p', 'We believe in building lasting relationships with our customers through transparency, integrity, and commitment to satisfaction. Every product in our catalog is carefully selected to meet our high standards. We partner with reliable suppliers and manufacturers to bring you authentic, quality items at the best prices.') .
+                    Html::tag('p', 'Thank you for choosing us as your shopping destination. We are committed to making your experience seamless and rewarding. If you have any questions or feedback, our dedicated support team is always here to help. Happy shopping!'),
                 'template' => 'right-sidebar',
             ],
             [
@@ -162,23 +171,35 @@ class PageSeeder extends BaseSeeder
             ],
             [
                 'name' => 'Terms & Conditions',
-                'content' => Html::tag('p', $faker->realText(500)) . Html::tag('p', $faker->realText(500)) .
-                    Html::tag('p', $faker->realText(500)) . Html::tag('p', $faker->realText(500)),
+                'content' =>
+                    Html::tag('p', 'Welcome to our website. By accessing and using this website, you accept and agree to be bound by these Terms and Conditions. Please read them carefully before using our services. If you do not agree to these terms, please do not use our website or services.') .
+                    Html::tag('p', 'All content on this website, including text, graphics, logos, images, and software, is the property of our company and is protected by copyright laws. You may not reproduce, distribute, or create derivative works without our express written permission. Any unauthorized use may violate copyright, trademark, and other laws.') .
+                    Html::tag('p', 'We reserve the right to modify these terms at any time without prior notice. Your continued use of the website following any changes constitutes acceptance of the new terms. It is your responsibility to review these terms periodically to stay informed of any updates.') .
+                    Html::tag('p', 'We are not liable for any damages arising from your use of this website or any linked sites. All products and services are provided "as is" without warranties of any kind. By using our services, you agree to indemnify and hold us harmless from any claims or damages.'),
             ],
             [
                 'name' => 'Returns & Exchanges',
-                'content' => Html::tag('p', $faker->realText(500)) . Html::tag('p', $faker->realText(500)) .
-                    Html::tag('p', $faker->realText(500)) . Html::tag('p', $faker->realText(500)),
+                'content' =>
+                    Html::tag('p', 'We want you to be completely satisfied with your purchase. If for any reason you are not happy with your order, we offer a hassle-free return and exchange policy within 30 days of delivery. Items must be unused, in their original packaging, and in the same condition as received.') .
+                    Html::tag('p', 'To initiate a return or exchange, please contact our customer service team with your order number and reason for return. We will provide you with a return authorization and instructions for shipping the item back to us. Please note that shipping costs for returns are the responsibility of the customer unless the item is defective or incorrect.') .
+                    Html::tag('p', 'Once we receive your returned item and verify its condition, we will process your refund or exchange within 5-7 business days. Refunds will be credited to your original payment method. For exchanges, we will ship the replacement item as soon as the return is processed.') .
+                    Html::tag('p', 'Some items are not eligible for returns, including perishable goods, personalized items, and clearance products. Please review the product description for any specific return restrictions before making your purchase. Contact our support team if you have any questions about our return policy.'),
             ],
             [
                 'name' => 'Shipping & Delivery',
-                'content' => Html::tag('p', $faker->realText(500)) . Html::tag('p', $faker->realText(500)) .
-                    Html::tag('p', $faker->realText(500)) . Html::tag('p', $faker->realText(500)),
+                'content' =>
+                    Html::tag('p', 'We offer fast and reliable shipping to customers worldwide. Standard shipping typically takes 5-7 business days for domestic orders and 10-14 business days for international orders. Express shipping options are available at checkout for faster delivery.') .
+                    Html::tag('p', 'All orders are processed within 1-2 business days. You will receive a confirmation email with tracking information once your order has shipped. Please ensure your shipping address is correct at checkout, as we cannot modify addresses after an order has been placed.') .
+                    Html::tag('p', 'Shipping costs are calculated based on order weight, dimensions, and destination. Free shipping is available on orders over a certain amount - check our current promotions for details. Please note that import duties and taxes for international orders are the responsibility of the customer.') .
+                    Html::tag('p', 'We carefully package all items to ensure they arrive in perfect condition. If your package arrives damaged, please contact us immediately with photos of the damage. We will work with you to resolve the issue promptly and ensure your satisfaction.'),
             ],
             [
                 'name' => 'Privacy Policy',
-                'content' => Html::tag('p', $faker->realText(500)) . Html::tag('p', $faker->realText(500)) .
-                    Html::tag('p', $faker->realText(500)) . Html::tag('p', $faker->realText(500)),
+                'content' =>
+                    Html::tag('p', 'Your privacy is important to us. This Privacy Policy explains how we collect, use, and protect your personal information when you visit our website or make a purchase. We are committed to safeguarding your data and ensuring transparency in our practices.') .
+                    Html::tag('p', 'We collect information you provide directly, such as your name, email address, shipping address, and payment details when you create an account or place an order. We also automatically collect certain information about your device and browsing activity to improve our services and personalize your experience.') .
+                    Html::tag('p', 'Your information is used to process orders, communicate with you, and improve our website and services. We do not sell or rent your personal information to third parties. We may share your information with service providers who assist us in operating our business, but only to the extent necessary to perform their functions.') .
+                    Html::tag('p', 'We implement industry-standard security measures to protect your information from unauthorized access, alteration, or disclosure. However, no method of transmission over the internet is completely secure. By using our website, you acknowledge and accept these risks. Contact us if you have any questions about our privacy practices.'),
             ],
             [
                 'name' => 'Blog List',
@@ -205,7 +226,8 @@ class PageSeeder extends BaseSeeder
                     $themeAds2 .
                     $bestFlashSale .
                     $flashSale .
-                    $topProductsGroup,
+                    $topProductsGroup .
+                    $recentlyViewedProducts,
                 'template' => 'homepage',
                 'header_style' => 'header-style-5',
             ],
@@ -215,13 +237,20 @@ class PageSeeder extends BaseSeeder
                     $bigBanner .
                     $trendingProducts .
                     $flashSale .
-                    $topProductsGroup,
+                    $topProductsGroup .
+                    $recentlyViewedProducts,
                 'template' => 'homepage',
                 'header_style' => 'header-style-5',
             ],
             [
                 'name' => 'Faq',
                 'content' => Html::tag('div', '[faqs][/faqs]'),
+            ],
+            [
+                'name' => 'Product Categories',
+                'content' =>
+                    Html::tag('div', '[ecommerce-categories category_ids="1,2,3,4,5,6,7,8" style="grid" title="Browse Categories" show_products_count="yes"][/ecommerce-categories]'),
+                'template' => 'full-width',
             ],
             [
                 'name' => 'Coming Soon',

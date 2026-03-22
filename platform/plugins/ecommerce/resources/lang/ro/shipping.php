@@ -192,6 +192,7 @@ return [
         'order_date' => 'Data comenzii',
         'scan_qr_code' => 'Scanați codul QR pentru a urmări expediția',
         'total_amount' => 'Suma totală',
+        'amount_to_collect' => 'Suma de încasat',
         'cod_amount_to_collect' => 'Suma COD de încasat',
     ],
     'customer_confirmed_delivery_at' => 'Clientul a confirmat livrarea la',

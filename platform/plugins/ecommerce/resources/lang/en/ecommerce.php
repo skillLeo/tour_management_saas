@@ -173,6 +173,7 @@ return [
     'total' => 'Total',
     'total_amount' => 'Total Amount',
     'upload_photos' => 'Upload photos',
+    'optional' => 'Optional',
     'vendor' => 'Vendor:',
     'view_all_results' => 'View all results',
     'view_full_details' => 'View full details',

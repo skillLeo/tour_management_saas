@@ -1,0 +1,53 @@
+<?php
+
+return [
+    'name' => 'Vahendustasud',
+    'view' => 'Vaata vahendustasu #:id',
+    'affiliate' => 'Partner',
+    'order' => 'Tellimus',
+    'amount' => 'Summa',
+    'description' => 'Kirjeldus',
+    'status' => 'Olek',
+    'created_at' => 'Loodud',
+    'approve' => 'Kinnita',
+    'reject' => 'Keeldu',
+    'approve_success' => 'Vahendustasu edukalt kinnitatud',
+    'reject_success' => 'Vahendustasu edukalt tagasi lükatud',
+    'approve_commission' => 'Kinnita vahendustasu',
+    'reject_commission' => 'Keeldu vahendustasust',
+    'approve_commission_confirmation' => 'Kas olete kindel, et soovite kinnitada vahendustasu #:id? Seda tegevust ei saa tagasi võtta.',
+    'reject_commission_confirmation' => 'Kas olete kindel, et soovite tagasi lükata vahendustasu #:id? Seda tegevust ei saa tagasi võtta.',
+    'statuses' => [
+        'pending' => 'Ootel',
+        'approved' => 'Kinnitatud',
+        'rejected' => 'Tagasi lükatud',
+    ],
+
+    // Customer-facing translations
+    'history' => 'Vahendustasude ajalugu',
+    'no_commissions' => 'Vahendustasusid ei leitud.',
+    'no_commissions_description' => 'Te pole veel vahendustasusid teeninud. Alustage meie toodete reklaamimist, et teenida oma esimene vahendustasu!',
+    'commission_id' => 'Vahendustasu ID',
+    'order_id' => 'Tellimuse ID',
+    'customer' => 'Klient',
+    'product' => 'Toode',
+    'type' => 'Tüüp',
+    'date' => 'Kuupäev',
+
+    // New UI translations
+    'total_commissions' => ':count Kokku vahendustasusid',
+    'filter_by_status' => 'Filtreeri oleku järgi',
+    'all_statuses' => 'Kõik olekud',
+    'date_from' => 'Kuupäev alates',
+    'date_to' => 'Kuupäev kuni',
+    'filter' => 'Filter',
+    'clear' => 'Tühjenda',
+    'approved_earnings' => 'Kinnitatud tulud',
+    'pending_earnings' => 'Ootel tulud',
+    'successful_orders' => 'Edukad tellimused',
+    'approval_rate' => 'Kinnitamise määr',
+    'commission_earned' => 'Teenitud vahendustasu',
+    'showing_results' => 'Kuvatakse :from kuni :to :total tulemusest',
+    'start_promoting' => 'Alusta reklaamimist',
+    'back_to_dashboard' => 'Tagasi töölauale',
+];

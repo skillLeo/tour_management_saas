@@ -22,7 +22,7 @@
                     </div>
                     <div class="col text-truncate">
                         <a href="{{ route('products.edit', $product->id) }}" class="text-body d-block" target="_blank">
-                            {{ $product->name }} ({{ format_price($product->sale_price ?: $product->price) }})
+                            {{ $product->name }} ({{ format_price($product->display_sale_price ?: $product->display_price) }})
                         </a>
                     </div>
                     <div class="col-auto">

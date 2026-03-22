@@ -2180,7 +2180,7 @@ class Botble {
             $form.find('input.input-mask-number').map(function (i, e) {
                 const $input = $(e)
                 if ($input.inputmask) {
-                    if ($.isArray(formData)) {
+                    if (Array.isArray(formData)) {
                         formData[$input.attr('name')] = $input.inputmask('unmaskedvalue')
                     } else {
                         formData.append($input.attr('name'), $input.inputmask('unmaskedvalue'))

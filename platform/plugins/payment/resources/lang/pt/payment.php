@@ -88,6 +88,8 @@ return [
     'total' => 'Montante total',
     'status' => 'Estado',
     'default_payment_method' => 'Método de pagamento padrão',
+    'sort_order_instruction' => 'Arraste e solte para reordenar os métodos de pagamento na página de checkout.',
+    'default_method_instruction' => 'Clique no ícone de estrela para definir um método de pagamento padrão.',
     'available_countries' => 'Países disponíveis',
     'available_countries_help' => 'Escolha os países onde este método de pagamento está disponível.',
     'all_countries_checkbox' => 'Todos',

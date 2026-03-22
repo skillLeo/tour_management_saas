@@ -96,6 +96,32 @@
     </x-core::card.body>
 </x-core::card>
 
+@if ($returnRequest->images && count($returnRequest->images))
+    <x-core::card class="mb-3">
+        <x-core::card.header>
+            <x-core::card.title>
+                {{ trans('plugins/ecommerce::order.return_images') }}
+            </x-core::card.title>
+        </x-core::card.header>
+        <x-core::card.body>
+            <div class="row g-2">
+                @foreach ($returnRequest->images as $image)
+                    <div class="col-auto">
+                        <a href="{{ RvMedia::getImageUrl($image) }}" target="_blank" class="d-block">
+                            <img
+                                src="{{ RvMedia::getImageUrl($image, 'thumb') }}"
+                                alt="{{ trans('plugins/ecommerce::order.return_image') }}"
+                                class="img-thumbnail"
+                                style="max-width: 120px; max-height: 120px; object-fit: cover;"
+                            >
+                        </a>
+                    </div>
+                @endforeach
+            </div>
+        </x-core::card.body>
+    </x-core::card>
+@endif
+
 @if (! in_array($returnRequest->return_status, [
     Botble\Ecommerce\Enums\OrderReturnStatusEnum::COMPLETED,
     Botble\Ecommerce\Enums\OrderReturnStatusEnum::CANCELED,

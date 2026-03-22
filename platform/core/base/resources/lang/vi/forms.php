@@ -68,4 +68,6 @@ return [
     'enable_light_mode' => 'Bật chế độ sáng',
     'enable_dark_mode' => 'Bật chế độ tối',
     'close' => 'Đóng',
+    'search_country' => 'Tìm kiếm quốc gia...',
+    'no_results' => 'Không tìm thấy kết quả',
 ];

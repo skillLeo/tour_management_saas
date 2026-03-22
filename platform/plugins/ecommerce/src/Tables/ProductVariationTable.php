@@ -191,6 +191,7 @@ class ProductVariationTable extends TableAbstract
                             'start_date',
                             'end_date',
                             'is_variation',
+                            'currency_code',
                             'image',
                             'images',
                         ]);
@@ -263,7 +264,7 @@ class ProductVariationTable extends TableAbstract
                 'title' => $attributeSet->title,
                 'class' => 'text-start',
                 'orderable' => false,
-                'searchable' => false,
+                'searchable' => true,
                 'width' => '90',
                 'search_data' => [
                     'attribute_set_id' => $attributeSet->id,

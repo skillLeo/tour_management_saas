@@ -6,6 +6,8 @@
             ],
             'with' => ['slugable'],
         ]);
+
+        $showProductPrice = ! EcommerceHelper::hideProductPrice() || EcommerceHelper::isCartEnabled();
     @endphp
     @if (count($products))
         <ul>
@@ -21,8 +23,16 @@
                         </div>
                         <div class="shopping-cart-title">
                             <h4><a href="{{ $product->original_product->url }}">{{ $product->original_product->name }}  @if ($product->isOutOfStock()) <span class="stock-status-label">({!! $product->stock_status_html !!})</span> @endif</a></h4>
-                            <h3><span class="d-inline-block">{{ $cartItem->qty }}</span> <span class="d-inline-block"> x </span> <span class="d-inline-block">{{ format_price($cartItem->price) }}</span> @if ($product->front_sale_price != $product->price)
-                                    <small><del>{{ format_price($product->price) }}</del></small>@endif</h3>
+                            @if ($showProductPrice)
+                                <h3>
+                                    <span class="d-inline-block">{{ $cartItem->qty }}</span>
+                                    <span class="d-inline-block"> x </span>
+                                    <span class="d-inline-block">{{ format_price($cartItem->price) }}</span>
+                                    @if ($product->front_sale_price != $product->price)
+                                        <small><del>{{ format_price($product->price) }}</del></small>
+                                    @endif
+                                </h3>
+                            @endif
                             <p class="mb-0"><small>{{ $cartItem->options['attributes'] ?? '' }}</small></p>
 
                             @if (!empty($cartItem->options['options']))
@@ -36,6 +46,7 @@
                                     @endif
                                 @endforeach
                             @endif
+                            {!! app(\Botble\Ecommerce\Supports\CartBundleHelper::class)->renderBundleBadge($cartItem) !!}
                         </div>
                         <div class="shopping-cart-delete">
                             <a href="#" data-url="{{ route('public.ajax.cart.destroy', $cartItem->rowId) }}" class="remove-cart-item"><i class="fi-rs-cross-small"></i></a>
@@ -45,25 +56,27 @@
             @endforeach
         </ul>
     @endif
-    <div class="shopping-cart-footer">
-        <div class="shopping-cart-total">
-            @if (EcommerceHelper::isTaxEnabled())
-                <h5><strong class="d-inline-block">{{ __('Sub Total') }}:</strong> <span>{{ format_price(Cart::instance('cart')->rawSubTotal()) }}</span></h5>
-                <div class="clearfix"></div>
-                <h5><strong class="d-inline-block">{{ __('Tax') }}:</strong> <span>{{ format_price(Cart::instance('cart')->rawTax()) }}</span></h5>
-                <div class="clearfix"></div>
-                <h4><strong class="d-inline-block">{{ __('Total') }}:</strong> <span>{{ format_price(Cart::instance('cart')->rawSubTotal() + Cart::instance('cart')->rawTax()) }}</span></h4>
-            @else
-                <h4><strong class="d-inline-block">{{ __('Sub Total') }}:</strong> <span>{{ format_price(Cart::instance('cart')->rawSubTotal()) }}</span></h4>
-            @endif
+    @if ($showProductPrice && EcommerceHelper::isCartEnabled())
+        <div class="shopping-cart-footer">
+            <div class="shopping-cart-total">
+                @if (EcommerceHelper::isTaxEnabled())
+                    <h5><strong class="d-inline-block">{{ __('Sub Total') }}:</strong> <span>{{ format_price(Cart::instance('cart')->rawSubTotal()) }}</span></h5>
+                    <div class="clearfix"></div>
+                    <h5><strong class="d-inline-block">{{ __('Tax') }}:</strong> <span>{{ format_price(Cart::instance('cart')->rawTax()) }}</span></h5>
+                    <div class="clearfix"></div>
+                    <h4><strong class="d-inline-block">{{ __('Total') }}:</strong> <span>{{ format_price(Cart::instance('cart')->rawSubTotal() + Cart::instance('cart')->rawTax()) }}</span></h4>
+                @else
+                    <h4><strong class="d-inline-block">{{ __('Sub Total') }}:</strong> <span>{{ format_price(Cart::instance('cart')->rawSubTotal()) }}</span></h4>
+                @endif
+            </div>
+            <div class="shopping-cart-button">
+                <a href="{{ route('public.cart') }}">{{ __('View cart') }}</a>
+                @if (session('tracked_start_checkout'))
+                    <a href="{{ route('public.checkout.information', session('tracked_start_checkout')) }}">{{ __('Checkout') }}</a>
+                @endif
+            </div>
         </div>
-        <div class="shopping-cart-button">
-            <a href="{{ route('public.cart') }}">{{ __('View cart') }}</a>
-            @if (session('tracked_start_checkout'))
-                <a href="{{ route('public.checkout.information', session('tracked_start_checkout')) }}">{{ __('Checkout') }}</a>
-            @endif
-        </div>
-    </div>
+    @endif
 @else
     <span>{{ __('No products in the cart.') }}</span>
 @endif

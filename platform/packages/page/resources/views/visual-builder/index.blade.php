@@ -73,6 +73,13 @@
     <div id="visual-builder-app">
         @include('packages/page::visual-builder.header')
 
+        @php
+            $visualBuilderNotification = apply_filters('page_visual_builder_after_header', '', $page);
+        @endphp
+        @if ($visualBuilderNotification)
+            <div class="vb-notification px-3 py-2 border-bottom">{!! $visualBuilderNotification !!}</div>
+        @endif
+
         <div class="vb-container d-flex flex-fill overflow-hidden">
             <!-- Sidebar -->
             <aside
@@ -190,10 +197,16 @@
                     class="vb-preview-frame-container d-none"
                     id="vb-preview-frame-container"
                 >
+                    @php
+                        $previewParams = ['visual_builder' => 1];
+                        if ($refLangParam = request()->input('ref_lang')) {
+                            $previewParams['ref_lang'] = $refLangParam;
+                        }
+                    @endphp
                     <iframe
                         id="vb-preview-iframe"
                         name="vb-preview-iframe"
-                        src="{{ route('pages.preview', $page) }}?visual_builder=1"
+                        src="{{ route('pages.preview', $page) }}?{{ http_build_query($previewParams) }}"
                         frameborder="0"
                         sandbox="allow-same-origin allow-scripts allow-forms allow-popups"
                         class="border-0"
@@ -264,17 +277,22 @@
     </div>
 
     <!-- Pass data to JavaScript -->
+    @php
+        $refLang = request()->input('ref_lang');
+        $refLangQuery = $refLang ? '?' . http_build_query(['ref_lang' => $refLang]) : '';
+    @endphp
     <script>
         window.visualBuilderData = {
             pageId: @json($page->id),
             pageName: @json($page->name),
             shortcodes: @json($shortcodes),
             availableShortcodes: @json($availableShortcodes),
-            previewUrl: @json(route('pages.preview', $page)),
-            saveUrl: @json(route('pages.visual-builder.save', $page)),
-            editUrl: @json(route('pages.edit', $page)),
+            previewUrl: @json(route('pages.preview', $page) . $refLangQuery),
+            saveUrl: @json(route('pages.visual-builder.save', $page) . $refLangQuery),
+            editUrl: @json(route('pages.edit', $page) . $refLangQuery),
             renderItemsUrl: @json(route('pages.visual-builder.render-items')),
             renderTypesUrl: @json(route('pages.visual-builder.render-types')),
+            refLang: @json($refLang),
             csrfToken: @json(csrf_token()),
             translations: {
                 loading: @json(trans('packages/page::pages.loading')),

@@ -37,7 +37,7 @@
                     <span class="fw-semibold">{{ format_price($product->front_sale_price) }}</span>
                     @if($product->isOnSale())
                         /
-                        <span class="text-danger text-decoration-line-through">{{ format_price($product->price) }}</span>
+                        <span class="text-danger text-decoration-line-through">{{ format_price($product->display_price) }}</span>
                     @endif
                 </div>
             </div>

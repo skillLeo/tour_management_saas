@@ -4,6 +4,7 @@ use Botble\Installer\Http\Controllers\AccountController;
 use Botble\Installer\Http\Controllers\EnvironmentController;
 use Botble\Installer\Http\Controllers\FinalController;
 use Botble\Installer\Http\Controllers\InstallController;
+use Botble\Installer\Http\Controllers\LicenseController;
 use Botble\Installer\Http\Controllers\RequirementController;
 use Botble\Installer\Http\Controllers\ThemeController;
 use Botble\Installer\Http\Controllers\ThemePresetController;
@@ -27,6 +28,9 @@ Route::group([
         Route::get('theme-presets', [ThemePresetController::class, 'index'])->name('theme-presets.index');
         Route::post('theme-presets', [ThemePresetController::class, 'store'])->name('theme-presets.store');
         Route::resource('accounts', AccountController::class)->only(['index', 'store']);
+        Route::resource('licenses', LicenseController::class)->only(['index', 'store']);
         Route::get('final', [FinalController::class, 'index'])->name('final');
+
+        Route::post('licenses/skip', [LicenseController::class, 'skip'])->name('licenses.skip');
     });
 });

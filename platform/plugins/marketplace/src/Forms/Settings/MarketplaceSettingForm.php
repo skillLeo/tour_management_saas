@@ -10,6 +10,7 @@ use Botble\Base\Forms\FieldOptions\OnOffFieldOption;
 use Botble\Base\Forms\Fields\MultiCheckListField;
 use Botble\Base\Forms\Fields\NumberField;
 use Botble\Base\Forms\Fields\OnOffCheckboxField;
+use Botble\Ecommerce\Facades\EcommerceHelper;
 use Botble\Marketplace\Enums\WithdrawalFeeTypeEnum;
 use Botble\Marketplace\Facades\MarketplaceHelper;
 use Botble\Marketplace\Http\Requests\MarketPlaceSettingFormRequest;
@@ -44,41 +45,56 @@ class MarketplaceSettingForm extends SettingForm
             ->setSectionDescription(trans('plugins/marketplace::marketplace.settings.description'))
             ->setValidatorClass(MarketPlaceSettingFormRequest::class)
             ->contentOnly()
-            ->add('fee_per_order', 'number', [
-                'label' => trans('plugins/marketplace::marketplace.settings.default_commission_fee'),
-                'value' => MarketplaceHelper::getSetting('fee_per_order', 0),
-                'attr' => [
-                    'min' => 0,
-                    'max' => 100,
-                ],
-            ])
-            ->add('enable_commission_fee_for_each_category', OnOffCheckboxField::class, [
-                'label' => trans('plugins/marketplace::marketplace.settings.enable_commission_fee_for_each_category'),
-                'value' => MarketplaceHelper::isCommissionCategoryFeeBasedEnabled(),
-                'attr' => [
-                    'data-bb-toggle' => 'collapse',
-                    'data-bb-target' => '.category-commission-fee-settings',
-                ],
-            ])
+            ->add(
+                'fee_per_order',
+                NumberField::class,
+                NumberFieldOption::make()
+                    ->label(trans('plugins/marketplace::marketplace.settings.default_commission_fee'))
+                    ->helperText(trans('plugins/marketplace::marketplace.settings.default_commission_fee_helper'))
+                    ->value(MarketplaceHelper::getSetting('fee_per_order', 0))
+                    ->addAttribute('min', 0)
+                    ->addAttribute('max', 100)
+            )
+            ->add(
+                'enable_commission_fee_for_each_category',
+                OnOffCheckboxField::class,
+                OnOffFieldOption::make()
+                    ->label(trans('plugins/marketplace::marketplace.settings.enable_commission_fee_for_each_category'))
+                    ->helperText(trans('plugins/marketplace::marketplace.settings.enable_commission_fee_for_each_category_helper'))
+                    ->value(MarketplaceHelper::isCommissionCategoryFeeBasedEnabled())
+                    ->addAttribute('data-bb-toggle', 'collapse')
+                    ->addAttribute('data-bb-target', '.category-commission-fee-settings')
+            )
             ->add('category_commission_fee_fields', 'html', [
                 'html' => view(
                     'plugins/marketplace::settings.partials.category-commission-fee-fields',
                     compact('commissionEachCategory')
                 )->render(),
             ])
-            ->add('fee_withdrawal', 'number', [
-                'label' => trans('plugins/marketplace::marketplace.settings.fee_withdrawal_amount'),
-                'value' => MarketplaceHelper::getSetting('fee_withdrawal', 0),
-            ])
+            ->add(
+                'fee_withdrawal',
+                NumberField::class,
+                NumberFieldOption::make()
+                    ->label(trans('plugins/marketplace::marketplace.settings.fee_withdrawal_amount'))
+                    ->helperText(trans('plugins/marketplace::marketplace.settings.fee_withdrawal_amount_helper'))
+                    ->value(MarketplaceHelper::getSetting('fee_withdrawal', 0))
+            )
             ->add('withdrawal_fee_type', 'customSelect', [
                 'label' => trans('plugins/marketplace::marketplace.settings.withdrawal_fee_type'),
                 'selected' => MarketplaceHelper::getSetting('withdrawal_fee_type', WithdrawalFeeTypeEnum::FIXED),
                 'choices' => WithdrawalFeeTypeEnum::labels(),
+                'help_block' => [
+                    'text' => trans('plugins/marketplace::marketplace.settings.withdrawal_fee_type_helper'),
+                ],
             ])
-            ->add('check_valid_signature', OnOffCheckboxField::class, [
-                'label' => trans('plugins/marketplace::marketplace.settings.check_valid_signature'),
-                'value' => MarketplaceHelper::getSetting('check_valid_signature', true),
-            ])
+            ->add(
+                'check_valid_signature',
+                OnOffCheckboxField::class,
+                OnOffFieldOption::make()
+                    ->label(trans('plugins/marketplace::marketplace.settings.check_valid_signature'))
+                    ->helperText(trans('plugins/marketplace::marketplace.settings.check_valid_signature_helper'))
+                    ->value(MarketplaceHelper::getSetting('check_valid_signature', true))
+            )
             ->add(
                 'enable_product_approval',
                 OnOffCheckboxField::class,
@@ -87,26 +103,45 @@ class MarketplaceSettingForm extends SettingForm
                     ->value(MarketplaceHelper::getSetting('enable_product_approval', true))
                     ->helperText(trans('plugins/marketplace::marketplace.settings.enable_product_approval_description'))
             )
-            ->add('max_filesize_upload_by_vendor', 'number', [
-                'label' => trans('plugins/marketplace::marketplace.settings.max_upload_filesize'),
-                'value' => $maxSize = MarketplaceHelper::maxFilesizeUploadByVendor(),
-                'attr' => [
-                    'placeholder' => trans(
-                        'plugins/marketplace::marketplace.settings.max_upload_filesize_placeholder',
-                        [
-                            'size' => $maxSize,
-                        ]
-                    ),
-                    'step' => 1,
-                ],
-            ])
-            ->add('max_product_images_upload_by_vendor', 'number', [
-                'label' => trans('plugins/marketplace::marketplace.settings.max_product_images_upload_by_vendor'),
-                'value' => MarketplaceHelper::maxProductImagesUploadByVendor(),
-                'attr' => [
-                    'step' => 1,
-                ],
-            ])
+            ->when(EcommerceHelper::isEnabledSupportDigitalProducts(), function (): void {
+                $this->add(
+                    'allow_vendor_digital_products',
+                    OnOffCheckboxField::class,
+                    OnOffFieldOption::make()
+                        ->label(trans('plugins/marketplace::marketplace.settings.allow_vendor_digital_products'))
+                        ->value(MarketplaceHelper::isVendorDigitalProductsEnabled())
+                        ->helperText(trans('plugins/marketplace::marketplace.settings.allow_vendor_digital_products_helper'))
+                );
+            })
+            ->add(
+                'max_filesize_upload_by_vendor',
+                NumberField::class,
+                NumberFieldOption::make()
+                    ->label(trans('plugins/marketplace::marketplace.settings.max_upload_filesize'))
+                    ->helperText(trans('plugins/marketplace::marketplace.settings.max_upload_filesize_helper'))
+                    ->value($maxSize = MarketplaceHelper::maxFilesizeUploadByVendor())
+                    ->addAttribute('placeholder', trans('plugins/marketplace::marketplace.settings.max_upload_filesize_placeholder', ['size' => $maxSize]))
+                    ->addAttribute('step', 1)
+            )
+            ->add(
+                'max_product_images_upload_by_vendor',
+                NumberField::class,
+                NumberFieldOption::make()
+                    ->label(trans('plugins/marketplace::marketplace.settings.max_product_images_upload_by_vendor'))
+                    ->helperText(trans('plugins/marketplace::marketplace.settings.max_product_images_upload_by_vendor_helper'))
+                    ->value(MarketplaceHelper::maxProductImagesUploadByVendor())
+                    ->addAttribute('step', 1)
+            )
+            ->add(
+                'low_stock_threshold',
+                NumberField::class,
+                NumberFieldOption::make()
+                    ->label(trans('plugins/marketplace::marketplace.settings.low_stock_threshold'))
+                    ->helperText(trans('plugins/marketplace::marketplace.settings.low_stock_threshold_helper'))
+                    ->value(MarketplaceHelper::lowStockThreshold())
+                    ->addAttribute('min', 1)
+                    ->addAttribute('step', 1)
+            )
             ->add(
                 'media_mime_types_allowed[]',
                 MultiCheckListField::class,
@@ -163,23 +198,44 @@ class MarketplaceSettingForm extends SettingForm
                     ->value(MarketplaceHelper::getSetting('requires_vendor_documentations_verification', true))
             )
             ->addCloseFieldset('vendor_registration_settings')
-            ->add('hide_store_phone_number', OnOffCheckboxField::class, [
-                'label' => trans('plugins/marketplace::marketplace.settings.hide_store_phone_number'),
-                'value' => MarketplaceHelper::hideStorePhoneNumber(),
-            ])
-            ->add('hide_store_email', OnOffCheckboxField::class, [
-                'label' => trans('plugins/marketplace::marketplace.settings.hide_store_email'),
-                'value' => MarketplaceHelper::hideStoreEmail(),
-            ])
-            ->add('hide_store_address', OnOffCheckboxField::class, [
-                'label' => trans('plugins/marketplace::marketplace.settings.hide_store_address'),
-                'value' => MarketplaceHelper::hideStoreAddress(),
-            ])
+            ->add(
+                'enable_stores_page',
+                OnOffCheckboxField::class,
+                OnOffFieldOption::make()
+                    ->label(trans('plugins/marketplace::marketplace.settings.enable_stores_page'))
+                    ->helperText(trans('plugins/marketplace::marketplace.settings.enable_stores_page_helper'))
+                    ->value(MarketplaceHelper::isStoresPageEnabled())
+            )
+            ->add(
+                'hide_store_phone_number',
+                OnOffCheckboxField::class,
+                OnOffFieldOption::make()
+                    ->label(trans('plugins/marketplace::marketplace.settings.hide_store_phone_number'))
+                    ->helperText(trans('plugins/marketplace::marketplace.settings.hide_store_phone_number_helper'))
+                    ->value(MarketplaceHelper::hideStorePhoneNumber())
+            )
+            ->add(
+                'hide_store_email',
+                OnOffCheckboxField::class,
+                OnOffFieldOption::make()
+                    ->label(trans('plugins/marketplace::marketplace.settings.hide_store_email'))
+                    ->helperText(trans('plugins/marketplace::marketplace.settings.hide_store_email_helper'))
+                    ->value(MarketplaceHelper::hideStoreEmail())
+            )
+            ->add(
+                'hide_store_address',
+                OnOffCheckboxField::class,
+                OnOffFieldOption::make()
+                    ->label(trans('plugins/marketplace::marketplace.settings.hide_store_address'))
+                    ->helperText(trans('plugins/marketplace::marketplace.settings.hide_store_address_helper'))
+                    ->value(MarketplaceHelper::hideStoreAddress())
+            )
             ->add(
                 'hide_store_social_links',
                 OnOffCheckboxField::class,
                 OnOffFieldOption::make()
                     ->label(trans('plugins/marketplace::marketplace.settings.hide_store_social_links'))
+                    ->helperText(trans('plugins/marketplace::marketplace.settings.hide_store_social_links_helper'))
                     ->value(MarketplaceHelper::hideStoreSocialLinks())
             )
             ->add(
@@ -213,6 +269,14 @@ class MarketplaceSettingForm extends SettingForm
                 ->label(trans('plugins/marketplace::marketplace.settings.enable_messaging_system'))
                 ->value(MarketplaceHelper::isEnabledMessagingSystem())
                 ->helperText(trans('plugins/marketplace::marketplace.settings.enable_messaging_system_description'))
+            )
+            ->add(
+                'allow_vendor_manage_product_currency',
+                OnOffCheckboxField::class,
+                OnOffFieldOption::make()
+                    ->label(trans('plugins/marketplace::marketplace.settings.allow_vendor_manage_product_currency'))
+                    ->value(MarketplaceHelper::allowVendorManageProductCurrency())
+                    ->helperText(trans('plugins/marketplace::marketplace.settings.allow_vendor_manage_product_currency_description'))
             )
             ->add('payment_method_fields', 'html', [
                 'html' => view('plugins/marketplace::settings.partials.payment-method-fields')->render(),

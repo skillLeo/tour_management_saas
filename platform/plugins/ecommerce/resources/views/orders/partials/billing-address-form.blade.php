@@ -2,6 +2,8 @@
     @php
         $oldSessionAddressId = null;
         $billingAddressSameAsShippingAddress = old('billing_address_same_as_shipping_address', Arr::get($sessionCheckoutData, 'billing_address_same_as_shipping_address', true));
+        $showAddBillingCheckbox = ! $isShowAddressForm && ! (auth('customer')->check() && $isAvailableAddress);
+        $addBillingInfoChecked = $showAddBillingCheckbox ? old('add_billing_info', Arr::get($sessionCheckoutData, 'add_billing_info', false)) : false;
     @endphp
     <div class="mb-3 form-group">
         <input
@@ -10,24 +12,25 @@
             value="0"
         >
         @if ($isShowAddressForm)
-        <label class="form-check">
-            <input
-                id="billing_address_same_as_shipping_address"
-                name="billing_address_same_as_shipping_address"
-                type="checkbox"
-                value="1"
-                class="form-check-input"
-                @checked ($billingAddressSameAsShippingAddress)
-            >
-            <span
-                class="form-check-label"
-            >{{ __('Same as shipping information') }}</span>
-        </label>
+            <label class="form-check">
+                <input
+                    id="billing_address_same_as_shipping_address"
+                    name="billing_address_same_as_shipping_address"
+                    type="checkbox"
+                    value="1"
+                    class="form-check-input"
+                    @checked ($billingAddressSameAsShippingAddress)
+                >
+                <span
+                    class="form-check-label"
+                >{{ __('Same as shipping information') }}</span>
+            </label>
         @elseif (auth('customer')->check() && $isAvailableAddress)
             <input
                 name="billing_address_same_as_shipping_address"
                 type="hidden"
                 value="1"
+                id="billing_address_same_as_shipping_address_select"
             >
             @php
                 $oldSessionAddressId = old('address.address_id', $sessionAddressId);
@@ -38,7 +41,7 @@
                     id="billing_address_id"
                     name="address[address_id]"
                 >
-                    <option value="">{{ __('Select billing address...') }}</option>
+                    <option value="">{{ trans('plugins/ecommerce::order.enter_new_billing_address') }}</option>
                     @foreach ($addresses as $address)
                         <option
                             value="{{ $address->id }}"
@@ -49,6 +52,26 @@
                 <x-core::icon name="ti ti-chevron-down" />
             </div>
             <br>
+        @elseif ($showAddBillingCheckbox)
+            <input
+                name="billing_address_same_as_shipping_address"
+                type="hidden"
+                value="1"
+                id="billing_address_same_as_shipping_address_hidden"
+            >
+            <label class="form-check">
+                <input
+                    id="add_billing_info_checkbox"
+                    name="add_billing_info"
+                    type="checkbox"
+                    value="1"
+                    class="form-check-input"
+                    @checked ($addBillingInfoChecked)
+                >
+                <span
+                    class="form-check-label"
+                >{{ trans('plugins/ecommerce::order.add_billing_information') }}</span>
+            </label>
         @endif
     </div>
 
@@ -56,7 +79,8 @@
         class="billing-address-form-wrapper"
         @if (
             ($oldSessionAddressId && $oldSessionAddressId != 'new') ||
-                ($isShowAddressForm && $billingAddressSameAsShippingAddress)) style="display: none" @endif
+                ($isShowAddressForm && $billingAddressSameAsShippingAddress) ||
+                ($showAddBillingCheckbox && ! $addBillingInfoChecked)) style="display: none" @endif
     >
         <div class="form-group mb-3 @error('billing_address.name') has-error @enderror">
             <div class="form-input-wrapper">
@@ -106,6 +130,7 @@
                                 type="tel"
                                 data-country-code-selection="true"
                                 value="{{ $billingPhoneValue }}"
+                                placeholder="{{ trans('plugins/ecommerce::addresses.phone_placeholder') }}"
                             >
                             <input
                                 type="hidden"
@@ -123,6 +148,7 @@
                                 autocomplete="phone"
                                 type="tel"
                                 value="{{ $billingPhoneValue }}"
+                                placeholder="{{ trans('plugins/ecommerce::addresses.phone_placeholder') }}"
                             >
                         @endif
                         <label for="billing-address-phone">{{ __('Phone') }}</label>

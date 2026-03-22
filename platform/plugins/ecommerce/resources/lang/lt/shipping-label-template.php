@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'name' => 'Pristatymo etiketės šablonas',
-    'setting' => 'Pristatymo etiketės šablono nustatymai',
-    'setting_description' => 'Pristatymo etiketės šablono nustatymai',
+    'name' => 'Shipping Labels',
+    'setting' => 'Label design & layout',
+    'setting_description' => 'Customize shipping label HTML template and CSS styles',
     'setting_content' => 'Turinys',
     'preview' => 'Peržiūra',
     'preview_heading' => 'Peržiūrėti pristatymo etiketės šabloną',

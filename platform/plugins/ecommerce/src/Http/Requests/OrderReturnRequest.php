@@ -34,6 +34,11 @@ class OrderReturnRequest extends Request
             $rules['return_items.*.reason'] = ['required', 'string', Rule::in($validReasons)];
         }
 
+        if (EcommerceHelper::isReturnImageUploadEnabled()) {
+            $rules['images'] = ['nullable', 'array', 'max:' . EcommerceHelper::returnMaxFileNumber()];
+            $rules['images.*'] = ['image', 'mimes:jpg,jpeg,png', 'max:' . EcommerceHelper::returnMaxFileSize(true)];
+        }
+
         return $rules;
     }
 
@@ -46,6 +51,8 @@ class OrderReturnRequest extends Request
             'return_items.*.reason' => trans('plugins/ecommerce::order.refund_reason'),
             'return_items.*.qty' => trans('plugins/ecommerce::products.quantity'),
             'return_items.*.is_return' => trans('plugins/ecommerce::order.is_return'),
+            'images' => trans('plugins/ecommerce::order.return_images'),
+            'images.*' => trans('plugins/ecommerce::order.return_image'),
         ];
     }
 

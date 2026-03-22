@@ -77,7 +77,13 @@ class AnalyticsSettingForm extends SettingForm
                         HtmlFieldOption::make()->view('plugins/analytics::upload-button')
                     );
             })
-            ->addCloseCollapsible('analytics_dashboard_widgets', '1');
+            ->addCloseCollapsible('analytics_dashboard_widgets', '1')
+            ->add(
+                'settings_info',
+                HtmlField::class,
+                HtmlFieldOption::make()
+                    ->content(view('plugins/analytics::partials.settings-info')->render())
+            );
 
         $this->add(
             'google_analytics_info',
@@ -86,6 +92,5 @@ class AnalyticsSettingForm extends SettingForm
                 ->type('info')
                 ->content(trans('plugins/analytics::analytics.settings.google_analytics_information'))
         );
-
     }
 }

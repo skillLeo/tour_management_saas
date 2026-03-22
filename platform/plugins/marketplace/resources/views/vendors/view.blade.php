@@ -386,7 +386,7 @@
                                         </div>
                                     </x-core::table.body.cell>
                                     <x-core::table.body.cell>
-                                        {{ format_price($product->price) }}
+                                        {{ format_price($product->display_price) }}
                                     </x-core::table.body.cell>
                                     <x-core::table.body.cell>
                                         {{ $product->quantity ?: '—' }}

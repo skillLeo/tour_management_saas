@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'name' => 'Templat Label Penghantaran',
-    'setting' => 'Tetapan Templat Label Penghantaran',
-    'setting_description' => 'Tetapan untuk templat Label Penghantaran',
+    'name' => 'Shipping Labels',
+    'setting' => 'Label design & layout',
+    'setting_description' => 'Customize shipping label HTML template and CSS styles',
     'setting_content' => 'Kandungan',
     'preview' => 'Pratonton',
     'preview_heading' => 'Pratonton templat Label Penghantaran',

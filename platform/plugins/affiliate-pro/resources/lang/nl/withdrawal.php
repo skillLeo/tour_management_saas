@@ -1,0 +1,66 @@
+<?php
+
+return [
+    'name' => 'Opnames',
+    'view' => 'Opname #:id Bekijken',
+    'affiliate' => 'Partner',
+    'amount' => 'Bedrag',
+    'status' => 'Status',
+    'payment_method' => 'Betaalmethode',
+    'payment_details' => 'Betalingsdetails',
+    'notes' => 'Notities',
+    'created_at' => 'Aangemaakt Op',
+    'approve' => 'Goedkeuren',
+    'reject' => 'Afwijzen',
+    'approve_success' => 'Opname succesvol goedgekeurd',
+    'reject_success' => 'Opname succesvol afgewezen',
+    'approve_withdrawal' => 'Opname Goedkeuren',
+    'reject_withdrawal' => 'Opname Afwijzen',
+    'approve_withdrawal_confirmation' => 'Weet u zeker dat u opname #:id wilt goedkeuren? Deze actie kan niet ongedaan worden gemaakt.',
+    'reject_withdrawal_confirmation' => 'Weet u zeker dat u opname #:id wilt afwijzen? Deze actie kan niet ongedaan worden gemaakt.',
+    'statuses' => [
+        'pending' => 'In afwachting',
+        'processing' => 'In behandeling',
+        'approved' => 'Goedgekeurd',
+        'rejected' => 'Afgewezen',
+        'canceled' => 'Geannuleerd',
+    ],
+
+    // Customer-facing translations
+    'request' => 'Opnameverzoek',
+    'history' => 'Opnamegeschiedenis',
+    'no_withdrawals' => 'Geen opnames gevonden.',
+    'withdrawal_id' => 'Opname ID',
+    'date' => 'Datum',
+    'amount_required' => 'Het opnamebedrag is verplicht.',
+    'amount_numeric' => 'Het opnamebedrag moet een getal zijn.',
+    'amount_min' => 'Het opnamebedrag moet minimaal 0 zijn.',
+    'payment_method_required' => 'De betaalmethode is verplicht.',
+    'payment_details_required' => 'De betalingsdetails zijn verplicht.',
+    'account_not_approved' => 'Uw partneraccount is nog niet goedgekeurd.',
+    'minimum_amount' => 'Het minimum opnamebedrag is :amount.',
+    'insufficient_balance' => 'U hebt niet genoeg saldo voor deze opname.',
+    'request_submitted' => 'Uw opnameverzoek is succesvol ingediend.',
+    'submit_request' => 'Opnameverzoek Indienen',
+    'available_balance' => 'Beschikbaar Saldo',
+    'enter_amount' => 'Voer Bedrag In',
+    'select_payment_method' => 'Selecteer Betaalmethode',
+    'payment_details_placeholder' => 'Voer uw betalingsdetails in (bijv. PayPal-e-mail, bankrekeninggegevens)',
+    'no_payment_methods_available' => 'Er zijn momenteel geen betaalmethoden beschikbaar. Neem contact op met de beheerder.',
+
+    // Additional translations for PayoutPaymentMethodsEnum
+    'bank_transfer' => 'Bankoverschrijving',
+    'paypal' => 'PayPal',
+    'stripe' => 'Stripe',
+    'other' => 'Overige',
+    'bank_information' => 'Bankinformatie',
+    'paypal_id' => 'PayPal ID',
+
+    // Payout payment methods
+    'payout_payment_methods' => [
+        'bank_transfer' => 'Bankoverschrijving',
+        'paypal' => 'PayPal',
+        'stripe' => 'Stripe',
+        'other' => 'Overige',
+    ],
+];

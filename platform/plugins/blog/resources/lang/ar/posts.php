@@ -25,6 +25,8 @@ return [
     'categories' => 'التصنيفات',
     'category' => 'التصنيف',
     'author' => 'المؤلف',
+    'author_helper' => 'Select an author from admin users.',
+    'select_author' => 'Select author',
     'is_featured' => 'مميزة؟',
     'export' => [
         'description' => 'تصدير المشاركات إلى ملف CSV/Excel.',

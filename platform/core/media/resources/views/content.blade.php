@@ -771,6 +771,50 @@
     </div>
 </x-core::modal>
 
+<x-core::modal
+    id="modal_move_items"
+    :title="trans('core/media::media.move_items')"
+    size="md"
+>
+    <div class="move-items-container">
+        <div class="move-folder-tree-header mb-2">
+            <span class="text-muted small">{{ trans('core/media::media.select_destination_folder') }}</span>
+        </div>
+
+        <div class="move-folder-list-wrapper">
+            <ul class="list-group list-group-flush" id="move-folder-list">
+                <li class="list-group-item text-center text-muted py-4">
+                    <div class="spinner-border spinner-border-sm" role="status">
+                        <span class="visually-hidden">{{ trans('core/base::base.loading') }}</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="mt-3 pt-2 border-top">
+            <x-core::form.checkbox
+                :label="trans('core/media::media.move_to_root')"
+                name="move_to_root"
+                id="move_to_root"
+            />
+        </div>
+    </div>
+
+    <x-slot:footer>
+        <x-core::button data-bs-dismiss="modal">
+            {{ trans('core/media::media.close') }}
+        </x-core::button>
+        <x-core::button
+            type="button"
+            color="primary"
+            id="btn-confirm-move"
+            icon="ti ti-folder-share"
+        >
+            {{ trans('core/media::media.move_here') }}
+        </x-core::button>
+    </x-slot:footer>
+</x-core::modal>
+
 <button class="d-none js-rv-clipboard-temp"></button>
 
 <x-core::custom-template id="rv_media_loading">

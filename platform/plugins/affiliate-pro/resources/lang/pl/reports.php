@@ -1,0 +1,73 @@
+<?php
+
+return [
+    'name' => 'Raporty',
+    'commission_this_month' => 'Prowizja w tym miesiącu',
+    'pending_commissions' => 'Oczekujące prowizje',
+    'approved_commissions' => 'Zatwierdzone prowizje',
+    'pending_withdrawals' => 'Oczekujące wypłaty',
+    'approved_withdrawals' => 'Zatwierdzone wypłaty',
+    'active_affiliates' => 'Aktywni partnerzy',
+    'affiliate_stats' => 'Statystyki Partnera',
+    'top_affiliates' => 'Najlepsi Partnerzy',
+    'recent_commissions' => 'Ostatnie Prowizje',
+    'recent_withdrawals' => 'Ostatnie Wypłaty',
+    'commission_chart' => 'Wykres Prowizji',
+    'withdrawal_chart' => 'Wykres Wypłat',
+
+    // Enhanced reports
+    'geographic_data' => 'Dane Geograficzne',
+    'top_countries' => 'Najlepsze Kraje',
+    'top_cities' => 'Najlepsze Miasta',
+    'short_link_performance' => 'Wydajność Krótkich Linków',
+    'top_performing_links' => 'Najlepiej Działające Linki',
+    'link' => 'Link',
+    'clicks' => 'Kliknięcia',
+    'conversions' => 'Konwersje',
+    'commission_trends' => 'Trendy Prowizji',
+    'commission_amount' => 'Kwota Prowizji',
+    'loading' => 'Ładowanie...',
+    'no_data' => 'Brak danych',
+    'no_commission_data' => 'Brak danych prowizji dla wybranego okresu',
+    'no_geographic_data' => 'Brak danych geograficznych dla wybranego okresu',
+    'no_city_data' => 'Brak danych o miastach dla wybranego kraju',
+    'chart_error' => 'Błąd renderowania wykresu. Spróbuj odświeżyć stronę.',
+
+    // Performance metrics widget
+    'performance_metrics' => 'Metryki Wydajności',
+    'total_clicks' => 'Łączna Liczba Kliknięć',
+    'earnings' => 'Zarobki',
+    'avg_commission' => 'Śr. Prowizja',
+    'avg_conversion_rate' => 'Śr. Współczynnik Konwersji',
+    'vs_previous' => 'vs poprzedni',
+    'no_change' => 'Bez zmian',
+    'performance_over_time' => 'Wydajność w Czasie',
+    'clicks_conversions' => 'Kliknięcia i Konwersje',
+
+    // Conversion rate widget
+    'conversion_rate_analysis' => 'Analiza Współczynnika Konwersji',
+    'overall_conversion_rate' => 'Ogólny Współczynnik Konwersji',
+    'conversion_breakdown' => 'Podział Konwersji',
+    'source' => 'Źródło',
+    'rate' => 'Współczynnik',
+    'conversion_rate_percentage' => 'Współczynnik Konwersji (%)',
+    'optimization_opportunity' => 'Szansa na Optymalizację',
+    'conversion_rate_below_average' => 'Twój współczynnik konwersji jest poniżej średniej. Rozważ te wskazówki:',
+    'target_relevant_audiences' => 'Kieruj reklamy do bardziej odpowiednich odbiorców',
+    'improve_promotional_content' => 'Popraw swoje treści promocyjne',
+    'focus_higher_conversion_products' => 'Skup się na produktach o wyższych współczynnikach konwersji',
+    'great_performance' => 'Świetna Wydajność!',
+    'excellent_conversion_rate' => 'Twój współczynnik konwersji jest doskonały. Tak trzymaj!',
+    'good_performance' => 'Dobra Wydajność',
+    'average_conversion_rate' => 'Twój współczynnik konwersji mieści się w średnim zakresie. Jest miejsce na poprawę.',
+
+    // Date ranges
+    'ranges' => [
+        'today' => 'Dzisiaj',
+        'this_week' => 'W tym tygodniu',
+        'last_7_days' => 'Ostatnie 7 dni',
+        'last_30_days' => 'Ostatnie 30 dni',
+        'this_month' => 'W tym miesiącu',
+        'this_year' => 'W tym roku',
+    ],
+];

@@ -1,0 +1,66 @@
+<?php
+
+return [
+    'name' => 'উত্তোলন',
+    'view' => 'উত্তোলন দেখুন #:id',
+    'affiliate' => 'অ্যাফিলিয়েট',
+    'amount' => 'পরিমাণ',
+    'status' => 'স্ট্যাটাস',
+    'payment_method' => 'পেমেন্ট পদ্ধতি',
+    'payment_details' => 'পেমেন্ট বিবরণ',
+    'notes' => 'নোট',
+    'created_at' => 'তৈরি করা হয়েছে',
+    'approve' => 'অনুমোদন',
+    'reject' => 'প্রত্যাখ্যান',
+    'approve_success' => 'উত্তোলন সফলভাবে অনুমোদিত হয়েছে',
+    'reject_success' => 'উত্তোলন সফলভাবে প্রত্যাখ্যান করা হয়েছে',
+    'approve_withdrawal' => 'উত্তোলন অনুমোদন করুন',
+    'reject_withdrawal' => 'উত্তোলন প্রত্যাখ্যান করুন',
+    'approve_withdrawal_confirmation' => 'আপনি কি নিশ্চিত যে আপনি উত্তোলন #:id অনুমোদন করতে চান? এই কাজটি পূর্বাবস্থায় ফেরানো যাবে না।',
+    'reject_withdrawal_confirmation' => 'আপনি কি নিশ্চিত যে আপনি উত্তোলন #:id প্রত্যাখ্যান করতে চান? এই কাজটি পূর্বাবস্থায় ফেরানো যাবে না।',
+    'statuses' => [
+        'pending' => 'বিচারাধীন',
+        'processing' => 'প্রক্রিয়াধীন',
+        'approved' => 'অনুমোদিত',
+        'rejected' => 'প্রত্যাখ্যান',
+        'canceled' => 'বাতিল',
+    ],
+
+    // Customer-facing translations
+    'request' => 'উত্তোলন অনুরোধ',
+    'history' => 'উত্তোলন ইতিহাস',
+    'no_withdrawals' => 'কোন উত্তোলন পাওয়া যায়নি।',
+    'withdrawal_id' => 'উত্তোলন আইডি',
+    'date' => 'তারিখ',
+    'amount_required' => 'উত্তোলনের পরিমাণ লিখতে হবে।',
+    'amount_numeric' => 'উত্তোলনের পরিমাণ অবশ্যই সংখ্যায় হতে হবে।',
+    'amount_min' => 'উত্তোলনের পরিমাণ অন্তত 0 হতে হবে।',
+    'payment_method_required' => 'পেমেন্ট পদ্ধতি প্রয়োজন।',
+    'payment_details_required' => 'পেমেন্টের বিবরণ প্রয়োজন।',
+    'account_not_approved' => 'আপনার অ্যাফিলিয়েট অ্যাকাউন্ট এখনও অনুমোদিত নয়।',
+    'minimum_amount' => 'ন্যূনতম উত্তোলন পরিমাণ :amount।',
+    'insufficient_balance' => 'এই উত্তোলনের জন্য আপনার পর্যাপ্ত ব্যালেন্স নেই।',
+    'request_submitted' => 'আপনার উত্তোলন অনুরোধ সফলভাবে জমা দেওয়া হয়েছে।',
+    'submit_request' => 'উত্তোলন অনুরোধ জমা দিন',
+    'available_balance' => 'উপলব্ধ ব্যালেন্স',
+    'enter_amount' => 'পরিমাণ লিখুন',
+    'select_payment_method' => 'পেমেন্ট পদ্ধতি নির্বাচন করুন',
+    'payment_details_placeholder' => 'আপনার পেমেন্ট বিবরণ লিখুন (যেমন, PayPal ইমেইল, ব্যাংক অ্যাকাউন্ট বিবরণ)',
+    'no_payment_methods_available' => 'বর্তমানে কোনো পেমেন্ট পদ্ধতি উপলব্ধ নেই। অনুগ্রহ করে প্রশাসকের সাথে যোগাযোগ করুন।',
+
+    // Additional translations for PayoutPaymentMethodsEnum
+    'bank_transfer' => 'ব্যাংক ট্রান্সফার',
+    'paypal' => 'PayPal',
+    'stripe' => 'Stripe',
+    'other' => 'অন্যান্য',
+    'bank_information' => 'ব্যাংকের তথ্য',
+    'paypal_id' => 'PayPal আইডি',
+
+    // Payout payment methods
+    'payout_payment_methods' => [
+        'bank_transfer' => 'ব্যাংক ট্রান্সফার',
+        'paypal' => 'PayPal',
+        'stripe' => 'Stripe',
+        'other' => 'অন্যান্য',
+    ],
+];

@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'name' => '配送ラベルテンプレート',
-    'setting' => '配送ラベルテンプレート設定',
-    'setting_description' => '配送ラベルテンプレートの設定',
+    'name' => '配送ラベル',
+    'setting' => 'ラベルのデザインとレイアウト',
+    'setting_description' => '配送ラベルのHTMLテンプレートとCSSスタイルをカスタマイズ',
     'setting_content' => 'コンテンツ',
     'preview' => 'プレビュー',
     'preview_heading' => '配送ラベルテンプレートのプレビュー',

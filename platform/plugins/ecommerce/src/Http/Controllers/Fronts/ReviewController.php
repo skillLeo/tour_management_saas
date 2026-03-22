@@ -5,9 +5,11 @@ namespace Botble\Ecommerce\Http\Controllers\Fronts;
 use Botble\Base\Enums\BaseStatusEnum;
 use Botble\Base\Events\CreatedContentEvent;
 use Botble\Base\Events\DeletedContentEvent;
+use Botble\Base\Facades\BaseHelper;
 use Botble\Base\Http\Controllers\BaseController;
 use Botble\Ecommerce\Facades\EcommerceHelper;
 use Botble\Ecommerce\Http\Requests\Fronts\ReviewRequest;
+use Botble\Ecommerce\Http\Requests\ReviewReplyRequest;
 use Botble\Ecommerce\Models\Product;
 use Botble\Ecommerce\Models\Review;
 use Botble\Ecommerce\Traits\CheckReviewConditionTrait;
@@ -147,8 +149,11 @@ class ReviewController extends BaseController
 
         $star = $request->integer('star');
         $perPage = $request->integer('per_page', 10);
-        $search = $request->string('search')->trim();
-        $sortBy = $request->string('sort_by', 'newest');
+        $search = (string) BaseHelper::stringify($request->input('search'));
+        $sortBy = BaseHelper::stringify($request->input('sort_by'));
+        $sortBy = $sortBy && in_array($sortBy, ['newest', 'oldest', 'highest_rating', 'lowest_rating'])
+            ? $sortBy
+            : 'newest';
 
         $reviews = EcommerceHelper::getProductReviews($product, $star, $perPage, $search, $sortBy);
 
@@ -170,11 +175,88 @@ class ReviewController extends BaseController
             ->setData(
                 Theme::scope(
                     'ecommerce.includes.review-list',
-                    compact('reviews'),
+                    compact('reviews', 'product'),
                     'plugins/ecommerce::themes.includes.review-list'
                 )->getContent()
             )
             ->setMessage($message, false)
             ->toApiResponse();
+    }
+
+    public function storeReply(Review $review, ReviewReplyRequest $request)
+    {
+        abort_unless(EcommerceHelper::isReviewEnabled(), 404);
+
+        $customer = auth('customer')->user();
+
+        if (! $customer || ! $customer->is_vendor) {
+            return $this
+                ->httpResponse()
+                ->setError()
+                ->setMessage(trans('plugins/ecommerce::review.must_be_vendor_to_reply'));
+        }
+
+        $store = $customer->store;
+
+        if (! $store) {
+            return $this
+                ->httpResponse()
+                ->setError()
+                ->setMessage(trans('plugins/ecommerce::review.must_have_store_to_reply'));
+        }
+
+        $product = $review->product;
+
+        if (! $product || $product->store_id !== $store->id) {
+            return $this
+                ->httpResponse()
+                ->setError()
+                ->setMessage(trans('plugins/ecommerce::review.can_only_reply_to_own_products'));
+        }
+
+        if ($review->reply()->exists()) {
+            return $this
+                ->httpResponse()
+                ->setError()
+                ->setMessage(trans('plugins/ecommerce::review.already_replied'));
+        }
+
+        $review->reply()->create([
+            'customer_id' => $customer->id,
+            'message' => $request->input('message'),
+        ]);
+
+        return $this
+            ->httpResponse()
+            ->setMessage(trans('plugins/ecommerce::review.replied_success_message'));
+    }
+
+    public function destroyReply(Review $review)
+    {
+        abort_unless(EcommerceHelper::isReviewEnabled(), 404);
+
+        $customer = auth('customer')->user();
+
+        if (! $customer || ! $customer->is_vendor) {
+            return $this
+                ->httpResponse()
+                ->setError()
+                ->setMessage(trans('plugins/ecommerce::review.must_be_vendor_to_delete_reply'));
+        }
+
+        $reply = $review->reply;
+
+        if (! $reply || $reply->customer_id !== $customer->id) {
+            return $this
+                ->httpResponse()
+                ->setError()
+                ->setMessage(trans('plugins/ecommerce::review.can_only_delete_own_replies'));
+        }
+
+        $reply->delete();
+
+        return $this
+            ->httpResponse()
+            ->setMessage(trans('plugins/ecommerce::review.deleted_reply_success'));
     }
 }

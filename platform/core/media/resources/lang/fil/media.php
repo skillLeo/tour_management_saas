@@ -55,6 +55,12 @@ return [
     'selected_items_move_success' => 'Matagumpay na inilipat ang mga napiling item sa :name!',
     'selected_items_move_error' => 'Error sa paglipat ng mga napiling item sa :name',
     'destination' => 'Destinasyon',
+    'move' => 'Move',
+    'move_items' => 'Move items',
+    'move_here' => 'Move here',
+    'move_to_root' => 'Move to root folder',
+    'root' => 'Root',
+    'go_up' => 'Go up',
     'restore_error' => 'Error sa pagbabalik ng mga napiling item',
     'restore_success' => 'Matagumpay na naibalik ang mga napiling item!',
     'copy_success' => 'Matagumpay na kinopya ang mga napiling item!',
@@ -133,7 +139,12 @@ return [
         ],
 
         'download' => [
-            'error' => 'Walang napiling mga file o hindi ma-download ang mga file na ito',
+            'error' => 'No files selected or cannot download these files',
+        ],
+
+        'move' => [
+            'select_destination' => 'Please select a destination folder',
+            'same_location' => 'Items are already in this location',
         ],
 
         'actions_list' => [

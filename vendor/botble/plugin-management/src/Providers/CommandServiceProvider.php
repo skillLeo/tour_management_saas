@@ -12,6 +12,7 @@ use Botble\PluginManagement\Commands\PluginAssetsPublishCommand;
 use Botble\PluginManagement\Commands\PluginDeactivateAllCommand;
 use Botble\PluginManagement\Commands\PluginDeactivateCommand;
 use Botble\PluginManagement\Commands\PluginDiscoverCommand;
+use Botble\PluginManagement\Commands\PluginInstallFromMarketplaceCommand;
 use Botble\PluginManagement\Commands\PluginListCommand;
 use Botble\PluginManagement\Commands\PluginRemoveAllCommand;
 use Botble\PluginManagement\Commands\PluginRemoveCommand;
@@ -39,6 +40,7 @@ class CommandServiceProvider extends ServiceProvider
                 PluginAssetsPublishCommand::class,
                 ClearCompiledCommand::class,
                 PluginDiscoverCommand::class,
+                PluginInstallFromMarketplaceCommand::class,
                 PluginActivateCommand::class,
                 PluginActivateAllCommand::class,
                 PluginDeactivateCommand::class,

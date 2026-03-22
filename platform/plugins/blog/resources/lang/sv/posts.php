@@ -26,6 +26,8 @@ return [
     'categories' => 'Kategorier',
     'category' => 'Kategori',
     'author' => 'Författare',
+    'author_helper' => 'Select an author from admin users.',
+    'select_author' => 'Select author',
     'is_featured' => 'Är framhävt?',
     'export' => [
         'description' => 'Exportera inlägg till CSV/Excel fil.',

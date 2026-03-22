@@ -192,6 +192,7 @@ return [
         'order_date' => 'วันที่สั่งซื้อ',
         'scan_qr_code' => 'สแกน QR code เพื่อติดตามการจัดส่งของคุณ',
         'total_amount' => 'จำนวนเงินทั้งหมด',
+        'amount_to_collect' => 'จำนวนเงินที่ต้องเก็บ',
         'cod_amount_to_collect' => 'จำนวนเงิน COD ที่ต้องเก็บ',
     ],
     'customer_confirmed_delivery_at' => 'ลูกค้ายืนยันการส่งมอบเมื่อ',

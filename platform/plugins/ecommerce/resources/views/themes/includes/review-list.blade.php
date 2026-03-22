@@ -1,8 +1,19 @@
+@php
+    $currentCustomer = auth('customer')->user();
+    $isVendorOfProduct = $currentCustomer
+        && $currentCustomer->is_vendor
+        && isset($product)
+        && $currentCustomer->store
+        && $product->store_id == $currentCustomer->store->id;
+@endphp
+
 @foreach ($reviews as $review)
     @continue(! $review->is_approved && auth('customer')->id() != $review->customer_id)
 
     @php
         $isCurrentCustomerReview = auth('customer')->check() && auth('customer')->id() == $review->customer_id;
+        $canReply = $isVendorOfProduct && ! $review->reply;
+        $canDeleteReply = $isVendorOfProduct && $review->reply && $review->reply->customer_id == $currentCustomer?->id;
     @endphp
 
     <div @class([
@@ -68,34 +79,70 @@
                     </div>
                 </div>
             @endif
-        </div>
 
-        @if ($review->reply)
-            <div class="review-item__reply mt-4">
-                <div class="position-relative row py-3 rounded bg-light">
-                    <div class="col-auto">
-                        <img class="rounded-circle" src="{{ $review->reply->user->avatar_url }}" alt="{{ $review->reply->user->name }}" width="50">
-                    </div>
-                    <div class="col">
-                        <div class="d-flex flex-wrap align-items-center gap-2 mb-2 review-item__header">
-                            <div class="fw-medium">
-                                {{ $review->reply->user->name }}
-                            </div>
-                            <span class="badge bg-primary">
-                                {{ trans('plugins/ecommerce::ecommerce.admin') }}
-                            </span>
-                            <time class="text-muted small" datetime="{{ $review->reply->created_at->translatedFormat('Y-m-d\TH:i:sP') }}">
-                                {{ $review->reply->created_at->diffForHumans() }}
-                            </time>
+            @if ($review->reply)
+                <div class="review-item__reply mt-3">
+                    <div class="d-flex gap-3 p-3 rounded" style="background-color: #f8f9fa;">
+                        <div class="flex-shrink-0">
+                            <img class="rounded" src="{{ $review->reply->responder_avatar_url }}" alt="{{ $review->reply->responder_name }}" width="48" height="48" style="object-fit: cover;">
                         </div>
-
-                        <div class="review-item__body">
-                            {{ $review->reply->message }}
+                        <div class="flex-grow-1">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div class="fw-semibold mb-1">{{ trans('plugins/ecommerce::review.seller_response') }}</div>
+                                @if ($canDeleteReply)
+                                    <a
+                                        href="javascript:void(0)"
+                                        class="text-danger vendor-delete-reply-btn"
+                                        data-review-id="{{ $review->id }}"
+                                        data-url="{{ route('public.reviews.reply.destroy', $review->id) }}"
+                                        data-confirm-message="{{ trans('plugins/ecommerce::review.confirm_delete_reply') }}"
+                                        title="{{ trans('plugins/ecommerce::review.delete_reply') }}"
+                                    >
+                                        <x-core::icon name="ti ti-trash" />
+                                    </a>
+                                @endif
+                            </div>
+                            <div>{{ $review->reply->message }}</div>
                         </div>
                     </div>
                 </div>
-            </div>
-        @endif
+            @elseif ($canReply)
+                <div class="review-item__reply-form mt-2">
+                    <a
+                        href="javascript:void(0)"
+                        class="vendor-reply-toggle-btn"
+                        data-review-id="{{ $review->id }}"
+                        style="color: #6b7280; font-size: 13px; text-decoration: none;"
+                    >
+                        <x-core::icon name="ti ti-message" style="width: 14px; height: 14px; margin-right: 4px;" />
+                        {{ trans('plugins/ecommerce::review.reply') }}
+                    </a>
+
+                    <div
+                        class="vendor-reply-form mt-3 d-none"
+                        data-review-id="{{ $review->id }}"
+                        data-url="{{ route('public.reviews.reply', $review->id) }}"
+                    >
+                        <div class="mb-2">
+                            <textarea
+                                class="form-control vendor-reply-message"
+                                rows="2"
+                                placeholder="{{ trans('plugins/ecommerce::review.write_your_reply') }}"
+                                style="font-size: 14px; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 6px; color: #374151;"
+                            ></textarea>
+                        </div>
+                        <div class="d-flex" style="gap: 8px;">
+                            <button type="button" class="vendor-reply-submit-btn" data-review-id="{{ $review->id }}" style="display: inline-block; width: auto; padding: 6px 16px; font-size: 13px; font-weight: 500; background-color: var(--primary-color, #0d6efd); border: none; color: #fff; border-radius: 6px; cursor: pointer;">
+                                {{ trans('plugins/ecommerce::review.submit_reply') }}
+                            </button>
+                            <button type="button" class="vendor-reply-cancel-btn" data-review-id="{{ $review->id }}" style="display: inline-block; width: auto; padding: 6px 12px; font-size: 13px; background: transparent; border: none; color: #6b7280; cursor: pointer;">
+                                {{ trans('plugins/ecommerce::review.cancel') }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            @endif
+        </div>
     </div>
 @endforeach
 

@@ -32,6 +32,7 @@ class MarketPlaceSettingFormRequest extends BaseProductRequest
             'requires_vendor_documentations_verification' => 'sometimes|in:0,1',
             'hide_become_vendor_menu_in_customer_dashboard' => 'sometimes|in:0,1',
             'enable_product_approval' => 'sometimes|in:0,1',
+            'enable_stores_page' => [new OnOffRule()],
             'hide_store_phone_number' => 'sometimes|in:0,1',
             'hide_store_email' => 'sometimes|in:0,1',
             'hide_store_address' => 'sometimes|in:0,1',

@@ -2,8 +2,8 @@
 
 return [
     'name' => 'Șablon Factură',
-    'setting' => 'Setări Șablon Factură',
-    'setting_description' => 'Setări pentru șablonul facturii',
+    'setting' => 'Template design & layout',
+    'setting_description' => 'Customize invoice HTML template and CSS styles',
     'setting_content' => 'Conținut',
     'preview' => 'Previzualizare',
     'preview_heading' => 'Previzualizare șablon factură',

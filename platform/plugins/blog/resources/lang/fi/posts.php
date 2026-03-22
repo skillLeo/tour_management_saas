@@ -26,6 +26,8 @@ return [
     'categories' => 'Kategoriat',
     'category' => 'Kategoria',
     'author' => 'Kirjoittaja',
+    'author_helper' => 'Select an author from admin users.',
+    'select_author' => 'Select author',
     'is_featured' => 'Nostettu esiin?',
     'export' => [
         'description' => 'Vie artikkelit CSV/Excel-tiedostoon.',

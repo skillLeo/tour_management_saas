@@ -8,6 +8,7 @@ use Botble\Ecommerce\Enums\ShippingRuleTypeEnum;
 use Botble\Ecommerce\Facades\EcommerceHelper;
 use Botble\Ecommerce\Models\Shipping;
 use Botble\Ecommerce\Models\ShippingRule;
+use Botble\Ecommerce\Models\ShippingRuleItem;
 use Botble\Support\Services\Cache\Cache;
 use Illuminate\Contracts\Cache\Repository;
 use Illuminate\Database\Eloquent\Builder;
@@ -211,6 +212,7 @@ class HandleShippingFeeService
                 }
             } else {
                 $zipCode = Arr::get($data, 'address_to.zip_code');
+                $normalizedZipCode = ShippingRuleItem::normalizeZipCode($zipCode);
 
                 $rules = ShippingRule::query()
                     ->where(function (Builder $query) use ($orderTotal, $shipping): void {
@@ -245,14 +247,37 @@ class HandleShippingFeeService
                         });
                 }
 
-                if (EcommerceHelper::isZipCodeEnabled()) {
+                if (EcommerceHelper::isZipCodeEnabled() && $normalizedZipCode) {
                     $rules = $rules
-                        ->orWhere(function (Builder $query) use ($zipCode, $shipping): void {
+                        ->orWhere(function (Builder $query) use ($normalizedZipCode, $shipping): void {
                             $query
                                 ->where('shipping_id', $shipping->getKey())
                                 ->where('type', ShippingRuleTypeEnum::BASED_ON_ZIPCODE)
-                                ->whereHas('items', function (Builder $sub) use ($zipCode): void {
-                                    $sub->where(['zip_code' => $zipCode]);
+                                ->whereHas('items', function (Builder $sub) use ($normalizedZipCode): void {
+                                    $sub->where('zip_code_from', '!=', '')
+                                        ->whereRaw('CAST(zip_code_from AS UNSIGNED) <= ?', [$normalizedZipCode])
+                                        ->where(function (Builder $q) use ($normalizedZipCode): void {
+                                            $q->whereRaw('CAST(zip_code_to AS UNSIGNED) >= ?', [$normalizedZipCode])
+                                                ->orWhereNull('zip_code_to');
+                                        });
+                                });
+                        })
+                        ->orWhere(function (Builder $query) use ($normalizedZipCode, $weight, $shipping): void {
+                            $query
+                                ->where('shipping_id', $shipping->getKey())
+                                ->where('type', ShippingRuleTypeEnum::BASED_ON_ZIPCODE_AND_WEIGHT)
+                                ->where('from', '<=', $weight)
+                                ->where(function (Builder $sub) use ($weight): void {
+                                    $sub->whereNull('to')
+                                        ->orWhere('to', '>=', $weight);
+                                })
+                                ->whereHas('items', function (Builder $sub) use ($normalizedZipCode): void {
+                                    $sub->where('zip_code_from', '!=', '')
+                                        ->whereRaw('CAST(zip_code_from AS UNSIGNED) <= ?', [$normalizedZipCode])
+                                        ->where(function (Builder $q) use ($normalizedZipCode): void {
+                                            $q->whereRaw('CAST(zip_code_to AS UNSIGNED) >= ?', [$normalizedZipCode])
+                                                ->orWhereNull('zip_code_to');
+                                        });
                                 });
                         });
                 }
@@ -270,10 +295,21 @@ class HandleShippingFeeService
                 foreach ($rules as $rule) {
                     switch ($rule->type) {
                         case ShippingRuleTypeEnum::BASED_ON_ZIPCODE:
+                        case ShippingRuleTypeEnum::BASED_ON_ZIPCODE_AND_WEIGHT:
                             $ruleItem = $rule
                                 ->items
-                                ->where('zip_code', $zipCode)
-                                ->first();
+                                ->first(function ($item) use ($normalizedZipCode) {
+                                    $from = ShippingRuleItem::normalizeZipCode($item->zip_code_from);
+
+                                    if ($from === null) {
+                                        return false;
+                                    }
+
+                                    $to = ShippingRuleItem::normalizeZipCode($item->zip_code_to);
+
+                                    return $from <= $normalizedZipCode
+                                        && ($to === null || $to >= $normalizedZipCode);
+                                });
 
                             if (! $ruleItem) {
                                 continue 2;
@@ -326,7 +362,7 @@ class HandleShippingFeeService
 
     protected function getCacheKey(array $data): string
     {
-        return md5(json_encode(Arr::only($data, ['origin', 'address_to', 'items', 'extra'])));
+        return md5(json_encode(Arr::only($data, ['origin', 'address_to', 'items', 'extra', 'order_total', 'weight'])));
     }
 
     public function clearCache(): void

@@ -12,4 +12,16 @@ return [
     'return' => [
         'description' => '주문 #:order에서 반품됨',
     ],
+    'thank_you' => [
+        'count_orders' => ':count개 주문',
+        'order' => '주문',
+        'thank_you_name' => '감사합니다, :name님!',
+        'order_confirmed' => '주문이 확인되었습니다',
+        'order_accepted' => '주문이 접수되었으며 준비 중입니다.',
+        'customer' => '고객',
+        'need_help' => '도움이 필요하신가요?',
+        'contact_us' => '문의하기',
+        'view_order_history' => '주문 내역 보기',
+        'order_total' => '주문 총액',
+    ],
 ];

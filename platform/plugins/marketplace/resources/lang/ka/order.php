@@ -12,4 +12,16 @@ return [
     'return' => [
         'description' => 'დაბრუნებული შეკვეთიდან #:order',
     ],
+    'thank_you' => [
+        'count_orders' => ':count შეკვეთა',
+        'order' => 'შეკვეთა',
+        'thank_you_name' => 'გმადლობთ, :name!',
+        'order_confirmed' => 'თქვენი შეკვეთა დადასტურებულია',
+        'order_accepted' => 'ჩვენ მივიღეთ თქვენი შეკვეთა და ვამზადებთ მას.',
+        'customer' => 'მომხმარებელი',
+        'need_help' => 'დახმარება გჭირდებათ?',
+        'contact_us' => 'დაგვიკავშირდით',
+        'view_order_history' => 'შეკვეთების ისტორიის ნახვა',
+        'order_total' => 'შეკვეთის ჯამი',
+    ],
 ];

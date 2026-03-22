@@ -22,4 +22,6 @@ return [
     '503_temporarily_down' => 'Tillfälligt nere för underhåll',
     '503_admin_instruction' => 'Om du är administratören och inte kan komma åt din webbplats efter att ha aktiverat underhållsläge, behöver du bara ta bort filen <strong>storage/framework/down</strong> för att stänga av underhållsläget.',
     'take_me_home' => 'Ta mig hem',
+    'bad_request' => 'Ogiltig begäran',
+
 ];

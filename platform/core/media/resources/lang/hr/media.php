@@ -55,6 +55,12 @@ return [
     'selected_items_move_success' => 'Odabrane stavke uspješno premještene u :name!',
     'selected_items_move_error' => 'Greška pri premještanju odabranih stavki u :name',
     'destination' => 'Odredište',
+    'move' => 'Move',
+    'move_items' => 'Move items',
+    'move_here' => 'Move here',
+    'move_to_root' => 'Move to root folder',
+    'root' => 'Root',
+    'go_up' => 'Go up',
     'restore_error' => 'Greška pri vraćanju odabranih stavki',
     'restore_success' => 'Odabrane stavke uspješno vraćene!',
     'copy_success' => 'Odabrane stavke uspješno kopirane!',
@@ -133,7 +139,12 @@ return [
         ],
 
         'download' => [
-            'error' => 'Nisu odabrane datoteke ili se ne mogu preuzeti te datoteke',
+            'error' => 'No files selected or cannot download these files',
+        ],
+
+        'move' => [
+            'select_destination' => 'Please select a destination folder',
+            'same_location' => 'Items are already in this location',
         ],
 
         'actions_list' => [

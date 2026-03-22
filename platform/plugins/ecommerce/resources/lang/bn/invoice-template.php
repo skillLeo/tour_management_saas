@@ -2,8 +2,8 @@
 
 return [
     'name' => 'ইনভয়েস টেমপ্লেট',
-    'setting' => 'ইনভয়েস টেমপ্লেট সেটিংস',
-    'setting_description' => 'ইনভয়েস টেমপ্লেটের জন্য সেটিংস',
+    'setting' => 'Template design & layout',
+    'setting_description' => 'Customize invoice HTML template and CSS styles',
     'setting_content' => 'কন্টেন্ট',
     'preview' => 'প্রিভিউ',
     'preview_heading' => 'ইনভয়েস টেমপ্লেট প্রিভিউ করুন',

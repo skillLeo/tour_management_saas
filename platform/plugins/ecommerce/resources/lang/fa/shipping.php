@@ -196,6 +196,7 @@ return [
         'order_date' => 'تاریخ سفارش',
         'scan_qr_code' => 'برای پیگیری محموله خود کد QR را اسکن کنید',
         'total_amount' => 'مبلغ کل',
+        'amount_to_collect' => 'مبلغ قابل دریافت',
         'cod_amount_to_collect' => 'مبلغ COD قابل دریافت',
     ],
     'customer_confirmed_delivery_at' => 'مشتری تحویل را تأیید کرد در',

@@ -68,4 +68,6 @@ return [
     'enable_light_mode' => 'হালকা মোড সক্ষম করুন',
     'enable_dark_mode' => 'অন্ধকার মোড সক্ষম করুন',
     'close' => 'বন্ধ করুন',
+    'search_country' => 'দেশ অনুসন্ধান...',
+    'no_results' => 'কোনো ফলাফল পাওয়া যায়নি',
 ];

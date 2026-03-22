@@ -1,0 +1,66 @@
+<?php
+
+return [
+    'name' => 'Prelievi',
+    'view' => 'Visualizza prelievo #:id',
+    'affiliate' => 'Affiliato',
+    'amount' => 'Importo',
+    'status' => 'Stato',
+    'payment_method' => 'Metodo di pagamento',
+    'payment_details' => 'Dettagli pagamento',
+    'notes' => 'Note',
+    'created_at' => 'Creato il',
+    'approve' => 'Approva',
+    'reject' => 'Rifiuta',
+    'approve_success' => 'Prelievo approvato con successo',
+    'reject_success' => 'Prelievo rifiutato con successo',
+    'approve_withdrawal' => 'Approva prelievo',
+    'reject_withdrawal' => 'Rifiuta prelievo',
+    'approve_withdrawal_confirmation' => 'Sei sicuro di voler approvare il prelievo #:id? Questa azione non può essere annullata.',
+    'reject_withdrawal_confirmation' => 'Sei sicuro di voler rifiutare il prelievo #:id? Questa azione non può essere annullata.',
+    'statuses' => [
+        'pending' => 'In sospeso',
+        'processing' => 'In elaborazione',
+        'approved' => 'Approvato',
+        'rejected' => 'Rifiutato',
+        'canceled' => 'Annullato',
+    ],
+
+    // Customer-facing translations
+    'request' => 'Richiesta prelievo',
+    'history' => 'Cronologia prelievi',
+    'no_withdrawals' => 'Nessun prelievo trovato.',
+    'withdrawal_id' => 'ID prelievo',
+    'date' => 'Data',
+    'amount_required' => 'L\'importo del prelievo è obbligatorio.',
+    'amount_numeric' => 'L\'importo del prelievo deve essere un numero.',
+    'amount_min' => 'L\'importo del prelievo deve essere almeno 0.',
+    'payment_method_required' => 'Il metodo di pagamento è obbligatorio.',
+    'payment_details_required' => 'I dettagli di pagamento sono obbligatori.',
+    'account_not_approved' => 'Il tuo account affiliato non è ancora approvato.',
+    'minimum_amount' => 'L\'importo minimo di prelievo è :amount.',
+    'insufficient_balance' => 'Non hai saldo sufficiente per questo prelievo.',
+    'request_submitted' => 'La tua richiesta di prelievo è stata inviata con successo.',
+    'submit_request' => 'Invia richiesta prelievo',
+    'available_balance' => 'Saldo disponibile',
+    'enter_amount' => 'Inserisci importo',
+    'select_payment_method' => 'Seleziona metodo di pagamento',
+    'payment_details_placeholder' => 'Inserisci i tuoi dettagli di pagamento (es. email PayPal, dettagli conto bancario)',
+    'no_payment_methods_available' => 'Attualmente non sono disponibili metodi di pagamento. Contatta l\'amministratore.',
+
+    // Additional translations for PayoutPaymentMethodsEnum
+    'bank_transfer' => 'Bonifico bancario',
+    'paypal' => 'PayPal',
+    'stripe' => 'Stripe',
+    'other' => 'Altro',
+    'bank_information' => 'Informazioni bancarie',
+    'paypal_id' => 'ID PayPal',
+
+    // Payout payment methods
+    'payout_payment_methods' => [
+        'bank_transfer' => 'Bonifico bancario',
+        'paypal' => 'PayPal',
+        'stripe' => 'Stripe',
+        'other' => 'Altro',
+    ],
+];

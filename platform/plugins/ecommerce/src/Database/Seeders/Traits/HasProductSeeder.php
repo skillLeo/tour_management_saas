@@ -71,6 +71,8 @@ trait HasProductSeeder
             DB::table('ec_product_label_products')->truncate();
             DB::table('ec_product_category_product')->truncate();
             DB::table('ec_product_related_relations')->truncate();
+            DB::table('ec_product_cross_sale_relations')->truncate();
+            DB::table('ec_product_up_sale_relations')->truncate();
             DB::table('ec_tax_products')->truncate();
             Wishlist::query()->truncate();
             Order::query()->truncate();
@@ -79,7 +81,9 @@ trait HasProductSeeder
             OrderHistory::query()->truncate();
             Shipment::query()->truncate();
             ShipmentHistory::query()->truncate();
-            Payment::query()->truncate();
+            if (class_exists(Payment::class)) {
+                Payment::query()->truncate();
+            }
             ProductFile::query()->truncate();
         }
 
@@ -213,6 +217,22 @@ trait HasProductSeeder
                 $this->random(1, $productCount, [$key]),
                 $this->random(1, $productCount, [$key]),
             ]));
+
+            $upSaleProductIds = array_unique([
+                $this->random(1, $productCount, [$key]),
+                $this->random(1, $productCount, [$key]),
+            ]);
+
+            $upSaleSyncData = [];
+            foreach ($upSaleProductIds as $upSaleProductId) {
+                $isPercentDiscount = $faker->boolean();
+                $upSaleSyncData[$upSaleProductId] = [
+                    'price' => $isPercentDiscount ? $faker->randomElement([5, 10, 15, 20]) : $faker->randomElement([5, 10, 20, 50]),
+                    'price_type' => $isPercentDiscount ? 'percent' : 'fixed',
+                ];
+            }
+
+            $product->upSales()->sync($upSaleSyncData);
 
             if ($faker->boolean()) {
                 $selectedProductAttributeSets = $productAttributeSets->take(2);

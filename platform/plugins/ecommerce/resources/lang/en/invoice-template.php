@@ -2,8 +2,8 @@
 
 return [
     'name' => 'Invoice Template',
-    'setting' => 'Invoice Template Settings',
-    'setting_description' => 'Settings for Invoice template',
+    'setting' => 'Template design & layout',
+    'setting_description' => 'Customize invoice HTML template and CSS styles',
     'setting_content' => 'Content',
     'preview' => 'Preview',
     'preview_heading' => 'Preview Invoice template',

@@ -68,4 +68,6 @@ return [
     'enable_light_mode' => 'Aktivera ljust läge',
     'enable_dark_mode' => 'Aktivera mörkt läge',
     'close' => 'Stäng',
+    'search_country' => 'Sök land...',
+    'no_results' => 'Inga resultat hittades',
 ];

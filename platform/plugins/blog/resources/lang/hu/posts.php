@@ -26,6 +26,8 @@ return [
     'categories' => 'Kategóriák',
     'category' => 'Kategória',
     'author' => 'Szerző',
+    'author_helper' => 'Select an author from admin users.',
+    'select_author' => 'Select author',
     'is_featured' => 'Kiemelt?',
     'export' => [
         'description' => 'Bejegyzések exportálása CSV/Excel fájlba.',

@@ -56,7 +56,14 @@ class ProductCategory extends BaseModel implements HasTreeCategoryContract
                 $this->slug = $this->slugable->key;
             }
 
-            if (! $this->slug) {
+            $slug = $this->slug;
+
+            if (! $slug && $this->slugable) {
+                $slug = $this->slugable->key;
+                $this->slug = $slug;
+            }
+
+            if (! $slug) {
                 return BaseHelper::getHomepageUrl();
             }
 
@@ -66,7 +73,7 @@ class ProductCategory extends BaseModel implements HasTreeCategoryContract
 
             return apply_filters(
                 'slug_filter_url',
-                url(ltrim($prefix . '/' . $this->slug, '/')) . SlugHelper::getPublicSingleEndingURL()
+                url(ltrim($prefix . '/' . $slug, '/')) . SlugHelper::getPublicSingleEndingURL()
             );
         });
     }

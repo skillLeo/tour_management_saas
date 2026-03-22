@@ -192,6 +192,7 @@ return [
         'order_date' => 'Besteldatum',
         'scan_qr_code' => 'Scan QR code om uw zending te volgen',
         'total_amount' => 'Totaalbedrag',
+        'amount_to_collect' => 'Te innen bedrag',
         'cod_amount_to_collect' => 'Te innen remboursbedrag',
     ],
     'customer_confirmed_delivery_at' => 'Klant bevestigde bezorging op',

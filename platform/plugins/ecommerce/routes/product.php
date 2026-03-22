@@ -144,6 +144,18 @@ AdminHelper::registerRoutes(function (): void {
                     'permission' => 'products.edit',
                 ]);
 
+                Route::post('bulk-generate', [
+                    'as' => 'bulk-generate',
+                    'uses' => 'ProductLicenseCodeController@bulkGenerate',
+                    'permission' => 'products.edit',
+                ]);
+
+                Route::delete('bulk-delete', [
+                    'as' => 'bulk-delete',
+                    'uses' => 'ProductLicenseCodeController@bulkDelete',
+                    'permission' => 'products.edit',
+                ]);
+
                 Route::put('{licenseCode}', [
                     'as' => 'update',
                     'uses' => 'ProductLicenseCodeController@update',
@@ -153,12 +165,6 @@ AdminHelper::registerRoutes(function (): void {
                 Route::delete('{licenseCode}', [
                     'as' => 'destroy',
                     'uses' => 'ProductLicenseCodeController@destroy',
-                    'permission' => 'products.edit',
-                ]);
-
-                Route::post('bulk-generate', [
-                    'as' => 'bulk-generate',
-                    'uses' => 'ProductLicenseCodeController@bulkGenerate',
                     'permission' => 'products.edit',
                 ]);
             });

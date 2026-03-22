@@ -22,4 +22,6 @@ return [
     '503_temporarily_down' => '维护中暂时关闭',
     '503_admin_instruction' => '如果您是管理员并且在启用维护模式后无法访问您的网站，只需删除文件 <strong>storage/framework/down</strong> 即可关闭维护模式。',
     'take_me_home' => '带我回家',
+    'bad_request' => '错误的请求',
+
 ];

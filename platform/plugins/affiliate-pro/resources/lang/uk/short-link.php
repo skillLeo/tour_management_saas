@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'name' => 'Короткі посилання', 'short_link' => 'Коротке посилання', 'short_links' => 'Короткі посилання',
+    'create' => 'Створити коротке посилання', 'edit' => 'Редагувати коротке посилання', 'delete' => 'Видалити коротке посилання',
+    'short_link_details' => 'Деталі короткого посилання', 'untitled' => 'Посилання без назви', 'affiliate' => 'Партнер',
+    'title' => 'Назва', 'title_placeholder' => 'Введіть описову назву для цього короткого посилання', 'short_code' => 'Короткий код',
+    'short_code_placeholder' => 'Введіть унікальний короткий код (наприклад, літо2024)', 'short_code_help' => 'Це буде використовуватися в URL: вашсайт.ua/go/[короткий-код]',
+    'destination_url' => 'URL призначення', 'destination_url_help' => 'Повний URL, куди будуть перенаправлені користувачі', 'product' => 'Продукт',
+    'product_help' => 'Необов\'язково: Прив\'яжіть це коротке посилання до конкретного продукту для кращого відстеження', 'all_products' => 'Усі продукти',
+    'short_url' => 'Короткий URL', 'clicks' => 'Кліки', 'conversions' => 'Конверсії', 'conversion_rate' => 'Коефіцієнт конверсії',
+    'total_clicks' => 'Загальні кліки', 'total_conversions' => 'Загальні конверсії', 'statistics' => 'Статистика', 'actions' => 'Дії',
+    'created_at' => 'Створено', 'updated_at' => 'Оновлено', 'affiliate_required' => 'Будь ласка, виберіть партнера.',
+    'affiliate_not_exists' => 'Обраний партнер не існує.', 'short_code_required' => 'Короткий код обов\'язковий.',
+    'short_code_unique' => 'Цей короткий код вже зайнятий.', 'short_code_alpha_dash' => 'Короткий код може містити лише літери, цифри, дефіси та підкреслення.',
+    'destination_url_required' => 'URL призначення обов\'язковий.', 'destination_url_invalid' => 'Будь ласка, введіть дійсний URL.',
+    'product_not_exists' => 'Обраний продукт не існує.', 'copy_url' => 'Копіювати URL', 'copy_short_url' => 'Копіювати короткий URL',
+    'test_link' => 'Тестувати посилання', 'visit_destination' => 'Відвідати призначення', 'copied_to_clipboard' => 'URL скопійовано в буфер обміну!',
+    'copy_failed' => 'Копіювання не вдалося. Спробуйте ще раз.', 'url_information' => 'Інформація про URL', 'affiliate_product_info' => 'Інформація про партнера та продукт',
+    'quick_actions' => 'Швидкі дії', 'performance' => 'Ефективність', 'product_link' => 'Посилання на продукт', 'general_link' => 'Загальне посилання',
+    'excellent' => 'Відмінно', 'good' => 'Добре', 'average' => 'Середньо', 'no_data' => 'Немає даних', 'back' => 'Назад',
+    'affiliate_not_found' => 'Партнер не знайдений', 'short_link_not_found' => 'Коротке посилання не знайдено', 'affiliate_column' => 'Партнер',
+    'title_column' => 'Назва та код', 'destination_column' => 'Призначення', 'short_url_column' => 'Короткий URL', 'product_column' => 'Продукт',
+    'stats_column' => 'Статистика', 'created_column' => 'Створено', 'bulk_delete_confirm' => 'Ви впевнені, що хочете видалити ці короткі посилання?',
+    'bulk_delete_success' => 'Обрані короткі посилання успішно видалено.', 'permissions' => ['index' => 'Переглянути короткі посилання', 'create' => 'Створити короткі посилання', 'edit' => 'Редагувати короткі посилання', 'destroy' => 'Видалити короткі посилання'],
+];

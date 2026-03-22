@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'name' => 'Șablon Etichetă Transport',
-    'setting' => 'Setări Șablon Etichetă Transport',
-    'setting_description' => 'Setări pentru șablonul etichetei de transport',
+    'name' => 'Shipping Labels',
+    'setting' => 'Label design & layout',
+    'setting_description' => 'Customize shipping label HTML template and CSS styles',
     'setting_content' => 'Conținut',
     'preview' => 'Previzualizare',
     'preview_heading' => 'Previzualizare șablon etichetă transport',

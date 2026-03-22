@@ -133,11 +133,11 @@
                         <x-core::datagrid>
                             <x-core::datagrid.item>
                                 <x-slot:title>{{ trans('plugins/ecommerce::products.price') }}</x-slot:title>
-                                @if($product->sale_price)
-                                    {{ format_price($product->sale_price) }}
-                                    <del class="text-danger ms-1">{{ format_price($product->price) }}</del>
+                                @if($product->display_sale_price)
+                                    {{ format_price($product->display_sale_price) }}
+                                    <del class="text-danger ms-1">{{ format_price($product->display_price) }}</del>
                                 @else
-                                    {{ format_price($product->price) }}
+                                    {{ format_price($product->display_price) }}
                                 @endif
                             </x-core::datagrid.item>
 

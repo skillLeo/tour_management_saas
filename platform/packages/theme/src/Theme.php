@@ -9,6 +9,7 @@ use Botble\Media\Facades\RvMedia;
 use Botble\SeoHelper\Facades\SeoHelper;
 use Botble\Setting\Facades\Setting;
 use Botble\Theme\Contracts\Theme as ThemeContract;
+use Botble\Theme\Events\RenderingTheme;
 use Botble\Theme\Exceptions\UnknownPartialFileException;
 use Botble\Theme\Exceptions\UnknownThemeException;
 use Botble\Theme\Supports\SocialLink;
@@ -68,6 +69,10 @@ class Theme implements ThemeContract
         protected Filesystem $files,
         protected Breadcrumb $breadcrumb
     ) {
+        if ($this->config->get('core.base.general.disable_front_theme')) {
+            return;
+        }
+
         $this->uses($this->getThemeName())->layout(setting('layout', 'default'));
     }
 
@@ -210,7 +215,7 @@ class Theme implements ThemeContract
         return empty($key) ? $config : Arr::get($config, $key);
     }
 
-    protected function loadConfigFromTheme(string $theme): void
+    protected function loadConfigFromTheme(?string $theme): void
     {
         // Config inside a public theme.
         // This config having buffer by array object.
@@ -301,7 +306,7 @@ class Theme implements ThemeContract
             return $theme;
         }
 
-        return Arr::first(BaseHelper::scanFolder(theme_path()));
+        return Arr::first(BaseHelper::scanFolder(theme_path())) ?: '';
     }
 
     public function setThemeName(string $theme): self
@@ -833,7 +838,7 @@ class Theme implements ThemeContract
                 $index++;
             }
 
-            $schema = json_encode($schema, JSON_UNESCAPED_UNICODE);
+            $schema = json_encode($schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
             $this
                 ->asset()
@@ -848,7 +853,7 @@ class Theme implements ThemeContract
             'url' => url(''),
         ];
 
-        $websiteSchema = json_encode($websiteSchema, JSON_UNESCAPED_UNICODE);
+        $websiteSchema = json_encode($websiteSchema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
         $this
             ->asset()
@@ -906,7 +911,8 @@ class Theme implements ThemeContract
     {
         $this->fire('asset', $this->asset);
 
-        // Fire event before render theme.
+        RenderingTheme::dispatch();
+
         $this->fire('beforeRenderTheme', $this);
 
         // Fire event before render layout.
@@ -923,23 +929,27 @@ class Theme implements ThemeContract
 
         $screenshotName = $name ?: 'screenshot.png';
 
-        $screenshot = public_path($this->getConfig('themeDir') . '/' . $themeName . '/' . $screenshotName);
+        $themeDir = $this->getConfig('themeDir');
 
-        if (! File::exists($screenshot)) {
-            $screenshot = $this->path($theme) . '/' . $screenshotName;
+        $publicRelativePath = $themeDir . '/' . $themeName . '/' . $screenshotName;
+
+        if (File::exists(public_path($publicRelativePath))) {
+            return url($publicRelativePath);
         }
 
-        if (! File::exists($screenshot)) {
-            $screenshot = theme_path($theme . '/' . $screenshotName);
-        }
+        $screenshot = theme_path($theme . '/' . $screenshotName);
 
         if (! File::exists($screenshot)) {
             return RvMedia::getDefaultImage();
         }
 
-        $guessedMimeType = File::mimeType($screenshot);
+        try {
+            $guessedMimeType = File::mimeType($screenshot);
 
-        return 'data:' . $guessedMimeType . ';base64,' . base64_encode(File::get($screenshot));
+            return 'data:' . $guessedMimeType . ';base64,' . base64_encode(File::get($screenshot));
+        } catch (Throwable $e) {
+            return RvMedia::getDefaultImage();
+        }
     }
 
     public function registerThemeIconFields(array $icons, array $css = [], array $js = []): void

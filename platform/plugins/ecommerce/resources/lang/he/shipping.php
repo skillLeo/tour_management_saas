@@ -192,6 +192,7 @@ return [
         'order_date' => 'תאריך הזמנה',
         'scan_qr_code' => 'סרוק קוד QR לעקוב אחרי המשלוח שלך',
         'total_amount' => 'סכום כולל',
+        'amount_to_collect' => 'סכום לגבייה',
         'cod_amount_to_collect' => 'סכום תשלום במזומן לגבייה',
     ],
     'customer_confirmed_delivery_at' => 'לקוח אישר מסירה ב',

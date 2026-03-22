@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'menu_name' => 'Dalībnieku līmeņi',
+    'create' => 'Izveidot līmeni',
+    'edit' => 'Rediģēt līmeni :name',
+    'min_commission' => 'Minimālā komisija',
+    'max_commission' => 'Maksimālā komisija',
+    'max_commission_help' => 'Atstājiet tukšu neierobežotam',
+    'unlimited' => 'Neierobežots',
+    'commission_rate' => 'Komisijas likme',
+    'commission_rate_help' => 'Reizinātājs komisijām (piem., 1.1 10% bonusam)',
+    'benefits' => 'Priekšrocības',
+    'benefits_help' => 'Uzskaitiet priekšrocības, vienu katrā rindā',
+    'benefits_placeholder' => 'Prioritārais atbalsts' . PHP_EOL . 'Augstāka komisijas likme',
+    'next_level' => 'Nākamais līmenis: :name',
+    'commission_needed' => 'Jums nepieciešams vēl :amount komisijās, lai sasniegtu :name',
+    'tier_rules_tooltip' => 'Nopelniet komisijas ar katru ieteikumu, lai atbloķētu augstākus līmeņus un ekskluzīvas balvas. Līmeņi balstās uz jūsu kopējo nopelnīto komisiju.',
+    'top_tier_reached' => 'Sasniegts augstākais līmenis',
+    'top_tier_message' => 'Jūs esat sasniedzis augstāko partnera līmeni! Baudiet savas ekskluzīvās priekšrocības.',
+    'default_member' => 'Dalībnieks',
+    'member_since' => 'Kopš',
+    'no_benefits' => 'Sāciet pelnīt komisijas, lai atbloķētu līmeņa priekšrocības!',
+    'current_commission' => 'Nopelnīts :amount',
+    'target_commission' => 'Mērķis :amount',
+];

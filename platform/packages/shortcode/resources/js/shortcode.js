@@ -55,12 +55,14 @@ $(() => {
             if ((!shortcodeAttribute || shortcodeAttribute !== 'content') && value) {
                 name = name.replace('[]', '')
                 if (value && typeof value === 'string') {
-                    value = value.replace(/"([^"]*)"/g, '“$1”')
-                    value = value.replace(/"/g, '“')
+                    value = value.replace(/"([^"]*)"/g, '"$1"')
+                    value = value.replace(/"/g, '"')
                     value = value
                         .replace(/\r\n/g, '{{NEWLINE}}')
                         .replace(/\n/g, '{{NEWLINE}}')
                         .replace(/\r/g, '{{NEWLINE}}')
+                        .replace(/<br\s*\/?>/gi, '{{BR}}')
+                        .replace(/&nbsp;/gi, '{{NBSP}}')
                 }
 
                 if (element.data('shortcode-attribute') !== 'content') {
@@ -198,7 +200,16 @@ $(() => {
     })
 
     $(document).on('ckeditor-bb-shortcode-edit', (e) => {
-        const { shortcode, name } = e.detail
+        let { shortcode, name } = e.detail
+
+        // Fallback: extract shortcode name from content if CKEditor returns null
+        if (!name && shortcode) {
+            const match = shortcode.match(/^\[([a-zA-Z0-9_-]+)/)
+            if (match) {
+                name = match[1]
+            }
+        }
+
         const $shortcodeItem = $(`[data-bb-toggle="shortcode-select"][data-key="${name}"]`)
 
         if ($shortcodeItem.length === 0) {

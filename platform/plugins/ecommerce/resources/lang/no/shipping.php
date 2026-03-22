@@ -192,6 +192,7 @@ return [
         'order_date' => 'Bestillingsdato',
         'scan_qr_code' => 'Skann QR-kode for å spore forsendelsen din',
         'total_amount' => 'Totalbeløp',
+        'amount_to_collect' => 'Beløp å kreve inn',
         'cod_amount_to_collect' => 'COD-beløp å kreve inn',
     ],
     'customer_confirmed_delivery_at' => 'Kunde bekreftet levering',

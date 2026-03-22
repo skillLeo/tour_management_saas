@@ -68,4 +68,6 @@ return [
     'enable_light_mode' => 'Activer le mode clair',
     'enable_dark_mode' => 'Activer le mode sombre',
     'close' => 'Fermer',
+    'search_country' => 'Rechercher un pays...',
+    'no_results' => 'Aucun résultat trouvé',
 ];

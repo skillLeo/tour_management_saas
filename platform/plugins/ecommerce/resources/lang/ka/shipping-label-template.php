@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'name' => 'მიწოდების ლეიბლის შაბლონი',
-    'setting' => 'მიწოდების ლეიბლის შაბლონის პარამეტრები',
-    'setting_description' => 'მიწოდების ლეიბლის შაბლონის პარამეტრები',
+    'name' => 'Shipping Labels',
+    'setting' => 'Label design & layout',
+    'setting_description' => 'Customize shipping label HTML template and CSS styles',
     'setting_content' => 'შინაარსი',
     'preview' => 'წინასწარი ნახვა',
     'preview_heading' => 'მიწოდების ლეიბლის შაბლონის წინასწარი ნახვა',

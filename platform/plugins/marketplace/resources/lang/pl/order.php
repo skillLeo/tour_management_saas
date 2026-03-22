@@ -12,4 +12,16 @@ return [
     'return' => [
         'description' => 'Zwrócone z zamówienia #:order',
     ],
+    'thank_you' => [
+        'count_orders' => ':count zamówień',
+        'order' => 'Zamówienie',
+        'thank_you_name' => 'Dziękujemy, :name!',
+        'order_confirmed' => 'Twoje zamówienie zostało potwierdzone',
+        'order_accepted' => 'Przyjęliśmy Twoje zamówienie i przygotowujemy je.',
+        'customer' => 'Klient',
+        'need_help' => 'Potrzebujesz pomocy?',
+        'contact_us' => 'Skontaktuj się z nami',
+        'view_order_history' => 'Zobacz historię zamówień',
+        'order_total' => 'Suma zamówienia',
+    ],
 ];

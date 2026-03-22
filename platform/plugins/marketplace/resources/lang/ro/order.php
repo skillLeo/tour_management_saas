@@ -12,4 +12,16 @@ return [
     'return' => [
         'description' => 'Returnat din comanda #:order',
     ],
+    'thank_you' => [
+        'count_orders' => ':count comenzi',
+        'order' => 'Comandă',
+        'thank_you_name' => 'Mulțumim, :name!',
+        'order_confirmed' => 'Comanda dvs. este confirmată',
+        'order_accepted' => 'Am acceptat comanda dvs. și o pregătim.',
+        'customer' => 'Client',
+        'need_help' => 'Aveți nevoie de ajutor?',
+        'contact_us' => 'Contactați-ne',
+        'view_order_history' => 'Vizualizați istoricul comenzilor',
+        'order_total' => 'Total comandă',
+    ],
 ];

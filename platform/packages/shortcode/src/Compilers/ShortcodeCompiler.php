@@ -44,7 +44,7 @@ class ShortcodeCompiler
 
     public function setEditLink(string $editLink, string $permission): void
     {
-        if ($permission && (! Auth::guard()->check() || ! Auth::guard()->user()->hasPermission($permission))) {
+        if ($permission && (! Auth::guard('web')->check() || ! Auth::guard('web')->user()->hasPermission($permission))) {
             return;
         }
 
@@ -139,7 +139,7 @@ class ShortcodeCompiler
         $compiled = $this->compileShortcode($matches);
         $name = $compiled->getName();
 
-        if ($compiled->enable_lazy_loading === 'yes' && ! request()->expectsJson() && ! $this->shouldIgnoreLazyLoading($name)) {
+        if ($compiled->enable_lazy_loading === 'yes' && ! request()->expectsJson() && ! request()->has('visual_builder') && ! $this->shouldIgnoreLazyLoading($name)) {
             add_filter(THEME_FRONT_FOOTER, function (?string $html) {
                 return $html . view('packages/shortcode::partials.lazy-loading-script')->render();
             }, 120);
@@ -283,7 +283,8 @@ class ShortcodeCompiler
 
         $attributes = [];
 
-        $pattern = '/(\w+)\s*=\s*"([^"]*)"(?:\s|$)|(\w+)\s*=\s*\'([^\']*)\'(?:\s|$)|(\w+)\s*=\s*([^\s\'"]+)(?:\s|$)|"([^"]*)"(?:\s|$)|(\S+)(?:\s|$)/';
+        // Pattern handles escaped quotes: \" within double-quoted values and \' within single-quoted values
+        $pattern = '/(\w+)\s*=\s*"((?:[^"\\\\]|\\\\.)*)"\s*|(\w+)\s*=\s*\'((?:[^\'\\\\]|\\\\.)*)\'\s*|(\w+)\s*=\s*([^\s\'"]+)\s*|"((?:[^"\\\\]|\\\\.)*)"\s*|(\S+)\s*/';
 
         if (preg_match_all($pattern, preg_replace('/[\x{00a0}\x{200b}]+/u', ' ', $text), $match, PREG_SET_ORDER)) {
             foreach ($match as $item) {
@@ -310,7 +311,11 @@ class ShortcodeCompiler
     {
         $value = stripcslashes($value);
 
-        return str_replace('{{NEWLINE}}', "\n", $value);
+        return str_replace(
+            ['{{NEWLINE}}', '{{BR}}', '{{NBSP}}'],
+            ["\n", '<br>', '&nbsp;'],
+            $value
+        );
     }
 
     public function getShortcodeNames(array $except = []): string

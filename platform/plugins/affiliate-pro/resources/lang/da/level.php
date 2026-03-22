@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'menu_name' => 'Medlemsniveauer',
+    'create' => 'Opret niveau',
+    'edit' => 'Rediger niveau :name',
+    'min_commission' => 'Minimum provision',
+    'max_commission' => 'Maksimum provision',
+    'max_commission_help' => 'Efterlad tom for ubegrænset',
+    'unlimited' => 'Ubegrænset',
+    'commission_rate' => 'Provisionssats',
+    'commission_rate_help' => 'Multiplikator for provision (f.eks. 1.1 for 10% bonus)',
+    'benefits' => 'Fordele',
+    'benefits_help' => 'List fordele, én per linje',
+    'benefits_placeholder' => 'Prioriteret support' . PHP_EOL . 'Højere provisionssats',
+    'next_level' => 'Næste niveau: :name',
+    'commission_needed' => 'Du mangler :amount i provisioner for at nå :name',
+    'tier_rules_tooltip' => 'Tjen provisioner med hver henvisning for at låse op for højere niveauer og eksklusive belønninger. Niveauer er baseret på dine samlede optjente provisioner.',
+    'top_tier_reached' => 'Højeste niveau nået',
+    'top_tier_message' => 'Du har nået det højeste affiliate-niveau! Nyd dine eksklusive fordele.',
+    'default_member' => 'Medlem',
+    'member_since' => 'Siden',
+    'no_benefits' => 'Begynd at tjene provisioner for at låse op for niveau-fordele!',
+    'current_commission' => ':amount optjent',
+    'target_commission' => ':amount mål',
+];

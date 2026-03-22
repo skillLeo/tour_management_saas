@@ -1,0 +1,53 @@
+<?php
+
+return [
+    'name' => 'Provisioner',
+    'view' => 'Visa Provision #:id',
+    'affiliate' => 'Affiliate',
+    'order' => 'Beställning',
+    'amount' => 'Belopp',
+    'description' => 'Beskrivning',
+    'status' => 'Status',
+    'created_at' => 'Skapad Den',
+    'approve' => 'Godkänn',
+    'reject' => 'Avvisa',
+    'approve_success' => 'Provision godkänd',
+    'reject_success' => 'Provision avvisad',
+    'approve_commission' => 'Godkänn Provision',
+    'reject_commission' => 'Avvisa Provision',
+    'approve_commission_confirmation' => 'Är du säker på att du vill godkänna provision #:id? Denna åtgärd kan inte ångras.',
+    'reject_commission_confirmation' => 'Är du säker på att du vill avvisa provision #:id? Denna åtgärd kan inte ångras.',
+    'statuses' => [
+        'pending' => 'Väntande',
+        'approved' => 'Godkänd',
+        'rejected' => 'Avvisad',
+    ],
+
+    // Customer-facing translations
+    'history' => 'Provisionshistorik',
+    'no_commissions' => 'Inga provisioner hittades.',
+    'no_commissions_description' => 'Du har inte tjänat några provisioner ännu. Börja marknadsföra våra produkter för att tjäna din första provision!',
+    'commission_id' => 'Provisions-ID',
+    'order_id' => 'Beställnings-ID',
+    'customer' => 'Kund',
+    'product' => 'Produkt',
+    'type' => 'Typ',
+    'date' => 'Datum',
+
+    // New UI translations
+    'total_commissions' => ':count Totalt Provisioner',
+    'filter_by_status' => 'Filtrera efter Status',
+    'all_statuses' => 'Alla Statusar',
+    'date_from' => 'Datum Från',
+    'date_to' => 'Datum Till',
+    'filter' => 'Filtrera',
+    'clear' => 'Rensa',
+    'approved_earnings' => 'Godkända Intäkter',
+    'pending_earnings' => 'Väntande Intäkter',
+    'successful_orders' => 'Framgångsrika Beställningar',
+    'approval_rate' => 'Godkännandegrad',
+    'commission_earned' => 'Provision Intjänad',
+    'showing_results' => 'Visar :from till :to av :total resultat',
+    'start_promoting' => 'Börja Marknadsföra',
+    'back_to_dashboard' => 'Tillbaka till Instrumentpanel',
+];

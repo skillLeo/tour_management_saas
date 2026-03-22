@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'menu_name' => '會員等級',
+    'create' => '建立等級',
+    'edit' => '編輯等級 :name',
+    'min_commission' => '最低佣金',
+    'max_commission' => '最高佣金',
+    'max_commission_help' => '留空表示無限制',
+    'unlimited' => '無限制',
+    'commission_rate' => '佣金比例',
+    'commission_rate_help' => '佣金乘數（例如：1.1表示10%獎勵）',
+    'benefits' => '權益',
+    'benefits_help' => '列出權益，每行一個',
+    'benefits_placeholder' => '優先支援' . PHP_EOL . '更高佣金比例',
+    'next_level' => '下一等級: :name',
+    'commission_needed' => '您還需要 :amount 佣金才能達到 :name',
+    'tier_rules_tooltip' => '透過每次推薦賺取佣金，解鎖更高等級和專屬獎勵。等級基於您的累計佣金。',
+    'top_tier_reached' => '已達最高等級',
+    'top_tier_message' => '您已達到最高聯盟等級！享受您的專屬權益。',
+    'default_member' => '會員',
+    'member_since' => '加入於',
+    'no_benefits' => '開始賺取佣金以解鎖等級權益！',
+    'current_commission' => '已賺取 :amount',
+    'target_commission' => '目標 :amount',
+];

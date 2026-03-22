@@ -88,6 +88,8 @@ return [
     'total' => 'Kokku',
     'status' => 'Olek',
     'default_payment_method' => 'Vaikimisi maksemeetod',
+    'sort_order_instruction' => 'Lohistage maksemeetodite ümberjärjestamiseks kassalehel.',
+    'default_method_instruction' => 'Klõpsake täheikooni, et määrata vaikimisi maksemeetod.',
     'payment_logs' => 'Makse logid',
     'request_data' => 'Päringu andmed',
     'response_data' => 'Vastuse andmed',

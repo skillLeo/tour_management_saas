@@ -20,6 +20,7 @@ use Botble\Base\Forms\Fields\TextField;
 use Botble\Base\Forms\FormAbstract;
 use Botble\Base\Http\Responses\BaseHttpResponse;
 use Botble\Base\Rules\OnOffRule;
+use Botble\Base\Supports\EmailHandler as EmailHandlerSupport;
 use Botble\Base\Supports\TwigCompiler;
 use Botble\Dashboard\Events\RenderingDashboardWidgets;
 use Botble\Dashboard\Supports\DashboardWidgetInstance;
@@ -48,6 +49,7 @@ use Botble\Ecommerce\Models\Review;
 use Botble\Ecommerce\Repositories\Interfaces\ProductInterface;
 use Botble\Ecommerce\Rules\FacebookPixelIdRule;
 use Botble\Ecommerce\Services\HandleFrontPages;
+use Botble\Ecommerce\Supports\CartBundleHelper;
 use Botble\Ecommerce\Supports\TwigExtension;
 use Botble\Faq\Contracts\Faq as FaqContract;
 use Botble\Faq\FaqCollection;
@@ -249,6 +251,12 @@ class HookServiceProvider extends ServiceProvider
 
             return redirect()->guest(route('customer.login'));
         });
+
+        add_filter('ecommerce_cart_after_item_content', function (?string $html, object $cartItem): ?string {
+            $bundleBadge = app(CartBundleHelper::class)->renderBundleBadge($cartItem);
+
+            return ($html ?? '') . $bundleBadge;
+        }, 20, 2);
 
         add_filter('data_synchronize_import_form_before', function (?string $html, Importer $importer): ?string {
             if ($importer instanceof ProductImporter) {
@@ -888,115 +896,117 @@ class HookServiceProvider extends ServiceProvider
             2
         );
 
-        add_filter(FILTER_ECOMMERCE_PROCESS_PAYMENT, function (array $data, Request $request) {
-            session()->put('selected_payment_method', $data['type']);
+        if (is_plugin_active('payment')) {
+            add_filter(FILTER_ECOMMERCE_PROCESS_PAYMENT, function (array $data, Request $request) {
+                session()->put('selected_payment_method', $data['type']);
 
-            $orderIds = (array) $request->input('order_id', []);
+                $orderIds = (array) $request->input('order_id', []);
 
-            $request->merge([
-                'name' => trans('plugins/payment::payment.payment_description', [
-                    'order_id' => implode(', #', $orderIds),
-                    'site_url' => $request->getHost(),
-                ]),
-                'amount' => $data['amount'],
-            ]);
+                $request->merge([
+                    'name' => trans('plugins/payment::payment.payment_description', [
+                        'order_id' => implode(', #', $orderIds),
+                        'site_url' => $request->getHost(),
+                    ]),
+                    'amount' => $data['amount'],
+                ]);
 
-            $paymentData = apply_filters(PAYMENT_FILTER_PAYMENT_DATA, [], $request);
+                $paymentData = apply_filters(PAYMENT_FILTER_PAYMENT_DATA, [], $request);
 
-            switch ($request->input('payment_method')) {
-                case PaymentMethodEnum::COD:
+                switch ($request->input('payment_method')) {
+                    case PaymentMethodEnum::COD:
 
-                    $products = Cart::instance('cart')->products();
-                    if (EcommerceHelper::isEnabledSupportDigitalProducts()) {
-                        $digitalProductsCount = EcommerceHelper::countDigitalProducts($products);
-                        if ($digitalProductsCount > 0 && $digitalProductsCount === $products->count()) {
+                        $products = Cart::instance('cart')->products();
+                        if (EcommerceHelper::isEnabledSupportDigitalProducts()) {
+                            $digitalProductsCount = EcommerceHelper::countDigitalProducts($products);
+                            if ($digitalProductsCount > 0 && $digitalProductsCount === $products->count()) {
+                                $data['error'] = true;
+                                $data['message'] = __('COD (Cash On Delivery) payment method is not available for digital products only.');
+
+                                break;
+                            }
+                        }
+
+                        $minimumOrderAmount = (float) get_payment_setting('minimum_amount', PaymentMethodEnum::COD, 0);
+
+                        if ($minimumOrderAmount > Cart::instance('cart')->rawSubTotal()) {
                             $data['error'] = true;
-                            $data['message'] = __('COD (Cash On Delivery) payment method is not available for digital products only.');
+                            $data['message'] = __(
+                                'Minimum order amount to use COD (Cash On Delivery) payment method is :amount, you need to buy more :more to place an order!',
+                                [
+                                    'amount' => format_price($minimumOrderAmount),
+                                    'more' => format_price($minimumOrderAmount - Cart::instance('cart')->rawSubTotal()),
+                                ]
+                            );
 
                             break;
                         }
-                    }
 
-                    $minimumOrderAmount = (float) get_payment_setting('minimum_amount', PaymentMethodEnum::COD, 0);
+                        $maximumOrderAmount = (float) get_payment_setting('maximum_amount', PaymentMethodEnum::COD, 0);
 
-                    if ($minimumOrderAmount > Cart::instance('cart')->rawSubTotal()) {
-                        $data['error'] = true;
-                        $data['message'] = __(
-                            'Minimum order amount to use COD (Cash On Delivery) payment method is :amount, you need to buy more :more to place an order!',
-                            [
-                                'amount' => format_price($minimumOrderAmount),
-                                'more' => format_price($minimumOrderAmount - Cart::instance('cart')->rawSubTotal()),
-                            ]
-                        );
+                        if ($maximumOrderAmount > 0 && Cart::instance('cart')->rawSubTotal() > $maximumOrderAmount) {
+                            $data['error'] = true;
+                            $data['message'] = trans(
+                                'plugins/ecommerce::setting.payment_method_maximum_amount_error',
+                                [
+                                    'payment_method' => PaymentMethodEnum::COD()->label(),
+                                    'amount' => format_price($maximumOrderAmount),
+                                    'more' => format_price(Cart::instance('cart')->rawSubTotal() - $maximumOrderAmount),
+                                ]
+                            );
 
-                        break;
-                    }
+                            break;
+                        }
 
-                    $maximumOrderAmount = (float) get_payment_setting('maximum_amount', PaymentMethodEnum::COD, 0);
-
-                    if ($maximumOrderAmount > 0 && Cart::instance('cart')->rawSubTotal() > $maximumOrderAmount) {
-                        $data['error'] = true;
-                        $data['message'] = trans(
-                            'plugins/ecommerce::setting.payment_method_maximum_amount_error',
-                            [
-                                'payment_method' => PaymentMethodEnum::COD()->label(),
-                                'amount' => format_price($maximumOrderAmount),
-                                'more' => format_price(Cart::instance('cart')->rawSubTotal() - $maximumOrderAmount),
-                            ]
-                        );
+                        $data['charge_id'] = $this->app->make(CodPaymentService::class)->execute($paymentData);
 
                         break;
-                    }
 
-                    $data['charge_id'] = $this->app->make(CodPaymentService::class)->execute($paymentData);
+                    case PaymentMethodEnum::BANK_TRANSFER:
 
-                    break;
+                        $minimumOrderAmount = (float) get_payment_setting('minimum_amount', PaymentMethodEnum::BANK_TRANSFER, 0);
 
-                case PaymentMethodEnum::BANK_TRANSFER:
+                        if ($minimumOrderAmount > Cart::instance('cart')->rawSubTotal()) {
+                            $data['error'] = true;
+                            $data['message'] = __(
+                                'Minimum order amount to use Bank Transfer payment method is :amount, you need to buy more :more to place an order!',
+                                [
+                                    'amount' => format_price($minimumOrderAmount),
+                                    'more' => format_price($minimumOrderAmount - Cart::instance('cart')->rawSubTotal()),
+                                ]
+                            );
 
-                    $minimumOrderAmount = (float) get_payment_setting('minimum_amount', PaymentMethodEnum::BANK_TRANSFER, 0);
+                            break;
+                        }
 
-                    if ($minimumOrderAmount > Cart::instance('cart')->rawSubTotal()) {
-                        $data['error'] = true;
-                        $data['message'] = __(
-                            'Minimum order amount to use Bank Transfer payment method is :amount, you need to buy more :more to place an order!',
-                            [
-                                'amount' => format_price($minimumOrderAmount),
-                                'more' => format_price($minimumOrderAmount - Cart::instance('cart')->rawSubTotal()),
-                            ]
-                        );
+                        $maximumOrderAmount = (float) get_payment_setting('maximum_amount', PaymentMethodEnum::BANK_TRANSFER, 0);
+
+                        if ($maximumOrderAmount > 0 && Cart::instance('cart')->rawSubTotal() > $maximumOrderAmount) {
+                            $data['error'] = true;
+                            $data['message'] = trans(
+                                'plugins/ecommerce::setting.payment_method_maximum_amount_error',
+                                [
+                                    'payment_method' => PaymentMethodEnum::BANK_TRANSFER()->label(),
+                                    'amount' => format_price($maximumOrderAmount),
+                                    'more' => format_price(Cart::instance('cart')->rawSubTotal() - $maximumOrderAmount),
+                                ]
+                            );
+
+                            break;
+                        }
+
+                        $data['charge_id'] = $this->app->make(BankTransferPaymentService::class)->execute($paymentData);
 
                         break;
-                    }
 
-                    $maximumOrderAmount = (float) get_payment_setting('maximum_amount', PaymentMethodEnum::BANK_TRANSFER, 0);
-
-                    if ($maximumOrderAmount > 0 && Cart::instance('cart')->rawSubTotal() > $maximumOrderAmount) {
-                        $data['error'] = true;
-                        $data['message'] = trans(
-                            'plugins/ecommerce::setting.payment_method_maximum_amount_error',
-                            [
-                                'payment_method' => PaymentMethodEnum::BANK_TRANSFER()->label(),
-                                'amount' => format_price($maximumOrderAmount),
-                                'more' => format_price(Cart::instance('cart')->rawSubTotal() - $maximumOrderAmount),
-                            ]
-                        );
+                    default:
+                        $data = apply_filters(PAYMENT_FILTER_AFTER_POST_CHECKOUT, $data, $request);
 
                         break;
-                    }
+                }
 
-                    $data['charge_id'] = $this->app->make(BankTransferPaymentService::class)->execute($paymentData);
-
-                    break;
-
-                default:
-                    $data = apply_filters(PAYMENT_FILTER_AFTER_POST_CHECKOUT, $data, $request);
-
-                    break;
-            }
-
-            return $data;
-        }, 120, 2);
+                return $data;
+            }, 120, 2);
+        }
 
         add_filter('payment_method_display_body', function (?string $html, string $paymentName, ?string $paymentLabel) {
             $minimumOrderAmount = (float) get_payment_setting('minimum_amount', $paymentName, 0);
@@ -1060,15 +1070,24 @@ class HookServiceProvider extends ServiceProvider
 
                 foreach ($orders as $order) {
                     foreach ($order->products as $product) {
+                        $productTotal = $product->price * $product->qty;
+                        $productPriceIncludesTax = Arr::get($product->options, 'price_includes_tax', false);
+                        $productTaxAmount = $product->tax_amount ?? 0;
+                        $productTax = $productPriceIncludesTax ? 0 : $productTaxAmount;
+                        $productNetTotal = $productPriceIncludesTax
+                            ? ($productTotal - $productTaxAmount)
+                            : $productTotal;
+                        $productDiscount = $order->sub_total > 0
+                            ? ($productNetTotal / $order->sub_total * $order->discount_amount)
+                            : 0;
+
                         $products[] = [
                             'id' => $product->product_id,
                             'name' => $product->product_name,
                             'image' => RvMedia::getImageUrl($product->product_image),
                             'price' => $this->convertOrderAmount($product->price),
                             'price_per_order' => $this->convertOrderAmount(
-                                ($product->price * $product->qty)
-                                + ($order->tax_amount / $order->products->count())
-                                - ($order->sub_total > 0 ? (($product->price * $product->qty) / $order->sub_total * $order->discount_amount) : 0)
+                                $productTotal + $productTax - $productDiscount
                             ),
                             'qty' => $product->qty,
                         ];
@@ -1168,40 +1187,44 @@ class HookServiceProvider extends ServiceProvider
             }
         }
 
-        add_action(INVOICE_PAYMENT_CREATED, function (Invoice $invoice): void {
-            try {
-                $invoicePath = InvoiceHelper::generateInvoice($invoice);
+        if (is_plugin_active('payment')) {
+            add_action(INVOICE_PAYMENT_CREATED, function (Invoice $invoice): void {
+                try {
+                    $invoicePath = InvoiceHelper::generateInvoice($invoice);
 
-                if ($invoice->payment->status != PaymentStatusEnum::COMPLETED) {
-                    return;
+                    if ($invoice->payment->status != PaymentStatusEnum::COMPLETED) {
+                        return;
+                    }
+
+                    $attachments = [];
+
+                    if (file_exists($invoicePath)) {
+                        $attachments[] = [
+                            'file' => $invoicePath,
+                            'name' => sprintf('invoice-%s.pdf', $invoice->code),
+                            'mime' => 'application/pdf',
+                        ];
+                    }
+
+                    $locale = $invoice->order?->getOrderMetadata('customer_locale') ?: EmailHandlerSupport::getDefaultEmailLocale();
+
+                    EmailHandler::setModule(ECOMMERCE_MODULE_SCREEN_NAME)
+                        ->setVariableValues([
+                            'customer_name' => $invoice->customer_name,
+                            'invoice_code' => $invoice->code,
+                            'invoice_link' => $invoice->order?->user->id ? route(
+                                'customer.invoices.show',
+                                $invoice->getKey()
+                            ) : null,
+                        ])
+                        ->sendUsingTemplateWithLocale('invoice-payment-created', $invoice->customer_email, $locale, [
+                            'attachments' => $attachments,
+                        ]);
+                } catch (Exception $exception) {
+                    info($exception->getMessage());
                 }
-
-                $attachments = [];
-
-                if (file_exists($invoicePath)) {
-                    $attachments[] = [
-                        'data' => file_get_contents($invoicePath),
-                        'name' => sprintf('invoice-%s.pdf', $invoice->code),
-                        'mime' => 'application/pdf',
-                    ];
-                }
-
-                EmailHandler::setModule(ECOMMERCE_MODULE_SCREEN_NAME)
-                    ->setVariableValues([
-                        'customer_name' => $invoice->customer_name,
-                        'invoice_code' => $invoice->code,
-                        'invoice_link' => $invoice->order?->user->id ? route(
-                            'customer.invoices.show',
-                            $invoice->getKey()
-                        ) : null,
-                    ])
-                    ->sendUsingTemplate('invoice-payment-created', $invoice->customer_email, [
-                        'attachments' => $attachments,
-                    ]);
-            } catch (Exception $exception) {
-                info($exception->getMessage());
-            }
-        });
+            });
+        }
 
         add_filter(BASE_FILTER_PUBLIC_SINGLE_DATA, [$this, 'handleSingleView'], 30);
 
@@ -1447,6 +1470,7 @@ class HookServiceProvider extends ServiceProvider
                         'id' => 'number_of_products_per_page',
                         'type' => 'number',
                         'label' => trans('plugins/ecommerce::ecommerce.theme_options.number_products_per_page'),
+                        'shared' => true,
                         'attributes' => [
                             'name' => 'number_of_products_per_page',
                             'value' => 12,
@@ -1459,6 +1483,7 @@ class HookServiceProvider extends ServiceProvider
                         'id' => 'number_of_cross_sale_product',
                         'type' => 'number',
                         'label' => trans('plugins/ecommerce::ecommerce.theme_options.number_of_cross_sale_product'),
+                        'shared' => true,
                         'attributes' => [
                             'name' => 'number_of_cross_sale_product',
                             'value' => 4,
@@ -1471,6 +1496,7 @@ class HookServiceProvider extends ServiceProvider
                         'id' => 'number_of_related_product',
                         'type' => 'number',
                         'label' => trans('plugins/ecommerce::ecommerce.theme_options.number_of_related_product'),
+                        'shared' => true,
                         'attributes' => [
                             'name' => 'number_of_related_product',
                             'value' => 4,
@@ -1484,6 +1510,7 @@ class HookServiceProvider extends ServiceProvider
                         'id' => 'max_filter_price',
                         'type' => 'number',
                         'label' => trans('plugins/ecommerce::ecommerce.theme_options.max_price_filter'),
+                        'shared' => true,
                         'attributes' => [
                             'name' => 'max_filter_price',
                             'value' => EcommerceHelper::getProductMaxPrice(),
@@ -1496,6 +1523,7 @@ class HookServiceProvider extends ServiceProvider
                         'id' => 'logo_in_the_checkout_page',
                         'type' => 'mediaImage',
                         'label' => trans('plugins/ecommerce::ecommerce.theme_options.logo_in_the_checkout_page'),
+                        'shared' => true,
                         'attributes' => [
                             'name' => 'logo_in_the_checkout_page',
                             'value' => null,
@@ -1508,6 +1536,7 @@ class HookServiceProvider extends ServiceProvider
                         'id' => 'checkout_primary_color',
                         'type' => 'customColor',
                         'label' => trans('plugins/ecommerce::ecommerce.theme_options.checkout_primary_color'),
+                        'shared' => true,
                         'attributes' => [
                             'name' => 'checkout_primary_color',
                             'value' => '#197bbd',
@@ -1517,6 +1546,7 @@ class HookServiceProvider extends ServiceProvider
                         'id' => 'login_background',
                         'type' => 'mediaImage',
                         'label' => trans('plugins/ecommerce::ecommerce.theme_options.login_background_image'),
+                        'shared' => true,
                         'attributes' => [
                             'name' => 'login_background',
                         ],
@@ -1525,6 +1555,7 @@ class HookServiceProvider extends ServiceProvider
                         'id' => 'register_background',
                         'type' => 'mediaImage',
                         'label' => trans('plugins/ecommerce::ecommerce.theme_options.register_background_image'),
+                        'shared' => true,
                         'attributes' => [
                             'name' => 'register_background',
                         ],
@@ -1547,6 +1578,7 @@ class HookServiceProvider extends ServiceProvider
                         'id' => 'merchant_return_days',
                         'type' => 'number',
                         'label' => trans('plugins/ecommerce::ecommerce.theme_options.merchant_return_days'),
+                        'shared' => true,
                         'attributes' => [
                             'name' => 'merchant_return_days',
                             'value' => 30,
@@ -1560,6 +1592,7 @@ class HookServiceProvider extends ServiceProvider
                         'id' => 'merchant_return_applicable_country',
                         'type' => 'text',
                         'label' => trans('plugins/ecommerce::ecommerce.theme_options.merchant_return_applicable_country'),
+                        'shared' => true,
                         'attributes' => [
                             'name' => 'merchant_return_applicable_country',
                             'value' => null,

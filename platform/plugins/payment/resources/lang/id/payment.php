@@ -89,6 +89,8 @@ return [
     'total' => 'Total',
     'status' => 'Status',
     'default_payment_method' => 'Metode pembayaran default',
+    'sort_order_instruction' => 'Seret dan lepas untuk mengatur ulang metode pembayaran di halaman checkout.',
+    'default_method_instruction' => 'Klik ikon bintang untuk menetapkan metode pembayaran default.',
     'payment_logs' => 'Log Pembayaran',
     'request_data' => 'Data Permintaan',
     'response_data' => 'Data Respons',

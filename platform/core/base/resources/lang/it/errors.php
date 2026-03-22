@@ -22,4 +22,6 @@ return [
     '503_temporarily_down' => 'Temporaneamente non disponibile per manutenzione',
     '503_admin_instruction' => 'Se sei l\'amministratore e non riesci ad accedere al tuo sito dopo aver attivato la modalità manutenzione, elimina semplicemente il file <strong>storage/framework/down</strong> per disattivarla.',
     'take_me_home' => 'Portami a casa',
+    'bad_request' => 'Richiesta non valida',
+
 ];

@@ -9,7 +9,22 @@
                 const url = '{{ route('public.ajax.render-ui-block') }}';
                 const csrfToken = '{{ csrf_token() }}';
 
+                const urlParams = new URLSearchParams(window.location.search);
+                const refLang = urlParams.get('ref_lang');
+
                 document.body.classList.add('lazy-loading-active');
+
+                const requestBody = {
+                    name,
+                    shortcodeId,
+                    attributes: {
+                        ...attributes
+                    }
+                };
+
+                if (refLang) {
+                    requestBody.ref_lang = refLang;
+                }
 
                 fetch(url, {
                         method: 'POST',
@@ -18,13 +33,7 @@
                             'Accept': 'application/json',
                             'X-CSRF-TOKEN': csrfToken
                         },
-                        body: JSON.stringify({
-                            name,
-                            shortcodeId,
-                            attributes: {
-                                ...attributes
-                            }
-                        })
+                        body: JSON.stringify(requestBody)
                     })
                     .then(response => {
                         if (!response.ok) {

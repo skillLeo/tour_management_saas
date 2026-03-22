@@ -2,12 +2,19 @@
 
 namespace Botble\Ecommerce\Services;
 
-use Botble\Base\Enums\BaseStatusEnum;
 use Botble\Ecommerce\Models\Product;
-use Botble\Ecommerce\Models\Tax;
+use Botble\Ecommerce\Tax\DTOs\TaxContext;
+use Botble\Ecommerce\Tax\TaxEngineManager;
 
+/**
+ * @deprecated Use TaxEngineManager directly. Kept for backward compatibility.
+ */
 class TaxRateCalculatorService
 {
+    public function __construct(protected TaxEngineManager $engine)
+    {
+    }
+
     public function execute(
         Product $product,
         ?string $country = null,
@@ -15,54 +22,26 @@ class TaxRateCalculatorService
         ?string $city = null,
         ?string $zipCode = null
     ): float {
-        $taxRate = 0;
-        $taxes = $product->taxes->where('status', BaseStatusEnum::PUBLISHED);
+        $context = new TaxContext(
+            product: $product,
+            country: $country,
+            state: $state,
+            city: $city,
+            zip_code: $zipCode,
+            quantity: 1,
+            price: $product->price,
+        );
 
-        if ($taxes->isNotEmpty()) {
-            foreach ($taxes as $tax) {
-                if ($tax->rules && $tax->rules->isNotEmpty()) {
-                    $rule = null;
-                    if ($zipCode) {
-                        $rule = $tax->rules->firstWhere('zip_code', $zipCode);
-                    }
+        $result = $this->engine->calculate($context);
 
-                    if (! $rule && $country && $state && $city) {
-                        $rule = $tax->rules
-                            ->where('country', $country)
-                            ->where('state', $state)
-                            ->where('city', $city)
-                            ->first();
-                    }
-
-                    if (! $rule && $country && $state) {
-                        $rule = $tax->rules
-                            ->where('country', $country)
-                            ->where('state', $state)
-                            ->whereNull('city')
-                            ->first();
-                    }
-
-                    if (! $rule && $country) {
-                        $rule = $tax->rules
-                            ->where('country', $country)
-                            ->whereNull('state')
-                            ->whereNull('city')
-                            ->first();
-                    }
-
-                    if ($rule) {
-                        $taxRate += $rule->percentage;
-                    } else {
-                        $taxRate += $tax->percentage;
-                    }
-                } else {
-                    $taxRate += $tax->percentage;
-                }
-            }
-        } elseif ($defaultTaxRate = get_ecommerce_setting('default_tax_rate')) {
-            $taxRate = Tax::query()->where('id', $defaultTaxRate)->value('percentage');
-        }
-
-        return (float) $taxRate;
+        return (float) apply_filters(
+            'ecommerce_tax_rate_calculated',
+            $result->tax_rate,
+            $product,
+            $country,
+            $state,
+            $city,
+            $zipCode
+        );
     }
 }

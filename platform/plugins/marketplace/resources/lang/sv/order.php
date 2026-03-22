@@ -12,4 +12,16 @@ return [
     'return' => [
         'description' => 'Returnerad från beställning #:order',
     ],
+    'thank_you' => [
+        'count_orders' => ':count beställningar',
+        'order' => 'Beställning',
+        'thank_you_name' => 'Tack, :name!',
+        'order_confirmed' => 'Din beställning är bekräftad',
+        'order_accepted' => 'Vi har tagit emot din beställning och förbereder den.',
+        'customer' => 'Kund',
+        'need_help' => 'Behöver du hjälp?',
+        'contact_us' => 'Kontakta oss',
+        'view_order_history' => 'Visa orderhistorik',
+        'order_total' => 'Ordersumma',
+    ],
 ];

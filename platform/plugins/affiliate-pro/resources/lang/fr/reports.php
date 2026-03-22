@@ -1,0 +1,73 @@
+<?php
+
+return [
+    'name' => 'Rapports',
+    'commission_this_month' => 'Commission ce mois-ci',
+    'pending_commissions' => 'Commissions en attente',
+    'approved_commissions' => 'Commissions approuvées',
+    'pending_withdrawals' => 'Retraits en attente',
+    'approved_withdrawals' => 'Retraits approuvés',
+    'active_affiliates' => 'Affiliés actifs',
+    'affiliate_stats' => 'Statistiques d\'affiliation',
+    'top_affiliates' => 'Meilleurs affiliés',
+    'recent_commissions' => 'Commissions récentes',
+    'recent_withdrawals' => 'Retraits récents',
+    'commission_chart' => 'Graphique des commissions',
+    'withdrawal_chart' => 'Graphique des retraits',
+
+    // Enhanced reports
+    'geographic_data' => 'Données géographiques',
+    'top_countries' => 'Principaux pays',
+    'top_cities' => 'Principales villes',
+    'short_link_performance' => 'Performance des liens courts',
+    'top_performing_links' => 'Liens les plus performants',
+    'link' => 'Lien',
+    'clicks' => 'Clics',
+    'conversions' => 'Conversions',
+    'commission_trends' => 'Tendances des commissions',
+    'commission_amount' => 'Montant de la commission',
+    'loading' => 'Chargement...',
+    'no_data' => 'Aucune donnée disponible',
+    'no_commission_data' => 'Aucune donnée de commission disponible pour la période sélectionnée',
+    'no_geographic_data' => 'Aucune donnée géographique disponible pour la période sélectionnée',
+    'no_city_data' => 'Aucune donnée de ville disponible pour le pays sélectionné',
+    'chart_error' => 'Erreur lors du rendu du graphique. Veuillez actualiser la page.',
+
+    // Performance metrics widget
+    'performance_metrics' => 'Métriques de performance',
+    'total_clicks' => 'Clics totaux',
+    'earnings' => 'Gains',
+    'avg_commission' => 'Commission moyenne',
+    'avg_conversion_rate' => 'Taux de Conversion Moyen',
+    'vs_previous' => 'vs précédent',
+    'no_change' => 'Pas de changement',
+    'performance_over_time' => 'Performance dans le temps',
+    'clicks_conversions' => 'Clics et conversions',
+
+    // Conversion rate widget
+    'conversion_rate_analysis' => 'Analyse du Taux de Conversion',
+    'overall_conversion_rate' => 'Taux de Conversion Global',
+    'conversion_breakdown' => 'Répartition des Conversions',
+    'source' => 'Source',
+    'rate' => 'Taux',
+    'conversion_rate_percentage' => 'Taux de Conversion (%)',
+    'optimization_opportunity' => 'Opportunité d\'Optimisation',
+    'conversion_rate_below_average' => 'Votre taux de conversion est inférieur à la moyenne. Considérez ces conseils :',
+    'target_relevant_audiences' => 'Ciblez des audiences plus pertinentes',
+    'improve_promotional_content' => 'Améliorez votre contenu promotionnel',
+    'focus_higher_conversion_products' => 'Concentrez-vous sur les produits avec des taux de conversion plus élevés',
+    'great_performance' => 'Excellente Performance !',
+    'excellent_conversion_rate' => 'Votre taux de conversion est excellent. Continuez comme ça !',
+    'good_performance' => 'Bonne Performance',
+    'average_conversion_rate' => 'Votre taux de conversion est dans la moyenne. Il y a de la place pour l\'amélioration.',
+
+    // Date ranges (copied from ecommerce for consistency)
+    'ranges' => [
+        'today' => 'Aujourd\'hui',
+        'this_week' => 'Cette semaine',
+        'last_7_days' => '7 derniers jours',
+        'last_30_days' => '30 derniers jours',
+        'this_month' => 'Ce mois-ci',
+        'this_year' => 'Cette année',
+    ],
+];

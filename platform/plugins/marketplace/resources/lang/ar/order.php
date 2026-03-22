@@ -12,4 +12,16 @@ return [
     'return' => [
         'description' => 'عاد من الطلب #:الطلب',
     ],
+    'thank_you' => [
+        'count_orders' => ':count طلبات',
+        'order' => 'طلب',
+        'thank_you_name' => 'شكرا لك، :name!',
+        'order_confirmed' => 'تم تأكيد طلبك',
+        'order_accepted' => 'لقد قبلنا طلبك ونقوم بإعداده.',
+        'customer' => 'العميل',
+        'need_help' => 'تحتاج مساعدة؟',
+        'contact_us' => 'اتصل بنا',
+        'view_order_history' => 'عرض سجل الطلبات',
+        'order_total' => 'إجمالي الطلب',
+    ],
 ];

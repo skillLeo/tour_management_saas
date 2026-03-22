@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'menu_name' => 'Úrovně členů',
+    'create' => 'Vytvořit úroveň',
+    'edit' => 'Upravit úroveň :name',
+    'min_commission' => 'Minimální provize',
+    'max_commission' => 'Maximální provize',
+    'max_commission_help' => 'Ponechte prázdné pro neomezené',
+    'unlimited' => 'Neomezeno',
+    'commission_rate' => 'Sazba provize',
+    'commission_rate_help' => 'Násobitel pro provize (např. 1.1 pro 10% bonus)',
+    'benefits' => 'Výhody',
+    'benefits_help' => 'Uveďte výhody, jednu na řádek',
+    'benefits_placeholder' => 'Prioritní podpora' . PHP_EOL . 'Vyšší sazba provize',
+    'next_level' => 'Další úroveň: :name',
+    'commission_needed' => 'Potřebujete ještě :amount v provizích pro dosažení :name',
+    'tier_rules_tooltip' => 'Získávejte provize s každým doporučením pro odemknutí vyšších úrovní a exkluzivních odměn. Úrovně jsou založeny na vašich celkových získaných provizích.',
+    'top_tier_reached' => 'Dosažena nejvyšší úroveň',
+    'top_tier_message' => 'Dosáhli jste nejvyšší partnerské úrovně! Užívejte si své exkluzivní výhody.',
+    'default_member' => 'Člen',
+    'member_since' => 'Od',
+    'no_benefits' => 'Začněte vydělávat provize pro odemknutí výhod úrovně!',
+    'current_commission' => 'Vyděláno :amount',
+    'target_commission' => 'Cíl :amount',
+];

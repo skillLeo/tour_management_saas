@@ -25,6 +25,7 @@ class OrderProduct extends BaseModel
         'weight',
         'price',
         'tax_amount',
+        'tax_breakdown',
         'options',
         'product_options',
         'restock_quantity',
@@ -36,6 +37,7 @@ class OrderProduct extends BaseModel
     protected $casts = [
         'options' => 'json',
         'product_options' => 'json',
+        'tax_breakdown' => 'json',
         'downloaded_at' => 'datetime',
     ];
 
@@ -64,6 +66,11 @@ class OrderProduct extends BaseModel
     public function order(): BelongsTo
     {
         return $this->belongsTo(Order::class)->withDefault();
+    }
+
+    public function taxComponents(): HasMany
+    {
+        return $this->hasMany(OrderProductTaxComponent::class);
     }
 
     public function productFiles(): HasMany

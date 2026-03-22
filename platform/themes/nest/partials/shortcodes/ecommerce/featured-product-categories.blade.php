@@ -17,7 +17,7 @@
                  data-items-xxl="{{ $numberOfItems = ((int)$shortcode->scroll_items > 0 ? (int)$shortcode->scroll_items : 10) }}"
                  data-items-xl="{{ $numberOfItems - 4 > 4 ? $numberOfItems - 4 : 6 }}"
                  data-items-lg="4"
-                 data-items-md="3"
+                 data-items-md="4"
                  data-items-sm="{{ $shortcode->scroll_items_on_mobile ?: 2 }}"
             >
                @foreach($categories as $category)

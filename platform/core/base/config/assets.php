@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Date: 22/07/2015
  * Time: 8:11 PM
@@ -57,8 +58,12 @@ return [
                 'src' => [
                     'local' => [
                         '/vendor/core/core/base/libraries/jquery.min.js',
+                        '/vendor/core/core/base/libraries/jquery-compat/jquery4-compat.js',
                         '/vendor/core/core/base/js/app.js',
                     ],
+                ],
+                'attributes' => [
+                    'data-pagespeed-no-defer' => true,
                 ],
             ],
             'vue' => [

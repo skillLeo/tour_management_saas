@@ -21,6 +21,7 @@ use Botble\Ecommerce\Services\HandleApplyCouponService;
 use Botble\Ecommerce\Services\HandleApplyPromotionsService;
 use Botble\Media\Facades\RvMedia;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Throwable;
@@ -31,6 +32,43 @@ class CartController extends BaseApiController
         protected HandleApplyPromotionsService $applyPromotionsService,
         protected HandleApplyCouponService $handleApplyCouponService
     ) {
+    }
+
+    protected function isAuthenticated(): bool
+    {
+        return auth('sanctum')->check();
+    }
+
+    protected function getCustomerId(): ?int
+    {
+        return auth('sanctum')->check() ? auth('sanctum')->id() : null;
+    }
+
+    protected function restoreCart(?string $identifier = null): string
+    {
+        $customerId = $this->getCustomerId();
+
+        if ($customerId) {
+            Cart::instance('cart')->restoreForCustomer($customerId);
+
+            return (string) $customerId;
+        }
+
+        $identifier = $identifier ?: (string) Str::uuid();
+        Cart::instance('cart')->restore($identifier);
+
+        return $identifier;
+    }
+
+    protected function saveCart(string $identifier): void
+    {
+        $customerId = $this->getCustomerId();
+
+        if ($customerId) {
+            Cart::instance('cart')->storeForCustomerQuietly($customerId);
+        } else {
+            Cart::instance('cart')->updateOrStoreQuietly($identifier);
+        }
     }
 
     /**
@@ -44,16 +82,15 @@ class CartController extends BaseApiController
      *
      * @return JsonResponse
      */
-    public function index(string $id)
+    public function index(?string $id = null)
     {
-        $identifier = $id;
+        $identifier = $this->restoreCart($id);
 
-        Cart::instance('cart')->restore($identifier);
-
-        Cart::instance('cart')->updateOrStore($identifier);
+        $this->saveCart($identifier);
 
         return response()->json([
             'id' => $identifier,
+            'authenticated' => $this->isAuthenticated(),
             ...$this->getDataForResponse(),
         ]);
     }
@@ -95,7 +132,7 @@ class CartController extends BaseApiController
                 ->toApiResponse();
         }
 
-        $maxQuantity = $product->quantity;
+        $maxQuantity = $product->max_cart_quantity;
 
         if (! $product->canAddToCart($request->input('qty', 1))) {
             return $response
@@ -106,10 +143,7 @@ class CartController extends BaseApiController
 
         $outOfQuantity = false;
 
-        // Use the provided cart ID or generate a new one
-        $identifier = $id ?: (string) Str::uuid();
-
-        Cart::instance('cart')->restore($identifier);
+        $identifier = $this->restoreCart($id);
 
         foreach (Cart::instance('cart')->content() as $item) {
             if ($item->id == $product->id) {
@@ -137,7 +171,7 @@ class CartController extends BaseApiController
             $originalProduct->options()->where('required', true)->exists()
         ) {
             if (! $request->input('options')) {
-                Cart::instance('cart')->updateOrStore($identifier);
+                $this->saveCart($identifier);
 
                 return $response
                     ->setError()
@@ -160,7 +194,7 @@ class CartController extends BaseApiController
             }
 
             if ($message) {
-                Cart::instance('cart')->updateOrStore($identifier);
+                $this->saveCart($identifier);
 
                 return $response
                     ->setError()
@@ -170,7 +204,7 @@ class CartController extends BaseApiController
         }
 
         if ($outOfQuantity) {
-            Cart::instance('cart')->updateOrStore($identifier);
+            $this->saveCart($identifier);
 
             return $response
                 ->setError()
@@ -202,7 +236,7 @@ class CartController extends BaseApiController
             $cartItem['subtotal'],
         );
 
-        Cart::instance('cart')->updateOrStore($identifier);
+        $this->saveCart($identifier);
 
         return response()->json([
             'id' => $identifier,
@@ -224,8 +258,10 @@ class CartController extends BaseApiController
      *
      * @return JsonResponse
      */
-    public function update(UpdateCartRequest $request, string $id)
+    public function update(UpdateCartRequest $request, ?string $id = null)
     {
+        $response = $this->httpResponse();
+
         $newQty = $request->input('qty', 1);
 
         $productId = $request->input('product_id');
@@ -235,11 +271,11 @@ class CartController extends BaseApiController
          */
         $product = Product::query()->find($productId);
 
+        $originalProduct = $product->original_product;
+
         $rowId = null;
 
-        $identifier = $id;
-
-        Cart::instance('cart')->restore($identifier);
+        $identifier = $this->restoreCart($id);
 
         foreach (Cart::instance('cart')->content() as $item) {
             if ($item->id == $productId) {
@@ -250,8 +286,6 @@ class CartController extends BaseApiController
         }
 
         if (! $rowId) {
-            $originalProduct = $product->original_product;
-
             $cartItems = OrderHelper::handleAddCart($product, $request);
 
             $cartItem = Arr::first(array_filter($cartItems, fn ($item) => $item['id'] == $product->id));
@@ -273,7 +307,7 @@ class CartController extends BaseApiController
                 $cartItem['subtotal'],
             );
 
-            Cart::instance('cart')->updateOrStore($identifier);
+            $this->saveCart($identifier);
 
             return response()->json([
                 'id' => $identifier,
@@ -286,9 +320,12 @@ class CartController extends BaseApiController
         $cartItem = Cart::instance('cart')->get($rowId);
 
         if (! $cartItem) {
-            Cart::instance('cart')->updateOrStore($identifier);
+            $this->saveCart($identifier);
 
-            return response()->json(['error' => trans('plugins/ecommerce::products.cart.item_not_found')], 404);
+            return $response
+                ->setError()
+                ->setMessage(trans('plugins/ecommerce::products.cart.item_not_found'))
+                ->toApiResponse();
         }
 
         /**
@@ -297,6 +334,17 @@ class CartController extends BaseApiController
         $product = Product::query()->find($cartItem->id);
 
         if ($product) {
+            $maxQuantity = $product->max_cart_quantity;
+
+            if ($maxQuantity && $newQty > $maxQuantity) {
+                $this->saveCart($identifier);
+
+                return $response
+                    ->setError()
+                    ->setMessage(trans('plugins/ecommerce::products.cart.max_quantity', ['max' => $maxQuantity]))
+                    ->toApiResponse();
+            }
+
             $originalQuantity = $product->quantity;
             $product->quantity = (int) $product->quantity - (int) $newQty + 1;
 
@@ -305,9 +353,17 @@ class CartController extends BaseApiController
             }
 
             if ($product->isOutOfStock()) {
-                Cart::instance('cart')->updateOrStore($identifier);
+                $this->saveCart($identifier);
 
-                return response()->json(['error' => trans('plugins/ecommerce::products.cart.product_out_of_stock')], 400);
+                return $response
+                    ->setError()
+                    ->setMessage(
+                        trans(
+                            'plugins/ecommerce::products.cart.out_of_stock',
+                            ['product' => $originalProduct->name ?: $product->name]
+                        )
+                    )
+                    ->toApiResponse();
             }
 
             Cart::instance('cart')->update($rowId, ['qty' => $newQty]);
@@ -315,7 +371,7 @@ class CartController extends BaseApiController
             $product->quantity = $originalQuantity;
         }
 
-        Cart::instance('cart')->updateOrStore($identifier);
+        $this->saveCart($identifier);
 
         return response()->json([
             'id' => $identifier,
@@ -334,13 +390,11 @@ class CartController extends BaseApiController
      * @param string $id The ID of the cart to be removed.
      * @return JsonResponse Returns a JSON response with the operation status.
      */
-    public function destroy(DeleteCartRequest $request, string $id)
+    public function destroy(DeleteCartRequest $request, ?string $id = null)
     {
-        $identifier = $id;
+        $identifier = $this->restoreCart($id);
 
         $productId = $request->input('product_id');
-
-        Cart::instance('cart')->restore($identifier);
 
         $rowId = null;
 
@@ -353,7 +407,7 @@ class CartController extends BaseApiController
         }
 
         if (! $rowId) {
-            Cart::instance('cart')->updateOrStore($identifier);
+            $this->saveCart($identifier);
 
             return response()->json(['error' => trans('plugins/ecommerce::products.cart.item_not_found')], 404);
         }
@@ -366,7 +420,7 @@ class CartController extends BaseApiController
 
             Cart::instance('cart')->remove($rowId);
 
-            Cart::instance('cart')->updateOrStore($identifier);
+            $this->saveCart($identifier);
 
             return response()->json([
                 'id' => $identifier,
@@ -374,7 +428,7 @@ class CartController extends BaseApiController
                 ...$this->getDataForResponse(),
             ]);
         } catch (Throwable) {
-            Cart::instance('cart')->updateOrStore($identifier);
+            $this->saveCart($identifier);
 
             return response()->json(['error' => trans('plugins/ecommerce::products.cart.item_not_found')], 404);
         }
@@ -562,5 +616,39 @@ class CartController extends BaseApiController
         ];
 
         return apply_filters('ecommerce_cart_data_for_api_response', $cartData, [$products, $promotionDiscountAmount, $couponDiscountAmount, $couponCode]);
+    }
+
+    /**
+     * Sync guest cart to authenticated customer cart
+     *
+     * @group Cart
+     * @authenticated
+     * @bodyParam guest_cart_id string The guest cart identifier to merge. Example: 123e4567-e89b-12d3-a456-426614174000
+     *
+     * @return JsonResponse
+     */
+    public function sync(Request $request): JsonResponse
+    {
+        if (! auth('sanctum')->check()) {
+            return response()->json(['error' => 'Unauthenticated'], 401);
+        }
+
+        $customerId = auth('sanctum')->id();
+        $guestIdentifier = $request->input('guest_cart_id');
+
+        Cart::instance('cart')->restoreForCustomerQuietly($customerId);
+
+        if ($guestIdentifier) {
+            Cart::instance('cart')->mergeGuestCartQuietly($guestIdentifier, $customerId);
+        }
+
+        Cart::instance('cart')->storeForCustomerQuietly($customerId);
+
+        return response()->json([
+            'id' => (string) $customerId,
+            'authenticated' => true,
+            'message' => trans('plugins/ecommerce::cart.synced'),
+            ...$this->getDataForResponse(),
+        ]);
     }
 }

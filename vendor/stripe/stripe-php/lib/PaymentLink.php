@@ -7,9 +7,9 @@ namespace Stripe;
 /**
  * A payment link is a shareable URL that will take your customers to a hosted payment page. A payment link can be shared and used multiple times.
  *
- * When a customer opens a payment link it will open a new <a href="https://stripe.com/docs/api/checkout/sessions">checkout session</a> to render the payment page. You can use <a href="https://stripe.com/docs/api/events/types#event_types-checkout.session.completed">checkout session events</a> to track payments through payment links.
+ * When a customer opens a payment link it will open a new <a href="https://docs.stripe.com/api/checkout/sessions">checkout session</a> to render the payment page. You can use <a href="https://docs.stripe.com/api/events/types#event_types-checkout.session.completed">checkout session events</a> to track payments through payment links.
  *
- * Related guide: <a href="https://stripe.com/docs/payment-links">Payment Links API</a>
+ * Related guide: <a href="https://docs.stripe.com/payment-links">Payment Links API</a>
  *
  * @property string $id Unique identifier for the object.
  * @property string $object String representing the object's type. Objects of the same type share the same value.
@@ -23,14 +23,14 @@ namespace Stripe;
  * @property string $billing_address_collection Configuration for collecting the customer's billing address. Defaults to <code>auto</code>.
  * @property null|(object{payment_method_reuse_agreement: null|(object{position: string}&StripeObject), promotions: null|string, terms_of_service: null|string}&StripeObject) $consent_collection When set, provides configuration to gather active consent from customers.
  * @property string $currency Three-letter <a href="https://www.iso.org/iso-4217-currency-codes.html">ISO currency code</a>, in lowercase. Must be a <a href="https://stripe.com/docs/currencies">supported currency</a>.
- * @property ((object{dropdown?: (object{default_value: null|string, options: (object{label: string, value: string}&StripeObject)[]}&StripeObject), key: string, label: (object{custom: null|string, type: string}&StripeObject), numeric?: (object{default_value: null|string, maximum_length: null|int, minimum_length: null|int}&StripeObject), optional: bool, text?: (object{default_value: null|string, maximum_length: null|int, minimum_length: null|int}&StripeObject), type: string}&StripeObject))[] $custom_fields Collect additional information from your customer using custom fields. Up to 3 fields are supported.
+ * @property ((object{dropdown?: (object{default_value: null|string, options: (object{label: string, value: string}&StripeObject)[]}&StripeObject), key: string, label: (object{custom: null|string, type: string}&StripeObject), numeric?: (object{default_value: null|string, maximum_length: null|int, minimum_length: null|int}&StripeObject), optional: bool, text?: (object{default_value: null|string, maximum_length: null|int, minimum_length: null|int}&StripeObject), type: string}&StripeObject))[] $custom_fields Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if <code>ui_mode</code> is <code>custom</code>.
  * @property (object{after_submit: null|(object{message: string}&StripeObject), shipping_address: null|(object{message: string}&StripeObject), submit: null|(object{message: string}&StripeObject), terms_of_service_acceptance: null|(object{message: string}&StripeObject)}&StripeObject) $custom_text
  * @property string $customer_creation Configuration for Customer creation during checkout.
  * @property null|string $inactive_message The custom message to be displayed to a customer when a payment link is no longer active.
  * @property null|(object{enabled: bool, invoice_data: null|(object{account_tax_ids: null|(string|TaxId)[], custom_fields: null|(object{name: string, value: string}&StripeObject)[], description: null|string, footer: null|string, issuer: null|(object{account?: Account|string, type: string}&StripeObject), metadata: null|StripeObject, rendering_options: null|(object{amount_tax_display: null|string, template: null|string}&StripeObject)}&StripeObject)}&StripeObject) $invoice_creation Configuration for creating invoice for payment mode payment links.
  * @property null|Collection<LineItem> $line_items The line items representing what is being sold.
  * @property bool $livemode Has the value <code>true</code> if the object exists in live mode or the value <code>false</code> if the object exists in test mode.
- * @property StripeObject $metadata Set of <a href="https://stripe.com/docs/api/metadata">key-value pairs</a> that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
+ * @property StripeObject $metadata Set of <a href="https://docs.stripe.com/api/metadata">key-value pairs</a> that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
  * @property null|(object{business?: (object{enabled: bool, optional: bool}&StripeObject), individual?: (object{enabled: bool, optional: bool}&StripeObject)}&StripeObject) $name_collection
  * @property null|Account|string $on_behalf_of The account on behalf of which to charge. See the <a href="https://support.stripe.com/questions/sending-invoices-on-behalf-of-connected-accounts">Connect documentation</a> for details.
  * @property null|((object{adjustable_quantity: null|(object{enabled: bool, maximum: null|int, minimum: null|int}&StripeObject), price: string, quantity: int}&StripeObject))[] $optional_items The optional items presented to the customer at checkout.

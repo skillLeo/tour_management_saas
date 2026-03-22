@@ -87,6 +87,8 @@ return [
     'total' => '總計',
     'status' => '狀態',
     'default_payment_method' => '默認付款方式',
+    'sort_order_instruction' => '拖放以重新排列結帳頁面上的付款方式。',
+    'default_method_instruction' => '點擊星形圖標將付款方式設為預設。',
     'available_countries' => '可用國家',
     'available_countries_help' => '選擇此付款方式可用的國家。',
     'all_countries_checkbox' => '所有',

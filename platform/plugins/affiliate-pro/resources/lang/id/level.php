@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'menu_name' => 'Level Anggota',
+    'create' => 'Buat Level',
+    'edit' => 'Edit Level :name',
+    'min_commission' => 'Komisi Minimum',
+    'max_commission' => 'Komisi Maksimum',
+    'max_commission_help' => 'Biarkan kosong untuk tidak terbatas',
+    'unlimited' => 'Tidak Terbatas',
+    'commission_rate' => 'Tingkat Komisi',
+    'commission_rate_help' => 'Pengali untuk komisi (contoh: 1.1 untuk bonus 10%)',
+    'benefits' => 'Manfaat',
+    'benefits_help' => 'Daftar manfaat, satu per baris',
+    'benefits_placeholder' => 'Dukungan Prioritas' . PHP_EOL . 'Tingkat Komisi Lebih Tinggi',
+    'next_level' => 'Level Berikutnya: :name',
+    'commission_needed' => 'Anda membutuhkan :amount lagi dalam komisi untuk mencapai :name',
+    'tier_rules_tooltip' => 'Dapatkan komisi dengan setiap referral untuk membuka level lebih tinggi dan hadiah eksklusif. Level didasarkan pada total komisi yang diperoleh.',
+    'top_tier_reached' => 'Level Tertinggi Tercapai',
+    'top_tier_message' => 'Anda telah mencapai level afiliasi tertinggi! Nikmati manfaat eksklusif Anda.',
+    'default_member' => 'Anggota',
+    'member_since' => 'Sejak',
+    'no_benefits' => 'Mulai dapatkan komisi untuk membuka manfaat level!',
+    'current_commission' => ':amount diperoleh',
+    'target_commission' => 'Target :amount',
+];

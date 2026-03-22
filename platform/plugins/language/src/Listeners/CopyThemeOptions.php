@@ -2,9 +2,8 @@
 
 namespace Botble\Language\Listeners;
 
-use Botble\Base\Events\CreatedContentEvent;
+use Botble\Language\Events\LanguageCreated;
 use Botble\Language\Listeners\Concerns\EnsureThemePackageExists;
-use Botble\Language\Models\Language;
 use Botble\Setting\Models\Setting;
 use Botble\Theme\Events\RenderingThemeOptionSettings;
 use Botble\Theme\Facades\ThemeOption;
@@ -16,13 +15,9 @@ class CopyThemeOptions
 {
     use EnsureThemePackageExists;
 
-    public function handle(CreatedContentEvent $event): void
+    public function handle(LanguageCreated $event): void
     {
         if (! $this->determineIfThemesExists()) {
-            return;
-        }
-
-        if (! $event->data instanceof Language) {
             return;
         }
 
@@ -33,15 +28,26 @@ class CopyThemeOptions
         }
 
         $fromThemeKey = 'theme-' . $fromTheme . '-';
-        $themeKey = 'theme-' . $fromTheme . '-' . $event->data->lang_code . '-';
+        $themeKey = 'theme-' . $fromTheme . '-' . $event->language->lang_code . '-';
 
         RenderingThemeOptionSettings::dispatch();
-        $existsThemeOptionKeys = array_keys(Arr::get(ThemeOption::getFields(), 'theme', []));
+
+        $themeFields = Arr::get(ThemeOption::getFields(), 'theme', []);
+        $existsThemeOptionKeys = array_keys($themeFields);
+
+        $sharedFieldKeys = collect($themeFields)
+            ->filter(fn (array $field) => ThemeOption::isFieldShared(Arr::get($field, 'id', '')))
+            ->keys()
+            ->all();
+
         $themeOptions = collect(ThemeOption::getOptions())
             ->filter(
-                function (mixed $value, string $key) use ($existsThemeOptionKeys, $fromThemeKey) {
+                function (mixed $value, string $key) use ($existsThemeOptionKeys, $sharedFieldKeys, $fromThemeKey) {
+                    $fieldKey = Str::after($key, $fromThemeKey);
+
                     return Str::startsWith($key, $fromThemeKey)
-                        && in_array(Str::after($key, $fromThemeKey), $existsThemeOptionKeys, true);
+                        && in_array($fieldKey, $existsThemeOptionKeys, true)
+                        && ! in_array($fieldKey, $sharedFieldKeys, true);
                 }
             )
             ->toArray();

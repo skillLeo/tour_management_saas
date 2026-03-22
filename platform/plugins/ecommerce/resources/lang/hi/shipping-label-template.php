@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'name' => 'शिपिंग लेबल टेम्प्लेट',
-    'setting' => 'शिपिंग लेबल टेम्प्लेट सेटिंग्स',
-    'setting_description' => 'शिपिंग लेबल टेम्प्लेट के लिए सेटिंग्स',
+    'name' => 'Shipping Labels',
+    'setting' => 'Label design & layout',
+    'setting_description' => 'Customize shipping label HTML template and CSS styles',
     'setting_content' => 'सामग्री',
     'preview' => 'पूर्वावलोकन',
     'preview_heading' => 'शिपिंग लेबल टेम्प्लेट का पूर्वावलोकन',

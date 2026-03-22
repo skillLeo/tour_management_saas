@@ -88,6 +88,8 @@ return [
     'total' => 'Toplam',
     'status' => 'Durum',
     'default_payment_method' => 'Varsayılan ödeme yöntemi',
+    'sort_order_instruction' => 'Ödeme sayfasında ödeme yöntemlerini yeniden sıralamak için sürükleyip bırakın.',
+    'default_method_instruction' => 'Varsayılan ödeme yöntemini ayarlamak için yıldız simgesine tıklayın.',
     'available_countries' => 'Mevcut ülkeler',
     'available_countries_help' => 'Bu ödeme yönteminin geçerli olduğu ülkeleri seçin.',
     'all_countries_checkbox' => 'Tüm',

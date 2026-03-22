@@ -22,4 +22,6 @@ return [
     '503_temporarily_down' => 'Tilapäisesti pois käytöstä huollon vuoksi',
     '503_admin_instruction' => 'Jos olet ylläpitäjä etkä pääse sivustollesi huoltotilan käyttöönoton jälkeen, poista huoltotilan poistamiseksi käytöstä vain tiedosto <strong>storage/framework/down</strong>.',
     'take_me_home' => 'Vie minut kotiin',
+    'bad_request' => 'Virheellinen pyyntö',
+
 ];

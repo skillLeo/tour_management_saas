@@ -2,24 +2,21 @@
 
 use Botble\Base\Enums\BaseStatusEnum;
 use Botble\Base\Forms\FieldOptions\SelectFieldOption;
-use Botble\Base\Forms\FieldOptions\TagFieldOption;
 use Botble\Base\Forms\FieldOptions\TextFieldOption;
 use Botble\Base\Forms\Fields\SelectField;
-use Botble\Base\Forms\Fields\TagField;
 use Botble\Base\Forms\Fields\TextField;
 use Botble\Ecommerce\Facades\EcommerceHelper;
 use Botble\Marketplace\Models\Store;
-use Botble\Shortcode\Compilers\Shortcode;
+use Botble\Shortcode\Compilers\Shortcode as ShortcodeCompiler;
+use Botble\Shortcode\Facades\Shortcode;
 use Botble\Shortcode\Forms\ShortcodeForm;
+use Botble\Shortcode\ShortcodeField;
 use Botble\Theme\Facades\Theme;
+use Illuminate\Support\Arr;
 
 if (is_plugin_active('marketplace')) {
-    add_shortcode('marketplace-stores', __('Marketplace Stores'), __('Marketplace Stores'), function (Shortcode $shortcode) {
-        $storeIds = [];
-
-        if ($shortcode->stores) {
-            $storeIds = explode(',', $shortcode->stores);
-        }
+    add_shortcode('marketplace-stores', __('Marketplace Stores'), __('Marketplace Stores'), function (ShortcodeCompiler $shortcode) {
+        $storeIds = Shortcode::fields()->getIds('stores', $shortcode);
 
         if (empty($storeIds)) {
             return null;
@@ -59,7 +56,7 @@ if (is_plugin_active('marketplace')) {
             ->wherePublished()
             ->orderBy('name')
             ->pluck('name', 'id')
-            ->toArray();
+            ->all();
 
         return ShortcodeForm::createFromArray($attributes)
             ->add(
@@ -70,11 +67,13 @@ if (is_plugin_active('marketplace')) {
             )
             ->add(
                 'stores',
-                TagField::class,
-                TagFieldOption::make()
+                SelectField::class,
+                SelectFieldOption::make()
                     ->label(__('Stores'))
                     ->choices($stores)
-                    ->placeholder(__('Select stores from the list'))
+                    ->multiple()
+                    ->searchable()
+                    ->selected(ShortcodeField::parseIds(Arr::get($attributes, 'stores')))
             )
             ->add(
                 'layout',

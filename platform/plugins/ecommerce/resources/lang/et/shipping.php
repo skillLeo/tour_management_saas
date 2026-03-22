@@ -192,6 +192,7 @@ return [
         'order_date' => 'Tellimuse kuupäev',
         'scan_qr_code' => 'Skannige QR-koodi, et jälgida oma saadetist',
         'total_amount' => 'Kogusumma',
+        'amount_to_collect' => 'Kogutav summa',
         'cod_amount_to_collect' => 'Kogutav COD summa',
     ],
     'customer_confirmed_delivery_at' => 'Klient kinnitas tarne',

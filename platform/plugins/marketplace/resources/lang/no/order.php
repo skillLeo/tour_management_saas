@@ -12,4 +12,16 @@ return [
     'return' => [
         'description' => 'Returnert fra bestilling #:order',
     ],
+    'thank_you' => [
+        'count_orders' => ':count bestillinger',
+        'order' => 'Bestilling',
+        'thank_you_name' => 'Takk, :name!',
+        'order_confirmed' => 'Din bestilling er bekreftet',
+        'order_accepted' => 'Vi har mottatt bestillingen din og forbereder den.',
+        'customer' => 'Kunde',
+        'need_help' => 'Trenger du hjelp?',
+        'contact_us' => 'Kontakt oss',
+        'view_order_history' => 'Se bestillingshistorikk',
+        'order_total' => 'Bestillingstotal',
+    ],
 ];

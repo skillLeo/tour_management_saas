@@ -1,0 +1,53 @@
+<?php
+
+return [
+    'name' => 'Provisionen',
+    'view' => 'Provision #:id ansehen',
+    'affiliate' => 'Partner',
+    'order' => 'Bestellung',
+    'amount' => 'Betrag',
+    'description' => 'Beschreibung',
+    'status' => 'Status',
+    'created_at' => 'Erstellt am',
+    'approve' => 'Genehmigen',
+    'reject' => 'Ablehnen',
+    'approve_success' => 'Provision erfolgreich genehmigt',
+    'reject_success' => 'Provision erfolgreich abgelehnt',
+    'approve_commission' => 'Provision genehmigen',
+    'reject_commission' => 'Provision ablehnen',
+    'approve_commission_confirmation' => 'Sind Sie sicher, dass Sie Provision #:id genehmigen möchten? Diese Aktion kann nicht rückgängig gemacht werden.',
+    'reject_commission_confirmation' => 'Sind Sie sicher, dass Sie Provision #:id ablehnen möchten? Diese Aktion kann nicht rückgängig gemacht werden.',
+    'statuses' => [
+        'pending' => 'Ausstehend',
+        'approved' => 'Genehmigt',
+        'rejected' => 'Abgelehnt',
+    ],
+
+    // Customer-facing translations
+    'history' => 'Provisionsverlauf',
+    'no_commissions' => 'Keine Provisionen gefunden.',
+    'no_commissions_description' => 'Sie haben noch keine Provisionen verdient. Beginnen Sie mit der Bewerbung unserer Produkte, um Ihre erste Provision zu verdienen!',
+    'commission_id' => 'Provisions-ID',
+    'order_id' => 'Bestellungs-ID',
+    'customer' => 'Kunde',
+    'product' => 'Produkt',
+    'type' => 'Typ',
+    'date' => 'Datum',
+
+    // New UI translations
+    'total_commissions' => ':count Provisionen insgesamt',
+    'filter_by_status' => 'Nach Status filtern',
+    'all_statuses' => 'Alle Status',
+    'date_from' => 'Datum von',
+    'date_to' => 'Datum bis',
+    'filter' => 'Filtern',
+    'clear' => 'Löschen',
+    'approved_earnings' => 'Genehmigte Einnahmen',
+    'pending_earnings' => 'Ausstehende Einnahmen',
+    'successful_orders' => 'Erfolgreiche Bestellungen',
+    'approval_rate' => 'Genehmigungsrate',
+    'commission_earned' => 'Verdiente Provision',
+    'showing_results' => 'Zeige :from bis :to von :total Ergebnissen',
+    'start_promoting' => 'Jetzt bewerben',
+    'back_to_dashboard' => 'Zurück zum Dashboard',
+];

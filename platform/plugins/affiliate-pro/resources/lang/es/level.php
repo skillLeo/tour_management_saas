@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'menu_name' => 'Niveles de Miembro',
+    'create' => 'Crear Nivel',
+    'edit' => 'Editar Nivel :name',
+    'min_commission' => 'Comisión Mínima',
+    'max_commission' => 'Comisión Máxima',
+    'max_commission_help' => 'Dejar vacío para ilimitado',
+    'unlimited' => 'Ilimitado',
+    'commission_rate' => 'Tasa de Comisión',
+    'commission_rate_help' => 'Multiplicador para comisiones (ej: 1.1 para 10% de bonificación)',
+    'benefits' => 'Beneficios',
+    'benefits_help' => 'Lista de beneficios, uno por línea',
+    'benefits_placeholder' => 'Soporte Prioritario' . PHP_EOL . 'Mayor Tasa de Comisión',
+    'next_level' => 'Siguiente Nivel: :name',
+    'commission_needed' => 'Necesitas :amount más en comisiones para alcanzar :name',
+    'tier_rules_tooltip' => 'Gana comisiones con cada referido para desbloquear niveles superiores y recompensas exclusivas. Los niveles se basan en tus comisiones totales ganadas.',
+    'top_tier_reached' => 'Nivel Máximo Alcanzado',
+    'top_tier_message' => '¡Has alcanzado el nivel de afiliado más alto! Disfruta de tus beneficios exclusivos.',
+    'default_member' => 'Miembro',
+    'member_since' => 'Desde',
+    'no_benefits' => '¡Comienza a ganar comisiones para desbloquear los beneficios del nivel!',
+    'current_commission' => ':amount ganado',
+    'target_commission' => 'Objetivo :amount',
+];

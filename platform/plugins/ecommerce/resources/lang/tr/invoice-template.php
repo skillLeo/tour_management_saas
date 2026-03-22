@@ -2,8 +2,8 @@
 
 return [
     'name' => 'Fatura Şablonu',
-    'setting' => 'Fatura Şablonu Ayarları',
-    'setting_description' => 'Fatura şablonu ayarları',
+    'setting' => 'Şablon tasarımı ve düzeni',
+    'setting_description' => 'Fatura HTML şablonunu ve CSS stillerini özelleştirin',
     'setting_content' => 'İçerik',
     'preview' => 'Önizleme',
     'preview_heading' => 'Fatura şablonu önizlemesi',

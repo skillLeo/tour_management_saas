@@ -97,7 +97,7 @@ class ProductForm extends BaseProductForm
                     'priority' => 9999,
                 ],
             ])
-            ->when(EcommerceHelper::isEnabledSupportDigitalProducts() && ! EcommerceHelper::isDisabledPhysicalProduct(), function (): void {
+            ->when(MarketplaceHelper::isVendorDigitalProductsEnabled() && ! EcommerceHelper::isDisabledPhysicalProduct(), function (): void {
                 $this->add('product_type', 'hidden', [
                     'value' => request()->input('product_type') ?: ProductTypeEnum::PHYSICAL,
                 ]);
@@ -272,6 +272,9 @@ class ProductForm extends BaseProductForm
                 ],
             ]);
 
+        $isDigitalProduct = (! $this->getModel() && request()->input('product_type') == ProductTypeEnum::DIGITAL)
+            || ($this->getModel() && $this->getModel()->isTypeDigital());
+
         if (! $totalProductVariations) {
             $this
                 ->removeMetaBox('variations')
@@ -289,22 +292,35 @@ class ProductForm extends BaseProductForm
                         'before_wrapper' => '<div id="main-manage-product-type">',
                         'priority' => 2,
                     ],
-                    'attributes' => [
-                        'title' => trans('plugins/ecommerce::products.attributes'),
-                        'content' => view('plugins/ecommerce::products.partials.add-product-attributes', [
-                            'product' => $this->getModel(),
-                            'productAttributeSets' => $productAttributeSets,
-                            'addAttributeToProductUrl' => $this->getModel()->id
-                                ? route('marketplace.vendor.products.add-attribute-to-product', $this->getModel()->id)
-                                : null,
-                        ]),
-                        'header_actions' => $productAttributeSets->isNotEmpty()
-                            ? view('plugins/ecommerce::products.partials.product-attribute-actions')
-                            : null,
-                        'after_wrapper' => '</div>',
-                        'priority' => 3,
+                    ...($productAttributeSets->isNotEmpty() ? [
+                        'attributes' => [
+                            'title' => trans('plugins/ecommerce::products.attributes'),
+                            'content' => view('plugins/ecommerce::products.partials.add-product-attributes', [
+                                'product' => $this->getModel(),
+                                'productAttributeSets' => $productAttributeSets,
+                                'addAttributeToProductUrl' => $this->getModel()->id
+                                    ? route('marketplace.vendor.products.add-attribute-to-product', $this->getModel()->id)
+                                    : null,
+                            ]),
+                            'header_actions' => view('plugins/ecommerce::products.partials.product-attribute-actions'),
+                            'after_wrapper' => '</div>',
+                            'priority' => 3,
+                        ],
+                    ] : []),
+                ]);
+
+            if (MarketplaceHelper::isVendorDigitalProductsEnabled() && $isDigitalProduct) {
+                $this->addMetaBoxes([
+                    'digital-attachments' => [
+                        'title' => trans('plugins/ecommerce::products.digital_attachments.title'),
+                        'content' => view(
+                            MarketplaceHelper::viewPath('vendor-dashboard.products.partials.digital-attachments'),
+                            ['product' => $productId ? $this->getModel() : null]
+                        ),
+                        'priority' => 4,
                     ],
                 ]);
+            }
         } elseif ($productId) {
             $productVariationTable = app(ProductVariationTable::class)
                 ->setProductId($productId)
@@ -340,6 +356,19 @@ class ProductForm extends BaseProductForm
                         'render' => false,
                     ],
                 ]);
+
+            if (MarketplaceHelper::isVendorDigitalProductsEnabled() && $isDigitalProduct) {
+                $this->addMetaBoxes([
+                    'digital-attachments' => [
+                        'title' => trans('plugins/ecommerce::products.digital_attachments.title'),
+                        'content' => view(
+                            MarketplaceHelper::viewPath('vendor-dashboard.products.partials.digital-attachments'),
+                            ['product' => $this->getModel()]
+                        ),
+                        'priority' => 4,
+                    ],
+                ]);
+            }
         }
     }
 }

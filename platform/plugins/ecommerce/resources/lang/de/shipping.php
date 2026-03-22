@@ -192,6 +192,7 @@ return [
         'order_date' => 'Bestelldatum',
         'scan_qr_code' => 'QR-Code scannen, um Ihre Sendung zu verfolgen',
         'total_amount' => 'Gesamtbetrag',
+        'amount_to_collect' => 'Einzuziehender Betrag',
         'cod_amount_to_collect' => 'Einzuziehender Nachnahmebetrag',
     ],
     'customer_confirmed_delivery_at' => 'Kunde bestätigte Zustellung am',

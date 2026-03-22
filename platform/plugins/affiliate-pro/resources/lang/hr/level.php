@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'menu_name' => 'Razine članova',
+    'create' => 'Stvori razinu',
+    'edit' => 'Uredi razinu :name',
+    'min_commission' => 'Minimalna provizija',
+    'max_commission' => 'Maksimalna provizija',
+    'max_commission_help' => 'Ostavite prazno za neograničeno',
+    'unlimited' => 'Neograničeno',
+    'commission_rate' => 'Stopa provizije',
+    'commission_rate_help' => 'Množitelj za provizije (npr. 1.1 za 10% bonusa)',
+    'benefits' => 'Pogodnosti',
+    'benefits_help' => 'Navedite pogodnosti, jedna po retku',
+    'benefits_placeholder' => 'Prioritetna podrška' . PHP_EOL . 'Veća stopa provizije',
+    'next_level' => 'Sljedeća razina: :name',
+    'commission_needed' => 'Trebate još :amount provizija da biste dosegli :name',
+    'tier_rules_tooltip' => 'Zaradite provizije sa svakom preporukom kako biste otključali više razine i ekskluzivne nagrade. Razine se temelje na vašim ukupnim zarađenim provizijama.',
+    'top_tier_reached' => 'Dosegnuta najviša razina',
+    'top_tier_message' => 'Dosegli ste najvišu partnersku razinu! Uživajte u svojim ekskluzivnim pogodnostima.',
+    'default_member' => 'Član',
+    'member_since' => 'Od',
+    'no_benefits' => 'Počnite zarađivati provizije kako biste otključali pogodnosti razine!',
+    'current_commission' => 'Zarađeno :amount',
+    'target_commission' => 'Cilj :amount',
+];

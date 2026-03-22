@@ -18,6 +18,7 @@ class OrderReturn extends BaseModel
         'order_id',
         'user_id',
         'reason',
+        'images',
         'order_status',
         'return_status',
         'store_id',
@@ -27,6 +28,7 @@ class OrderReturn extends BaseModel
         'order_status' => OrderStatusEnum::class,
         'return_status' => OrderReturnStatusEnum::class,
         'reason' => OrderReturnReasonEnum::class,
+        'images' => 'array',
     ];
 
     protected static function booted(): void
@@ -36,7 +38,19 @@ class OrderReturn extends BaseModel
             $orderReturn->items()->delete();
         });
 
-        static::creating(fn (OrderReturn $orderReturn) => $orderReturn->code = static::generateUniqueCode());
+        static::creating(function (OrderReturn $orderReturn): void {
+            $orderReturn->code = static::generateUniqueCode();
+
+            if (! $orderReturn->images || ! is_array($orderReturn->images) || ! count($orderReturn->images)) {
+                $orderReturn->images = null;
+            }
+        });
+
+        static::updating(function (OrderReturn $orderReturn): void {
+            if (! $orderReturn->images || ! is_array($orderReturn->images) || ! count($orderReturn->images)) {
+                $orderReturn->images = null;
+            }
+        });
     }
 
     public function order(): BelongsTo

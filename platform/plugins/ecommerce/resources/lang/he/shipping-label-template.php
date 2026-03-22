@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'name' => 'תבנית תווית משלוח',
-    'setting' => 'הגדרות תבנית תווית משלוח',
-    'setting_description' => 'הגדרות עבור תבנית תווית משלוח',
+    'name' => 'Shipping Labels',
+    'setting' => 'Label design & layout',
+    'setting_description' => 'Customize shipping label HTML template and CSS styles',
     'setting_content' => 'תוכן',
     'preview' => 'תצוגה מקדימה',
     'preview_heading' => 'תצוגה מקדימה של תבנית תווית משלוח',

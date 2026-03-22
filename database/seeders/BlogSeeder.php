@@ -20,8 +20,6 @@ class BlogSeeder extends BaseSeeder
         Category::query()->truncate();
         Tag::query()->truncate();
 
-        $faker = $this->fake();
-
         $categories = [
             [
                 'name' => 'Ecommerce',
@@ -174,7 +172,7 @@ class BlogSeeder extends BaseSeeder
 
 <p>&nbsp;</p>
 ';
-            $item['views'] = $faker->numberBetween(100, 2500);
+            $item['views'] = rand(100, 2500);
             $item['is_featured'] = $index < 10;
             $item['image'] = 'news/' . ($index + 1) . '.png';
             $item['description'] = 'You should pay more attention when you choose your wallets. There are a lot of them on the market with the different designs and styles. When you choose carefully, you would be able to buy a wallet that is catered to your needs. Not to mention that it will help to enhance your style significantly.';
@@ -185,8 +183,8 @@ class BlogSeeder extends BaseSeeder
             $post = Post::query()->create(Arr::except($item, ['layout']));
 
             $post->categories()->sync([
-                $faker->numberBetween(1, 2),
-                $faker->numberBetween(3, 4),
+                rand(1, 2),
+                rand(3, 4),
             ]);
 
             $post->tags()->sync([1, 2, 3, 4, 5]);
@@ -200,9 +198,14 @@ class BlogSeeder extends BaseSeeder
         int $parentId = 0,
         bool $isFeatured = false
     ) {
-        $faker = $this->fake();
+        $descriptions = [
+            'Discover the latest trends and insights in this category.',
+            'Explore our collection of articles and resources.',
+            'Stay updated with news and tips from industry experts.',
+            'Find everything you need to know about this topic.',
+        ];
 
-        $item['description'] = $faker->text();
+        $item['description'] = Arr::random($descriptions);
         $item['author_id'] = 1;
         $item['author_type'] = User::class;
         $item['parent_id'] = $parentId;

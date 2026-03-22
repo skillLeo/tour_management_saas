@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'name' => 'Versandetikett-Vorlage',
-    'setting' => 'Versandetikett-Vorlagen-Einstellungen',
-    'setting_description' => 'Einstellungen für Versandetikett-Vorlage',
+    'name' => 'Versandetiketten',
+    'setting' => 'Etiketten-Design & Layout',
+    'setting_description' => 'HTML-Vorlage und CSS-Stile des Versandetiketts anpassen',
     'setting_content' => 'Inhalt',
     'preview' => 'Vorschau',
     'preview_heading' => 'Vorschau der Versandetikett-Vorlage',

@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'name' => 'Transpordi sildi mall',
-    'setting' => 'Transpordi sildi malli seaded',
-    'setting_description' => 'Transpordi sildi malli seaded',
+    'name' => 'Shipping Labels',
+    'setting' => 'Label design & layout',
+    'setting_description' => 'Customize shipping label HTML template and CSS styles',
     'setting_content' => 'Sisu',
     'preview' => 'Eelvaade',
     'preview_heading' => 'Transpordi sildi malli eelvaade',

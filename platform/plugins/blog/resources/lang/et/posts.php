@@ -26,6 +26,8 @@ return [
     'categories' => 'Kategooriad',
     'category' => 'Kategooria',
     'author' => 'Autor',
+    'author_helper' => 'Select an author from admin users.',
+    'select_author' => 'Select author',
     'is_featured' => 'Kas on esiletõstetud?',
     'export' => [
         'description' => 'Ekspordi postitused CSV/Excel faili.',

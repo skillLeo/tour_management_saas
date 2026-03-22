@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'menu_name' => '회원 등급',
+    'create' => '등급 생성',
+    'edit' => '등급 :name 수정',
+    'min_commission' => '최소 커미션',
+    'max_commission' => '최대 커미션',
+    'max_commission_help' => '무제한은 비워두세요',
+    'unlimited' => '무제한',
+    'commission_rate' => '커미션 비율',
+    'commission_rate_help' => '커미션 배율 (예: 1.1은 10% 보너스)',
+    'benefits' => '혜택',
+    'benefits_help' => '혜택을 한 줄에 하나씩 나열',
+    'benefits_placeholder' => '우선 지원' . PHP_EOL . '높은 커미션 비율',
+    'next_level' => '다음 등급: :name',
+    'commission_needed' => ':name에 도달하려면 :amount의 커미션이 더 필요합니다',
+    'tier_rules_tooltip' => '추천할 때마다 커미션을 획득하여 더 높은 등급과 독점 보상을 잠금 해제하세요. 등급은 총 획득 커미션을 기준으로 합니다.',
+    'top_tier_reached' => '최고 등급 달성',
+    'top_tier_message' => '최고 제휴 등급에 도달했습니다! 독점 혜택을 즐기세요.',
+    'default_member' => '회원',
+    'member_since' => '가입일',
+    'no_benefits' => '커미션을 획득하여 등급 혜택을 잠금 해제하세요!',
+    'current_commission' => ':amount 획득',
+    'target_commission' => '목표 :amount',
+];

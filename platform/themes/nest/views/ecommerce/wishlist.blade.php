@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-lg-12 m-auto">
             <div class="mb-50">
-                <h1 class="heading-2 mb-10">{{ __('Your Wishlist') }}</h1>
+                <h1 class="compare-page-title mb-10">{{ __('Your Wishlist') }}</h1>
                 @if ($products->total())
                     <p class="text-body  font-heading h6">{!! BaseHelper::clean(__('There are :total products in this list', ['total' => '<span class="text-brand">' . $products->total() . '</span>'])) !!}</p>
                 @endif
@@ -80,7 +80,12 @@
                     {!! $products->withQueryString()->links(Theme::getThemeNamespace() . '::partials.custom-pagination') !!}
                 @endif
             @else
-                <p>{{ __('No item in wishlist!') }}</p>
+                <div class="empty-state">
+                    <img src="{{ Theme::asset()->url('imgs/theme/icons/icon-heart.svg') }}" alt="{{ __('No item in wishlist!') }}" class="empty-state__icon">
+                    <h5 class="empty-state__title">{{ __('No item in wishlist!') }}</h5>
+                    <p class="empty-state__text">{{ __('Browse our products and add your favorites to the wishlist.') }}</p>
+                    <a href="{{ route('public.products') }}" class="btn btn-sm">{{ __('Browse Products') }}</a>
+                </div>
             @endif
         </div>
     </div>

@@ -11,7 +11,10 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <x-core::form.label for="license_code" :value="trans('plugins/ecommerce::products.license_codes.code')" />
-                        <x-core::form.text-input name="license_code" id="license_code" required />
+                        <x-core::form.text-input name="license_code" id="license_code" :placeholder="trans('plugins/ecommerce::products.license_codes.add_modal.placeholder')" required />
+                        <small class="form-text text-muted">
+                            {{ trans('plugins/ecommerce::products.license_codes.add_modal.help') }}
+                        </small>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -42,7 +45,10 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <x-core::form.label for="edit-license-code" :value="trans('plugins/ecommerce::products.license_codes.code')" />
-                        <x-core::form.text-input name="license_code" id="edit-license-code" required />
+                        <x-core::form.text-input name="license_code" id="edit-license-code" :placeholder="trans('plugins/ecommerce::products.license_codes.add_modal.placeholder')" required />
+                        <small class="form-text text-muted">
+                            {{ trans('plugins/ecommerce::products.license_codes.add_modal.help') }}
+                        </small>
                     </div>
                 </div>
                 <div class="modal-footer">

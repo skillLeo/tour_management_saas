@@ -1,0 +1,66 @@
+<?php
+
+return [
+    'name' => 'Izmaksas',
+    'view' => 'Skatīt izmaksu #:id',
+    'affiliate' => 'Partneris',
+    'amount' => 'Summa',
+    'status' => 'Statuss',
+    'payment_method' => 'Maksājuma metode',
+    'payment_details' => 'Maksājuma informācija',
+    'notes' => 'Piezīmes',
+    'created_at' => 'Izveidots',
+    'approve' => 'Apstiprināt',
+    'reject' => 'Noraidīt',
+    'approve_success' => 'Izmaksa veiksmīgi apstiprināta',
+    'reject_success' => 'Izmaksa veiksmīgi noraidīta',
+    'approve_withdrawal' => 'Apstiprināt izmaksu',
+    'reject_withdrawal' => 'Noraidīt izmaksu',
+    'approve_withdrawal_confirmation' => 'Vai tiešām vēlaties apstiprināt izmaksu #:id? Šo darbību nevar atsaukt.',
+    'reject_withdrawal_confirmation' => 'Vai tiešām vēlaties noraidīt izmaksu #:id? Šo darbību nevar atsaukt.',
+    'statuses' => [
+        'pending' => 'Gaida',
+        'processing' => 'Apstrādā',
+        'approved' => 'Apstiprināts',
+        'rejected' => 'Noraidīts',
+        'canceled' => 'Atcelts',
+    ],
+
+    // Customer-facing translations
+    'request' => 'Izmaksas pieprasījums',
+    'history' => 'Izmaksu vēsture',
+    'no_withdrawals' => 'Nav atrastu izmaksu.',
+    'withdrawal_id' => 'Izmaksas ID',
+    'date' => 'Datums',
+    'amount_required' => 'Izmaksas summa ir obligāta.',
+    'amount_numeric' => 'Izmaksas summai jābūt skaitlim.',
+    'amount_min' => 'Izmaksas summai jābūt vismaz 0.',
+    'payment_method_required' => 'Maksājuma metode ir obligāta.',
+    'payment_details_required' => 'Maksājuma informācija ir obligāta.',
+    'account_not_approved' => 'Jūsu partnera konts vēl nav apstiprināts.',
+    'minimum_amount' => 'Minimālā izmaksas summa ir :amount.',
+    'insufficient_balance' => 'Jums nav pietiekamas bilances šai izmaksai.',
+    'request_submitted' => 'Jūsu izmaksas pieprasījums ir veiksmīgi iesniegts.',
+    'submit_request' => 'Iesniegt izmaksas pieprasījumu',
+    'available_balance' => 'Pieejamā bilance',
+    'enter_amount' => 'Ievadiet summu',
+    'select_payment_method' => 'Izvēlieties maksājuma metodi',
+    'payment_details_placeholder' => 'Ievadiet savu maksājuma informāciju (piemēram, PayPal e-pasts, bankas konta informācija)',
+    'no_payment_methods_available' => 'Pašlaik nav pieejamas maksājumu metodes. Lūdzu, sazinieties ar administratoru.',
+
+    // Additional translations for PayoutPaymentMethodsEnum
+    'bank_transfer' => 'Bankas pārskaitījums',
+    'paypal' => 'PayPal',
+    'stripe' => 'Stripe',
+    'other' => 'Cits',
+    'bank_information' => 'Bankas informācija',
+    'paypal_id' => 'PayPal ID',
+
+    // Payout payment methods
+    'payout_payment_methods' => [
+        'bank_transfer' => 'Bankas pārskaitījums',
+        'paypal' => 'PayPal',
+        'stripe' => 'Stripe',
+        'other' => 'Cits',
+    ],
+];

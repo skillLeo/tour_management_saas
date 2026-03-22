@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'menu_name' => 'Niveluri Membri',
+    'create' => 'Creează Nivel',
+    'edit' => 'Editează Nivelul :name',
+    'min_commission' => 'Comision Minim',
+    'max_commission' => 'Comision Maxim',
+    'max_commission_help' => 'Lăsați gol pentru nelimitat',
+    'unlimited' => 'Nelimitat',
+    'commission_rate' => 'Rata Comisionului',
+    'commission_rate_help' => 'Multiplicator pentru comisioane (ex. 1.1 pentru 10% bonus)',
+    'benefits' => 'Beneficii',
+    'benefits_help' => 'Listați beneficiile, câte unul pe linie',
+    'benefits_placeholder' => 'Suport Prioritar' . PHP_EOL . 'Rată de Comision Mai Mare',
+    'next_level' => 'Următorul Nivel: :name',
+    'commission_needed' => 'Aveți nevoie de încă :amount în comisioane pentru a ajunge la :name',
+    'tier_rules_tooltip' => 'Câștigați comisioane cu fiecare recomandare pentru a debloca niveluri mai înalte și recompense exclusive. Nivelurile se bazează pe comisioanele totale câștigate.',
+    'top_tier_reached' => 'Nivel Maxim Atins',
+    'top_tier_message' => 'Ați atins cel mai înalt nivel de afiliat! Bucurați-vă de beneficiile exclusive.',
+    'default_member' => 'Membru',
+    'member_since' => 'Din',
+    'no_benefits' => 'Începeți să câștigați comisioane pentru a debloca beneficiile nivelului!',
+    'current_commission' => ':amount câștigat',
+    'target_commission' => ':amount țintă',
+];

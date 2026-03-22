@@ -1,0 +1,66 @@
+<?php
+
+return [
+    'name' => 'משיכות',
+    'view' => 'צפייה במשיכה #:id',
+    'affiliate' => 'שותף',
+    'amount' => 'סכום',
+    'status' => 'סטטוס',
+    'payment_method' => 'שיטת תשלום',
+    'payment_details' => 'פרטי תשלום',
+    'notes' => 'הערות',
+    'created_at' => 'נוצר בתאריך',
+    'approve' => 'אשר',
+    'reject' => 'דחה',
+    'approve_success' => 'המשיכה אושרה בהצלחה',
+    'reject_success' => 'המשיכה נדחתה בהצלחה',
+    'approve_withdrawal' => 'אשר משיכה',
+    'reject_withdrawal' => 'דחה משיכה',
+    'approve_withdrawal_confirmation' => 'האם אתה בטוח שברצונך לאשר את המשיכה #:id? פעולה זו אינה ניתנת לביטול.',
+    'reject_withdrawal_confirmation' => 'האם אתה בטוח שברצונך לדחות את המשיכה #:id? פעולה זו אינה ניתנת לביטול.',
+    'statuses' => [
+        'pending' => 'ממתין',
+        'processing' => 'בעיבוד',
+        'approved' => 'מאושר',
+        'rejected' => 'נדחה',
+        'canceled' => 'בוטל',
+    ],
+
+    // Customer-facing translations
+    'request' => 'בקשת משיכה',
+    'history' => 'היסטוריית משיכות',
+    'no_withdrawals' => 'לא נמצאו משיכות.',
+    'withdrawal_id' => 'מזהה משיכה',
+    'date' => 'תאריך',
+    'amount_required' => 'סכום המשיכה נדרש.',
+    'amount_numeric' => 'סכום המשיכה חייב להיות מספר.',
+    'amount_min' => 'סכום המשיכה חייב להיות לפחות 0.',
+    'payment_method_required' => 'שיטת תשלום נדרשת.',
+    'payment_details_required' => 'פרטי תשלום נדרשים.',
+    'account_not_approved' => 'חשבון השותפים שלך טרם אושר.',
+    'minimum_amount' => 'סכום המשיכה המינימלי הוא :amount.',
+    'insufficient_balance' => 'אין לך מספיק יתרה למשיכה זו.',
+    'request_submitted' => 'בקשת המשיכה שלך הוגשה בהצלחה.',
+    'submit_request' => 'שלח בקשת משיכה',
+    'available_balance' => 'יתרה זמינה',
+    'enter_amount' => 'הזן סכום',
+    'select_payment_method' => 'בחר שיטת תשלום',
+    'payment_details_placeholder' => 'הזן את פרטי התשלום שלך (למשל, דוא"ל PayPal, פרטי חשבון בנק)',
+    'no_payment_methods_available' => 'אין שיטות תשלום זמינות כרגע. אנא צור קשר עם המנהל.',
+
+    // Additional translations for PayoutPaymentMethodsEnum
+    'bank_transfer' => 'העברה בנקאית',
+    'paypal' => 'PayPal',
+    'stripe' => 'Stripe',
+    'other' => 'אחר',
+    'bank_information' => 'מידע בנקאי',
+    'paypal_id' => 'PayPal ID',
+
+    // Payout payment methods
+    'payout_payment_methods' => [
+        'bank_transfer' => 'העברה בנקאית',
+        'paypal' => 'PayPal',
+        'stripe' => 'Stripe',
+        'other' => 'אחר',
+    ],
+];

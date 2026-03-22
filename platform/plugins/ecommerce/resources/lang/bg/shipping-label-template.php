@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'name' => 'Шаблон за етикет за доставка',
-    'setting' => 'Настройки на шаблона за етикет за доставка',
-    'setting_description' => 'Настройки за шаблона на етикета за доставка',
+    'name' => 'Shipping Labels',
+    'setting' => 'Label design & layout',
+    'setting_description' => 'Customize shipping label HTML template and CSS styles',
     'setting_content' => 'Съдържание',
     'preview' => 'Преглед',
     'preview_heading' => 'Преглед на шаблона за етикет за доставка',

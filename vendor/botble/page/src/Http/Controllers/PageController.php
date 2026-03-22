@@ -77,28 +77,33 @@ class PageController extends BaseController
         return DeleteResourceAction::make($page);
     }
 
-    public function visualBuilder(Page $page, ShortcodeParserService $parser)
+    public function visualBuilder(Page $page, ShortcodeParserService $parser, Request $request)
     {
-        abort_unless(setting('enable_page_visual_builder', true), 404);
+        abort_unless(setting('enable_page_visual_builder', true) && ! config('core.base.general.disable_front_theme'), 404);
+
+        do_action(BASE_ACTION_BEFORE_EDIT_CONTENT, $request, $page);
 
         $this->pageTitle(trans('packages/page::pages.visual_builder', ['name' => $page->name]));
 
-        $content = html_entity_decode($page->content ?? '', ENT_QUOTES, 'UTF-8');
+        $content = apply_filters('page_visual_builder_content', $page->content ?? '', $page, $request);
+        $content = $parser->decodeForVisualBuilder($content);
         $shortcodes = $parser->parse($content);
 
         $availableShortcodes = $this->getAvailableShortcodes();
 
         Assets::addStyles(['sortable'])
             ->addScripts(['sortable'])
-            ->addStylesDirectly('vendor/core/packages/page/css/visual-builder.css?v=1.1.0')
-            ->addScriptsDirectly('vendor/core/packages/page/js/visual-builder.js?v=1.1.0');
+            ->addStylesDirectly('vendor/core/packages/page/css/visual-builder.css?v=' . time())
+            ->addScriptsDirectly('vendor/core/packages/page/js/visual-builder.js?v=' . time());
 
         return view('packages/page::visual-builder.index', compact('page', 'shortcodes', 'availableShortcodes'));
     }
 
     public function preview(Page $page, PageService $pageService, ShortcodeParserService $parser, Request $request)
     {
-        abort_unless(setting('enable_page_visual_builder', true), 404);
+        abort_unless(setting('enable_page_visual_builder', true) && ! config('core.base.general.disable_front_theme'), 404);
+
+        do_action(BASE_ACTION_BEFORE_EDIT_CONTENT, $request, $page);
 
         request()->merge(['preview' => 1, 'visual_builder' => 1]);
 
@@ -119,7 +124,15 @@ class PageController extends BaseController
         }
 
         // Get page data using the page service
-        $data = $pageService->handleFrontRoutes(null);
+        $data = $pageService->handleFrontRoutes($page->slugable);
+
+        if (empty($data) || ! isset($data['view'])) {
+            $data = [
+                'view' => 'page',
+                'default_view' => 'packages/page::themes.page',
+                'data' => compact('page'),
+            ];
+        }
 
         // Override the page in data
         $data['data']['page'] = $page;
@@ -130,7 +143,7 @@ class PageController extends BaseController
 
     public function saveVisualBuilder(Page $page, Request $request, ShortcodeParserService $parser)
     {
-        abort_unless(setting('enable_page_visual_builder', true), 404);
+        abort_unless(setting('enable_page_visual_builder', true) && ! config('core.base.general.disable_front_theme'), 404);
 
         $request->validate([
             'content' => ['required', 'string'],
@@ -142,8 +155,12 @@ class PageController extends BaseController
         $validShortcodes = $this->filterValidShortcodes($shortcodes);
         $content = $parser->serialize($validShortcodes);
 
-        $page->content = $content;
-        $page->save();
+        $saved = apply_filters('page_visual_builder_save_content', false, $page, $content, $request);
+
+        if (! $saved) {
+            $page->content = $content;
+            $page->save();
+        }
 
         return $this
             ->httpResponse()
@@ -173,7 +190,7 @@ class PageController extends BaseController
 
     public function renderShortcodeItems(Request $request)
     {
-        abort_unless(setting('enable_page_visual_builder', true), 404);
+        abort_unless(setting('enable_page_visual_builder', true) && ! config('core.base.general.disable_front_theme'), 404);
 
         $shortcodes = $request->input('shortcodes', []);
         $shortcodes = $this->filterValidShortcodes($shortcodes);
@@ -194,7 +211,7 @@ class PageController extends BaseController
 
     public function renderShortcodeTypes(Request $request)
     {
-        abort_unless(setting('enable_page_visual_builder', true), 404);
+        abort_unless(setting('enable_page_visual_builder', true) && ! config('core.base.general.disable_front_theme'), 404);
 
         $availableShortcodes = $this->getAvailableShortcodes();
 

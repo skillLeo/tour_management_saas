@@ -55,6 +55,12 @@ return [
     'selected_items_move_success' => 'Valitud üksused edukalt liigutatud asukohta :name!',
     'selected_items_move_error' => 'Viga valitud üksuste liigutamisel asukohta :name',
     'destination' => 'Sihtkoht',
+    'move' => 'Move',
+    'move_items' => 'Move items',
+    'move_here' => 'Move here',
+    'move_to_root' => 'Move to root folder',
+    'root' => 'Root',
+    'go_up' => 'Go up',
     'restore_error' => 'Viga valitud üksuste taastamisel',
     'restore_success' => 'Valitud üksused edukalt taastatud!',
     'copy_success' => 'Valitud üksused edukalt kopeeritud!',
@@ -133,7 +139,12 @@ return [
         ],
 
         'download' => [
-            'error' => 'Faile pole valitud või neid faile ei saa alla laadida',
+            'error' => 'No files selected or cannot download these files',
+        ],
+
+        'move' => [
+            'select_destination' => 'Please select a destination folder',
+            'same_location' => 'Items are already in this location',
         ],
 
         'actions_list' => [
