@@ -12,7 +12,7 @@ class PaystackWebhookTest extends BaseTestCase
 {
     use RefreshDatabase;
 
-    protected string $secretKey = 'sk_test_abc123secret';
+    protected string $secretKey = '';
 
     protected function setUp(): void
     {
